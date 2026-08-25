@@ -1,0 +1,370 @@
+﻿/* =========================================================
+   ORDER DETAIL PAGE — mat, eskimiş, neon/canlı renk yok
+   ========================================================= */
+
+.order-detail-page {
+    max-width: 1050px;
+    margin: 45px auto 80px;
+    padding: 0 25px;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.order-detail-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid #4a3c2c;
+}
+
+.order-detail-label {
+    display: block;
+    margin-bottom: 6px;
+    color: #5c7686;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+
+.order-detail-header h1 {
+    margin: 0 0 6px;
+    color: #d8cbb3;
+    font-family: 'Alfa Slab One', Georgia, serif;
+    font-size: 28px;
+    font-weight: 400;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
+}
+
+.order-detail-header p {
+    margin: 0;
+    color: #8a7a64;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 15px;
+}
+
+.order-back-button {
+    padding: 10px 18px;
+    color: #d8cbb3;
+    background: transparent;
+    border: 1px solid #4a3c2c;
+    border-radius: 2px;
+    text-decoration: none;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap;
+    transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+    .order-back-button:hover {
+        border-color: #a3803f;
+        color: #a3803f;
+    }
+
+/* =========================================================
+   SUMMARY CARD
+   ========================================================= */
+
+.order-summary-card {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin-bottom: 25px;
+    background: #262019;
+    border: 1px solid #4a3c2c;
+    border-top: 3px solid #a3803f;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.order-info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 20px 22px;
+    border-right: 1px solid #4a3c2c;
+}
+
+    .order-info-item:last-child {
+        border-right: 0;
+    }
+
+.order-info-label {
+    color: #8a7a64;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+}
+
+.order-info-item strong {
+    color: #d8cbb3;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.order-status {
+    color: #a3803f !important;
+}
+
+.order-total strong {
+    color: #8a4030 !important;
+    font-size: 18px !important;
+}
+
+/* =========================================================
+   CONTENT LAYOUT
+   ========================================================= */
+
+.order-detail-content {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    align-items: start;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+/* =========================================================
+   SHARED CARD HEADER
+   ========================================================= */
+
+.order-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    border-bottom: 1px solid #4a3c2c;
+}
+
+    .order-card-header h2 {
+        margin: 0;
+        color: #d8cbb3;
+        font-family: 'Alfa Slab One', Georgia, serif;
+        font-size: 18px;
+        font-weight: 400;
+        text-transform: uppercase;
+    }
+
+    .order-card-header span {
+        color: #8a7a64;
+        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+        font-size: 13px;
+    }
+
+/* =========================================================
+   PRODUCTS CARD
+   ========================================================= */
+
+.order-products-card {
+    background: #262019;
+    border: 1px solid #4a3c2c;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.order-products-table-wrapper {
+    overflow-x: auto;
+}
+
+.order-products-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    .order-products-table thead th {
+        padding: 12px 24px;
+        color: #8a7a64;
+        background: #201a15;
+        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        text-align: left;
+        white-space: nowrap;
+    }
+
+    .order-products-table tbody td {
+        padding: 14px 24px;
+        border-top: 1px solid #4a3c2c;
+        color: #d8cbb3;
+        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+        font-size: 14px;
+        white-space: nowrap;
+    }
+
+.order-product-name {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.product-icon {
+    color: #a3803f;
+}
+
+.quantity-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    color: #d8cbb3;
+    background: #171310;
+    border: 1px solid #4a3c2c;
+    border-radius: 2px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.product-total {
+    color: #8a4030 !important;
+    font-weight: 700;
+}
+
+/* =========================================================
+   PRODUCTS TOTAL
+   ========================================================= */
+
+.order-products-total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 24px;
+    background: #201a15;
+    border-top: 1px solid #4a3c2c;
+    color: #d8cbb3;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+    .order-products-total strong {
+        color: #8a4030;
+        font-size: 20px;
+    }
+
+/* =========================================================
+   DELIVERY CARD
+   ========================================================= */
+
+.delivery-card {
+    background: #262019;
+    border: 1px solid #4a3c2c;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.delivery-content {
+    padding: 20px 24px;
+}
+
+.delivery-row {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 10px 0;
+    border-bottom: 1px solid #4a3c2c;
+}
+
+    .delivery-row:last-of-type {
+        border-bottom: 0;
+    }
+
+.delivery-label {
+    color: #8a7a64;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.3px;
+}
+
+.delivery-row strong {
+    color: #d8cbb3;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.delivery-address {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding-top: 12px;
+}
+
+    .delivery-address p {
+        margin: 0;
+        color: #d8cbb3;
+        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.order-detail-footer {
+    display: flex;
+    justify-content: flex-start;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .order-summary-card {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .order-info-item:nth-child(2) {
+        border-right: 0;
+    }
+
+    .order-info-item {
+        border-bottom: 1px solid #4a3c2c;
+    }
+
+        .order-info-item:nth-last-child(-n+2) {
+            border-bottom: 0;
+        }
+
+    .order-detail-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .order-detail-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+    }
+
+    .order-summary-card {
+        grid-template-columns: 1fr;
+    }
+
+    .order-info-item {
+        border-right: 0;
+        border-bottom: 1px solid #4a3c2c;
+    }
+
+        .order-info-item:last-child {
+            border-bottom: 0;
+        }
+
+    .order-card-header,
+    .delivery-content {
+        padding: 16px 18px;
+    }
+
+    .order-products-table thead th,
+    .order-products-table tbody td {
+        padding: 12px 16px;
+    }
+}

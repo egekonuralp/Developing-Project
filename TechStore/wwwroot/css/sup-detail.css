@@ -1,0 +1,404 @@
+﻿/* =========================================================
+   SUPPORT TICKET DETAIL PAGE — mat, eskimiş, neon/canlı renk yok
+   ========================================================= */
+
+.support-detail-page {
+    max-width: 900px;
+    margin: 45px auto 80px;
+    padding: 0 25px;
+}
+
+/* =========================================================
+   TICKET HEADER CARD
+   ========================================================= */
+
+.support-ticket-card {
+    margin-bottom: 30px;
+    background: #262019;
+    border: 1px solid #4a3c2c;
+    border-top: 3px solid #a3803f;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.support-ticket-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 24px 28px;
+    border-bottom: 1px solid #4a3c2c;
+}
+
+.support-ticket-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    flex-shrink: 0;
+    background: #171310;
+    border: 1px solid #4a3c2c;
+    border-radius: 3px;
+    font-size: 22px;
+}
+
+.support-ticket-label {
+    display: block;
+    margin-bottom: 5px;
+    color: #5c7686;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.support-ticket-header h1 {
+    margin: 0;
+    color: #d8cbb3;
+    font-family: 'Alfa Slab One', Georgia, serif;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.35;
+    text-transform: none;
+}
+
+.support-ticket-info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.support-info-row {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 16px 22px;
+    border-right: 1px solid #4a3c2c;
+}
+
+    .support-info-row:last-child {
+        border-right: 0;
+    }
+
+    .support-info-row span {
+        color: #8a7a64;
+        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+        font-size: 12px;
+    }
+
+    .support-info-row strong {
+        color: #d8cbb3;
+        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+.support-status {
+    color: #a3803f !important;
+}
+
+/* =========================================================
+   SECTION HEADER (Messages / New Message)
+   ========================================================= */
+
+.support-section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.support-section-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    background: #171310;
+    border: 1px solid #4a3c2c;
+    border-radius: 3px;
+    font-size: 15px;
+}
+
+.support-section-header span {
+    display: block;
+    margin-bottom: 3px;
+    color: #8a7a64;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.support-section-header h2 {
+    margin: 0;
+    color: #d8cbb3;
+    font-family: 'Alfa Slab One', Georgia, serif;
+    font-size: 18px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+/* =========================================================
+   EMPTY MESSAGE STATE
+   ========================================================= */
+
+.support-empty-message {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 30px;
+    padding: 24px;
+    background: #262019;
+    border: 1px dashed #4a3c2c;
+    border-radius: 4px;
+}
+
+.support-empty-icon {
+    font-size: 32px;
+    opacity: 0.6;
+}
+
+.support-empty-message strong {
+    display: block;
+    margin-bottom: 3px;
+    color: #d8cbb3;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 15px;
+}
+
+.support-empty-message p {
+    margin: 0;
+    color: #8a7a64;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 13px;
+}
+
+/* =========================================================
+   MESSAGES
+   ========================================================= */
+
+.support-messages {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 30px;
+}
+
+.support-message {
+    max-width: 82%;
+    padding: 16px 20px;
+    border-radius: 4px;
+}
+
+/* Kullanıcı mesajı — pirinç kenarlı, sağa yaslı */
+
+.support-message-user {
+    align-self: flex-end;
+    background: #262019;
+    border: 1px solid #4a3c2c;
+    border-right: 3px solid #a3803f;
+}
+
+/* Destek ekibi mesajı — denim mavisi kenarlı, sola yaslı */
+
+.support-message-admin {
+    align-self: flex-start;
+    background: #201a15;
+    border: 1px solid #4a3c2c;
+    border-left: 3px solid #5c7686;
+}
+
+.support-message-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 10px;
+}
+
+.support-message-author {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+    .support-message-author strong {
+        color: #d8cbb3;
+        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+.support-message-date {
+    color: #8a7a64;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.support-message-body {
+    color: #d8cbb3;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* =========================================================
+   NEW MESSAGE FORM
+   ========================================================= */
+
+.support-new-message {
+    padding: 24px 28px;
+    background: #262019;
+    border: 1px solid #4a3c2c;
+    border-radius: 4px;
+}
+
+.support-message-form textarea {
+    width: 100%;
+    padding: 13px;
+    color: #d8cbb3;
+    background: #171310;
+    border: 1px solid #4a3c2c;
+    border-radius: 2px;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+    resize: vertical;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+    .support-message-form textarea::placeholder {
+        color: #8a7a64;
+    }
+
+    .support-message-form textarea:focus {
+        outline: none;
+        border-color: #a3803f;
+        box-shadow: 0 0 0 2px rgba(163, 128, 63, 0.18);
+    }
+
+.support-form-label {
+    margin-bottom: 10px;
+}
+
+    .support-form-label label {
+        display: block;
+        margin-bottom: 4px;
+        color: #d8cbb3;
+        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+    .support-form-label span {
+        color: #8a7a64;
+        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+        font-size: 13px;
+    }
+
+.support-form-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 14px;
+}
+
+.support-form-hint {
+    color: #8a7a64;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.support-send-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 22px;
+    color: #171310;
+    background: #a3803f;
+    border: 1px dashed #171310;
+    outline: 2px solid #a3803f;
+    outline-offset: -4px;
+    border-radius: 2px;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background 0.2s ease, gap 0.2s ease;
+}
+
+    .support-send-button:hover {
+        background: #bd9a5c;
+        gap: 12px;
+    }
+
+/* =========================================================
+   CLOSED STATE
+   ========================================================= */
+
+.support-closed-message {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 20px;
+    background: #171310;
+    border: 1px solid #4a3c2c;
+    border-radius: 3px;
+}
+
+.support-closed-icon {
+    font-size: 26px;
+    opacity: 0.7;
+}
+
+.support-closed-message strong {
+    display: block;
+    margin-bottom: 3px;
+    color: #d8cbb3;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+}
+
+.support-closed-message p {
+    margin: 0;
+    color: #8a7a64;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 13px;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .support-ticket-info {
+        grid-template-columns: 1fr;
+    }
+
+    .support-info-row {
+        border-right: 0;
+        border-bottom: 1px solid #4a3c2c;
+    }
+
+        .support-info-row:last-child {
+            border-bottom: 0;
+        }
+
+    .support-message {
+        max-width: 100%;
+    }
+
+    .support-form-footer {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .support-send-button {
+        justify-content: center;
+    }
+}

@@ -1,0 +1,194 @@
+﻿@model List<TechStore.Models.SupportTicket>
+
+@{
+    ViewData["Title"] = "Destek Taleplerim";
+}
+
+<div class="support-tickets-page">
+
+    <!-- HEADER -->
+    <div class="support-tickets-header">
+
+        <div>
+
+            <span class="support-tickets-label">
+                TECHSTORE DESTEK
+            </span>
+
+            <h1>
+                Destek Taleplerim
+            </h1>
+
+            <p>
+                Oluşturduğunuz destek taleplerini buradan takip edebilirsiniz.
+            </p>
+
+        </div>
+
+        <a asp-action="Create" class="support-ticket-create-btn">
+
+            <span>＋</span>
+
+            Yeni Destek Talebi
+
+        </a>
+
+    </div>
+
+    @if (!Model.Any())
+    {
+        <!-- EMPTY STATE -->
+        <div class="support-tickets-empty">
+
+            <div class="support-empty-icon">
+                🎫
+            </div>
+
+            <h2>
+                Henüz Destek Talebiniz Yok
+            </h2>
+
+            <p>
+                Yaşadığınız bir sorun varsa yeni bir destek talebi
+                oluşturarak bizimle iletişime geçebilirsiniz.
+            </p>
+
+            <a asp-action="Create" class="support-empty-btn">
+                Destek Talebi Oluştur
+            </a>
+
+        </div>
+    }
+    else
+    {
+        <!-- TICKETS CARD -->
+        <div class="support-tickets-card">
+
+            <div class="support-tickets-card-header">
+
+                <div>
+
+                    <h2>
+                        Talepleriniz
+                    </h2>
+
+                    <span>
+                        Toplam @Model.Count destek talebi
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="support-table-wrapper">
+
+                <table class="support-tickets-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th> Başlık </th>
+
+                            <th> Kategori </th>
+
+                            <th> Durum </th>
+
+                            <th> Oluşturulma </th>
+
+                            <th> </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        @foreach (var ticket in Model)
+                        {
+                            <tr>
+
+                                <td>
+
+                                    <div class="ticket-title">
+
+                                        <span class="ticket-icon">
+                                            🎫
+                                        </span>
+
+                                        <strong>
+                                            @ticket.Title
+                                        </strong>
+
+                                    </div>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="ticket-category">
+                                        @ticket.Category
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    @{
+                                        var statusClass = ticket.Status?.ToLower() switch
+                                        {
+                                            "açık" => "status-open",
+                                            "acik" => "status-open",
+                                            "beklemede" => "status-pending",
+                                            "çözüldü" => "status-resolved",
+                                            "cozuldu" => "status-resolved",
+                                            "kapalı" => "status-closed",
+                                            "kapali" => "status-closed",
+                                            _ => "status-default"
+                                        };
+                                    }
+
+                                    <span class="ticket-status @statusClass">
+
+                                        <span class="status-dot"></span>
+
+                                        @ticket.Status
+
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="ticket-date">
+                                        @ticket.CreatedDate.ToString("dd.MM.yyyy HH:mm")
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                <a asp-action="Detail" asp-route-id="@ticket.Id" class="ticket-detail-btn">
+
+                                    Detay
+
+                                    <span>→</span>
+
+                                </a>
+
+                                </td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+    }
+
+</div>
+

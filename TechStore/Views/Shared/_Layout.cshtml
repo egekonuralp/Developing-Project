@@ -1,0 +1,260 @@
+﻿@using TechStore.Services.Interfaces
+@inject ICategoryService CategoryService
+
+@{
+    var categories = await CategoryService.GetAllAsync();
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+    <head>
+        <meta charset="utf-8" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <title>
+            @ViewData["Title"] - TechStore
+        </title>
+
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />     
+        <link rel="stylesheet" href="~/TechStore.styles.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/navbar.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/footer.css" asp-append-version="true" />
+
+    <!-- HOME -->
+    @if (ViewContext.RouteData.Values["Controller"]?.ToString() == "Home")       
+    {
+        <link rel="stylesheet" href="~/css/home.css" asp-append-version="true" />
+    }
+
+    <!-- ACCOUNT -->
+    @if (ViewContext.RouteData.Values["Controller"]?.ToString() == "Account" &&
+        ViewContext.RouteData.Values["Action"]?.ToString() == "Login")
+    {
+        <link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
+    }
+
+    @if (ViewContext.RouteData.Values["Controller"]?.ToString() == "Account" &&
+        ViewContext.RouteData.Values["Action"]?.ToString() == "Register")
+    {
+        <link rel="stylesheet" href="~/css/register.css" asp-append-version="true" />
+    }
+
+    @if (ViewContext.RouteData.Values["Controller"]?.ToString() == "Account" &&
+        ViewContext.RouteData.Values["Action"]?.ToString() == "Profile")
+    {
+        <link rel="stylesheet" href="~/css/profile.css" asp-append-version="true" />
+    }
+
+    <!-- CART -->
+    @if (ViewContext.RouteData.Values["Controller"]?.ToString() == "Cart")
+    {
+        <link rel="stylesheet" href="~/css/cart.css" asp-append-version="true" />
+    }
+
+    <!-- ORDER -->
+    @if (ViewContext.RouteData.Values["Controller"]?.ToString() == "Order" &&
+        ViewContext.RouteData.Values["Action"]?.ToString() == "Checkout")
+    {
+        <link rel="stylesheet" href="~/css/checkout.css" asp-append-version="true" />
+    }
+
+    @if (ViewContext.RouteData.Values["Controller"]?.ToString() == "Order" &&
+        ViewContext.RouteData.Values["Action"]?.ToString() == "Payment")
+    {
+        <link rel="stylesheet" href="~/css/payment.css" asp-append-version="true" />
+    }
+
+    @if (ViewContext.RouteData.Values["Controller"]?.ToString() == "Order" &&
+        ViewContext.RouteData.Values["Action"]?.ToString() == "Success")
+    {
+        <link rel="stylesheet" href="~/css/success.css" asp-append-version="true" />
+    }
+
+    @if (ViewContext.RouteData.Values["Controller"]?.ToString() == "Order" &&
+        ViewContext.RouteData.Values["Action"]?.ToString() == "MyOrders")
+    {
+        <link rel="stylesheet" href="~/css/myorders.css" asp-append-version="true" />
+    }
+
+    @if (ViewContext.RouteData.Values["Controller"]?.ToString() == "Order" &&
+        ViewContext.RouteData.Values["Action"]?.ToString() == "Detail")
+    {
+        <link rel="stylesheet" href="~/css/order-detail.css" asp-append-version="true" />
+    }
+
+    <!-- SUPPORT -->
+    @if (ViewContext.RouteData.Values["Controller"]?.ToString() == "Support" &&
+        ViewContext.RouteData.Values["Action"]?.ToString() == "Create")
+    {
+        <link rel="stylesheet" href="~/css/sup-create.css" asp-append-version="true" />
+    }
+
+    @if (ViewContext.RouteData.Values["Controller"]?.ToString() == "Support" &&
+        ViewContext.RouteData.Values["Action"]?.ToString() == "MyTickets")
+    {
+        <link rel="stylesheet" href="~/css/sup-tickets.css" asp-append-version="true" />
+    }
+
+    @if (ViewContext.RouteData.Values["Controller"]?.ToString() == "Support" &&
+        ViewContext.RouteData.Values["Action"]?.ToString() == "Detail")
+    {
+        <link rel="stylesheet" href="~/css/sup-detail.css" asp-append-version="true" />
+    }
+
+    </head>
+
+    <body>
+
+        <header class="site-header">
+
+            <nav class="main-navbar">
+
+                <div class="navbar-container">
+
+                    <!-- LOGO -->
+                    <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+
+                        <span class="brand-icon">
+                            ⚡
+                        </span>
+
+                        <span class="brand-text">
+                            TechStore
+                        </span>
+
+                    </a>
+
+                    <!-- NAVBAR CONTENT -->
+                    <div class="navbar-content">
+
+                        <!-- SEARCH -->
+                        <div class="navbar-search">
+
+                            <form asp-controller="Home" asp-action="Index" method="get">
+
+                                <div class="search-wrapper">
+
+                                    <span class="search-icon">
+                                        🔍
+                                    </span>
+
+                                    <input type="text" name="search" placeholder="Ürün Ara..." autocomplete="off" />
+
+                                </div>
+
+                            </form>
+
+                        </div>
+
+                        <!-- MAİN MENU -->
+                        <ul class="navbar-menu">
+
+                            <!-- ANA SAYFA -->
+                            <li class="navbar-item">
+
+                                <a asp-controller="Home" asp-action="Index" class="navbar-link">
+                                    Ana Sayfa
+                                </a>
+
+                            </li>
+
+                            <!-- ÜRÜNLER -->
+                            <li class="navbar-item">
+
+                                <a asp-controller="Home" asp-action="Index" class="navbar-link">
+                                    Ürünler
+                                </a>
+
+                            </li>
+
+                            <!-- KATEGORİLER -->
+                            <li class="navbar-item category-item">
+
+                                <a asp-controller="Product" asp-action="Index" class="navbar-link">
+                                    
+                                    Kategoriler
+
+                                    <span class="category-arrow">
+                                        ▼
+                                    </span>
+
+                                </a>
+
+                                <!-- DB'DEN GELENLER -->
+                                <ul class="category-dropdown">
+
+                                    @if (categories.Any())
+                                    {
+                                        foreach (var category in categories)
+                                        {
+                                            <li>
+
+                                                <a asp-controller="Product" asp-action="Index" asp-route-categoryId="@category.Id" class="dropdown-item">
+                                                    @category.Name
+                                                </a>
+
+                                            </li>
+                                        }
+                                    }
+
+                                </ul>
+
+                            </li>
+
+                        </ul>
+
+                        <!-- SAĞ TARAF -->
+                        <div class="navbar-right">
+
+                            <!-- SEPET -->
+                            <a asp-controller="Cart" asp-action="Index" class="navbar-cart" title="Sepetim">
+
+                                <span class="cart-icon">
+                                    🛒
+                                </span>
+
+                            </a>
+
+                            <!-- HESAP -->
+                            <partial name="_LoginPartial" />
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </nav>
+
+        </header>
+
+        <!-- MAİN CONTENT -->
+        <div class="container page-content">
+
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="site-footer">
+
+            <div class="container site-footer-inner">
+                &copy; 2026 - TechStore -
+                <a asp-controller="Home" asp-action="Privacy">Gizlilik</a>
+            </div>
+
+        </footer>
+
+        <!-- SCRİPTS -->
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+
+        @await RenderSectionAsync("Scripts", required: false)
+
+    </body>
+
+</html>

@@ -1,0 +1,661 @@
+﻿@model TechStore.ViewModels.DashboardViewModel
+
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="dashboard-page">
+
+    <!-- PAGE HEADER -->
+    <div class="dashboard-hero">
+
+        <div class="dashboard-hero-content">
+
+            <span class="dashboard-eyebrow">
+                TECHSTORE ADMIN
+            </span>
+
+            <h2>
+                Welcome Back <span>👋</span>
+            </h2>
+
+            <p>
+                Manage your store, products, orders and customers
+                from one central dashboard.
+            </p>
+
+        </div>
+
+        <div class="dashboard-hero-mark">
+            <i class="fa-solid fa-chart-pie"></i>
+        </div>
+
+    </div>
+
+    <!-- QUİCK ACTİONS -->
+    <section class="dashboard-section">
+
+        <div class="section-heading">
+
+            <div>
+                <span class="section-kicker">QUICK ACCESS</span>
+                <h3>Quick Actions</h3>
+            </div>
+
+        </div>
+
+
+        <div class="quick-actions">
+
+            <a asp-controller="Product" asp-action="Create" class="action-card action-primary">
+
+                <div class="action-icon">
+                    <i class="fa-solid fa-plus"></i>
+                </div>
+
+                <div class="action-content">
+                    <strong>Add Product</strong>
+                    <span>Create a new product</span>
+                </div>
+
+                <i class="fa-solid fa-arrow-right action-arrow"></i>
+
+            </a>
+
+
+            <a asp-controller="Category" asp-action="Create" class="action-card action-gold">
+
+                <div class="action-icon">
+                    <i class="fa-solid fa-folder-plus"></i>
+                </div>
+
+                <div class="action-content">
+                    <strong>Add Category</strong>
+                    <span>Create a new category</span>
+                </div>
+
+                <i class="fa-solid fa-arrow-right action-arrow"></i>
+
+            </a>
+
+
+            <a asp-controller="Product" asp-action="Index" class="action-card action-brown">
+
+                <div class="action-icon">
+                    <i class="fa-solid fa-box"></i>
+                </div>
+
+                <div class="action-content">
+                    <strong>View Products</strong>
+                    <span>Manage your inventory</span>
+                </div>
+
+                <i class="fa-solid fa-arrow-right action-arrow"></i>
+
+            </a>
+
+
+            <a asp-controller="Category" asp-action="Index" class="action-card action-olive">
+
+                <div class="action-icon">
+                    <i class="fa-solid fa-layer-group"></i>
+                </div>
+
+                <div class="action-content">
+                    <strong>View Categories</strong>
+                    <span>Manage product groups</span>
+                </div>
+
+                <i class="fa-solid fa-arrow-right action-arrow"></i>
+
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- STATİCS -->
+    <section class="dashboard-section">
+
+        <div class="section-heading">
+
+            <div>
+                <span class="section-kicker">STORE OVERVIEW</span>
+                <h3>Store Statistics</h3>
+            </div>
+
+        </div>
+
+        <div class="stats-grid">
+
+            <!-- PRODUCTS -->
+            <div class="stat-card stat-products">
+
+                <div class="stat-icon">
+                    <i class="fa-solid fa-box"></i>
+                </div>
+
+                <div class="stat-info">
+
+                    <span>Total Products</span>
+
+                    <strong>
+                        @Model.ProductCount
+                    </strong>
+
+                    <small>
+                        Active products in store
+                    </small>
+
+                </div>
+
+            </div>
+
+            <!-- CATEGORIES -->
+            <div class="stat-card stat-categories">
+
+                <div class="stat-icon">
+                    <i class="fa-solid fa-layer-group"></i>
+                </div>
+
+                <div class="stat-info">
+
+                    <span>Total Categories</span>
+
+                    <strong>
+                        @Model.CategoryCount
+                    </strong>
+
+                    <small>
+                        Product categories
+                    </small>
+
+                </div>
+
+            </div>
+
+            <!-- USERS -->
+            <div class="stat-card stat-users">
+
+                <div class="stat-icon">
+                    <i class="fa-solid fa-users"></i>
+                </div>
+
+                <div class="stat-info">
+
+                    <span>Registered Users</span>
+
+                    <strong>
+                        @Model.UserCount
+                    </strong>
+
+                    <small>
+                        Registered customers
+                    </small>
+
+                </div>
+
+            </div>
+
+            <!-- ORDERS -->
+            <div class="stat-card stat-orders">
+
+                <div class="stat-icon">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </div>
+
+                <div class="stat-info">
+
+                    <span>Total Orders</span>
+
+                    <strong>
+                        @Model.OrderCount
+                    </strong>
+
+                    <small>
+                        Orders placed
+                    </small>
+
+                </div>
+
+            </div>
+
+            <!-- REVENUE -->
+            <div class="stat-card stat-revenue">
+
+                <div class="stat-icon">
+                    <i class="fa-solid fa-coins"></i>
+                </div>
+
+                <div class="stat-info">
+
+                    <span>Total Revenue</span>
+
+                    <strong>
+                        ₺@Model.Revenue.ToString("N2")
+                    </strong>
+
+                    <small>
+                        Total store revenue
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- PRODUCT DISTRIBUTION -->
+    <section class="dashboard-section">
+
+        <div class="dashboard-card chart-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <span class="section-kicker">
+                        INVENTORY
+                    </span>
+
+                    <h3>
+                        Product Distribution
+                    </h3>
+
+                    <p>
+                        Products grouped by category
+                    </p>
+
+                </div>
+
+                <div class="card-header-icon">
+                    <i class="fa-solid fa-chart-column"></i>
+                </div>
+
+            </div>
+
+
+            <div class="chart-container">
+                <canvas id="productChart"></canvas>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- RECENT DATA -->
+    <section class="dashboard-section">
+
+        <div class="dashboard-grid">
+
+            <!-- RECENT PRODUCTS -->
+            <div class="dashboard-card recent-products-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <span class="section-kicker">
+                            INVENTORY
+                        </span>
+
+                        <h3>
+                            Recent Products
+                        </h3>
+
+                    </div>
+
+                    <a asp-controller="Product" asp-action="Index" class="card-link">
+
+                        View All
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+                @if (Model.RecentProducts.Any())
+                {
+                    <div class="table-wrapper">
+
+                        <table class="table-custom">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>Product</th>
+                                    <th>Category</th>
+                                    <th>Price</th>
+                                    <th></th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                                @foreach (var product in Model.RecentProducts)
+                                {
+                                    <tr>
+
+                                        <td>
+
+                                            <div class="product-info">
+
+                                                <div class="product-image-wrapper">
+
+                                                    <img src="@product.ImageUrl" class="table-image" alt="@product.Name" />
+
+                                                </div>
+
+
+                                                <div class="product-details">
+
+                                                    <strong>
+                                                        @product.Name
+                                                    </strong>
+
+                                                    <small>
+                                                        @product.Brand
+                                                    </small>
+
+                                                </div>
+
+                                            </div>
+
+                                        </td>
+
+                                        <td>
+
+                                            <span class="category-badge">
+
+                                                <i class="fa-solid fa-layer-group"></i>
+
+                                                @product.Category.Name
+
+                                            </span>
+
+                                        </td>
+
+                                        <td>
+
+                                            <strong class="product-price">
+                                                ₺@product.Price.ToString("N2")
+                                            </strong>
+
+                                        </td>
+
+                                        <td>
+
+                                            <a asp-controller="Product" asp-action="Edit" asp-route-id="@product.Id" class="table-action">
+                                                <i class="fa-solid fa-pen"></i>
+                                            </a>
+
+                                        </td>
+
+                                    </tr>
+                                }
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+                }
+                else
+                {
+                    <div class="dashboard-empty">
+
+                        <div class="empty-icon">
+                            <i class="fa-solid fa-box-open"></i>
+                        </div>
+
+                        <strong>No products yet</strong>
+
+                        <span>
+                            Products will appear here once you add them.
+                        </span>
+
+                    </div>
+                }
+
+            </div>
+
+            <!-- RECENT CATEGORIES -->
+            <div class="dashboard-card recent-categories-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <span class="section-kicker">
+                            ORGANIZATION
+                        </span>
+
+                        <h3>
+                            Recent Categories
+                        </h3>
+
+                    </div>
+
+                    <a asp-controller="Category" asp-action="Index" class="card-link">
+
+                        View All
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+                @if (Model.RecentCategories.Any())
+                {
+                    <div class="category-list">
+
+                        @foreach (var category in Model.RecentCategories)
+                        {
+                            <div class="category-item">
+
+                                <div class="category-icon">
+
+                                    <i class="fa-solid fa-layer-group"></i>
+
+                                </div>
+
+                                <div class="category-info">
+
+                                    <strong>
+                                        @category.Name
+                                    </strong>
+
+                                    <span>
+                                        Product category
+                                    </span>
+
+                                </div>
+
+                                <i class="fa-solid fa-chevron-right category-arrow"></i>
+
+                            </div>
+                        }
+
+                    </div>
+                }
+                else
+                {
+                    <div class="dashboard-empty">
+
+                        <div class="empty-icon">
+                            <i class="fa-solid fa-folder-open"></i>
+                        </div>
+
+                        <strong>No categories yet</strong>
+
+                        <span>
+                            Categories will appear here once created.
+                        </span>
+
+                    </div>
+                }
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+@section Scripts {
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            fetch('/Dashboard/ProductDistribution')
+
+                .then(response => {
+
+                    if (!response.ok) {
+                        throw new Error("Product distribution could not be loaded.");
+                    }
+
+                    return response.json();
+
+                })
+
+                .then(data => {
+
+                    const labels = data.map(x => x.categoryName);
+                    const values = data.map(x => x.productCount);
+
+                    const canvas = document.getElementById("productChart");
+
+                    if (!canvas) {
+                        return;
+                    }
+
+
+                    new Chart(canvas, {
+
+                        type: "bar",
+
+                        data: {
+
+                            labels: labels,
+
+                            datasets: [
+
+                                {
+                                    label: "Products",
+                                    data: values,
+
+                                    backgroundColor: [
+                                        "rgba(163, 128, 63, 0.85)",
+                                        "rgba(92, 118, 134, 0.85)",
+                                        "rgba(92, 107, 70, 0.85)",
+                                        "rgba(138, 64, 48, 0.85)",
+                                        "rgba(138, 122, 100, 0.85)",
+                                        "rgba(189, 154, 92, 0.85)"
+                                    ],
+
+                                    borderWidth: 1,
+                                    borderRadius: 7,
+                                    borderSkipped: false,
+                                    maxBarThickness: 48
+                                }
+
+                            ]
+
+                        },
+
+                        options: {
+
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            interaction: { intersect: false, mode: "index" },
+
+                            plugins: {
+
+                                legend: { display: false },
+
+                                tooltip: {
+
+                                    backgroundColor: "#262019",
+                                    titleColor: "#d8cbb3",
+                                    bodyColor: "#d8cbb3",
+                                    borderColor: "#a3803f",
+                                    borderWidth: 1,
+                                    padding: 12,
+                                    displayColors: false,
+
+                                    callbacks: {
+                                        label: function (context) { return " " + context.parsed.y + " ürün"; }
+                                    }
+
+                                }
+
+                            },
+
+                            scales: {
+
+                                x: {
+
+                                    border: { display: false },
+
+                                    ticks: {
+                                        color: "#8a7a64",
+                                        font: {
+                                            size: 11,
+                                            weight: "600"
+                                        },
+                                        padding: 8
+                                    },
+
+                                    grid: { display: false }
+                                },
+
+                                y: {
+
+                                    beginAtZero: true,
+                                    border: { display: false },
+
+                                    ticks: {
+                                        stepSize: 1,
+                                        color: "#8a7a64",
+                                        font: {
+                                            size: 11
+                                        },
+                                        padding: 8
+                                    },
+
+                                    grid: {
+                                        color: "rgba(216, 203, 179, 0.08)",
+                                        drawTicks: false
+                                    }
+
+                                }
+
+                            }
+
+                        }
+
+                    });
+
+                })
+
+                .catch(error => {
+                    console.error("Chart error:", error);
+                });
+
+        });
+
+    </script>
+}

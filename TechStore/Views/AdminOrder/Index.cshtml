@@ -1,0 +1,162 @@
+﻿@model TechStore.ViewModels.PagedResultViewModel<TechStore.Models.Order>
+@{
+    ViewData["Title"] = "Orders";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="admin-order-page">
+
+    <div class="page-header">
+        <span class="page-eyebrow">SİPARİŞ YÖNETİMİ</span>
+        <h2>Tüm Siparişler</h2>
+    </div>
+
+    <!-- FILTER BAR -->
+    <form asp-action="Index" method="get" class="order-filter-bar">
+
+        <div class="filter-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text"
+                   name="search"
+                   placeholder="Müşteri adı veya telefon ara..."
+                   value="@Model.Search" />
+        </div>
+
+        <select name="status" class="filter-select">
+
+            <option value="">Tüm Durumlar</option>
+
+            <option value="Hazırlanıyor" selected="@(ViewBag.Status == "Hazırlanıyor")">
+                Hazırlanıyor
+            </option>
+
+            <option value="Kargoya Verildi" selected="@(ViewBag.Status == "Kargoya Verildi")">
+                Kargoya Verildi
+            </option>
+
+            <option value="Teslim Edildi" selected="@(ViewBag.Status == "Teslim Edildi")">
+                Teslim Edildi
+            </option>
+
+            <option value="İptal Edildi" selected="@(ViewBag.Status == "İptal Edildi")">
+                İptal Edildi
+            </option>
+
+        </select>
+
+        <button type="submit" class="filter-btn">
+            <i class="fa-solid fa-filter"></i>
+            Filtrele
+        </button>
+
+    </form>
+
+    @if (!Model.Items.Any())
+    {
+        <div class="orders-empty">
+            <i class="fa-solid fa-box-open"></i>
+            <p>Aradığınız kriterlere uygun sipariş bulunamadı.</p>
+        </div>
+    }
+    else
+    {
+        <div class="orders-table-card">
+
+            <div class="table-wrapper">
+
+                <table class="orders-table">
+
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Müşteri</th>
+                            <th>Tarih</th>
+                            <th>Toplam</th>
+                            <th>Durum</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        @foreach (var order in Model.Items)
+                        {
+                            var statusClass = order.Status switch
+                            {
+                                "Hazırlanıyor" => "status-preparing",
+                                "Kargoya Verildi" => "status-shipped",
+                                "Teslim Edildi" => "status-delivered",
+                                "İptal Edildi" => "status-cancelled",
+                                _ => "status-default"
+                            };
+
+                            <tr>
+                                <td class="order-id">#@order.Id</td>
+                                <td>@order.FullName</td>
+                                <td>@order.OrderDate.ToString("dd.MM.yyyy")</td>
+                                <td class="order-amount">@order.TotalPrice.ToString("N2") ₺</td>
+                                <td>
+                                    <span class="order-status-pill @statusClass">
+                                        <span class="status-dot"></span>
+                                        @order.Status
+                                    </span>
+                                </td>
+                                <td class="order-action-column">
+                                    <a asp-action="Detail" asp-route-id="@order.Id" class="order-detail-link">
+                                        Detay
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+    }
+
+    <!-- PAGINATION -->
+    @if (Model.TotalPages > 1)
+    {
+        <nav class="orders-pagination">
+
+            <ul>
+
+                @if (Model.HasPreviousPage)
+                {
+                    <li>
+                        <a asp-action="Index" asp-route-page="@(Model.CurrentPage - 1)" asp-route-search="@Model.Search">
+                            <i class="fa-solid fa-chevron-left"></i>
+                            Önceki
+                        </a>
+                    </li>
+                }
+
+                @for (int i = 1; i <= Model.TotalPages; i++)
+                {
+                    <li class="@(i == Model.CurrentPage ? "active" : "")">
+                        <a asp-action="Index" asp-route-page="@i" asp-route-search="@Model.Search">
+                            @i
+                        </a>
+                    </li>
+                }
+
+                @if (Model.HasNextPage)
+                {
+                    <li>
+                        <a asp-action="Index" asp-route-page="@(Model.CurrentPage + 1)" asp-route-search="@Model.Search">
+                            Sonraki
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </a>
+                    </li>
+                }
+
+            </ul>
+
+        </nav>
+    }
+
+</div>

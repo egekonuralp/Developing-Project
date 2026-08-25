@@ -1,0 +1,95 @@
+﻿@{
+    ViewData["Title"] = "Sipariş Başarılı";
+}
+
+<div class="success-page">
+
+    <div class="success-card">
+
+        <!-- SUCCESS ICON -->
+        <div class="success-icon-wrapper">
+
+            <div class="success-icon">
+                ✓
+            </div>
+
+        </div>
+
+        <!-- HEADER -->
+        <div class="success-content">
+
+            <span class="success-label">
+                SİPARİŞ TAMAMLANDI
+            </span>
+
+            <h1>
+                Siparişiniz Başarıyla Oluşturulmuştur.
+            </h1>
+
+            <p>
+                Siparişiniz Başarıyla Alındı. Bizi Tercih Ettiğiniz İçin Teşekkür Ederiz.
+            </p>
+
+        </div>
+
+        <!-- INFO -->
+        <div class="success-info">
+
+            <div class="success-info-item">
+
+                <span class="info-icon">
+                    📦
+                </span>
+
+                <div>
+
+                    <strong>
+                        Siparişiniz Hazırlanıyor.
+                    </strong>
+
+                    <span>
+                        Siparişiniz En Kısa Sürede Hazırlanacaktır.
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="success-info-item">
+
+                <span class="info-icon">
+                    📋
+                </span>
+
+                <div>
+
+                    <strong>
+                        Siparişlerinizi Takip Edin.
+                    </strong>
+
+                    <span>
+                        Sipariş Durumunuzu Siparişlerim Bölümünden Görüntüleyebilirsiniz.
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- BUTTONS -->
+        <div class="success-buttons">
+
+            <a asp-controller="Order" asp-action="MyOrders" class="success-btn success-btn-primary">
+                Siparişlerim
+            </a>
+
+            <a asp-controller="Home" asp-action="Index" class="success-btn success-btn-outline">
+                Alışverişe Devam Et
+            </a>
+
+        </div>
+
+    </div>
+
+</div>

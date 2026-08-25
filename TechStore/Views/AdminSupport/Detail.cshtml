@@ -1,0 +1,147 @@
+﻿@model TechStore.Models.SupportTicket
+@{
+    ViewData["Title"] = "Support Detail";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="admin-support-detail-page">
+
+    <div class="page-header">
+        <span class="page-eyebrow">DESTEK YÖNETİMİ</span>
+        <h2>@Model.Title</h2>
+    </div>
+
+    <!-- TICKET INFO -->
+    <div class="detail-card">
+
+        <div class="detail-card-header">
+            <h3><i class="fa-solid fa-ticket"></i> Ticket Bilgileri</h3>
+        </div>
+
+        <div class="ticket-info-grid">
+
+            <div class="info-item">
+                <span>Başlık</span>
+                <strong>@Model.Title</strong>
+            </div>
+
+            <div class="info-item">
+                <span>Kategori</span>
+                <strong>@Model.Category</strong>
+            </div>
+
+            <div class="info-item">
+                <span>Durum</span>
+                <strong>@Model.Status</strong>
+            </div>
+
+            <div class="info-item">
+                <span>Müşteri</span>
+                <strong>@Model.User?.UserName</strong>
+            </div>
+
+            <div class="info-item">
+                <span>E-Posta</span>
+                <strong>@Model.User?.Email</strong>
+            </div>
+
+            <div class="info-item">
+                <span>Oluşturulma</span>
+                <strong>@Model.CreatedDate.ToString("dd.MM.yyyy HH:mm")</strong>
+            </div>
+
+            <div class="info-item">
+                <span>Son Güncelleme</span>
+                <strong>@Model.UpdatedDate.ToString("dd.MM.yyyy HH:mm")</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- MESSAGES -->
+    <div class="detail-card">
+
+        <div class="detail-card-header">
+            <h3><i class="fa-solid fa-comments"></i> Mesajlar</h3>
+        </div>
+
+        <div class="ticket-messages">
+
+            @foreach (var message in Model.Messages.OrderBy(x => x.CreatedDate))
+            {
+                <div class="ticket-message @(message.IsAdmin ? "message-admin" : "message-user")">
+
+                    <div class="message-header">
+                        <span class="message-author-badge">
+                            @(message.IsAdmin ? "Admin" : "Kullanıcı")
+                        </span>
+                        <span class="message-date">@message.CreatedDate.ToString("dd.MM.yyyy HH:mm")</span>
+                    </div>
+
+                    <p>@message.Message</p>
+
+                </div>
+            }
+
+        </div>
+
+        <!-- NEW MESSAGE -->
+        @if (Model.Status != "Kapandı")
+        {
+            <form asp-action="AddMessage" method="post" class="new-message-form">
+
+                @Html.AntiForgeryToken()
+
+                <input type="hidden" name="ticketId" value="@Model.Id" />
+
+                <textarea name="message" rows="4" placeholder="Mesajınızı Yazın..."></textarea>
+
+                <button type="submit" class="btn-send-message">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    Mesaj Gönder
+                </button>
+
+            </form>
+        }
+        else
+        {
+            <div class="ticket-closed-notice">
+                <i class="fa-solid fa-lock"></i>
+                Ticket kapatıldığı için yeni mesaj eklenemez.
+            </div>
+        }
+
+    </div>
+
+    <!-- STATUS UPDATE -->
+    <div class="detail-card">
+
+        <div class="detail-card-header">
+            <h3><i class="fa-solid fa-sliders"></i> Ticket Durumu</h3>
+        </div>
+
+        <form asp-action="UpdateStatus" method="post" class="status-form">
+
+            @Html.AntiForgeryToken()
+
+            <input type="hidden" name="ticketId" value="@Model.Id" />
+
+            <select name="status" class="status-select">
+
+                <option value="Açık" selected="@(Model.Status == "Açık")">Açık</option>
+                <option value="Beklemede" selected="@(Model.Status == "Beklemede")">Beklemede</option>
+                <option value="Kapandı" selected="@(Model.Status == "Kapandı")">Kapandı</option>
+
+            </select>
+
+            <button type="submit" class="btn-update-status">
+                <i class="fa-solid fa-check"></i>
+                Durumu Güncelle
+            </button>
+
+        </form>
+
+    </div>
+
+</div>

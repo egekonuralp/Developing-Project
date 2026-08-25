@@ -1,0 +1,77 @@
+﻿@model TechStore.ViewModels.LoginViewModel
+@{
+    ViewData["Title"] = "Giriş Yap";
+}
+
+<div class="auth-page">
+
+    <div class="auth-wrapper">
+
+        <div class="auth-card">
+
+            <span class="auth-punch"></span>
+
+            <span class="auth-badge">
+                GİRİŞ
+            </span>
+
+            <div class="auth-header">
+
+                <span class="auth-eyebrow">
+                    Backstage Girişi
+                </span>
+
+                <h1>
+                    TechStore
+                </h1>
+
+                <p class="auth-subtitle">
+                    Hesabınıza giriş yapın
+                </p>
+
+            </div>
+
+            <form asp-action="Login" method="post" class="auth-form">
+
+                <div asp-validation-summary="ModelOnly" class="auth-validation-summary"></div>
+
+                <div class="auth-field">
+                    <label asp-for="Email" class="form-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="auth-field">
+                    <label asp-for="Password" class="form-label"></label>
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+                <div class="auth-check form-check">
+                    <input asp-for="RememberMe" class="form-check-input" />
+                    <label asp-for="RememberMe" class="form-check-label"></label>
+                </div>
+
+                <button type="submit" class="auth-submit">
+                    Giriş Yap
+                </button>
+
+            </form>
+
+            <hr class="auth-divider" />
+
+            <div class="auth-footer">
+                <span>Hesabınız yok mu?</span>
+                <a asp-action="Register">Kayıt Ol</a>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}

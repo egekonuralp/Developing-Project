@@ -1,0 +1,350 @@
+﻿/* =========================================================
+   ADMIN USER LIST — mat, eskimiş, neon/canlı renk yok
+   ========================================================= */
+
+.admin-user-page {
+    max-width: 1100px;
+}
+
+.admin-alert {
+    padding: 13px 16px;
+    margin-bottom: 18px;
+    border-radius: 2px;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+}
+
+.admin-alert-success {
+    color: #cfd8bf;
+    background: rgba(92, 107, 70, 0.18);
+    border: 1px solid #5c6b46;
+}
+
+.admin-alert-danger {
+    color: #e0c3ba;
+    background: rgba(138, 64, 48, 0.18);
+    border: 1px solid #8a4030;
+}
+
+.page-header {
+    margin-bottom: 22px;
+}
+
+.page-eyebrow {
+    display: block;
+    margin-bottom: 6px;
+    color: #a3803f;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.page-header h2 {
+    margin: 0;
+    color: #d8cbb3;
+    font-family: 'Alfa Slab One', Georgia, serif;
+    font-size: 22px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.user-search-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.filter-search {
+    position: relative;
+    flex: 1;
+    max-width: 380px;
+}
+
+    .filter-search i {
+        position: absolute;
+        left: 13px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #8a7a64;
+        font-size: 13px;
+    }
+
+    .filter-search input {
+        width: 100%;
+        height: 42px;
+        padding: 0 13px 0 36px;
+        color: #d8cbb3;
+        background: #262019;
+        border: 1px solid #4a3c2c;
+        border-radius: 2px;
+        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+        font-size: 14px;
+    }
+
+        .filter-search input::placeholder {
+            color: #8a7a64;
+        }
+
+        .filter-search input:focus {
+            outline: none;
+            border-color: #a3803f;
+        }
+
+.filter-btn {
+    height: 42px;
+    padding: 0 20px;
+    color: #171310;
+    background: #a3803f;
+    border: 1px dashed #171310;
+    outline: 2px solid #a3803f;
+    outline-offset: -4px;
+    border-radius: 2px;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+    .filter-btn:hover {
+        background: #bd9a5c;
+    }
+
+.user-table-card {
+    background: #262019;
+    border: 1px solid #4a3c2c;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 18px;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    .user-table thead th {
+        padding: 12px 20px;
+        color: #8a7a64;
+        background: #201a15;
+        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+        text-align: left;
+        white-space: nowrap;
+    }
+
+    .user-table tbody td {
+        padding: 13px 20px;
+        border-top: 1px solid #4a3c2c;
+        color: #d8cbb3;
+        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+        font-size: 14px;
+        white-space: nowrap;
+    }
+
+    .user-table tbody tr:hover {
+        background: rgba(163, 128, 63, 0.04);
+    }
+
+.action-column {
+    width: 160px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.user-detail-link {
+    display: inline-block;
+    padding: 6px 14px;
+    color: #a3803f;
+    background: transparent;
+    border: 1px solid #4a3c2c;
+    border-radius: 2px;
+    text-decoration: none;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    transition: border-color 0.2s ease;
+}
+
+    .user-detail-link:hover {
+        border-color: #a3803f;
+    }
+
+.user-delete-btn {
+    padding: 6px 14px;
+    color: #a1503d;
+    background: transparent;
+    border: 1px solid #8a4030;
+    border-radius: 2px;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+    .user-delete-btn:hover {
+        background: #8a4030;
+        color: #ecdccf;
+    }
+
+/* =========================================================
+   DELETE MODAL — Bootstrap modal, temayla eşleşsin
+   ========================================================= */
+
+.admin-modal-content {
+    background: #262019;
+    border: 1px solid #4a3c2c;
+    border-radius: 4px;
+}
+
+.admin-modal-header {
+    border-bottom: 1px solid #4a3c2c;
+    padding: 18px 22px;
+}
+
+    .admin-modal-header .modal-title {
+        color: #d8cbb3;
+        font-family: 'Alfa Slab One', Georgia, serif;
+        font-size: 16px;
+        font-weight: 400;
+        text-transform: uppercase;
+    }
+
+.admin-modal-close {
+    background: transparent;
+    border: 0;
+    color: #8a7a64;
+    font-size: 20px;
+    cursor: pointer;
+    line-height: 1;
+}
+
+    .admin-modal-close::before {
+        content: "\2715";
+    }
+
+.admin-modal-body {
+    padding: 20px 22px;
+    color: #d8cbb3;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+}
+
+.modal-warning-text {
+    color: #a1503d;
+    font-size: 13px;
+    margin: 0;
+}
+
+.admin-modal-footer {
+    border-top: 1px solid #4a3c2c;
+    padding: 16px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.btn-modal-cancel {
+    padding: 9px 18px;
+    color: #d8cbb3;
+    background: transparent;
+    border: 1px solid #4a3c2c;
+    border-radius: 2px;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+}
+
+    .btn-modal-cancel:hover {
+        border-color: #a3803f;
+    }
+
+.btn-modal-delete {
+    padding: 9px 18px;
+    color: #ecdccf;
+    background: #8a4030;
+    border: 1px dashed #171310;
+    outline: 2px solid #8a4030;
+    outline-offset: -3px;
+    border-radius: 2px;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+    .btn-modal-delete:hover {
+        background: #a1503d;
+    }
+
+/* =========================================================
+   PAGINATION
+   ========================================================= */
+
+.admin-pagination ul {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    flex-wrap: wrap;
+}
+
+.admin-pagination a {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    color: #d8cbb3;
+    background: #262019;
+    border: 1px solid #4a3c2c;
+    border-radius: 2px;
+    text-decoration: none;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+    .admin-pagination a:hover {
+        border-color: #a3803f;
+        color: #a3803f;
+    }
+
+.admin-pagination li.active a {
+    color: #171310;
+    background: #a3803f;
+    border-color: #a3803f;
+}
+
+@media (max-width: 600px) {
+    .user-search-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filter-search {
+        max-width: none;
+    }
+}

@@ -1,0 +1,110 @@
+﻿@model TechStore.ViewModels.RegisterViewModel
+@{
+    ViewData["Title"] = "Kayıt Ol";
+}
+
+<div class="auth-page">
+
+    <div class="auth-wrapper">
+
+        <div class="auth-card auth-card-wide">
+
+            <span class="auth-punch"></span>
+
+            <span class="auth-badge">
+                YENİ ÜYE
+            </span>
+
+            <div class="auth-header">
+
+                <span class="auth-eyebrow">
+                    Kapıda Kayıt
+                </span>
+
+                <h1>
+                    TechStore
+                </h1>
+
+                <p class="auth-subtitle">
+                    Yeni hesap oluştur
+                </p>
+
+            </div>
+
+            <form asp-action="Register" method="post" class="auth-form">
+
+                <div asp-validation-summary="ModelOnly" class="auth-validation-summary"></div>
+
+                <div class="auth-form-grid">
+
+                    <div class="auth-field">
+                        <label asp-for="FirstName" class="form-label"></label>
+                        <input asp-for="FirstName" class="form-control" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+
+                    <div class="auth-field">
+                        <label asp-for="LastName" class="form-label"></label>
+                        <input asp-for="LastName" class="form-control" />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+
+                </div>
+
+                <div class="auth-field">
+                    <label asp-for="UserName" class="form-label"></label>
+                    <input asp-for="UserName" class="form-control" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+
+                <div class="auth-field">
+                    <label asp-for="Email" class="form-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="auth-field">
+                    <label asp-for="PhoneNumber" class="form-label"></label>
+                    <input asp-for="PhoneNumber" class="form-control" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+
+                <div class="auth-form-grid">
+
+                    <div class="auth-field">
+                        <label asp-for="Password" class="form-label"></label>
+                        <input asp-for="Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+
+                    <div class="auth-field">
+                        <label asp-for="ConfirmPassword" class="form-label"></label>
+                        <input asp-for="ConfirmPassword" class="form-control" />
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                    </div>
+
+                </div>
+
+                <button type="submit" class="auth-submit">
+                    Hesap Oluştur
+                </button>
+
+            </form>
+
+            <hr class="auth-divider" />
+
+            <div class="auth-footer">
+                <span>Zaten hesabınız var mı?</span>
+                <a asp-action="Login">Giriş Yap</a>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}

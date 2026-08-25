@@ -1,0 +1,169 @@
+﻿@model TechStore.ViewModels.HomeIndexViewModel
+
+<div class="home-container">
+
+    <!-- HERO -->
+
+    <section class="home-hero">
+
+        <div class="hero-content">
+
+            <span class="hero-eyebrow">
+                EST. 1990s • TECH &amp; STYLE
+            </span>
+
+            <h1>
+                TechStore
+            </h1>
+
+            <p>
+                Teknolojinin ruhunu, vintage bir dokunuşla keşfedin.
+            </p>
+
+            <a asp-controller="Product"
+               asp-action="Index"
+               class="hero-button">
+
+                Ürünleri Keşfet
+                <span>→</span>
+
+            </a>
+
+        </div>
+
+        <div class="hero-decoration">
+
+            <span class="hero-lightning">⚡</span>
+
+        </div>
+
+    </section>
+
+
+    <!-- PRODUCTS -->
+
+    <section class="home-products">
+
+        <div class="section-heading">
+
+            <div>
+
+                <span class="section-eyebrow">
+                    ÖNE ÇIKANLAR
+                </span>
+
+                <h2>
+                    Son Eklenen Ürünler
+                </h2>
+
+            </div>
+
+            <a asp-controller="Product"
+               asp-action="Index"
+               class="view-all-link">
+
+                Tüm Ürünler →
+
+            </a>
+
+        </div>
+
+
+        @if (Model.Products.Any())
+        {
+            <div class="products-grid">
+
+                @foreach (var product in Model.Products)
+                {
+                    <article class="product-card">
+
+                        <div class="product-image">
+
+                            @if (!string.IsNullOrEmpty(product.ImageUrl))
+                            {
+                                <img src="@product.ImageUrl"
+                                     alt="@product.Name" />
+                            }
+                            else
+                            {
+                                <div class="no-product-image">
+                                    <span>⚡</span>
+                                    <small>RESİM YOK</small>
+                                </div>
+                            }
+
+                            <span class="product-category">
+                                @product.Category.Name
+                            </span>
+
+                        </div>
+
+
+                        <div class="product-content">
+
+                            <span class="product-brand">
+                                @product.Brand
+                            </span>
+
+                            <h3 class="product-name">
+                                @product.Name
+                            </h3>
+
+                            <div class="product-bottom">
+
+                                <strong class="product-price">
+                                    @product.Price.ToString("N2") ₺
+                                </strong>
+
+
+                                <form asp-controller="Cart"
+                                      asp-action="AddToCart"
+                                      method="post">
+
+                                    <input type="hidden"
+                                           name="productId"
+                                           value="@product.Id" />
+
+                                    <input type="hidden"
+                                           name="quantity"
+                                           value="1" />
+
+                                    <button type="submit"
+                                            class="product-cart-button"
+                                            title="Sepete Ekle">
+
+                                        🛒
+
+                                    </button>
+
+                                </form>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+                }
+
+            </div>
+        }
+        else
+        {
+            <div class="empty-products">
+
+                <span>⚡</span>
+
+                <h3>
+                    Henüz Satışta Ürün Bulunmamaktadır.
+                </h3>
+
+                <p>
+                    Yeni ürünler için daha sonra tekrar uğrayın.
+                </p>
+
+            </div>
+        }
+
+    </section>
+
+</div>

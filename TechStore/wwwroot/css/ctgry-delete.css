@@ -1,0 +1,166 @@
+﻿/* =========================================================
+   CATEGORY DELETE (ADMIN) — mat, eskimiş, neon/canlı renk yok
+   ========================================================= */
+
+.category-delete-page {
+    max-width: 560px;
+}
+
+.page-header {
+    margin-bottom: 22px;
+}
+
+.page-eyebrow {
+    display: block;
+    margin-bottom: 6px;
+    color: #a1503d;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.page-header h2 {
+    margin: 0;
+    color: #d8cbb3;
+    font-family: 'Alfa Slab One', Georgia, serif;
+    font-size: 22px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+/* =========================================================
+   DELETE CARD
+   ========================================================= */
+
+.delete-card {
+    background: #262019;
+    border: 1px solid #4a3c2c;
+    border-top: 3px solid #8a4030;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.delete-warning {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 24px;
+    background: rgba(138, 64, 48, 0.12);
+    border-bottom: 1px solid #4a3c2c;
+}
+
+.delete-warning-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    color: #a1503d;
+    background: #171310;
+    border: 1px solid #8a4030;
+    border-radius: 50%;
+    font-size: 17px;
+}
+
+.confirmation-content strong {
+    display: block;
+    margin-bottom: 3px;
+    color: #d8cbb3;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 15px;
+}
+
+.confirmation-content p {
+    margin: 0;
+    color: #8a7a64;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 13px;
+}
+
+.delete-confirmation {
+    padding: 22px 24px;
+    color: #8a7a64;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+    .delete-confirmation strong {
+        color: #d8cbb3;
+    }
+
+.delete-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    margin: 0;
+    padding: 18px 24px;
+    background: #201a15;
+    border-top: 1px solid #4a3c2c;
+}
+
+.btn-secondary-custom {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 20px;
+    color: #d8cbb3;
+    background: transparent;
+    border: 1px solid #4a3c2c;
+    border-radius: 2px;
+    text-decoration: none;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+    .btn-secondary-custom:hover {
+        border-color: #a3803f;
+        color: #a3803f;
+    }
+
+.btn-delete-confirm {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 22px;
+    color: #ecdccf;
+    background: #8a4030;
+    border: 1px dashed #171310;
+    outline: 2px solid #8a4030;
+    outline-offset: -4px;
+    border-radius: 2px;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+    .btn-delete-confirm:hover {
+        background: #a1503d;
+    }
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 560px) {
+
+    .delete-actions {
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+
+        .delete-actions > * {
+            justify-content: center;
+        }
+}

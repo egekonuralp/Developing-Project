@@ -1,0 +1,280 @@
+﻿@model TechStore.Models.Order
+
+<div class="order-detail-page">
+
+    <!-- HEADER -->
+    <div class="order-detail-header">
+
+        <div>
+
+            <span class="order-detail-label">
+                SİPARİŞ DETAYI
+            </span>
+
+            <h1>
+                Sipariş #@Model.Id
+            </h1>
+
+            <p>
+                Siparişinizin detaylarını ve teslimat bilgilerini aşağıda görebilirsiniz.
+            </p>
+
+        </div>
+
+        <a asp-action="MyOrders" class="order-back-button">
+            ← Siparişlerime Dön
+        </a>
+
+    </div>
+
+    <!-- ORDER SUMMARY -->
+    <div class="order-summary-card">
+
+        <div class="order-info-item">
+
+            <span class="order-info-label">
+                Sipariş No
+            </span>
+
+            <strong>
+                #@Model.Id
+            </strong>
+
+        </div>
+
+        <div class="order-info-item">
+
+            <span class="order-info-label">
+                Sipariş Tarihi
+            </span>
+
+            <strong>
+                @Model.OrderDate.ToString("dd.MM.yyyy HH:mm")
+            </strong>
+
+        </div>
+
+        <div class="order-info-item">
+
+            <span class="order-info-label">
+                Durum
+            </span>
+
+            <strong class="order-status">
+                @Model.Status
+            </strong>
+
+        </div>
+
+        <div class="order-info-item order-total">
+
+            <span class="order-info-label">
+                Toplam
+            </span>
+
+            <strong>
+                @Model.TotalPrice.ToString("N2") ₺
+            </strong>
+
+        </div>
+
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="order-detail-content">
+
+        <!-- PRODUCTS -->
+        <div class="order-products-card">
+
+            <div class="order-card-header">
+
+                <h2>
+                    Sipariş Ürünleri
+                </h2>
+
+                <span>
+                    @Model.OrderItems.Count Ürün
+                </span>
+
+            </div>
+
+            <div class="order-products-table-wrapper">
+
+                <table class="order-products-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Ürün
+                            </th>
+
+                            <th>
+                                Birim Fiyat
+                            </th>
+
+                            <th>
+                                Adet
+                            </th>
+
+                            <th>
+                                Toplam
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        @foreach (var item in Model.OrderItems)
+                        {
+                            <tr>
+
+                                <td>
+
+                                    <div class="order-product-name">
+
+                                        <span class="product-icon">
+                                            ▪
+                                        </span>
+
+                                        <strong>
+                                            @item.ProductName
+                                        </strong>
+
+                                    </div>
+
+                                </td>
+
+                                <td>
+                                    @item.UnitPrice.ToString("N2") ₺
+                                </td>
+
+                                <td>
+
+                                    <span class="quantity-badge">
+                                        @item.Quantity
+                                    </span>
+
+                                </td>
+
+                                <td class="product-total">
+                                    @item.TotalPrice.ToString("N2") ₺
+                                </td>
+
+                            </tr>
+
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <!-- TOTAL -->
+            <div class="order-products-total">
+
+                <span>
+                    Sipariş Toplamı
+                </span>
+
+                <strong>
+                    @Model.TotalPrice.ToString("N2") ₺
+                </strong>
+
+            </div>
+
+        </div>
+
+        <!-- DELIVERY -->
+        <div class="delivery-card">
+
+            <div class="order-card-header">
+
+                <h2>
+                    Teslimat Bilgileri
+                </h2>
+
+            </div>
+
+            <div class="delivery-content">
+
+                <div class="delivery-row">
+
+                    <span class="delivery-label">
+                        Ad Soyad
+                    </span>
+
+                    <strong>
+                        @Model.FullName
+                    </strong>
+
+                </div>
+
+                <div class="delivery-row">
+
+                    <span class="delivery-label">
+                        Telefon
+                    </span>
+
+                    <strong>
+                        @Model.Phone
+                    </strong>
+
+                </div>
+
+                <div class="delivery-row">
+
+                    <span class="delivery-label">
+                        Şehir
+                    </span>
+
+                    <strong>
+                        @Model.City
+                    </strong>
+
+                </div>
+
+                <div class="delivery-row">
+
+                    <span class="delivery-label">
+                        İlçe
+                    </span>
+
+                    <strong>
+                        @Model.District
+                    </strong>
+
+                </div>
+
+                <div class="delivery-address">
+
+                    <span class="delivery-label">
+                        Adres
+                    </span>
+
+                    <p>
+                        @Model.Address
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- FOOTER ACTION -->
+    <div class="order-detail-footer">
+
+        <a asp-action="MyOrders" class="order-back-button">
+            ← Siparişlerime Dön
+        </a>
+
+    </div>
+
+</div>

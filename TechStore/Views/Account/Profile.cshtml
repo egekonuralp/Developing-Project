@@ -1,0 +1,151 @@
+﻿@model TechStore.ViewModels.ProfileViewModel
+
+@{
+    ViewData["Title"] = "Kullanıcı Bilgilerim";
+}
+
+<div class="profile-page">
+
+    <div class="profile-container">
+
+        <!-- PROFİLE HEADER -->
+        <div class="profile-header">
+
+            <div class="profile-icon">
+                👤
+            </div>
+
+            <div>
+
+                <span class="profile-eyebrow">
+                    HESAP AYARLARI
+                </span>
+
+                <h1>
+                    Kullanıcı Bilgilerim
+                </h1>
+
+                <p>
+                    Hesap bilgilerinizi buradan görüntüleyebilir ve güncelleyebilirsiniz.
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- SUCCESS MESSAGE -->
+        @if (TempData["Success"] != null)
+        {
+            <div class="profile-alert profile-alert-success">
+
+                <span class="profile-alert-icon">
+                    ✓
+                </span>
+
+                <span>
+                    @TempData["Success"]
+                </span>
+
+            </div>
+        }
+
+        <!-- VALİDATİON SUMMARY -->
+        <div asp-validation-summary="ModelOnly" class="profile-validation-summary"></div>
+
+        <!-- PROFİLE CARD -->
+        <div class="profile-card">
+
+            <div class="profile-card-header">
+
+                <span>
+                    KİŞİSEL BİLGİLER
+                </span>
+
+                <p>
+                    Bilgilerinizi güncel tutmanız hesabınızı yönetmenizi kolaylaştırır.
+                </p>
+
+            </div>
+
+            <form asp-action="Profile" method="post" class="profile-form">
+
+                <!-- NAME -->
+                <div class="profile-form-row">
+
+                    <div class="profile-form-group">
+
+                        <label asp-for="FirstName"></label>
+
+                        <input asp-for="FirstName" class="profile-input" autocomplete="given-name" />
+
+                        <span asp-validation-for="FirstName" class="profile-field-error"></span>
+
+                    </div>
+
+                    <div class="profile-form-group">
+
+                        <label asp-for="LastName"></label>
+
+                        <input asp-for="LastName" class="profile-input" autocomplete="family-name" />
+
+                        <span asp-validation-for="LastName" class="profile-field-error"></span>
+
+                    </div>
+
+                </div>
+
+                <!-- USERNAME -->
+                <div class="profile-form-group">
+
+                    <label asp-for="UserName"></label>
+
+                    <input asp-for="UserName" class="profile-input" autocomplete="username" />
+
+                    <span asp-validation-for="UserName" class="profile-field-error"></span>
+
+                </div>
+
+                <!-- EMAİL -->
+                <div class="profile-form-group">
+
+                    <label asp-for="Email"></label>
+
+                    <input asp-for="Email" class="profile-input" type="email" autocomplete="email" />
+
+                    <span asp-validation-for="Email" class="profile-field-error"></span>
+
+                </div>
+
+                <!-- PHONE -->
+                <div class="profile-form-group">
+
+                    <label asp-for="PhoneNumber"></label>
+
+                    <input asp-for="PhoneNumber" class="profile-input" type="tel" autocomplete="tel" />
+
+                    <span asp-validation-for="PhoneNumber" class="profile-field-error"></span>
+
+                </div>
+
+                <!-- SUBMİT -->
+                <div class="profile-form-footer">
+
+                    <button type="submit" class="profile-submit-button"> 
+
+                        <span>
+                            ✓
+                        </span>
+
+                        Bilgilerimi Güncelle
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

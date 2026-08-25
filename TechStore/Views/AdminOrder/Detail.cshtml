@@ -1,0 +1,135 @@
+﻿@model TechStore.Models.Order
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="admin-order-detail-page">
+
+    <div class="page-header">
+        <span class="page-eyebrow">SİPARİŞ YÖNETİMİ</span>
+        <h2>Sipariş Detayı #@Model.Id</h2>
+    </div>
+
+    <!-- CUSTOMER INFO -->
+    <div class="detail-card">
+
+        <div class="detail-card-header">
+            <h3><i class="fa-solid fa-user"></i> Müşteri Bilgileri</h3>
+        </div>
+
+        <div class="customer-info-grid">
+
+            <div class="info-item">
+                <span>Sipariş No</span>
+                <strong>#@Model.Id</strong>
+            </div>
+
+            <div class="info-item">
+                <span>Müşteri</span>
+                <strong>@Model.FullName</strong>
+            </div>
+
+            <div class="info-item">
+                <span>Telefon</span>
+                <strong>@Model.Phone</strong>
+            </div>
+
+            <div class="info-item">
+                <span>Şehir</span>
+                <strong>@Model.City</strong>
+            </div>
+
+            <div class="info-item">
+                <span>İlçe</span>
+                <strong>@Model.District</strong>
+            </div>
+
+            <div class="info-item info-item-wide">
+                <span>Adres</span>
+                <strong>@Model.Address</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- PRODUCTS -->
+    <div class="detail-card">
+
+        <div class="detail-card-header">
+            <h3><i class="fa-solid fa-boxes-stacked"></i> Ürünler</h3>
+        </div>
+
+        <div class="table-wrapper">
+
+            <table class="detail-products-table">
+
+                <thead>
+                    <tr>
+                        <th>Ürün</th>
+                        <th>Adet</th>
+                        <th>Birim Fiyat</th>
+                        <th>Tutar</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model.OrderItems)
+                    {
+                        <tr>
+                            <td>@item.ProductName</td>
+                            <td><span class="quantity-badge">@item.Quantity</span></td>
+                            <td>@item.UnitPrice.ToString("N2") ₺</td>
+                            <td class="line-total">@item.TotalPrice.ToString("N2") ₺</td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <!-- STATUS UPDATE -->
+    <div class="detail-card">
+
+        <div class="detail-card-header">
+            <h3><i class="fa-solid fa-truck"></i> Durum</h3>
+        </div>
+
+        <form asp-action="UpdateStatus" method="post" class="status-form">
+
+            <input type="hidden" name="id" value="@Model.Id" />
+
+            <select name="status" class="status-select">
+
+                <option value="Hazırlanıyor" selected="@(Model.Status == "Hazırlanıyor")">
+                    Hazırlanıyor
+                </option>
+
+                <option value="Kargoya Verildi" selected="@(Model.Status == "Kargoya Verildi")">
+                    Kargoya Verildi
+                </option>
+
+                <option value="Teslim Edildi" selected="@(Model.Status == "Teslim Edildi")">
+                    Teslim Edildi
+                </option>
+
+                <option value="İptal Edildi" selected="@(Model.Status == "İptal Edildi")">
+                    İptal Edildi
+                </option>
+
+            </select>
+
+            <button type="submit" class="btn-update-status">
+                <i class="fa-solid fa-check"></i>
+                Durumu Güncelle
+            </button>
+
+        </form>
+
+    </div>
+
+</div>

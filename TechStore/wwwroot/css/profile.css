@@ -1,0 +1,330 @@
+﻿/* =========================
+   PROFILE PAGE
+   Mat, eskimiş, neon/canlı renk yok.
+   ========================= */
+
+.profile-page {
+    max-width: 1050px;
+    margin: 55px auto 80px;
+    padding: 0 25px;
+}
+
+.profile-container {
+    width: 100%;
+}
+
+/* =========================
+   PROFILE HEADER
+   ========================= */
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 30px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #4a3c2c;
+}
+
+.profile-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 58px;
+    height: 58px;
+    flex-shrink: 0;
+    color: #a3803f;
+    background: #171310;
+    border: 1px solid #4a3c2c;
+    border-radius: 3px;
+    font-size: 25px;
+}
+
+.profile-eyebrow {
+    display: block;
+    margin-bottom: 5px;
+    color: #5c7686;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+
+.profile-header h1 {
+    margin: 0 0 7px;
+    color: #d8cbb3;
+    font-family: 'Alfa Slab One', Georgia, serif;
+    font-size: 34px;
+    font-weight: 400;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
+}
+
+.profile-header p {
+    margin: 0;
+    color: #8a7a64;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 15px;
+}
+
+/* =========================
+   PROFILE CARD — eskimiş afiş paneli
+   ========================= */
+
+.profile-card {
+    background: #262019;
+    border: 1px solid #4a3c2c;
+    border-top: 3px solid #8a4030;
+    border-radius: 4px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+/* =========================
+   CARD HEADER
+   ========================= */
+
+.profile-card-header {
+    padding: 25px 30px 20px;
+    border-bottom: 1px solid #4a3c2c;
+}
+
+    .profile-card-header > span {
+        display: block;
+        margin-bottom: 5px;
+        color: #a3803f;
+        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+
+    .profile-card-header p {
+        margin: 0;
+        color: #8a7a64;
+        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+        font-size: 14px;
+    }
+
+/* =========================
+   PROFILE FORM
+   ========================= */
+
+.profile-form {
+    padding: 30px;
+}
+
+.profile-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.profile-form-group {
+    margin-bottom: 22px;
+}
+
+    .profile-form-group label {
+        display: block;
+        margin-bottom: 8px;
+        color: #d8cbb3;
+        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+/* =========================
+   INPUT
+   ========================= */
+
+.profile-input {
+    width: 100%;
+    height: 44px;
+    padding: 0 13px;
+    color: #d8cbb3;
+    background: #171310;
+    border: 1px solid #4a3c2c;
+    border-radius: 2px;
+    outline: none;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 15px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+    .profile-input::placeholder {
+        color: #8a7a64;
+    }
+
+    .profile-input:focus {
+        border-color: #a3803f;
+        box-shadow: 0 0 0 2px rgba(163, 128, 63, 0.18);
+    }
+
+/* =========================
+   VALIDATION
+   ========================= */
+
+.profile-field-error {
+    display: block;
+    margin-top: 6px;
+    color: #a1503d;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 13px;
+}
+
+.profile-validation-summary {
+    margin-bottom: 20px;
+    color: #a1503d;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+}
+
+    .profile-validation-summary:empty {
+        display: none;
+    }
+
+/* =========================
+   SUCCESS ALERT
+   ========================= */
+
+.profile-alert {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding: 13px 15px;
+    border-radius: 2px;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.profile-alert-success {
+    color: #cfd8bf;
+    background: rgba(92, 107, 70, 0.18);
+    border: 1px solid #5c6b46;
+}
+
+.profile-alert-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    color: #cfd8bf;
+    border: 1px solid #5c6b46;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 900;
+}
+
+/* =========================
+   FORM FOOTER
+   ========================= */
+
+.profile-form-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 8px;
+    padding-top: 25px;
+    border-top: 1px solid #4a3c2c;
+}
+
+/* =========================
+   SUBMIT BUTTON — bilet kuponu görünümü
+   ========================= */
+
+.profile-submit-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-width: 220px;
+    min-height: 45px;
+    padding: 0 20px;
+    color: #171310;
+    background: #a3803f;
+    border: 1px dashed #171310;
+    outline: 2px solid #a3803f;
+    outline-offset: -4px;
+    border-radius: 2px;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+    .profile-submit-button:hover {
+        background: #bd9a5c;
+        transform: translateY(-1px);
+    }
+
+    .profile-submit-button:active {
+        transform: translateY(0);
+    }
+
+    .profile-submit-button span {
+        color: #171310;
+        font-size: 14px;
+    }
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 700px) {
+
+    .profile-page {
+        margin-top: 35px;
+        padding: 0 15px;
+    }
+
+    .profile-header {
+        align-items: flex-start;
+    }
+
+        .profile-header h1 {
+            font-size: 27px;
+        }
+
+    .profile-form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .profile-card-header,
+    .profile-form {
+        padding: 22px;
+    }
+
+    .profile-form-footer {
+        justify-content: stretch;
+    }
+
+    .profile-submit-button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 450px) {
+
+    .profile-header {
+        gap: 12px;
+    }
+
+    .profile-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 21px;
+    }
+
+    .profile-header h1 {
+        font-size: 22px;
+    }
+
+    .profile-header p {
+        font-size: 13px;
+    }
+}

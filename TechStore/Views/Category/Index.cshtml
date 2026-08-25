@@ -1,0 +1,189 @@
+﻿@model List<TechStore.Models.Category>
+
+@{
+    ViewData["Title"] = "Categories";
+    Layout = "_AdminLayout";
+}
+
+<div class="category-page">
+
+    <!-- PAGE HEADER -->
+    <div class="page-header">
+
+        <div>
+
+            <span class="page-eyebrow">
+                PRODUCT MANAGEMENT
+            </span>
+
+            <h2>
+                Categories
+            </h2>
+
+            <p>
+                Manage your product categories from here.
+            </p>
+
+        </div>
+
+        <a asp-action="Create" class="btn-primary-custom">
+
+            <i class="fa-solid fa-plus"></i>
+
+            New Category
+
+        </a>
+
+    </div>
+
+    <!-- CATEGORY CARD -->
+    <div class="category-card">
+
+        <div class="category-card-header">
+
+            <div>
+
+                <span class="section-kicker">
+                    ORGANIZATION
+                </span>
+
+                <h3>
+                    All Categories
+                </h3>
+
+                <p>
+                    @Model.Count category@(Model.Count == 1 ? "" : "ies") available
+                </p>
+
+            </div>
+
+            <div class="category-header-icon">
+                <i class="fa-solid fa-layer-group"></i>
+            </div>
+
+        </div>
+
+        @if (Model.Any())
+        {
+            <div class="category-table-wrapper">
+
+                <table class="category-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th class="category-id-column">
+                                ID
+                            </th>
+
+                            <th>
+                                Category
+                            </th>
+
+                            <th class="category-action-column">
+                                Actions
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        @foreach (var category in Model)
+                        {
+                            <tr>
+
+                                <!-- ID -->
+                                <td class="category-id-column">
+
+                                    <span class="category-id">
+                                        #@category.Id
+                                    </span>
+
+                                </td>
+
+                                <!-- CATEGORY -->
+                                <td>
+
+                                    <div class="category-info">
+
+                                        <div class="category-icon">
+                                            <i class="fa-solid fa-layer-group"></i>
+                                        </div>
+
+                                        <div class="category-details">
+
+                                            <strong>
+                                                @category.Name
+                                            </strong>
+
+                                            <span>
+                                                Product category
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+                                <!-- ACTIONS -->
+                                <td class="category-action-column">
+
+                                    <div class="category-actions">
+
+                                        <a asp-action="Edit" asp-route-id="@category.Id" class="category-action-btn category-edit" title="Edit category">
+                                            <i class="fa-solid fa-pen"></i>
+                                        </a>
+
+
+                                        <a asp-action="Delete" asp-route-id="@category.Id" class="category-action-btn category-delete" title="Delete category">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </a>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+        }
+        else
+        {
+            <!-- EMPTY STATE -->
+            <div class="category-empty">
+
+                <div class="category-empty-icon">
+                    <i class="fa-solid fa-folder-open"></i>
+                </div>
+
+                <strong>
+                    No categories yet
+                </strong>
+
+                <span>
+                    Create your first product category to organize your store.
+                </span>
+
+                <a asp-action="Create" class="btn-primary-custom">
+
+                    <i class="fa-solid fa-plus"></i>
+
+                    Create Category
+
+                </a>
+
+            </div>
+        }
+
+    </div>
+
+</div>

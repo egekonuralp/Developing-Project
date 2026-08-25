@@ -1,0 +1,428 @@
+﻿/* =========================================================
+   PAYMENT PAGE — mat, eskimiş, neon/canlı renk yok
+   ========================================================= */
+
+.payment-page {
+    max-width: 1150px;
+    margin: 45px auto 80px;
+    padding: 0 25px;
+}
+
+.payment-card {
+    background: #262019;
+    border: 1px solid #4a3c2c;
+    border-top: 3px solid #a3803f;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.payment-header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 28px 32px;
+    border-bottom: 1px solid #4a3c2c;
+}
+
+.payment-header-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 54px;
+    height: 54px;
+    flex-shrink: 0;
+    color: #a3803f;
+    background: #171310;
+    border: 1px solid #4a3c2c;
+    border-radius: 3px;
+    font-size: 24px;
+}
+
+.payment-header h1 {
+    margin: 0 0 6px;
+    color: #d8cbb3;
+    font-family: 'Alfa Slab One', Georgia, serif;
+    font-size: 26px;
+    font-weight: 400;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
+}
+
+.payment-header p {
+    margin: 0;
+    color: #8a7a64;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+}
+
+.text-danger {
+    display: block;
+    color: #a1503d;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 13px;
+}
+
+    .text-danger:empty {
+        display: none;
+    }
+
+/* =========================================================
+   CONTENT LAYOUT
+   ========================================================= */
+
+.payment-content {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    align-items: start;
+    gap: 0;
+}
+
+.payment-form {
+    padding: 28px 32px;
+}
+
+/* =========================================================
+   SECTION TITLES
+   ========================================================= */
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.section-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    color: #a3803f;
+    background: #171310;
+    border: 1px solid #4a3c2c;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+.section-title h2 {
+    margin: 0;
+    color: #d8cbb3;
+    font-family: 'Alfa Slab One', Georgia, serif;
+    font-size: 18px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+    .form-group label {
+        display: block;
+        margin-bottom: 7px;
+        color: #d8cbb3;
+        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+    .form-group .form-control {
+        width: 100%;
+        padding: 11px 13px;
+        color: #d8cbb3;
+        background: #171310;
+        border: 1px solid #4a3c2c;
+        border-radius: 2px;
+        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+        font-size: 15px;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+        .form-group .form-control::placeholder {
+            color: #8a7a64;
+        }
+
+        .form-group .form-control:focus {
+            outline: none;
+            border-color: #a3803f;
+            box-shadow: 0 0 0 2px rgba(163, 128, 63, 0.18);
+        }
+
+.payment-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 16px;
+}
+
+/* =========================================================
+   SECURITY NOTICE
+   ========================================================= */
+
+.payment-security {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 22px;
+    padding: 14px 16px;
+    background: #171310;
+    border: 1px solid #5c6b46;
+    border-radius: 3px;
+}
+
+.payment-security-icon {
+    flex-shrink: 0;
+    font-size: 18px;
+}
+
+.payment-security strong {
+    display: block;
+    margin-bottom: 4px;
+    color: #cfd8bf;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+}
+
+.payment-security p {
+    margin: 0;
+    color: #8a7a64;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 13px;
+}
+
+.payment-form hr {
+    margin: 26px 0;
+    border: 0;
+    border-top: 1px solid #4a3c2c;
+}
+
+/* =========================================================
+   DELIVERY SUMMARY
+   ========================================================= */
+
+.delivery-summary {
+    padding: 16px 18px;
+    background: #171310;
+    border: 1px dashed #4a3c2c;
+    border-radius: 3px;
+}
+
+.delivery-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 8px 0;
+    border-bottom: 1px solid #4a3c2c;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+}
+
+    .delivery-row:last-child {
+        border-bottom: 0;
+    }
+
+    .delivery-row span {
+        color: #8a7a64;
+        white-space: nowrap;
+    }
+
+    .delivery-row strong {
+        color: #d8cbb3;
+        font-weight: 700;
+        text-align: right;
+    }
+
+/* =========================================================
+   RIGHT SIDE — SUMMARY
+   ========================================================= */
+
+.payment-summary {
+    height: 100%;
+    padding: 28px 32px;
+    background: #201a15;
+    border-left: 1px solid #4a3c2c;
+}
+
+.summary-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #4a3c2c;
+}
+
+.summary-icon {
+    font-size: 18px;
+}
+
+.summary-header h2 {
+    margin: 0;
+    color: #d8cbb3;
+    font-family: 'Alfa Slab One', Georgia, serif;
+    font-size: 18px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.summary-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    color: #8a7a64;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+}
+
+    .summary-row strong {
+        color: #d8cbb3;
+        font-weight: 700;
+    }
+
+.summary-total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 16px 0 22px;
+    padding-top: 16px;
+    border-top: 1px solid #4a3c2c;
+    color: #d8cbb3;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+    .summary-total strong {
+        color: #8a4030;
+        font-size: 20px;
+    }
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.summary-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.tech-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 13px;
+    border-radius: 2px;
+    text-decoration: none;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    border: 0;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.tech-btn-primary {
+    color: #171310;
+    background: #a3803f;
+    border: 1px dashed #171310;
+    outline: 2px solid #a3803f;
+    outline-offset: -4px;
+}
+
+    .tech-btn-primary:hover {
+        background: #bd9a5c;
+    }
+
+.tech-btn-outline {
+    color: #d8cbb3;
+    background: transparent;
+    border: 1px solid #4a3c2c;
+}
+
+    .tech-btn-outline:hover {
+        border-color: #a3803f;
+        color: #a3803f;
+    }
+
+/* =========================================================
+   NOTE
+   ========================================================= */
+
+.payment-note {
+    display: flex;
+    gap: 10px;
+    padding: 12px 14px;
+    background: #171310;
+    border: 1px solid #4a3c2c;
+    border-radius: 3px;
+}
+
+    .payment-note span {
+        flex-shrink: 0;
+        color: #5c6b46;
+        font-weight: 900;
+    }
+
+    .payment-note p {
+        margin: 0;
+        color: #8a7a64;
+        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+        font-size: 12px;
+        line-height: 1.5;
+    }
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .payment-content {
+        grid-template-columns: 1fr;
+    }
+
+    .payment-summary {
+        border-left: 0;
+        border-top: 1px solid #4a3c2c;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .payment-header {
+        padding: 22px 20px;
+    }
+
+    .payment-form,
+    .payment-summary {
+        padding: 22px 20px;
+    }
+
+    .payment-row {
+        grid-template-columns: 1fr;
+    }
+
+    .delivery-row {
+        flex-direction: column;
+        gap: 3px;
+    }
+
+        .delivery-row strong {
+            text-align: left;
+        }
+}

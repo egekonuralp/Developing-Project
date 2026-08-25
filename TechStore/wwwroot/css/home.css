@@ -1,0 +1,439 @@
+﻿/* =========================
+   HOME CONTAINER
+   ========================= */
+
+.home-container {
+    width: 100%;
+}
+
+/* =========================
+   HERO — eskimiş konser afişi zemini, halftone doku
+   ========================= */
+
+.home-hero {
+    position: relative;
+    min-height: 420px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 70px;
+    padding: 70px;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(23, 19, 16, 0.97), rgba(38, 32, 25, 0.95));
+    border: 1px solid #4a3c2c;
+    border-radius: 4px;
+    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.5);
+}
+
+    /* Halftone doku — ucuz serigrafi baskı hissi */
+
+    .home-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        opacity: 0.10;
+        background-image: radial-gradient(circle, #a3803f 1px, transparent 1.4px);
+        background-size: 14px 14px;
+        pointer-events: none;
+    }
+
+    /* Sol kenar şeridi — tek renk pirinç, parlama yok */
+
+    .home-hero::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 6px;
+        height: 100%;
+        background: #a3803f;
+    }
+
+/* =========================
+   HERO CONTENT
+   ========================= */
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 650px;
+}
+
+.hero-eyebrow {
+    display: inline-block;
+    margin-bottom: 15px;
+    color: #5c7686;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 15px;
+    letter-spacing: 2px;
+}
+
+.hero-content h1 {
+    margin: 0 0 15px;
+    color: #d8cbb3;
+    font-family: 'Alfa Slab One', Georgia, serif;
+    font-size: clamp(48px, 7vw, 84px);
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.55);
+}
+
+.hero-content p {
+    max-width: 500px;
+    margin-bottom: 30px;
+    color: #8a7a64;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 19px;
+    line-height: 1.6;
+}
+
+/* =========================
+   HERO BUTTON — bilet kuponu görünümü
+   ========================= */
+
+.hero-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    padding: 13px 26px;
+    color: #171310;
+    background: #a3803f;
+    border: 1px dashed #171310;
+    outline: 2px solid #a3803f;
+    outline-offset: -5px;
+    border-radius: 2px;
+    text-decoration: none;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+    .hero-button:hover {
+        background: #bd9a5c;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 22px rgba(0, 0, 0, 0.4);
+    }
+
+    .hero-button span {
+        font-size: 20px;
+    }
+
+/* =========================
+   HERO DECORATION
+   ========================= */
+
+.hero-decoration {
+    position: absolute;
+    right: 8%;
+    bottom: -25px;
+    z-index: 1;
+}
+
+.hero-lightning {
+    display: block;
+    color: #4a3c2c;
+    font-size: 230px;
+    opacity: 0.35;
+    transform: rotate(8deg);
+    user-select: none;
+}
+
+/* =========================
+   PRODUCTS SECTION
+   ========================= */
+
+.home-products {
+    padding-bottom: 60px;
+}
+
+.section-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #4a3c2c;
+}
+
+.section-eyebrow {
+    display: block;
+    margin-bottom: 6px;
+    color: #5c7686;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+
+.section-heading h2 {
+    margin: 0;
+    color: #d8cbb3;
+    font-family: 'Alfa Slab One', Georgia, serif;
+    font-size: 32px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.view-all-link {
+    color: #a3803f;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+    .view-all-link:hover {
+        color: #bd9a5c;
+    }
+
+/* =========================
+   PRODUCT GRID
+   ========================= */
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px;
+}
+
+/* =========================
+   PRODUCT CARD — eskimiş afiş kağıdı tonu
+   ========================= */
+
+.product-card {
+    position: relative;
+    overflow: hidden;
+    background: #d8cbb3;
+    border: 1px solid #8a7a64;
+    border-radius: 3px;
+    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.3);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+    .product-card:hover {
+        transform: translateY(-7px);
+        box-shadow: 0 16px 30px rgba(0, 0, 0, 0.4);
+    }
+
+/* =========================
+   PRODUCT IMAGE
+   ========================= */
+
+.product-image {
+    position: relative;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #c3b499;
+}
+
+    .product-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease, filter 0.4s ease;
+    }
+
+.product-card:hover .product-image img {
+    transform: scale(1.06);
+    filter: sepia(20%);
+}
+
+/* =========================
+   CATEGORY BADGE
+   ========================= */
+
+.product-category {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    padding: 5px 9px;
+    color: #171310;
+    background: #a3803f;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-radius: 2px;
+}
+
+/* =========================
+   NO IMAGE
+   ========================= */
+
+.no-product-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #6b5a44;
+}
+
+    .no-product-image span {
+        font-size: 45px;
+        margin-bottom: 8px;
+    }
+
+    .no-product-image small {
+        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+        font-size: 11px;
+        letter-spacing: 2px;
+    }
+
+/* =========================
+   PRODUCT CONTENT
+   ========================= */
+
+.product-content {
+    padding: 18px;
+}
+
+.product-brand {
+    margin: 0 0 5px;
+    color: #6b5a44;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.product-name {
+    min-height: 48px;
+    margin: 0 0 18px;
+    color: #171310;
+    font-family: 'Alfa Slab One', Georgia, serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.35;
+    text-transform: none;
+}
+
+/* =========================
+   PRODUCT BOTTOM
+   ========================= */
+.product-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 14px;
+    border-top: 1px dashed #8a7a64;
+}
+
+.product-price {
+    margin: 0;
+    color: #8a4030;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 21px;
+    font-weight: 800;
+}
+
+/* =========================
+   CART BUTTON
+   ========================= */
+
+.product-cart-button {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #d8cbb3;
+    background: #171310;
+    border: 1px solid #4a3c2c;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+    .product-cart-button:hover {
+        background: #8a4030;
+        transform: rotate(-4deg) scale(1.05);
+    }
+
+/* =========================
+   EMPTY PRODUCTS
+   ========================= */
+
+.empty-products {
+    padding: 70px 20px;
+    text-align: center;
+    color: #6b5a44;
+    background: #d8cbb3;
+    border: 1px dashed #8a7a64;
+    border-radius: 3px;
+}
+
+    .empty-products span {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 45px;
+    }
+
+    .empty-products h3 {
+        margin-bottom: 8px;
+        color: #171310;
+        font-family: 'Alfa Slab One', Georgia, serif;
+        font-weight: 400;
+        text-transform: uppercase;
+    }
+
+    .empty-products p {
+        margin: 0;
+        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    }
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 1100px) {
+    .products-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 800px) {
+    .home-hero {
+        min-height: 360px;
+        padding: 45px 35px;
+    }
+
+    .hero-decoration {
+        right: -30px;
+    }
+
+    .hero-lightning {
+        font-size: 180px;
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 550px) {
+    .home-hero {
+        padding: 40px 25px;
+    }
+
+    .hero-content h1 {
+        font-size: 46px;
+    }
+
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 15px;
+    }
+}

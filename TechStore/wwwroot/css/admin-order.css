@@ -1,0 +1,354 @@
+﻿/* =========================================================
+   ADMIN ORDER LIST — mat, eskimiş, neon/canlı renk yok
+   ========================================================= */
+
+.admin-order-page {
+    max-width: 1200px;
+}
+
+.page-header {
+    margin-bottom: 22px;
+}
+
+.page-eyebrow {
+    display: block;
+    margin-bottom: 6px;
+    color: #a3803f;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.page-header h2 {
+    margin: 0;
+    color: #d8cbb3;
+    font-family: 'Alfa Slab One', Georgia, serif;
+    font-size: 22px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+/* =========================================================
+   FILTER BAR
+   ========================================================= */
+
+.order-filter-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.filter-search {
+    position: relative;
+    flex: 1;
+    min-width: 220px;
+}
+
+    .filter-search i {
+        position: absolute;
+        left: 13px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #8a7a64;
+        font-size: 13px;
+    }
+
+    .filter-search input {
+        width: 100%;
+        height: 42px;
+        padding: 0 13px 0 36px;
+        color: #d8cbb3;
+        background: #262019;
+        border: 1px solid #4a3c2c;
+        border-radius: 2px;
+        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+        font-size: 14px;
+        transition: border-color 0.2s ease;
+    }
+
+        .filter-search input::placeholder {
+            color: #8a7a64;
+        }
+
+        .filter-search input:focus {
+            outline: none;
+            border-color: #a3803f;
+        }
+
+.filter-select {
+    height: 42px;
+    padding: 0 13px;
+    color: #d8cbb3;
+    background: #262019;
+    border: 1px solid #4a3c2c;
+    border-radius: 2px;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+    min-width: 190px;
+}
+
+    .filter-select:focus {
+        outline: none;
+        border-color: #a3803f;
+    }
+
+.filter-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 42px;
+    padding: 0 20px;
+    color: #171310;
+    background: #a3803f;
+    border: 1px dashed #171310;
+    outline: 2px solid #a3803f;
+    outline-offset: -4px;
+    border-radius: 2px;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+    .filter-btn:hover {
+        background: #bd9a5c;
+    }
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
+
+.orders-empty {
+    padding: 60px 20px;
+    text-align: center;
+    background: #262019;
+    border: 1px dashed #4a3c2c;
+    border-radius: 4px;
+    color: #8a7a64;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+}
+
+    .orders-empty i {
+        display: block;
+        font-size: 36px;
+        margin-bottom: 10px;
+        opacity: 0.5;
+    }
+
+/* =========================================================
+   TABLE CARD
+   ========================================================= */
+
+.orders-table-card {
+    background: #262019;
+    border: 1px solid #4a3c2c;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 18px;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+.orders-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    .orders-table thead th {
+        padding: 12px 20px;
+        color: #8a7a64;
+        background: #201a15;
+        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+        text-align: left;
+        white-space: nowrap;
+    }
+
+    .orders-table tbody td {
+        padding: 13px 20px;
+        border-top: 1px solid #4a3c2c;
+        color: #d8cbb3;
+        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+        font-size: 14px;
+        white-space: nowrap;
+    }
+
+    .orders-table tbody tr:hover {
+        background: rgba(163, 128, 63, 0.04);
+    }
+
+.order-id {
+    color: #8a7a64;
+}
+
+.order-amount {
+    color: #8a4030;
+    font-weight: 700;
+}
+
+/* =========================================================
+   STATUS PILLS
+   ========================================================= */
+
+.order-status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 5px 12px;
+    border-radius: 2px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+}
+
+.status-preparing {
+    color: #e0c99a;
+    background: rgba(163, 128, 63, 0.18);
+    border: 1px solid #a3803f;
+}
+
+    .status-preparing .status-dot {
+        background: #a3803f;
+    }
+
+.status-shipped {
+    color: #a9c1cd;
+    background: rgba(92, 118, 134, 0.18);
+    border: 1px solid #5c7686;
+}
+
+    .status-shipped .status-dot {
+        background: #5c7686;
+    }
+
+.status-delivered {
+    color: #cfd8bf;
+    background: rgba(92, 107, 70, 0.18);
+    border: 1px solid #5c6b46;
+}
+
+    .status-delivered .status-dot {
+        background: #5c6b46;
+    }
+
+.status-cancelled {
+    color: #e0c3ba;
+    background: rgba(138, 64, 48, 0.18);
+    border: 1px solid #8a4030;
+}
+
+    .status-cancelled .status-dot {
+        background: #8a4030;
+    }
+
+.status-default {
+    color: #b6a88f;
+    background: rgba(138, 122, 100, 0.12);
+    border: 1px solid #4a3c2c;
+}
+
+    .status-default .status-dot {
+        background: #8a7a64;
+    }
+
+/* =========================================================
+   DETAIL LINK
+   ========================================================= */
+
+.order-action-column {
+    width: 90px;
+}
+
+.order-detail-link {
+    display: inline-block;
+    padding: 6px 14px;
+    color: #a3803f;
+    background: transparent;
+    border: 1px solid #4a3c2c;
+    border-radius: 2px;
+    text-decoration: none;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    transition: border-color 0.2s ease;
+}
+
+    .order-detail-link:hover {
+        border-color: #a3803f;
+    }
+
+/* =========================================================
+   PAGINATION
+   ========================================================= */
+
+.orders-pagination ul {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    flex-wrap: wrap;
+}
+
+.orders-pagination a {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    color: #d8cbb3;
+    background: #262019;
+    border: 1px solid #4a3c2c;
+    border-radius: 2px;
+    text-decoration: none;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+    .orders-pagination a:hover {
+        border-color: #a3803f;
+        color: #a3803f;
+    }
+
+.orders-pagination li.active a {
+    color: #171310;
+    background: #a3803f;
+    border-color: #a3803f;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .order-filter-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filter-select,
+    .filter-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}

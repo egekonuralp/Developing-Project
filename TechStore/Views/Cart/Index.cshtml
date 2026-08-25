@@ -1,0 +1,237 @@
+﻿@model TechStore.ViewModels.CartIndexViewModel
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["Error"]
+    </div>
+}
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["Success"]
+    </div>
+}
+
+<div class="cart-page">
+
+    <div class="cart-header">
+
+        <div>
+
+            <span class="cart-eyebrow">
+                ALIŞVERİŞ SEPETİ
+            </span>
+
+            <h1>Sepetim</h1>
+
+            <p>
+                Sepetinizde bulunan ürünleri buradan yönetebilirsiniz.
+            </p>
+            
+        </div>
+
+        @if (Model.Cart.CartItems.Any())
+        {
+            <div class="cart-product-count">
+                @Model.TotalQuantity ürün
+            </div>
+        }
+
+    </div>
+
+    <div class="cart-content">
+
+        <div class="cart-items">
+
+            @if (Model.Cart.CartItems.Any())
+            {
+                @foreach (var item in Model.Cart.CartItems)
+                {
+                    <div class="cart-item">
+
+                        <!-- PRODUCT IMAGE -->
+                        <div class="cart-item-image">
+
+                            <img src="@item.Product.ImageUrl" alt="@item.ProductName" />
+
+                        </div>
+
+                        <!-- PRODUCT INFORMATION -->
+                        <div class="cart-item-info">
+
+                            <h3>
+                                @item.ProductName
+                            </h3>
+
+                            <p class="brand">
+                                @item.Product.Brand
+                            </p>
+
+                            <p class="unit-price">
+                                Birim Fiyat:
+
+                                <strong>
+                                    @item.UnitPrice.ToString("N2") ₺
+                                </strong>
+                            </p>
+
+                            <p class="line-total">
+                                Toplam:
+                                <strong>
+                                    @item.TotalPrice.ToString("N2") ₺
+                                </strong>
+                            </p>
+
+                        </div>
+
+                        <!-- ACTIONS -->
+                        <div class="cart-item-actions">
+
+                            <div class="quantity-controls">
+
+                                <form asp-action="DecreaseQuantity" method="post">
+
+                                    <input type="hidden" name="cartItemId" value="@item.Id" />
+
+                                    <button type="submit" aria-label="Ürün azalt">
+                                        -
+                                    </button>
+
+                                </form>
+
+                                <span>
+                                    @item.Quantity
+                                </span>
+
+                                <form asp-action="IncreaseQuantity" method="post">
+
+                                    <input type="hidden" name="cartItemId" value="@item.Id" />
+
+                                    <button type="submit" aria-label="Ürün artır">
+                                        +
+                                    </button>
+
+                                </form>
+
+                            </div>
+
+                            <form asp-action="RemoveFromCart" method="post">
+
+                                <input type="hidden" name="cartItemId" value="@item.Id" />
+
+                                <button type="submit" class="remove-btn">
+                                    🗑
+
+                                    <span>Sil</span>
+
+                                </button>
+
+                            </form>
+
+                        </div>
+
+                    </div>    
+                    
+                }
+
+            }
+            else
+            {
+                <div class="empty-cart">
+
+                    <div class="empty-cart-icon">
+                        🛒
+                    </div>
+
+                    <h3>
+                        Sepetiniz Boş
+                    </h3>
+
+                    <p>
+                        Henüz sepetinize ürün eklemediniz.
+                    </p>
+
+                    <a asp-controller="Home" asp-action="Index" class="btn-shopping">
+                        Alışverişe Başla
+                    </a>
+
+                </div>
+            }
+
+        </div>
+
+        @if (Model.Cart.CartItems.Any())
+        {
+            <aside class="cart-summary">
+
+                <div class="summary-header">
+
+                    <span>
+                        SİPARİŞ
+                    </span>
+
+                    <h2>
+                        Sepet Özeti
+                    </h2>
+
+                </div>
+
+                <div class="summary-row">
+
+                    <span>
+                        Toplam Ürün
+                    </span>
+
+                    <strong>
+                        @Model.TotalQuantity
+                    </strong>
+
+                </div>
+
+                <div class="summary-row">
+
+                    <span>
+                        Ara Toplam
+                    </span>
+
+                    <strong>
+                        @Model.TotalPrice.ToString("N2") ₺
+                    </strong>
+
+                </div>
+
+                <div class="summary-divider"></div>
+
+                <div class="summary-total">
+
+                    <span>
+                        Genel Toplam
+                    </span>
+
+                    <strong>
+                        @Model.TotalPrice.ToString("N2") ₺
+                    </strong>
+
+                </div>
+
+                <div class="summary-buttons">
+
+                    <a asp-controller="Order" asp-action="Checkout" class="tech-btn tech-btn-primary">
+                        Siparişi Tamamla
+                    </a>
+
+                    <a asp-controller="Home" asp-action="Index" class="tech-btn tech-btn-outline">
+                        Alışverişe Devam Et
+                    </a>
+
+                </div>
+
+            </aside>
+
+        }
+
+    </div>
+
+</div>

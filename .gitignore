@@ -1,0 +1,44 @@
+# =========================================================
+# Visual Studio / .NET derleme çıktıları
+# =========================================================
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+*.user
+*.suo
+
+# =========================================================
+# Visual Studio klasörleri
+# =========================================================
+.vs/
+.vscode/
+
+# =========================================================
+# Kullanıcıya özel / makineye özel dosyalar
+# =========================================================
+*.rsuser
+*.userosscache
+*.sln.docstates
+
+# =========================================================
+# Yüklenen kullanıcı dosyaları (ürün resimleri vb.)
+# Bunlar veri, kod değil — repo'da tutulmamalı.
+# Boş klasörü korumak için içine bir .gitkeep ekleyebilirsin.
+# =========================================================
+wwwroot/uploads/products/*
+!wwwroot/uploads/products/.gitkeep
+
+# =========================================================
+# appsettings — kişisel/lokal ayarlar
+# Development dosyasını gizli tutmak istersen aç.
+# =========================================================
+# appsettings.Development.json
+
+# =========================================================
+# Test sonuçları
+# =========================================================
+[Tt]est[Rr]esult*/
+*.trx

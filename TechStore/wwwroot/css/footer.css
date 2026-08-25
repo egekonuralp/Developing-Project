@@ -1,0 +1,61 @@
+﻿/* =========================================================
+   FOOTER + STICKY LAYOUT — bağımsız dosya
+   navbar.css'ten ayrıldı, tüm sayfalarda yüklü.
+
+   Bu dosya, sayfanın html/body iskeletini ve footer'ı
+   yönetir. "site-footer" class'ı bilinçli olarak seçildi
+   ("footer" değil), başka hiçbir yerde tanımlı olabilecek
+   bir class'la asla çakışmasın diye.
+   ========================================================= */
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+    background-color: #171310;
+    color: #d8cbb3;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+}
+
+/* Header ve ana içerik grid satırlarına oturuyor */
+
+.site-header {
+    grid-row: 1;
+}
+
+.page-content {
+    grid-row: 2;
+    width: 100%;
+}
+
+/* =========================================================
+   SITE FOOTER
+   ========================================================= */
+
+.site-footer {
+    grid-row: 3;
+    background-color: #171310;
+    border-top: 1px solid #4a3c2c;
+    padding: 20px 0;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+}
+
+.site-footer-inner {
+    color: #8a7a64;
+    font-size: 14px;
+}
+
+.site-footer a {
+    color: #a3803f;
+    text-decoration: none;
+}
+
+    .site-footer a:hover {
+        color: #bd9a5c;
+    }

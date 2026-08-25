@@ -1,0 +1,348 @@
+﻿/* =========================================================
+   PRODUCT CREATE (ADMIN) — mat, eskimiş, neon/canlı renk yok
+   ========================================================= */
+
+.product-create-page {
+    max-width: 1150px;
+}
+
+.form-page-kicker {
+    display: block;
+    margin-bottom: 6px;
+    color: #a3803f;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.product-create-page .page-header h2 {
+    margin: 0 0 6px;
+    color: #d8cbb3;
+    font-family: 'Alfa Slab One', Georgia, serif;
+    font-size: 22px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.product-create-page .page-header p {
+    margin: 0;
+    color: #8a7a64;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+}
+
+.page-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+/* =========================================================
+   FORM LAYOUT
+   ========================================================= */
+
+.product-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    align-items: start;
+    gap: 20px;
+}
+
+/* =========================================================
+   CARD
+   ========================================================= */
+
+.form-card {
+    background: #262019;
+    border: 1px solid #4a3c2c;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.form-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    border-bottom: 1px solid #4a3c2c;
+}
+
+.form-section-kicker {
+    display: block;
+    margin-bottom: 4px;
+    color: #a3803f;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+}
+
+.form-card-header h3 {
+    margin: 0;
+    color: #d8cbb3;
+    font-family: 'Alfa Slab One', Georgia, serif;
+    font-size: 16px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.form-header-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    color: #a3803f;
+    background: #171310;
+    border: 1px solid #4a3c2c;
+    border-radius: 3px;
+    font-size: 15px;
+}
+
+    .form-header-icon.gold {
+        color: #bd9a5c;
+    }
+
+    .form-header-icon.green {
+        color: #5c6b46;
+    }
+
+.form-card-body {
+    padding: 24px;
+}
+
+/* =========================================================
+   FORM FIELDS
+   ========================================================= */
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+    .form-group:last-child {
+        margin-bottom: 0;
+    }
+
+.form-label-custom {
+    display: block;
+    margin-bottom: 8px;
+    color: #d8cbb3;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 16px;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon,
+.currency-symbol {
+    position: absolute;
+    left: 13px;
+    color: #8a7a64;
+    font-size: 13px;
+    pointer-events: none;
+}
+
+.form-control-custom {
+    width: 100%;
+    height: 44px;
+    padding: 0 13px 0 36px;
+    color: #d8cbb3;
+    background: #171310;
+    border: 1px solid #4a3c2c;
+    border-radius: 2px;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 15px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+    .form-control-custom::placeholder {
+        color: #8a7a64;
+    }
+
+    .form-control-custom:focus {
+        outline: none;
+        border-color: #a3803f;
+        box-shadow: 0 0 0 2px rgba(163, 128, 63, 0.18);
+    }
+
+.textarea-custom {
+    height: auto;
+    min-height: 110px;
+    padding: 12px 13px;
+    resize: vertical;
+}
+
+.select-wrapper select.form-control-custom {
+    appearance: none;
+}
+
+.validation-message {
+    display: block;
+    margin-top: 6px;
+    color: #a1503d;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 13px;
+}
+
+    .validation-message:empty {
+        display: none;
+    }
+
+/* =========================================================
+   IMAGE UPLOAD
+   ========================================================= */
+
+.image-upload-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 30px 20px;
+    background: #171310;
+    border: 1px dashed #4a3c2c;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+}
+
+    .image-upload-area:hover {
+        border-color: #a3803f;
+    }
+
+    .image-upload-area input[type="file"] {
+        display: none;
+    }
+
+.upload-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    margin-bottom: 12px;
+    color: #a3803f;
+    background: #262019;
+    border: 1px solid #4a3c2c;
+    border-radius: 50%;
+    font-size: 18px;
+}
+
+.image-upload-area strong {
+    display: block;
+    margin-bottom: 4px;
+    color: #d8cbb3;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+}
+
+.image-upload-area span {
+    display: block;
+    margin-bottom: 6px;
+    color: #8a7a64;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 13px;
+}
+
+.image-upload-area small {
+    color: #6b5a44;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+}
+
+/* =========================================================
+   INFO CARD (guidelines)
+   ========================================================= */
+
+.form-info-card {
+    background: #201a15;
+}
+
+.form-guidelines {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+    .form-guidelines li {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        color: #8a7a64;
+        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+        font-size: 13px;
+        line-height: 1.4;
+    }
+
+    .form-guidelines i {
+        flex-shrink: 0;
+        margin-top: 2px;
+        color: #5c6b46;
+        font-size: 12px;
+    }
+
+/* =========================================================
+   FORM ACTIONS
+   ========================================================= */
+
+.form-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 950px) {
+
+    .product-form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .form-card-body {
+        padding: 20px;
+    }
+
+    .form-actions {
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+
+        .form-actions > * {
+            justify-content: center;
+        }
+}

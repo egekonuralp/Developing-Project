@@ -1,0 +1,284 @@
+﻿@model TechStore.Models.SupportTicket
+
+@{
+    ViewData["Title"] = "Destek Talebi";
+}
+
+<div class="support-detail-page">
+
+    <!-- TİCKET HEADER -->
+    <div class="support-ticket-card">
+
+        <div class="support-ticket-header">
+
+            <div class="support-ticket-icon">
+                🎫
+            </div>
+
+            <div>
+
+                <span class="support-ticket-label">
+                    DESTEK TALEBİ
+                </span>
+
+                <h1>
+                    @Model.Title
+                </h1>
+
+            </div>
+
+        </div>
+
+        <div class="support-ticket-info">
+
+            <div class="support-info-row">
+
+                <span>
+                    Kategori
+                </span>
+
+                <strong>
+                    @Model.Category
+                </strong>
+
+            </div>
+
+
+            <div class="support-info-row">
+
+                <span>
+                    Durum
+                </span>
+
+                <strong class="support-status">
+                    @Model.Status
+                </strong>
+
+            </div>
+
+            <div class="support-info-row">
+
+                <span>
+                    Oluşturulma
+                </span>
+
+                <strong>
+                    @Model.CreatedDate.ToString("dd.MM.yyyy HH:mm")
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- MESSAGES -->
+    <div class="support-section-header">
+
+        <div class="support-section-icon">
+            💬
+        </div>
+
+        <div>
+
+            <span>
+                DESTEK GEÇMİŞİ
+            </span>
+
+            <h2>
+                Mesajlar
+            </h2>
+
+        </div>
+
+    </div>
+
+    @if (!Model.Messages.Any())
+    {
+        <div class="support-empty-message">
+
+            <div class="support-empty-icon">
+                💬
+            </div>
+
+            <div>
+
+                <strong>
+                    Henüz mesaj bulunmuyor.
+                </strong>
+
+                <p>
+                    Destek ekibiyle olan görüşmeleriniz burada görüntülenecektir.
+                </p>
+
+            </div>
+
+        </div>
+    }
+    else
+    {
+        <div class="support-messages">
+
+            @foreach (var message in Model.Messages.OrderBy(x => x.CreatedDate))
+            {
+                if (!message.IsAdmin)
+                {
+                    <div class="support-message support-message-user">
+
+                        <div class="support-message-header">
+
+                            <div class="support-message-author">
+
+                                <span class="support-message-icon">
+                                    👤
+                                </span>
+
+                                <strong>
+                                    Siz
+                                </strong>
+
+                            </div>
+
+                            <span class="support-message-date">
+                                @message.CreatedDate.ToString("dd.MM.yyyy HH:mm")
+                            </span>
+
+                        </div>
+
+                        <div class="support-message-body">
+
+                            @message.Message
+
+                        </div>
+
+                    </div>
+                }
+                else
+                {
+                    <div class="support-message support-message-admin">
+
+                        <div class="support-message-header">
+
+                            <div class="support-message-author">
+
+                                <span class="support-message-icon">
+                                    🛠
+                                </span>
+
+                                <strong>
+                                    Destek Ekibi
+                                </strong>
+
+                            </div>
+
+                            <span class="support-message-date">
+                                @message.CreatedDate.ToString("dd.MM.yyyy HH:mm")
+                            </span>
+
+                        </div>
+
+                        <div class="support-message-body">
+                            @message.Message
+                        </div>
+
+                    </div>
+
+                }
+
+            }
+
+        </div>
+
+    }
+
+    <!-- NEW MESSAGES -->
+    <div class="support-new-message">
+
+        <div class="support-section-header">
+
+            <div class="support-section-icon">
+                ✏️
+            </div>
+
+            <div>
+
+                <span>
+                    DESTEK
+                </span>
+
+                <h2>
+                    Yeni Mesaj
+                </h2>
+
+            </div>
+
+        </div>
+
+        @if (Model.Status != "Kapandı")
+        {
+            <form asp-action="AddMessage" method="post" class="support-message-form">
+
+                @Html.AntiForgeryToken()
+
+                <input type="hidden" name="ticketId" value="@Model.Id" />
+
+                <div class="support-form-label">
+
+                    <label for="supportMessage">
+                        Mesajınız
+                    </label>
+
+                    <span>
+                        Destek ekibine iletmek istediğiniz mesajı yazabilirsiniz.
+                    </span>
+
+                </div>
+
+                <textarea id="supportMessage" name="message" rows="6" placeholder="Mesajınızı buraya yazınız..."></textarea>
+
+                <div class="support-form-footer">
+
+                    <span class="support-form-hint">
+                        💡 Mesajınızı mümkün olduğunca açık ve detaylı yazmanız destek sürecini hızlandırır.
+                    </span>
+
+                    <button type="submit" class="support-send-button">
+
+                        Mesaj Gönder
+
+                        <span>→</span>
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        }
+        else
+        {
+            <div class="support-closed-message">
+
+                <div class="support-closed-icon">
+                    🔒
+                </div>
+
+                <div>
+
+                    <strong>
+                        Bu destek talebi kapatılmıştır.
+                    </strong>
+
+                    <p>
+                        Kapalı destek taleplerine yeni mesaj gönderemezsiniz.
+                    </p>
+
+                </div>
+
+            </div>
+
+        }
+
+    </div>
+
+</div>

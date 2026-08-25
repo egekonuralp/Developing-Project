@@ -1,0 +1,185 @@
+﻿@model TechStore.ViewModels.ProductDeleteViewModel
+
+@{
+    ViewData["Title"] = "Ürün Sil";
+    Layout = "_AdminLayout";
+}
+
+<div class="product-delete-page">
+
+    <!-- PAGE HEADER -->
+    <div class="page-header">
+
+        <div>
+            <span class="page-eyebrow">
+                PRODUCT MANAGEMENT
+            </span>
+
+            <h2>Ürün Sil</h2>
+
+            <p>
+                Bu ürün kalıcı olarak silinecektir.
+            </p>
+        </div>
+
+        <a asp-action="Index" class="btn-secondary-custom">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Ürünlere Dön
+
+        </a>
+
+    </div>
+
+    <!-- DELETE CARD -->
+    <div class="delete-card">
+
+        <!-- WARNING HEADER -->
+        <div class="delete-warning">
+
+            <div class="delete-warning-icon">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+
+            <div>
+
+                <strong>Ürünü silmek üzeresiniz</strong>
+
+                <span>
+                    Bu işlem geri alınamaz. Silmeden önce ürün bilgilerini kontrol edin.
+                </span>
+
+            </div>
+
+        </div>
+
+        <!-- PRODUCT INFORMATION -->
+        <div class="delete-product">
+
+            <!-- IMAGE -->
+            <div class="delete-product-image">
+
+                @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                {
+                    <img src="@Model.ImageUrl" alt="@Model.Name" />
+                }
+                else
+                {
+                    <div class="delete-no-image">
+
+                        <i class="fa-solid fa-image"></i>
+
+                        <span>Resim Yok</span>
+
+                    </div>
+                }
+
+            </div>
+
+            <!-- DETAILS -->
+            <div class="delete-product-details">
+
+                <span class="delete-product-label">
+                    PRODUCT
+                </span>
+
+                <h3>
+                    @Model.Name
+                </h3>
+
+                <div class="delete-product-brand">
+
+                    <i class="fa-solid fa-tag"></i>
+
+                    @Model.Brand
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- PRODUCT DATA -->
+        <div class="delete-details">
+
+            <div class="delete-detail-item">
+
+                <span class="delete-detail-label">
+                    Kategori
+                </span>
+
+                <span class="category-badge">
+
+                    <i class="fa-solid fa-layer-group"></i>
+
+                    @Model.CategoryName
+
+                </span>
+
+            </div>
+
+            <div class="delete-detail-item">
+
+                <span class="delete-detail-label">
+                    Fiyat
+                </span>
+
+                <strong class="delete-price">
+                    ₺@Model.Price.ToString("N2")
+                </strong>
+
+            </div>
+
+        </div>
+
+        <!-- FINAL WARNING -->
+        <div class="delete-confirmation">
+
+            <div class="confirmation-icon">
+                <i class="fa-solid fa-trash-can"></i>
+            </div>
+
+            <div class="confirmation-content">
+
+                <strong>Dikkat!</strong>
+
+                <p>
+                    Bu ürünü silmek istediğinizden emin misiniz?
+                    Ürün silindikten sonra bu işlem geri alınamaz.
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- ACTIONS -->
+        <div class="delete-actions">
+
+            <a asp-action="Index" class="btn-secondary-custom">
+
+                <i class="fa-solid fa-xmark"></i>
+
+                Vazgeç
+
+            </a>
+
+            <form asp-action="Delete" method="post">
+
+                <input type="hidden" asp-for="Id" />
+
+                <button type="submit" class="btn-delete-confirm">
+
+                    <i class="fa-solid fa-trash"></i>
+
+                    Ürünü Kalıcı Olarak Sil
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

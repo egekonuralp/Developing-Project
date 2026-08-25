@@ -1,0 +1,81 @@
+﻿@model TechStore.Models.Category
+@{
+    ViewData["Title"] = "Kategori Ekle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="category-form-page">
+
+    <div class="page-header">
+
+        <div>
+            <span class="page-eyebrow">KATEGORİ YÖNETİMİ</span>
+            <h2>Kategori Ekle</h2>
+            <p>Ürünleri gruplamak için yeni bir kategori oluştur.</p>
+        </div>
+
+        <a asp-action="Index" class="btn-secondary-custom">
+            <i class="fa-solid fa-arrow-left"></i>
+            Kategorilere Dön
+        </a>
+
+    </div>
+
+    <form method="post" class="category-form">
+
+        <div class="form-card">
+
+            <div class="form-card-header">
+
+                <div>
+                    <span class="form-section-kicker">KATEGORİ BİLGİSİ</span>
+                    <h3>Kategori Adı</h3>
+                </div>
+
+                <div class="form-header-icon">
+                    <i class="fa-solid fa-layer-group"></i>
+                </div>
+
+            </div>
+
+            <div class="form-card-body">
+
+                <div class="form-group">
+
+                    <label class="form-label-custom">Kategori Adı</label>
+
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-tag input-icon"></i>
+                        <input asp-for="Name" class="form-control-custom" placeholder="Örn. Dizüstü Bilgisayarlar" />
+                    </div>
+
+                    <span asp-validation-for="Name" class="validation-message"></span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="form-actions">
+
+            <a asp-action="Index" class="btn-secondary-custom">
+                <i class="fa-solid fa-xmark"></i>
+                İptal
+            </a>
+
+            <button type="submit" class="btn-primary-custom">
+                <i class="fa-solid fa-check"></i>
+                Kaydet
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}

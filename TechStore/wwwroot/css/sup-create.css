@@ -1,0 +1,372 @@
+﻿/* =========================================================
+   SUPPORT CREATE PAGE — mat, eskimiş, neon/canlı renk yok
+   ========================================================= */
+
+.support-create-page {
+    max-width: 1100px;
+    margin: 45px auto 80px;
+    padding: 0 25px;
+}
+
+.support-create-card {
+    background: #262019;
+    border: 1px solid #4a3c2c;
+    border-top: 3px solid #a3803f;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.support-create-header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 28px 32px;
+    border-bottom: 1px solid #4a3c2c;
+}
+
+.support-header-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 54px;
+    height: 54px;
+    flex-shrink: 0;
+    background: #171310;
+    border: 1px solid #4a3c2c;
+    border-radius: 3px;
+    font-size: 24px;
+}
+
+.support-header-label {
+    display: block;
+    margin-bottom: 5px;
+    color: #5c7686;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+
+.support-create-header h1 {
+    margin: 0 0 6px;
+    color: #d8cbb3;
+    font-family: 'Alfa Slab One', Georgia, serif;
+    font-size: 24px;
+    font-weight: 400;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
+}
+
+.support-create-header p {
+    margin: 0;
+    color: #8a7a64;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+}
+
+/* =========================================================
+   CONTENT LAYOUT
+   ========================================================= */
+
+.support-create-content {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    align-items: start;
+    gap: 0;
+}
+
+/* =========================================================
+   LEFT — FORM
+   ========================================================= */
+
+.support-form {
+    padding: 28px 32px;
+}
+
+.support-section-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+    .support-section-title span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        background: #171310;
+        border: 1px solid #4a3c2c;
+        border-radius: 3px;
+        font-size: 14px;
+    }
+
+    .support-section-title h2 {
+        margin: 0;
+        color: #d8cbb3;
+        font-family: 'Alfa Slab One', Georgia, serif;
+        font-size: 18px;
+        font-weight: 400;
+        text-transform: uppercase;
+    }
+
+.support-form-group {
+    margin-bottom: 20px;
+}
+
+    .support-form-group label {
+        display: block;
+        margin-bottom: 7px;
+        color: #d8cbb3;
+        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+.support-form-control {
+    width: 100%;
+    padding: 11px 13px;
+    color: #d8cbb3;
+    background: #171310;
+    border: 1px solid #4a3c2c;
+    border-radius: 2px;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 15px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+    .support-form-control::placeholder {
+        color: #8a7a64;
+    }
+
+    .support-form-control:focus {
+        outline: none;
+        border-color: #a3803f;
+        box-shadow: 0 0 0 2px rgba(163, 128, 63, 0.18);
+    }
+
+    .support-form-control[type="text"],
+    select.support-form-control {
+        height: 44px;
+    }
+
+textarea.support-form-control {
+    resize: vertical;
+}
+
+.text-danger {
+    display: block;
+    margin-top: 6px;
+    color: #a1503d;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 13px;
+}
+
+    .text-danger:empty {
+        display: none;
+    }
+
+/* =========================================================
+   FORM ACTIONS
+   ========================================================= */
+
+.support-form-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.support-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 22px;
+    border-radius: 2px;
+    text-decoration: none;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    cursor: pointer;
+    border: 0;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.support-btn-primary {
+    color: #171310;
+    background: #a3803f;
+    border: 1px dashed #171310;
+    outline: 2px solid #a3803f;
+    outline-offset: -4px;
+}
+
+    .support-btn-primary:hover {
+        background: #bd9a5c;
+    }
+
+.support-btn-outline {
+    color: #d8cbb3;
+    background: transparent;
+    border: 1px solid #4a3c2c;
+}
+
+    .support-btn-outline:hover {
+        border-color: #a3803f;
+        color: #a3803f;
+    }
+
+/* =========================================================
+   RIGHT — INFO SIDEBAR
+   ========================================================= */
+
+.support-info {
+    height: 100%;
+    padding: 28px 30px;
+    background: #201a15;
+    border-left: 1px solid #4a3c2c;
+}
+
+.support-info-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+    .support-info-header span {
+        font-size: 17px;
+    }
+
+    .support-info-header h2 {
+        margin: 0;
+        color: #d8cbb3;
+        font-family: 'Alfa Slab One', Georgia, serif;
+        font-size: 16px;
+        font-weight: 400;
+        text-transform: uppercase;
+    }
+
+.support-info-description {
+    margin: 0 0 22px;
+    color: #8a7a64;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* =========================================================
+   TOPIC ITEMS
+   ========================================================= */
+
+.support-topic {
+    display: flex;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid #4a3c2c;
+}
+
+    .support-topic:last-of-type {
+        border-bottom: 0;
+    }
+
+.topic-icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: #262019;
+    border: 1px solid #4a3c2c;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+.support-topic strong {
+    display: block;
+    margin-bottom: 3px;
+    color: #d8cbb3;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.support-topic span {
+    color: #8a7a64;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+/* =========================================================
+   SECURITY NOTICE
+   ========================================================= */
+
+.support-security {
+    display: flex;
+    gap: 10px;
+    margin-top: 18px;
+    padding: 12px 14px;
+    background: #171310;
+    border: 1px dashed #4a3c2c;
+    border-radius: 3px;
+}
+
+    .support-security span {
+        flex-shrink: 0;
+        font-size: 14px;
+    }
+
+    .support-security p {
+        margin: 0;
+        color: #8a7a64;
+        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+        font-size: 12px;
+        line-height: 1.5;
+    }
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .support-create-content {
+        grid-template-columns: 1fr;
+    }
+
+    .support-info {
+        border-left: 0;
+        border-top: 1px solid #4a3c2c;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .support-create-header {
+        padding: 22px 20px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .support-form,
+    .support-info {
+        padding: 22px 20px;
+    }
+
+    .support-form-actions {
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+
+        .support-form-actions .support-btn {
+            justify-content: center;
+        }
+}

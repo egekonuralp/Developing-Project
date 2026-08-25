@@ -1,0 +1,269 @@
+﻿/* =========================================================
+   PRODUCT DELETE (ADMIN) — mat, eskimiş, neon/canlı renk yok
+   ========================================================= */
+
+.product-delete-page {
+    max-width: 650px;
+}
+
+.page-eyebrow {
+    display: block;
+    margin-bottom: 6px;
+    color: #a1503d;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.product-delete-page .page-header h2 {
+    margin: 0 0 6px;
+    color: #d8cbb3;
+    font-family: 'Alfa Slab One', Georgia, serif;
+    font-size: 22px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.product-delete-page .page-header p {
+    margin: 0;
+    color: #8a7a64;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+}
+
+.page-header {
+    margin-bottom: 22px;
+}
+
+/* =========================================================
+   DELETE CARD
+   ========================================================= */
+
+.delete-card {
+    background: #262019;
+    border: 1px solid #4a3c2c;
+    border-top: 3px solid #8a4030;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+/* =========================================================
+   WARNING BANNER
+   ========================================================= */
+
+.delete-warning {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 24px;
+    background: rgba(138, 64, 48, 0.12);
+    border-bottom: 1px solid #4a3c2c;
+}
+
+.delete-warning-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    color: #a1503d;
+    background: #171310;
+    border: 1px solid #8a4030;
+    border-radius: 50%;
+    font-size: 17px;
+}
+
+.confirmation-content strong {
+    display: block;
+    margin-bottom: 3px;
+    color: #d8cbb3;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 15px;
+}
+
+.confirmation-content p {
+    margin: 0;
+    color: #8a7a64;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 13px;
+}
+
+/* =========================================================
+   PRODUCT PREVIEW
+   ========================================================= */
+
+.delete-product {
+    display: flex;
+    gap: 16px;
+    padding: 22px 24px;
+    border-bottom: 1px solid #4a3c2c;
+}
+
+.delete-product-image {
+    width: 84px;
+    height: 84px;
+    flex-shrink: 0;
+    overflow: hidden;
+    border-radius: 3px;
+    background: #d8cbb3;
+}
+
+    .delete-product-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+.delete-no-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    color: #171310;
+    font-size: 22px;
+}
+
+.delete-product-details {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+}
+
+.delete-product-label {
+    display: block;
+    color: #8a7a64;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 1px;
+    margin-bottom: 2px;
+}
+
+.delete-product-details strong {
+    color: #d8cbb3;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 16px;
+}
+
+.delete-product-brand {
+    color: #8a7a64;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 13px;
+}
+
+.delete-price {
+    color: #8a4030;
+    font-weight: 700;
+}
+
+/* =========================================================
+   DETAILS LIST
+   ========================================================= */
+
+.delete-details {
+    display: flex;
+    flex-direction: column;
+    padding: 4px 24px;
+}
+
+.delete-detail-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-top: 1px solid #4a3c2c;
+}
+
+    .delete-detail-item:first-child {
+        border-top: 0;
+    }
+
+.delete-detail-label {
+    color: #8a7a64;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 13px;
+}
+
+.delete-detail-item strong {
+    color: #d8cbb3;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+/* =========================================================
+   CONFIRMATION TEXT
+   ========================================================= */
+
+.delete-confirmation {
+    padding: 18px 24px;
+    color: #8a7a64;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+    .delete-confirmation strong {
+        color: #d8cbb3;
+    }
+
+/* =========================================================
+   ACTIONS
+   ========================================================= */
+
+.delete-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    padding: 18px 24px;
+    background: #201a15;
+    border-top: 1px solid #4a3c2c;
+}
+
+.btn-delete-confirm {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 22px;
+    color: #ecdccf;
+    background: #8a4030;
+    border: 1px dashed #171310;
+    outline: 2px solid #8a4030;
+    outline-offset: -4px;
+    border-radius: 2px;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+    .btn-delete-confirm:hover {
+        background: #a1503d;
+    }
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 560px) {
+
+    .delete-product {
+        flex-direction: column;
+    }
+
+    .delete-actions {
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+
+        .delete-actions > * {
+            justify-content: center;
+        }
+}

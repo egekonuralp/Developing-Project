@@ -1,0 +1,134 @@
+﻿@model TechStore.ViewModels.PagedResultViewModel<TechStore.Models.SupportTicket>
+@{
+    ViewData["Title"] = "Support";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="admin-support-page">
+
+    <div class="page-header">
+        <span class="page-eyebrow">DESTEK YÖNETİMİ</span>
+        <h2>Destek Talepleri</h2>
+    </div>
+
+    <form asp-action="Index" method="get" class="support-filter-bar">
+
+        <div class="filter-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" name="search" placeholder="Başlık veya Kategori Ara..." value="@Model.Search" />
+        </div>
+
+        <select name="status" class="filter-select">
+
+            <option value="">Tüm Durumlar</option>
+
+            <option value="Açık" selected="@(ViewBag.Status == "Açık")">Açık</option>
+            <option value="Beklemede" selected="@(ViewBag.Status == "Beklemede")">Beklemede</option>
+            <option value="Kapandı" selected="@(ViewBag.Status == "Kapandı")">Kapandı</option>
+
+        </select>
+
+        <button type="submit" class="filter-btn">
+            <i class="fa-solid fa-filter"></i>
+            Ara
+        </button>
+
+    </form>
+
+    <div class="support-table-card">
+
+        <div class="table-wrapper">
+
+            <table class="support-table">
+
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Başlık</th>
+                        <th>Kategori</th>
+                        <th>Durum</th>
+                        <th>Güncelleme</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    @foreach (var ticket in Model.Items)
+                    {
+                        var statusClass = ticket.Status switch
+                        {
+                            "Açık" => "status-open",
+                            "Beklemede" => "status-pending",
+                            "Kapandı" => "status-closed",
+                            _ => "status-default"
+                        };
+
+                        <tr>
+                            <td class="ticket-id">#@ticket.Id</td>
+                            <td>@ticket.Title</td>
+                            <td><span class="ticket-category">@ticket.Category</span></td>
+                            <td>
+                                <span class="ticket-status @statusClass">
+                                    <span class="status-dot"></span>
+                                    @ticket.Status
+                                </span>
+                            </td>
+                            <td class="ticket-date">@ticket.UpdatedDate.ToString("dd.MM.yyyy HH:mm")</td>
+                            <td class="action-column">
+                                <a asp-action="Detail" asp-route-id="@ticket.Id" class="ticket-detail-link">
+                                    Detay
+                                </a>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    @if (Model.TotalPages > 1)
+    {
+        <nav class="admin-pagination">
+
+            <ul>
+
+                @if (Model.HasPreviousPage)
+                {
+                    <li>
+                        <a asp-route-page="@(Model.CurrentPage - 1)" asp-route-search="@Model.Search" asp-route-status="@ViewBag.Status">
+                            <i class="fa-solid fa-chevron-left"></i>
+                            Önceki
+                        </a>
+                    </li>
+                }
+
+                @for (int i = 1; i <= Model.TotalPages; i++)
+                {
+                    <li class="@(Model.CurrentPage == i ? "active" : "")">
+                        <a asp-route-page="@i" asp-route-search="@Model.Search" asp-route-status="@ViewBag.Status">
+                            @i
+                        </a>
+                    </li>
+                }
+
+                @if (Model.HasNextPage)
+                {
+                    <li>
+                        <a asp-route-page="@(Model.CurrentPage + 1)" asp-route-search="@Model.Search" asp-route-status="@ViewBag.Status">
+                            Sonraki
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </a>
+                    </li>
+                }
+
+            </ul>
+
+        </nav>
+    }
+
+</div>

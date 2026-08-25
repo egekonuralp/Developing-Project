@@ -1,0 +1,252 @@
+﻿@model TechStore.ViewModels.CreateSupportTicketViewModel
+
+@{
+    ViewData["Title"] = "Destek Talebi Oluştur";
+}
+
+<div class="support-create-page">
+
+    <div class="support-create-card">
+
+        <!-- HEADER -->
+        <div class="support-create-header">
+
+            <div class="support-header-icon">
+                🎧
+            </div>
+
+            <div>
+
+                <span class="support-header-label">
+                    MÜŞTERİ DESTEĞİ
+                </span>
+
+                <h1>
+                    Destek Talebi Oluştur
+                </h1>
+
+                <p>
+                    Yaşadığınız sorun veya merak ettiğiniz konu hakkında bize ulaşabilirsiniz.
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- CONTENT -->
+        <div class="support-create-content">
+
+            <!-- FORM -->
+            <div class="support-form">
+
+                <div class="support-section-title">
+
+                    <span>
+                        ✉️
+                    </span>
+
+                    <h2>
+                        Talep Bilgileri
+                    </h2>
+
+                </div>
+
+                <form asp-action="Create" method="post">
+
+                    @Html.AntiForgeryToken()
+
+                    <!-- TITLE -->
+                    <div class="support-form-group">
+
+                        <label asp-for="Title">
+                            Talep Başlığı
+                        </label>
+
+                        <input asp-for="Title" class="support-form-control" placeholder="Örneğin: Siparişim hakkında bilgi almak istiyorum" />
+
+                        <span asp-validation-for="Title" class="text-danger"></span>
+
+                    </div>
+
+                    <!-- CATEGORY -->
+                    <div class="support-form-group">
+
+                        <label asp-for="Category"> 
+                            Kategori 
+                        </label>
+
+                        <select asp-for="Category" class="support-form-control">
+
+                            <option value=""> Kategori Seçiniz </option>
+
+                            <option value="Sipariş"> Sipariş </option>
+
+                            <option value="Kargo"> Kargo </option>
+
+                            <option value="Ürün"> Ürün </option>
+
+                            <option value="Ödeme"> Ödeme </option>
+
+                            <option value="Diğer"> Diğer </option>
+
+                        </select>
+
+                        <span asp-validation-for="Category" class="text-danger"></span>
+
+                    </div>
+
+                    <!-- MESSAGE -->
+                    <div class="support-form-group">
+
+                        <label asp-for="Message">
+                            Mesajınız
+                        </label>
+
+                        <textarea asp-for="Message" rows="8" class="support-form-control" placeholder="Yaşadığınız sorunu mümkün olduğunca detaylı açıklayınız..."></textarea>
+
+                        <span asp-validation-for="Message" class="text-danger"></span>
+
+                    </div>
+
+                    <!-- BUTTON -->
+                    <div class="support-form-actions">
+
+                        <a asp-controller="Support" asp-action="MyTickets" class="support-btn support-btn-outline">
+                            Taleplerime Dön
+                        </a>
+
+                        <button type="submit" class="support-btn support-btn-primary">
+                            🎧 Destek Talebi Oluştur
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+            <!-- INFO -->
+            <aside class="support-info">
+
+                <div class="support-info-header">
+
+                    <span>
+                        💡
+                    </span>
+
+                    <h2>
+                        Yardımcı Olalım
+                    </h2>
+
+                </div>
+
+                <p class="support-info-description">
+                    Talebinizin daha hızlı çözülebilmesi için
+                    doğru kategoriyi seçerek probleminizi mümkün
+                    olduğunca açık bir şekilde açıklamanızı öneriyoruz.
+                </p>
+
+                <div class="support-topic">
+
+                    <span class="topic-icon">
+                        📦
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Sipariş
+                        </strong>
+
+                        <span>
+                            Sipariş durumu veya sipariş işlemleri
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="support-topic">
+
+                    <span class="topic-icon">
+                        🚚
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Kargo
+                        </strong>
+
+                        <span>
+                            Teslimat ve kargo ile ilgili sorunlar
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="support-topic">
+
+                    <span class="topic-icon">
+                        💳
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Ödeme
+                        </strong>
+
+                        <span>
+                            Ödeme ve ödeme işlemleri hakkında
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="support-topic">
+
+                    <span class="topic-icon">
+                        🛠️
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Ürün
+                        </strong>
+
+                        <span>
+                            Ürünlerle ilgili sorular ve problemler
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="support-security">
+
+                    <span>
+                        🔒
+                    </span>
+
+                    <p>
+                        Destek talebiniz yalnızca sizin ve TechStore destek ekibinin erişimine açıktır.
+                    </p>
+
+                </div>
+
+            </aside>
+
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,298 @@
+﻿/* =========================================================
+   MY ORDERS PAGE — mat, eskimiş, neon/canlı renk yok
+   ========================================================= */
+
+.orders-page {
+    max-width: 950px;
+    margin: 45px auto 80px;
+    padding: 0 25px;
+}
+
+.orders-container {
+    width: 100%;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.orders-header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 30px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #4a3c2c;
+}
+
+.orders-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 58px;
+    height: 58px;
+    flex-shrink: 0;
+    color: #a3803f;
+    background: #171310;
+    border: 1px solid #4a3c2c;
+    border-radius: 3px;
+    font-size: 25px;
+}
+
+.orders-eyebrow {
+    display: block;
+    margin-bottom: 5px;
+    color: #5c7686;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+
+.orders-header h1 {
+    margin: 0 0 7px;
+    color: #d8cbb3;
+    font-family: 'Alfa Slab One', Georgia, serif;
+    font-size: 30px;
+    font-weight: 400;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
+}
+
+.orders-header p {
+    margin: 0;
+    color: #8a7a64;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 15px;
+}
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
+
+.orders-empty {
+    padding: 80px 20px;
+    text-align: center;
+    background: #262019;
+    border: 1px dashed #4a3c2c;
+    border-radius: 4px;
+}
+
+.orders-empty-icon {
+    font-size: 50px;
+    margin-bottom: 15px;
+    opacity: 0.6;
+}
+
+.orders-empty h2 {
+    margin: 0 0 8px;
+    color: #d8cbb3;
+    font-family: 'Alfa Slab One', Georgia, serif;
+    font-size: 20px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.orders-empty p {
+    margin: 0 0 25px;
+    color: #8a7a64;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+}
+
+.orders-shopping-button {
+    display: inline-block;
+    padding: 12px 28px;
+    color: #171310;
+    background: #a3803f;
+    border-radius: 2px;
+    text-decoration: none;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: background 0.2s ease;
+}
+
+    .orders-shopping-button:hover {
+        background: #bd9a5c;
+    }
+
+/* =========================================================
+   ORDERS LIST
+   ========================================================= */
+
+.orders-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.order-card {
+    background: #262019;
+    border: 1px solid #4a3c2c;
+    border-radius: 4px;
+    overflow: hidden;
+    transition: border-color 0.2s ease;
+}
+
+    .order-card:hover {
+        border-color: #a3803f;
+    }
+
+/* =========================================================
+   ORDER CARD HEADER
+   ========================================================= */
+
+.order-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 22px;
+    background: #201a15;
+    border-bottom: 1px solid #4a3c2c;
+}
+
+.order-number,
+.order-date {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.order-date {
+    text-align: right;
+}
+
+.order-label {
+    color: #8a7a64;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.order-number strong {
+    color: #a3803f;
+    font-family: 'Alfa Slab One', Georgia, serif;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.order-date strong {
+    color: #d8cbb3;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+/* =========================================================
+   ORDER CARD BODY
+   ========================================================= */
+
+.order-card-body {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 22px;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.order-info {
+    display: flex;
+    gap: 36px;
+}
+
+.order-info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.order-info-label {
+    color: #8a7a64;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 12px;
+}
+
+.order-total {
+    color: #8a4030;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.order-status {
+    display: inline-block;
+    padding: 5px 12px;
+    width: fit-content;
+    color: #d8cbb3;
+    background: #171310;
+    border: 1px solid #a3803f;
+    border-radius: 2px;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+/* =========================================================
+   ORDER ACTION
+   ========================================================= */
+
+.order-detail-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    color: #171310;
+    background: #a3803f;
+    border-radius: 2px;
+    text-decoration: none;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+    transition: background 0.2s ease, gap 0.2s ease;
+}
+
+    .order-detail-button:hover {
+        background: #bd9a5c;
+        gap: 12px;
+    }
+
+.order-detail-arrow {
+    font-size: 15px;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .orders-header {
+        align-items: flex-start;
+    }
+
+    .order-card-header {
+        padding: 14px 18px;
+    }
+
+    .order-card-body {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 18px;
+    }
+
+    .order-info {
+        gap: 24px;
+    }
+
+    .order-detail-button {
+        width: 100%;
+        justify-content: center;
+    }
+}

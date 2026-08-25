@@ -1,0 +1,310 @@
+﻿/* =========================================================
+   ADMIN SUPPORT DETAIL — mat, eskimiş, neon/canlı renk yok
+   ========================================================= */
+
+.admin-support-detail-page {
+    max-width: 950px;
+}
+
+.page-header {
+    margin-bottom: 22px;
+}
+
+.page-eyebrow {
+    display: block;
+    margin-bottom: 6px;
+    color: #a3803f;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.page-header h2 {
+    margin: 0;
+    color: #d8cbb3;
+    font-family: 'Alfa Slab One', Georgia, serif;
+    font-size: 22px;
+    font-weight: 400;
+    text-transform: none;
+}
+
+.detail-card {
+    background: #262019;
+    border: 1px solid #4a3c2c;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.detail-card-header {
+    padding: 18px 24px;
+    border-bottom: 1px solid #4a3c2c;
+}
+
+    .detail-card-header h3 {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 0;
+        color: #d8cbb3;
+        font-family: 'Alfa Slab One', Georgia, serif;
+        font-size: 16px;
+        font-weight: 400;
+        text-transform: uppercase;
+    }
+
+        .detail-card-header h3 i {
+            color: #a3803f;
+            font-size: 14px;
+        }
+
+.ticket-info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 16px 22px;
+    border-right: 1px solid #4a3c2c;
+    border-bottom: 1px solid #4a3c2c;
+}
+
+    .info-item span {
+        color: #8a7a64;
+        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+        font-size: 12px;
+    }
+
+    .info-item strong {
+        color: #d8cbb3;
+        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+/* =========================================================
+   MESSAGES
+   ========================================================= */
+
+.ticket-messages {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 22px 24px;
+}
+
+.ticket-message {
+    max-width: 85%;
+    padding: 14px 18px;
+    border-radius: 3px;
+}
+
+.message-user {
+    align-self: flex-end;
+    background: #201a15;
+    border: 1px solid #4a3c2c;
+    border-right: 3px solid #5c7686;
+}
+
+.message-admin {
+    align-self: flex-start;
+    background: #262019;
+    border: 1px solid #4a3c2c;
+    border-left: 3px solid #a3803f;
+}
+
+.message-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    margin-bottom: 8px;
+}
+
+.message-author-badge {
+    padding: 3px 10px;
+    border-radius: 2px;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.message-admin .message-author-badge {
+    color: #171310;
+    background: #a3803f;
+}
+
+.message-user .message-author-badge {
+    color: #d8cbb3;
+    background: #171310;
+    border: 1px solid #4a3c2c;
+}
+
+.message-date {
+    color: #8a7a64;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 12px;
+}
+
+.ticket-message p {
+    margin: 0;
+    color: #d8cbb3;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* =========================================================
+   NEW MESSAGE FORM
+   ========================================================= */
+
+.new-message-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 0 24px 24px;
+}
+
+    .new-message-form textarea {
+        width: 100%;
+        padding: 13px;
+        color: #d8cbb3;
+        background: #171310;
+        border: 1px solid #4a3c2c;
+        border-radius: 2px;
+        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+        font-size: 14px;
+        resize: vertical;
+    }
+
+        .new-message-form textarea::placeholder {
+            color: #8a7a64;
+        }
+
+        .new-message-form textarea:focus {
+            outline: none;
+            border-color: #a3803f;
+        }
+
+.btn-send-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    align-self: flex-end;
+    padding: 11px 22px;
+    color: #171310;
+    background: #a3803f;
+    border: 1px dashed #171310;
+    outline: 2px solid #a3803f;
+    outline-offset: -4px;
+    border-radius: 2px;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+    .btn-send-message:hover {
+        background: #bd9a5c;
+    }
+
+.ticket-closed-notice {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 24px 24px;
+    padding: 14px 16px;
+    background: #171310;
+    border: 1px solid #4a3c2c;
+    border-radius: 3px;
+    color: #8a7a64;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 13px;
+}
+
+/* =========================================================
+   STATUS FORM
+   ========================================================= */
+
+.status-form {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 20px 24px;
+    flex-wrap: wrap;
+}
+
+.status-select {
+    flex: 1;
+    min-width: 200px;
+    height: 44px;
+    padding: 0 13px;
+    color: #d8cbb3;
+    background: #171310;
+    border: 1px solid #4a3c2c;
+    border-radius: 2px;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+}
+
+    .status-select:focus {
+        outline: none;
+        border-color: #a3803f;
+    }
+
+.btn-update-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 22px;
+    color: #171310;
+    background: #a3803f;
+    border: 1px dashed #171310;
+    outline: 2px solid #a3803f;
+    outline-offset: -4px;
+    border-radius: 2px;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+    .btn-update-status:hover {
+        background: #bd9a5c;
+    }
+
+@media (max-width: 700px) {
+    .ticket-info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .info-item {
+        border-right: 0;
+    }
+
+    .ticket-message {
+        max-width: 100%;
+    }
+
+    .status-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .btn-update-status {
+        justify-content: center;
+    }
+}

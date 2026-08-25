@@ -1,0 +1,407 @@
+﻿/* =========================================================
+   CHECKOUT PAGE — mat, eskimiş, neon/canlı renk yok
+   ========================================================= */
+
+.checkout-page {
+    max-width: 1150px;
+    margin: 45px auto 80px;
+    padding: 0 25px;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.checkout-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid #4a3c2c;
+}
+
+.checkout-label {
+    display: block;
+    margin-bottom: 6px;
+    color: #5c7686;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+
+.checkout-header h1 {
+    margin: 0 0 6px;
+    color: #d8cbb3;
+    font-family: 'Alfa Slab One', Georgia, serif;
+    font-size: 30px;
+    font-weight: 400;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
+}
+
+.checkout-header p {
+    margin: 0;
+    color: #8a7a64;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 15px;
+}
+
+.checkout-back-button {
+    padding: 10px 18px;
+    color: #d8cbb3;
+    background: transparent;
+    border: 1px solid #4a3c2c;
+    border-radius: 2px;
+    text-decoration: none;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap;
+    transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+    .checkout-back-button:hover {
+        border-color: #a3803f;
+        color: #a3803f;
+    }
+
+/* =========================================================
+   VALIDATION
+   ========================================================= */
+
+.checkout-validation {
+    color: #a1503d;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    margin-bottom: 16px;
+}
+
+    .checkout-validation:empty {
+        display: none;
+    }
+
+/* =========================================================
+   CONTENT LAYOUT
+   ========================================================= */
+
+.checkout-content {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    align-items: start;
+    gap: 25px;
+}
+
+/* =========================================================
+   SHARED CARD HEADER (both columns)
+   ========================================================= */
+
+.checkout-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 28px;
+    border-bottom: 1px solid #4a3c2c;
+}
+
+.checkout-section-label {
+    display: block;
+    margin-bottom: 4px;
+    color: #a3803f;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.checkout-card-header h2 {
+    margin: 0;
+    color: #d8cbb3;
+    font-family: 'Alfa Slab One', Georgia, serif;
+    font-size: 20px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.checkout-step {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    color: #a3803f;
+    border: 1px solid #4a3c2c;
+    border-radius: 50%;
+    font-family: 'Alfa Slab One', Georgia, serif;
+    font-size: 14px;
+}
+
+/* =========================================================
+   LEFT SIDE — FORM
+   ========================================================= */
+
+.checkout-form {
+    background: #262019;
+    border: 1px solid #4a3c2c;
+    border-top: 3px solid #a3803f;
+    border-radius: 4px;
+}
+
+.checkout-form-body {
+    padding: 28px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+    .form-group label {
+        display: block;
+        margin-bottom: 7px;
+        color: #d8cbb3;
+        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+    .form-group .form-control {
+        width: 100%;
+        padding: 11px 13px;
+        color: #d8cbb3;
+        background: #171310;
+        border: 1px solid #4a3c2c;
+        border-radius: 2px;
+        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+        font-size: 15px;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+        .form-group .form-control::placeholder {
+            color: #8a7a64;
+        }
+
+        .form-group .form-control:focus {
+            outline: none;
+            border-color: #a3803f;
+            box-shadow: 0 0 0 2px rgba(163, 128, 63, 0.18);
+        }
+
+    .form-group textarea.form-control {
+        resize: vertical;
+    }
+
+.checkout-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 16px;
+}
+
+.text-danger {
+    display: block;
+    margin-top: 6px;
+    color: #a1503d;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 13px;
+}
+
+/* =========================================================
+   NOTICE BOX
+   ========================================================= */
+
+.checkout-notice {
+    display: flex;
+    gap: 12px;
+    padding: 14px 16px;
+    background: #171310;
+    border: 1px dashed #4a3c2c;
+    border-radius: 3px;
+}
+
+.checkout-notice-icon {
+    flex-shrink: 0;
+    color: #5c7686;
+    font-size: 18px;
+}
+
+.checkout-notice p {
+    margin: 0;
+    color: #8a7a64;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* =========================================================
+   RIGHT SIDE — SUMMARY
+   ========================================================= */
+
+.checkout-summary {
+    position: sticky;
+    top: 95px;
+    background: #262019;
+    border: 1px solid #4a3c2c;
+    border-top: 3px solid #8a4030;
+    border-radius: 4px;
+}
+
+.checkout-summary-body {
+    padding: 24px 28px 28px;
+}
+
+.summary-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    color: #8a7a64;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+}
+
+    .summary-row strong {
+        color: #d8cbb3;
+        font-weight: 700;
+    }
+
+.checkout-total {
+    color: #8a4030 !important;
+    font-size: 20px;
+}
+
+.checkout-summary-divider {
+    height: 1px;
+    margin: 16px 0;
+    background: #4a3c2c;
+}
+
+/* =========================================================
+   INFO BOX
+   ========================================================= */
+
+.checkout-summary-info {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 22px;
+    padding: 14px 16px;
+    background: #171310;
+    border: 1px solid #4a3c2c;
+    border-radius: 3px;
+}
+
+.summary-info-icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    color: #5c6b46;
+    border: 1px solid #5c6b46;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 900;
+}
+
+.checkout-summary-info strong {
+    display: block;
+    margin-bottom: 4px;
+    color: #d8cbb3;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+}
+
+.checkout-summary-info p {
+    margin: 0;
+    color: #8a7a64;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* =========================================================
+   SUBMIT / LINKS
+   ========================================================= */
+
+.tech-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 13px;
+    border-radius: 2px;
+    text-decoration: none;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    border: 0;
+    transition: background 0.2s ease;
+}
+
+.tech-btn-primary {
+    color: #171310;
+    background: #a3803f;
+    border: 1px dashed #171310;
+    outline: 2px solid #a3803f;
+    outline-offset: -4px;
+}
+
+    .tech-btn-primary:hover {
+        background: #bd9a5c;
+    }
+
+.checkout-submit {
+    margin-bottom: 14px;
+}
+
+.checkout-cart-link {
+    display: block;
+    text-align: center;
+    color: #8a7a64;
+    text-decoration: none;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+    transition: color 0.2s ease;
+}
+
+    .checkout-cart-link:hover {
+        color: #a3803f;
+    }
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .checkout-content {
+        grid-template-columns: 1fr;
+    }
+
+    .checkout-summary {
+        position: static;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .checkout-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+    }
+
+    .checkout-form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .checkout-form-body,
+    .checkout-summary-body {
+        padding: 20px;
+    }
+
+    .checkout-card-header {
+        padding: 18px 20px;
+    }
+}

@@ -1,0 +1,171 @@
+﻿@model TechStore.ViewModels.AdminUserDetailViewModel
+@{
+    ViewData["Title"] = "User Detail";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="admin-user-detail-page">
+
+    <div class="page-header">
+        <span class="page-eyebrow">KULLANICI YÖNETİMİ</span>
+        <h2>Kullanıcı Bilgileri</h2>
+    </div>
+
+    <!-- USER INFO -->
+    <div class="detail-card">
+
+        <div class="detail-card-header">
+            <h3><i class="fa-solid fa-user"></i> Hesap Bilgileri</h3>
+        </div>
+
+        <div class="user-info-grid">
+
+            <div class="info-item">
+                <span>Email</span>
+                <strong>@Model.User.Email</strong>
+            </div>
+
+            <div class="info-item">
+                <span>Kullanıcı Adı</span>
+                <strong>@Model.User.UserName</strong>
+            </div>
+
+            <div class="info-item">
+                <span>User Id</span>
+                <strong>@Model.User.Id</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ROLE UPDATE -->
+    <div class="detail-card">
+
+        <div class="detail-card-header">
+            <h3><i class="fa-solid fa-user-shield"></i> Kullanıcı Rolü</h3>
+        </div>
+
+        <div class="role-form-body">
+
+            @if (TempData["Error"] != null)
+            {
+                <div class="admin-alert admin-alert-danger">@TempData["Error"]</div>
+            }
+
+            @if (TempData["Success"] != null)
+            {
+                <div class="admin-alert admin-alert-success">@TempData["Success"]</div>
+            }
+
+            <form asp-action="UpdateRole" method="post" class="role-form">
+
+                @Html.AntiForgeryToken()
+
+                <input type="hidden" name="UserId" value="@Model.User.Id" />
+
+                <div class="form-group">
+
+                    <label class="form-label-custom">Rol</label>
+
+                    <select name="SelectedRole" class="role-select">
+
+                        @foreach (var role in Model.Roles)
+                        {
+                            if (role == Model.SelectedRole)
+                            {
+                                <option value="@role" selected>@role</option>
+                            }
+                            else
+                            {
+                                <option value="@role">@role</option>
+                            }
+                        }
+
+                    </select>
+
+                </div>
+
+                <button type="submit" class="btn-update-role">
+                    <i class="fa-solid fa-check"></i>
+                    Rolü Güncelle
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- STATS -->
+    <div class="user-stats-grid">
+
+        <div class="stat-card">
+            <span>Toplam Sipariş</span>
+            <strong>@Model.OrderCount</strong>
+        </div>
+
+        <div class="stat-card">
+            <span>Toplam Harcama</span>
+            <strong class="stat-money">@Model.TotalSpent.ToString("N2") ₺</strong>
+        </div>
+
+        <div class="stat-card">
+            <span>Son Sipariş Durumu</span>
+            <strong>@Model.LastOrderStatus</strong>
+        </div>
+
+    </div>
+
+    <!-- ORDERS -->
+    <div class="detail-card">
+
+        <div class="detail-card-header">
+            <h3><i class="fa-solid fa-boxes-stacked"></i> Kullanıcının Siparişleri</h3>
+        </div>
+
+        <div class="table-wrapper">
+
+            <table class="user-orders-table">
+
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Tarih</th>
+                        <th>Durum</th>
+                        <th>Tutar</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    @foreach (var order in Model.Orders)
+                    {
+                        <tr>
+                            <td>#@order.Id</td>
+                            <td>@order.OrderDate.ToString("dd.MM.yyyy")</td>
+                            <td>@order.Status</td>
+                            <td class="order-amount">@order.TotalPrice.ToString("N2") ₺</td>
+                            <td class="action-column">
+                                <a asp-controller="AdminOrder" asp-action="Detail" asp-route-id="@order.Id" class="order-detail-link">
+                                    Detay
+                                </a>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <a asp-action="Index" class="btn-back-users">
+        <i class="fa-solid fa-arrow-left"></i>
+        Kullanıcılara Dön
+    </a>
+
+</div>

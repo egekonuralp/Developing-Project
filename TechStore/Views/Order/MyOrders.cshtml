@@ -1,0 +1,159 @@
+﻿@model List<TechStore.Models.Order>
+
+@{
+    ViewData["Title"] = "Siparişlerim";
+}
+
+<div class="orders-page">
+
+    <div class="orders-container">
+
+        <!-- PAGE HEADER -->
+        <div class="orders-header">
+
+            <div class="orders-icon">
+                📦
+            </div>
+
+            <div>
+
+                <span class="orders-eyebrow">
+                    HESABIM
+                </span>
+
+                <h1>
+                    Siparişlerim
+                </h1>
+
+                <p>
+                    Geçmiş ve mevcut siparişlerinizi buradan takip edebilirsiniz.
+                </p>
+
+            </div>
+
+        </div>
+
+        @if (!Model.Any())
+        {
+            <!-- EMPTY ORDERS -->
+            <div class="orders-empty">
+
+                <div class="orders-empty-icon">
+                    📦
+                </div>
+
+                <h2>
+                    Henüz siparişiniz bulunmuyor.
+                </h2>
+
+                <p>
+                    Henüz bir sipariş oluşturmadınız.
+                    Ürünlerimizi inceleyerek alışverişe başlayabilirsiniz.
+                </p>
+
+                <a asp-controller="Home" asp-action="Index" class="orders-shopping-button">
+                    Alışverişe Başla
+                </a>
+            
+            </div>
+
+        }
+        else
+        {
+            <!-- ORDERS LİST -->
+            <div class="orders-list">
+
+                @foreach (var order in Model)
+                {
+                    <div class="order-card">
+
+                        <!-- ORDER HEADER -->
+                        <div class="order-card-header">
+
+                            <div class="order-number">
+
+                                <span class="order-label">
+                                    SİPARİŞ
+                                </span>
+
+                                <strong>
+                                    #@order.Id
+                                </strong>
+
+                            </div>
+
+                            <div class="order-date">
+
+                                <span class="order-label">
+                                    SİPARİŞ TARİHİ
+                                </span>
+
+                                <strong>
+                                    @order.OrderDate.ToString("dd.MM.yyyy")
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+                        <!-- ORDER BODY -->
+                        <div class="order-card-body">
+
+                            <div class="order-info">
+
+                                <div class="order-info-item">
+
+                                    <span class="order-info-label">
+                                        Toplam Tutar
+                                    </span>
+
+                                    <strong class="order-total">
+                                        @order.TotalPrice.ToString("N2") ₺
+                                    </strong>
+
+                                </div>
+
+                                <div class="order-info-item">
+
+                                    <span class="order-info-label">
+                                        Durum
+                                    </span>
+
+                                    <span class="order-status">
+                                        @order.Status
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                            <!-- ORDER ACTION -->
+                            <div class="order-action">
+
+                                <a asp-action="Detail" asp-route-id="@order.Id" class="order-detail-button">
+
+                                    <span>
+                                        Sipariş Detayı
+                                    </span>
+
+                                    <span class="order-detail-arrow">
+                                        →
+                                    </span>
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                }
+
+            </div>
+
+        }
+
+    </div>
+
+</div>
