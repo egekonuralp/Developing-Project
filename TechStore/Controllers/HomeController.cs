@@ -10,26 +10,33 @@ namespace TechStore.Controllers
     public class HomeController : Controller
     {
         private readonly IProductService _productService;
+        private readonly ICategoryService _categoryService;
 
-        public HomeController(IProductService productService)
+        public HomeController(IProductService productService, ICategoryService categoryService)
         {
             _productService = productService;
+            _categoryService = categoryService;
         }
 
-        public async Task<IActionResult> Index(string? search)
+        public async Task<IActionResult> Index(string? search, int? categoryId, int Page = 1, int PageSize = 12)
         {
             var filter = new ProductFilterDto
             {
-                Page = 1,
-                PageSize = 12,
-                Search = search
+                Page = Page,
+                PageSize = PageSize,
+                Search = search,
+                CategoryId = categoryId
             };
 
             var products = await _productService.GetActiveProductsAsync(filter);
+            var categories = await _categoryService.GetAllAsync();
 
             var viewModel = new HomeIndexViewModel
             {
-                Products = products
+                Products = products,
+                Categories = categories,
+                Search = search,
+                SelectedCategoryId = categoryId
             };
 
             return View(viewModel);

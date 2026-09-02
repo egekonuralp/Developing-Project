@@ -19,7 +19,7 @@ namespace TechStore.Services.Interfaces
 
         Task<int> GetOrderCountAsync(string? search, string? status);
 
-        Task UpdateOrderStatusAsync(int orderId, string status);
+        Task<bool> UpdateOrderStatusAsync(int orderId, string status);
 
         Task<int> GetOrderCountAsync();
 

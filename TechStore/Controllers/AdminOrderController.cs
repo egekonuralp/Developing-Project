@@ -17,6 +17,7 @@ namespace TechStore.Controllers
         public async Task<IActionResult> Index(string? search, string? status, int page = 1)
         {
             const int pageSize = 10;
+            page = Math.Max(1, page);
 
             var model = await _orderService.GetPagedOrderAsync(search, status, page, pageSize);
 
@@ -41,7 +42,18 @@ namespace TechStore.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdateStatus(int id, string status)
         {
-            await _orderService.UpdateOrderStatusAsync(id, status);
+            try
+            {
+                var updated = await _orderService.UpdateOrderStatusAsync(id, status);
+
+                TempData[updated ? "Success" : "Error"] = updated
+                    ? "Sipariş durumu güncellendi."
+                    : "Sipariş bulunamadı.";
+            }
+            catch (ArgumentException exception)
+            {
+                TempData["Error"] = exception.Message;
+            }
 
             return RedirectToAction(nameof(Index));
         }

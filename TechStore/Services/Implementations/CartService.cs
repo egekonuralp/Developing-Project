@@ -89,9 +89,9 @@ namespace TechStore.Services.Implementations
             return await _cartRepository.GetCartByUserIdAsync(userId);
         }
 
-        public async Task IncreaseQuantityAsync(int cartItemId)
+        public async Task IncreaseQuantityAsync(string userId, int cartItemId)
         {
-            var cartItem = await _cartRepository.GetCartItemByIdAsync(cartItemId);
+            var cartItem = await _cartRepository.GetCartItemByIdAsync(cartItemId, userId);
 
             if (cartItem == null)
             {
@@ -115,9 +115,9 @@ namespace TechStore.Services.Implementations
             await _cartRepository.SaveAsync();
         }
 
-        public async Task DecreaseQuantityAsync(int cartItemId)
+        public async Task DecreaseQuantityAsync(string userId, int cartItemId)
         {
-            var cartItem = await _cartRepository.GetCartItemByIdAsync(cartItemId);
+            var cartItem = await _cartRepository.GetCartItemByIdAsync(cartItemId, userId);
 
             if (cartItem == null)
             {
@@ -132,9 +132,9 @@ namespace TechStore.Services.Implementations
             }
         }
 
-        public async Task RemoveFromCartAsync(int cartItemID)
+        public async Task RemoveFromCartAsync(string userId, int cartItemID)
         {
-            var cartItem = await _cartRepository.GetCartItemByIdAsync(cartItemID);
+            var cartItem = await _cartRepository.GetCartItemByIdAsync(cartItemID, userId);
 
             if (cartItem == null)
             {

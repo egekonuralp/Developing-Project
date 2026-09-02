@@ -57,9 +57,16 @@ namespace TechStore.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> IncreaseQuantity(int cartItemId)
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (string.IsNullOrEmpty(userId))
+            {
+                return Challenge();
+            }
+
             try
             {
-                await _cartService.IncreaseQuantityAsync(cartItemId);
+                await _cartService.IncreaseQuantityAsync(userId, cartItemId);
             }
 
             catch (Exception ex)
@@ -74,9 +81,16 @@ namespace TechStore.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DecreaseQuantity(int cartItemId)
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (string.IsNullOrEmpty(userId))
+            {
+                return Challenge();
+            }
+
             try
             {
-                await _cartService.DecreaseQuantityAsync(cartItemId);
+                await _cartService.DecreaseQuantityAsync(userId, cartItemId);
             }
             catch (Exception ex)
             {
@@ -90,9 +104,16 @@ namespace TechStore.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RemoveFromCart(int cartItemId)
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (string.IsNullOrEmpty(userId))
+            {
+                return Challenge();
+            }
+
             try
             {
-                await _cartService.RemoveFromCartAsync(cartItemId);
+                await _cartService.RemoveFromCartAsync(userId, cartItemId);
             }
             catch (Exception ex)
             {

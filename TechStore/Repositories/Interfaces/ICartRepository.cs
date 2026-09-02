@@ -12,7 +12,7 @@ namespace TechStore.Repositories.Interfaces
 
         Task SaveAsync();
 
-        Task<CartItem?> GetCartItemByIdAsync(int cartItemId);
+        Task<CartItem?> GetCartItemByIdAsync(int cartItemId, string userId);
 
         Task RemoveCartItemAsync(CartItem cartItem);
 

@@ -37,9 +37,11 @@ namespace TechStore.Repositories.Implementations
             await _context.SaveChangesAsync();
         }
 
-        public async Task<CartItem?> GetCartItemByIdAsync(int cartItemId)
+        public async Task<CartItem?> GetCartItemByIdAsync(int cartItemId, string userId)
         {
-            return await _context.CartItems.FindAsync(cartItemId);             
+            return await _context.CartItems
+                .FirstOrDefaultAsync(cartItem =>
+                    cartItem.Id == cartItemId && cartItem.Cart.UserId == userId);
         }
 
         public async Task RemoveCartItemAsync(CartItem cartItem)

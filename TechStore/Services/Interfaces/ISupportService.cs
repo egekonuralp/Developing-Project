@@ -11,11 +11,11 @@ namespace TechStore.Services.Interfaces
 
         Task<SupportTicket?> GetTicketByIdAsync(int ticketId);
 
-        Task ReplyToTicketAsync(int ticketId, string message, string senderId, bool isAdmin);
+        Task<bool> ReplyToTicketAsync(int ticketId, string message, string senderId, bool isAdmin);
 
         Task<PagedResultViewModel<SupportTicket>> GetPagedTicketsAsync(string? search, string? status, int page, int pageSize);
 
-        Task UpdateTicketStatusAsync(int ticketId, string status);
+        Task<bool> UpdateTicketStatusAsync(int ticketId, string status);
 
         Task<SupportTicket?> GetTicketByIdAsync(int ticketId, string userId);
     }

@@ -22,6 +22,7 @@ namespace TechStore.Controllers
         public async Task<IActionResult> Index(string? search, string? status, int page = 1)
         {
             const int pageSize = 10;
+            page = Math.Max(1, page);
 
             var model = await _supportService.GetPagedTicketsAsync(search, status, page, pageSize);
             
@@ -59,7 +60,12 @@ namespace TechStore.Controllers
                 return Challenge();
             }
 
-            await _supportService.ReplyToTicketAsync(ticketId, message, adminId, true);
+            var messageAdded = await _supportService.ReplyToTicketAsync(ticketId, message, adminId, true);
+
+            if (!messageAdded)
+            {
+                return NotFound();
+            }
 
             return RedirectToAction(nameof(Detail), new { id = ticketId });
         }
@@ -68,7 +74,18 @@ namespace TechStore.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdateStatus(int ticketId, string status)
         {
-            await _supportService.UpdateTicketStatusAsync(ticketId, status);
+            try
+            {
+                var updated = await _supportService.UpdateTicketStatusAsync(ticketId, status);
+
+                TempData[updated ? "Success" : "Error"] = updated
+                    ? "Destek talebi durumu güncellendi."
+                    : "Destek talebi bulunamadı.";
+            }
+            catch (ArgumentException exception)
+            {
+                TempData["Error"] = exception.Message;
+            }
 
             return RedirectToAction(nameof(Detail), new { id = ticketId });
         }

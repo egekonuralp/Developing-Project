@@ -25,6 +25,7 @@
     @if (ViewContext.RouteData.Values["Controller"]?.ToString() == "Home")       
     {
         <link rel="stylesheet" href="~/css/home.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/home-enhancements.css" asp-append-version="true" />
     }
 
     <!-- ACCOUNT -->
@@ -171,7 +172,7 @@
                             <!-- KATEGORİLER -->
                             <li class="navbar-item category-item">
 
-                                <a asp-controller="Product" asp-action="Index" class="navbar-link">
+                                <a asp-controller="Home" asp-action="Index" class="navbar-link">
                                     
                                     Kategoriler
 
@@ -190,7 +191,7 @@
                                         {
                                             <li>
 
-                                                <a asp-controller="Product" asp-action="Index" asp-route-categoryId="@category.Id" class="dropdown-item">
+                                                <a asp-controller="Home" asp-action="Index" asp-route-categoryId="@category.Id" class="dropdown-item">
                                                     @category.Name
                                                 </a>
 
@@ -240,12 +241,27 @@
 
         <!-- FOOTER -->
         <footer class="site-footer">
-
             <div class="container site-footer-inner">
-                &copy; 2026 - TechStore -
-                <a asp-controller="Home" asp-action="Privacy">Gizlilik</a>
-            </div>
+                <div class="footer-brand">
+                    <a asp-controller="Home" asp-action="Index" class="footer-logo"><span>⚡</span> TechStore</a>
+                    <p>Teknolojiyi daha erişilebilir, alışverişi daha keyifli hâle getiriyoruz.</p>
+                </div>
 
+                <div class="footer-links">
+                    <div><h3>Mağaza</h3><a asp-controller="Home" asp-action="Index">Ürünler</a><a asp-controller="Cart" asp-action="Index">Sepetim</a><a asp-controller="Account" asp-action="Register">Hesap oluştur</a></div>
+                    <div><h3>Destek</h3><a asp-controller="Support" asp-action="Create">Destek talebi oluştur</a><a asp-controller="Order" asp-action="MyOrders">Siparişlerim</a><a asp-controller="Account" asp-action="Profile">Hesabım</a></div>
+                </div>
+
+                <div class="footer-contact">
+                    <span class="footer-label">TECHSTORE KULÜBÜ</span>
+                    <p>Yeni ürünleri, fırsatları ve mağaza yeniliklerini keşfet.</p>
+                    <a asp-controller="Account" asp-action="Register" class="footer-cta">Aramıza katıl →</a>
+                </div>
+            </div>
+            <div class="container footer-bottom">
+                <span>&copy; 2026 TechStore. Tüm hakları saklıdır.</span>
+                <span>Güvenli alışveriş için tasarlandı.</span>
+            </div>
         </footer>
 
         <!-- SCRİPTS -->

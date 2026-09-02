@@ -22,7 +22,7 @@ namespace TechStore.Services.Implementations
                 UserId = userId,
                 Title = model.Title,
                 Category = model.Category,
-                Status = "Açık",
+                Status = SupportTicketStatuses.Open,
                 CreatedDate = DateTime.Now,
                 UpdatedDate = DateTime.Now
             };
@@ -51,25 +51,28 @@ namespace TechStore.Services.Implementations
             return await _supportRepository.GetTicketByIdAsync(ticketId);
         }
 
-        public async Task ReplyToTicketAsync(int ticketId, string message, string senderId, bool isAdmin)
+        public async Task<bool> ReplyToTicketAsync(int ticketId, string message, string senderId, bool isAdmin)
         {
-            var ticket = await _supportRepository.GetTicketByIdAsync(ticketId);
+            // Müşteriler sadece kendi taleplerine, adminler ise tüm taleplere yanıt verebilir.
+            var ticket = isAdmin
+                ? await _supportRepository.GetTicketByIdAsync(ticketId)
+                : await _supportRepository.GetTicketByIdAsync(ticketId, senderId);
 
             if (ticket == null)
             {
-                return;
+                return false;
             }
 
-            if (ticket.Status == "Kapandı")
+            if (ticket.Status == SupportTicketStatuses.Closed)
             {
-                return;
+                return false;
             }
 
             var newMessage = new SupportMessage
             {
                 SupportTicketId = ticketId,
                 SenderId = senderId,
-                Message = message,
+                Message = message.Trim(),
                 IsAdmin = isAdmin,
                 CreatedDate = DateTime.Now
             };
@@ -77,6 +80,8 @@ namespace TechStore.Services.Implementations
             await _supportRepository.AddMessageAsync(newMessage);
             ticket.UpdatedDate = DateTime.Now;
             await _supportRepository.SaveAsync();
+
+            return true;
         }
 
         public async Task<PagedResultViewModel<SupportTicket>> GetPagedTicketsAsync(string? search, string? status, int page, int pageSize)
@@ -95,19 +100,25 @@ namespace TechStore.Services.Implementations
             };
         }
 
-        public async Task UpdateTicketStatusAsync(int ticketId, string status)
+        public async Task<bool> UpdateTicketStatusAsync(int ticketId, string status)
         {
+            if (!SupportTicketStatuses.IsValid(status))
+            {
+                throw new ArgumentException("Geçersiz destek talebi durumu.", nameof(status));
+            }
+
             var ticket = await _supportRepository.GetTicketByIdAsync(ticketId);
 
             if (ticket == null)
             {
-                return;
+                return false;
             }
 
             ticket.Status = status;
             ticket.UpdatedDate = DateTime.Now;
 
             await _supportRepository.SaveAsync();
+            return true;
         }
 
         public async Task<SupportTicket?> GetTicketByIdAsync(int ticketId, string userId)

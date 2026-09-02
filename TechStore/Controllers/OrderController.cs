@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using System.Text.Json;
 using TechStore.Models;
 using TechStore.Services.Interfaces;
 using TechStore.ViewModels;
@@ -10,6 +11,7 @@ namespace TechStore.Controllers
     [Authorize]
     public class OrderController : Controller
     {
+        private const string DeliveryInformationTempDataKey = "DeliveryInformation";
         private readonly ICartService _cartService;
         private readonly IOrderService _orderService;
 
@@ -77,18 +79,22 @@ namespace TechStore.Controllers
                 return RedirectToAction("Index", "Cart");
             }
 
-            return RedirectToAction("Payment", new
+            var deliveryInformation = new DeliveryInformationViewModel
             {
-                fullName = model.FullName,
-                phoneNumber = model.PhoneNumber,
-                city = model.City,
-                district = model.District,
-                address = model.Address,
-            });
+                FullName = model.FullName,
+                PhoneNumber = model.PhoneNumber,
+                City = model.City,
+                District = model.District,
+                Address = model.Address
+            };
+
+            TempData[DeliveryInformationTempDataKey] = JsonSerializer.Serialize(deliveryInformation);
+
+            return RedirectToAction(nameof(Payment));
         }
 
         [HttpGet]
-        public async Task<IActionResult> Payment(string fullName, string phoneNumber, string city, string  district, string address)
+        public async Task<IActionResult> Payment()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
@@ -104,16 +110,24 @@ namespace TechStore.Controllers
                 return RedirectToAction("Index", "Cart");
             }
 
+            var deliveryInformation = GetDeliveryInformation();
+
+            if (deliveryInformation == null)
+            {
+                TempData["Error"] = "Ödeme adımına geçmeden önce teslimat bilgilerinizi giriniz.";
+                return RedirectToAction(nameof(Checkout));
+            }
+
             var model = new PaymentViewModel
             {
                 Cart = cart,
                 TotalQuantity = cart.CartItems.Sum(x => x.Quantity),
                 TotalPrice = cart.CartItems.Sum(x => x.Quantity * x.UnitPrice),
-                FullName = fullName,
-                PhoneNumber = phoneNumber,
-                City = city,
-                District = district,
-                Address = address
+                FullName = deliveryInformation.FullName,
+                PhoneNumber = deliveryInformation.PhoneNumber,
+                City = deliveryInformation.City,
+                District = deliveryInformation.District,
+                Address = deliveryInformation.Address
             };
 
             return View(model);
@@ -123,6 +137,14 @@ namespace TechStore.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Payment(PaymentViewModel model)
         {
+            var deliveryInformation = GetDeliveryInformation();
+
+            if (deliveryInformation == null)
+            {
+                TempData["Error"] = "Ödeme oturumunuz sona erdi. Lütfen teslimat bilgilerinizi tekrar giriniz.";
+                return RedirectToAction(nameof(Checkout));
+            }
+
             // Form Doğrulaması Başarısısızsa
             if (!ModelState.IsValid)
             {
@@ -143,6 +165,7 @@ namespace TechStore.Controllers
                 model.Cart = cart;
                 model.TotalQuantity = cart.CartItems.Sum(x => x.Quantity);
                 model.TotalPrice = cart.CartItems.Sum(x => x.Quantity * x.UnitPrice);
+                ApplyDeliveryInformation(model, deliveryInformation);
 
                 return View(model);
             }
@@ -169,11 +192,11 @@ namespace TechStore.Controllers
                 await _orderService.CreateOrderAsync(currentUserId,
                 new CheckoutViewModel
                 {
-                    FullName = model.FullName,
-                    PhoneNumber = model.PhoneNumber,
-                    City = model.City,
-                    District = model.District,
-                    Address = model.Address
+                    FullName = deliveryInformation.FullName,
+                    PhoneNumber = deliveryInformation.PhoneNumber,
+                    City = deliveryInformation.City,
+                    District = deliveryInformation.District,
+                    Address = deliveryInformation.Address
                 },
                 currentCart);
             }
@@ -184,12 +207,12 @@ namespace TechStore.Controllers
                 model.Cart = currentCart;
                 model.TotalQuantity = currentCart.CartItems.Sum(x => x.Quantity);
                 model.TotalPrice = currentCart.CartItems.Sum(x => x.Quantity * x.UnitPrice);
+                ApplyDeliveryInformation(model, deliveryInformation);
 
                 return View(model);
             }
 
-            // Siparişiniz Başarılıysa Sepeti Temizle
-            await _cartService.ClearCartAsync(currentUserId);
+            TempData.Remove(DeliveryInformationTempDataKey);
 
             // Başarılı Sayfasına Gönder
             return RedirectToAction(nameof(Success));
@@ -231,6 +254,35 @@ namespace TechStore.Controllers
             }
 
             return View(order);
+        }
+
+        private DeliveryInformationViewModel? GetDeliveryInformation()
+        {
+            var serializedValue = TempData.Peek(DeliveryInformationTempDataKey) as string;
+
+            if (string.IsNullOrWhiteSpace(serializedValue))
+            {
+                return null;
+            }
+
+            try
+            {
+                return JsonSerializer.Deserialize<DeliveryInformationViewModel>(serializedValue);
+            }
+            catch (JsonException)
+            {
+                TempData.Remove(DeliveryInformationTempDataKey);
+                return null;
+            }
+        }
+
+        private static void ApplyDeliveryInformation(PaymentViewModel payment, DeliveryInformationViewModel delivery)
+        {
+            payment.FullName = delivery.FullName;
+            payment.PhoneNumber = delivery.PhoneNumber;
+            payment.City = delivery.City;
+            payment.District = delivery.District;
+            payment.Address = delivery.Address;
         }
     }
 }

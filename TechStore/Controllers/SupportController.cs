@@ -94,15 +94,17 @@ namespace TechStore.Controllers
 
             var userId = _userManager.GetUserId(User);
 
-            Console.WriteLine(userId);
-
-
             if (userId == null)
             {
                 return Challenge();
             }
 
-            await _supportService.ReplyToTicketAsync(ticketId, message, userId, false);
+            var messageAdded = await _supportService.ReplyToTicketAsync(ticketId, message, userId, false);
+
+            if (!messageAdded)
+            {
+                return NotFound();
+            }
 
             return RedirectToAction(nameof(Detail), new { id = ticketId });
         }

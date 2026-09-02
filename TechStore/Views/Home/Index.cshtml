@@ -1,73 +1,164 @@
-﻿@model TechStore.ViewModels.HomeIndexViewModel
+@model TechStore.ViewModels.HomeIndexViewModel
 
 <div class="home-container">
-
-    <!-- HERO -->
 
     <section class="home-hero">
 
         <div class="hero-content">
 
             <span class="hero-eyebrow">
-                EST. 1990s • TECH &amp; STYLE
+                TEKNOLOJİ • GÜNLÜK FIRSATLAR
             </span>
 
-            <h1>
-                TechStore
-            </h1>
+            <p class="hero-kicker">Geleceği bugünden keşfet</p>
 
-            <p>
-                Teknolojinin ruhunu, vintage bir dokunuşla keşfedin.
-            </p>
+            <h1>Teknolojini<br />yükselt.</h1>
 
-            <a asp-controller="Product"
-               asp-action="Index"
-               class="hero-button">
+            <p>Günlük yaşamını ve oyun deneyimini geliştirecek seçili ürünleri keşfet.</p>
 
-                Ürünleri Keşfet
-                <span>→</span>
+            <div class="hero-actions">
 
-            </a>
+                <a asp-action="Index" class="hero-button">
+                    Ürünleri Keşfet 
+                    <span>→</span>
+                </a>
+
+                <a href="#featured-products" class="hero-text-button">
+                    Öne Çıkanlar ↓
+                </a>
+
+            </div>
+
+            <ul class="hero-benefits" aria-label="Mağaza avantajları">
+
+                <li>
+                    <span>✓</span>
+                    Güvenli alışveriş
+                </li>
+
+                <li>
+                    <span>✓</span>
+                    Hızlı destek
+                </li>
+
+                <li>
+                    <span>✓</span>
+                    Güncel teknoloji
+                </li>
+
+            </ul>
 
         </div>
 
-        <div class="hero-decoration">
+        <div class="hero-decoration" aria-hidden="true">
 
             <span class="hero-lightning">⚡</span>
+            <span class="hero-orbit orbit-one"></span>
+            <span class="hero-orbit orbit-two"></span>
+
+            <div class="hero-stat-card">
+
+                <strong>12+</strong>
+
+                <span>Seçili teknoloji ürünü</span>
+
+            </div>
 
         </div>
 
     </section>
 
+    <section class="campaign-strip" aria-label="Kampanya bilgisi">
 
-    <!-- PRODUCTS -->
+        <div>
+            <span class="campaign-icon">✦</span>
 
-    <section class="home-products">
+            <p>
+
+                <strong>Haftanın fırsatları</strong>
+
+                <span>Seçili ürünleri kaçırma.</span>
+
+            </p>
+
+        </div>
+
+        <div class="countdown" data-countdown aria-label="Kampanya bitiş sayacı">
+
+            <span>
+                <b data-days>00</b>
+                <small>GÜN</small>
+
+                </span><span>
+
+                <b data-hours>00</b>
+                <small>SAAT</small>
+            
+                </span><span>
+                    
+                <b data-minutes>00</b>
+                <small>DK</small>
+            
+                </span><span>
+                    
+                <b data-seconds>00</b>
+                <small>SN</small>
+            
+            </span>
+
+        </div>
+
+        <a asp-action="Index">Fırsatları Gör →</a>
+
+    </section>
+
+    @if (Model.Categories.Any())
+    {
+        <section class="category-discovery">
+
+            <div class="section-heading"><div>
+                
+                <span class="section-eyebrow">KATEGORİLER</span>
+                
+                <h2>Aradığını kolayca bul</h2>
+            
+            </div>  
+                <a asp-action="Index" class="view-all-link">Tümünü Gör →</a>
+            </div>
+
+            <div class="category-grid">
+
+                @foreach (var category in Model.Categories.Take(6))
+                {
+                    <a asp-action="Index" asp-route-categoryId="@category.Id" class="category-card">
+
+                        <span class="category-card-icon">⌁</span>
+                        <span class="category-card-name">@category.Name</span>
+                        <span class="category-card-link">İncele →</span>
+
+                    </a>
+                }
+
+            </div>
+
+        </section>
+    }
+
+    <section class="home-products" id="featured-products">
 
         <div class="section-heading">
 
             <div>
 
-                <span class="section-eyebrow">
-                    ÖNE ÇIKANLAR
-                </span>
-
-                <h2>
-                    Son Eklenen Ürünler
-                </h2>
-
+                <span class="section-eyebrow">@(!string.IsNullOrWhiteSpace(Model.Search) || Model.SelectedCategoryId.HasValue ? "ARAMA SONUÇLARI" : "ÖNE ÇIKANLAR")</span>
+                
+                <h2>@(!string.IsNullOrWhiteSpace(Model.Search) || Model.SelectedCategoryId.HasValue ? "Sana uygun ürünler" : "Yeni gelen teknoloji")</h2>
+            
             </div>
 
-            <a asp-controller="Product"
-               asp-action="Index"
-               class="view-all-link">
-
-                Tüm Ürünler →
-
-            </a>
-
+            <a asp-action="Index" class="view-all-link">Tüm Ürünler →</a>
+        
         </div>
-
 
         @if (Model.Products.Any())
         {
@@ -79,64 +170,40 @@
 
                         <div class="product-image">
 
-                            @if (!string.IsNullOrEmpty(product.ImageUrl))
-                            {
-                                <img src="@product.ImageUrl"
-                                     alt="@product.Name" />
+                            @if (!string.IsNullOrEmpty(product.ImageUrl)) 
+                            { 
+                                <img src="@product.ImageUrl" alt="@product.Name" /> 
                             }
-                            else
+                            else 
                             {
                                 <div class="no-product-image">
                                     <span>⚡</span>
                                     <small>RESİM YOK</small>
-                                </div>
+                                </div> 
                             }
 
-                            <span class="product-category">
-                                @product.Category.Name
-                            </span>
+                            <span class="product-category">@product.Category.Name</span>
+
+                            @if (product.Stock > 0) 
+                            {
+                                <span class="product-stock">Stokta</span> 
+                            }
 
                         </div>
 
-
                         <div class="product-content">
 
-                            <span class="product-brand">
-                                @product.Brand
-                            </span>
-
-                            <h3 class="product-name">
-                                @product.Name
-                            </h3>
+                            <span class="product-brand">@product.Brand</span>
+                            <h3 class="product-name">@product.Name</h3>
 
                             <div class="product-bottom">
 
-                                <strong class="product-price">
-                                    @product.Price.ToString("N2") ₺
-                                </strong>
+                                <strong class="product-price">@product.Price.ToString("N2") ₺</strong>
 
-
-                                <form asp-controller="Cart"
-                                      asp-action="AddToCart"
-                                      method="post">
-
-                                    <input type="hidden"
-                                           name="productId"
-                                           value="@product.Id" />
-
-                                    <input type="hidden"
-                                           name="quantity"
-                                           value="1" />
-
-                                    <button type="submit"
-                                            class="product-cart-button"
-                                            title="Sepete Ekle">
-
-                                        🛒
-
-                                    </button>
-
-                                </form>
+                                @if (product.Stock > 0)
+                                {
+                                    <form asp-controller="Cart" asp-action="AddToCart" method="post"><input type="hidden" name="productId" value="@product.Id" /><input type="hidden" name="quantity" value="1" /><button type="submit" class="product-cart-button" title="Sepete ekle">🛒</button></form>
+                                }
 
                             </div>
 
@@ -146,6 +213,7 @@
                 }
 
             </div>
+
         }
         else
         {
@@ -153,17 +221,69 @@
 
                 <span>⚡</span>
 
-                <h3>
-                    Henüz Satışta Ürün Bulunmamaktadır.
-                </h3>
+                <h3>Aradığınız ürün bulunamadı.</h3>
 
-                <p>
-                    Yeni ürünler için daha sonra tekrar uğrayın.
-                </p>
+                <p>Farklı bir arama veya kategori deneyin.</p>
+
+                <a asp-action="Index" class="empty-products-link">
+                    Tüm ürünleri göster
+                </a>
 
             </div>
         }
 
     </section>
 
+    <section class="trust-section" aria-label="TechStore avantajları">
+
+        <article>
+            <span>🔒</span>
+            <div>
+                <h3>Güvenli alışveriş</h3>
+                <p>Ödeme bilgilerin özenle işlenir.</p>
+            </div>
+        </article>
+
+        <article>
+            <span>⚡</span>
+            <div>
+                <h3>Hızlı süreç</h3>
+                <p>Siparişini kolayca takip et.</p>
+            </div>
+        </article>
+        
+        <article>
+            <span>↺</span>
+            <div>
+                <h3>Kolay destek</h3>
+                <p>İhtiyacın olduğunda yanındayız.</p>
+            </div>
+        </article>
+        
+        <article>
+            <span>✦</span>
+            <div>
+                <h3>Seçili ürünler</h3>
+                <p>Teknolojiyi yakından takip et.</p>
+            </div>
+        </article>
+
+    </section>
+
+    <section class="club-section">
+        <div>
+            <span class="section-eyebrow">TECHSTORE KULÜBÜ</span>
+            <h2>Yeni fırsatları ilk sen gör.</h2>
+            <p>Hesabını oluştur, siparişlerini takip et ve destek ekibimize doğrudan ulaş.</p>
+        </div>
+
+        <a asp-controller="Account" asp-action="Register" class="hero-button">
+            Hesap Oluştur 
+            <span>→</span>
+        </a>
+
+    </section>
+
 </div>
+
+@section Scripts { <script src="~/js/home.js" asp-append-version="true"></script> }

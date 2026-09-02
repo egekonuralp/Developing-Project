@@ -1,4 +1,6 @@
 ﻿using TechStore.Models;
+using TechStore.Data;
+using Microsoft.EntityFrameworkCore;
 using TechStore.Repositories.Interfaces;
 using TechStore.Services.Interfaces;
 using TechStore.ViewModels;
@@ -8,64 +10,77 @@ namespace TechStore.Services.Implementations
     public class OrderService : IOrderService
     {
         private readonly IOrderRepository _orderRepository;
-        private readonly IProductRepository _productRepository;
+        private readonly ICartRepository _cartRepository;
+        private readonly ApplicationDbContext _context;
 
-        public OrderService(IOrderRepository orderRepository, IProductRepository productRepository)
+        public OrderService(
+            IOrderRepository orderRepository,
+            ICartRepository cartRepository,
+            ApplicationDbContext context)
         {
             _orderRepository = orderRepository;
-            _productRepository = productRepository;
+            _cartRepository = cartRepository;
+            _context = context;
         }
 
         public async Task CreateOrderAsync(string userId, CheckoutViewModel model, Cart cart)
         {
-            var products = new Dictionary<int, Product>();
+            await using var transaction = await _context.Database.BeginTransactionAsync();
 
-            foreach (var cartItem in cart.CartItems)
+            try
             {
-                var product = await _productRepository.GetByIdAsync(cartItem.ProductId);
-
-                if (product == null)
+                var order = new Order
                 {
-                    throw new Exception($"{cartItem.ProductName} ürünü bulunamadı.");
+                    UserId = userId,
+                    OrderDate = DateTime.Now,
+                    TotalPrice = cart.CartItems.Sum(x => x.UnitPrice * x.Quantity),
+                    FullName = model.FullName,
+                    Phone = model.PhoneNumber,
+                    City = model.City,
+                    District = model.District,
+                    Address = model.Address,
+                    Status = OrderStatuses.Preparing
+                };
+
+                foreach (var cartItem in cart.CartItems)
+                {
+                    order.OrderItems.Add(new OrderItem
+                    {
+                        ProductId = cartItem.ProductId,
+                        ProductName = cartItem.ProductName,
+                        Quantity = cartItem.Quantity,
+                        UnitPrice = cartItem.UnitPrice,
+                    });
+
                 }
 
-                if (product.Stock < cartItem.Quantity)
+                foreach (var productGroup in cart.CartItems.GroupBy(item => item.ProductId))
                 {
-                    throw new Exception($"{product.Name} ürününden yeterli stok bulunmamaktadır. " +
-                                        $"Mevcut stok: {product.Stock}");
+                    var quantity = productGroup.Sum(item => item.Quantity);
+                    var productName = productGroup.First().ProductName;
+
+                    var affectedRows = await _context.Products
+                        .Where(product => product.Id == productGroup.Key && product.Stock >= quantity)
+                        .ExecuteUpdateAsync(setters => setters
+                            .SetProperty(product => product.Stock, product => product.Stock - quantity));
+
+                    if (affectedRows == 0)
+                    {
+                        throw new InvalidOperationException(
+                            $"{productName} ürünü için yeterli stok bulunmamaktadır.");
+                    }
                 }
 
-                products[cartItem.ProductId] = product;
+                await _orderRepository.AddAsync(order);
+                await _orderRepository.SaveAsync();
+                await _cartRepository.ClearCartAsync(cart);
+                await transaction.CommitAsync();
             }
-
-            var order = new Order
+            catch
             {
-                UserId = userId,
-                OrderDate = DateTime.Now,
-                TotalPrice = cart.CartItems.Sum(x => x.UnitPrice * x.Quantity),
-                FullName = model.FullName,
-                Phone = model.PhoneNumber,
-                City = model.City,
-                District = model.District,
-                Address = model.Address,
-                Status = "Hazırlanıyor"
-            };
-
-            foreach (var cartItem in cart.CartItems)
-            {
-                order.OrderItems.Add(new OrderItem
-                {
-                    ProductId = cartItem.ProductId,
-                    ProductName = cartItem.ProductName,
-                    Quantity = cartItem.Quantity,
-                    UnitPrice = cartItem.UnitPrice,
-                });
-
-                products[cartItem.ProductId].Stock -= cartItem.Quantity;
+                await transaction.RollbackAsync();
+                throw;
             }
-
-            await _orderRepository.AddAsync(order);
-            await _orderRepository.SaveAsync();
         }
 
         public async Task<List<Order>> GetOrdersByUserIdAsync(string userId)
@@ -121,18 +136,24 @@ namespace TechStore.Services.Implementations
             return await _orderRepository.GetOrderCountAsync(search, status);
         }
 
-        public async Task UpdateOrderStatusAsync(int orderId, string status)
+        public async Task<bool> UpdateOrderStatusAsync(int orderId, string status)
         {
+            if (!OrderStatuses.IsValid(status))
+            {
+                throw new ArgumentException("Geçersiz sipariş durumu.", nameof(status));
+            }
+
             var order = await _orderRepository.GetOrderByIdAsync(orderId);
 
             if (order == null)
             {
-                return;
+                return false;
             }
 
             order.Status = status;
 
             await _orderRepository.SaveAsync();
+            return true;
         }
 
         public async Task<int> GetOrderCountAsync()

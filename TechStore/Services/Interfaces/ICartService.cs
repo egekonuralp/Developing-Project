@@ -9,11 +9,11 @@ namespace TechStore.Services.Interfaces
 
         Task<Cart?> GetCartByUserIdAsync(string userId);
 
-        Task IncreaseQuantityAsync(int cartItemId);
+        Task IncreaseQuantityAsync(string userId, int cartItemId);
 
-        Task DecreaseQuantityAsync(int cartItemId);
+        Task DecreaseQuantityAsync(string userId, int cartItemId);
 
-        Task RemoveFromCartAsync(int cartItemId);
+        Task RemoveFromCartAsync(string userId, int cartItemId);
         
         Task<CartIndexViewModel> GetCartSummaryAsync(string userId);
 

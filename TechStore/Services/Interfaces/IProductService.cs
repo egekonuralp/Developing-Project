@@ -15,6 +15,10 @@ namespace TechStore.Services.Interfaces
 
         Task DeleteAsync(int id);
 
+        Task ActivateAsync(int id);
+
+        Task DeactivateAsync(int id);
+
         Task<int> CountAsync();
 
         Task<List<Product>> GetRecentProductsAsync(int count);

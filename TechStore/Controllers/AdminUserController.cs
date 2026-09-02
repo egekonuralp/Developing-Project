@@ -16,7 +16,6 @@ namespace TechStore.Controllers
         private readonly IOrderService _orderService;
         private readonly IAdminUserService _adminUserService;
 
-
         public AdminUserController(UserManager<AppUser> userManager, 
             IOrderService orderService, 
             RoleManager<IdentityRole> roleManager,
@@ -31,6 +30,9 @@ namespace TechStore.Controllers
         [HttpGet]
         public async Task<IActionResult> Index(string? search, int page = 1, int pageSize = 10)
         {
+            page = Math.Max(1, page);
+            pageSize = Math.Clamp(pageSize, 1, 100);
+
             var users = string.IsNullOrWhiteSpace(search)
                 ? await _adminUserService.GetAllUserAsync(page, pageSize)
                 : await _adminUserService.SearchUserAsync(search, page, pageSize);

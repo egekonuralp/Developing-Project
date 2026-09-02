@@ -75,6 +75,35 @@ namespace TechStore.Services.Implementations
             }
 
             _productRepository.Delete(product);
+
+            await _productRepository.SaveAsync();
+        }
+
+        public async Task ActivateAsync(int id)
+        {
+            var product = await _productRepository.GetByIdAsync(id);
+
+            if (product == null)
+            {
+                throw new Exception("Ürün bulunamadı.");
+            }
+
+            product.IsActive = true;
+
+            await _productRepository.SaveAsync();
+        }
+
+        public async Task DeactivateAsync(int id)
+        {
+            var product = await _productRepository.GetByIdAsync(id);
+
+            if (product == null)
+            {
+                throw new Exception("Ürün bulunamadı.");
+            }
+
+            product.IsActive = false;
+
             await _productRepository.SaveAsync();
         }
 

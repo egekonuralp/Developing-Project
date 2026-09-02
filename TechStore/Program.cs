@@ -16,7 +16,6 @@ namespace TechStore
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString));
@@ -64,7 +63,6 @@ namespace TechStore
                     await roleManager.CreateAsync(new IdentityRole("User"));
                 }
 
-                // Admin e-postasý artýk kodda gömülü deðil, appsettings.json -> SeedData:AdminEmail'den okunuyor.
                 var adminEmail = builder.Configuration["SeedData:AdminEmail"];
 
                 if (!string.IsNullOrEmpty(adminEmail))

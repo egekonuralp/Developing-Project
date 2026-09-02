@@ -18,10 +18,22 @@ namespace TechStore.Data
             builder.Entity<Product>()
                 .Property(x => x.Price)
                 .HasPrecision(18, 2);
+            
+            builder.Entity<Product>()
+                .HasOne(x => x.Category)
+                .WithMany(x => x.Products)
+                .HasForeignKey(x => x.CategoryId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.Entity<CartItem>()
                 .Property(x => x.UnitPrice)
                 .HasPrecision(18, 2);
+
+            builder.Entity<CartItem>()
+                .HasOne(x => x.Product)
+                .WithMany()
+                .HasForeignKey(x => x.ProductId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.Entity<OrderItem>()
                 .Property(x => x.UnitPrice)
@@ -30,6 +42,12 @@ namespace TechStore.Data
             builder.Entity<Order>()
                 .Property(x => x.TotalPrice)
                 .HasPrecision(18, 2);
+
+            builder.Entity<OrderItem>()
+                .HasOne(x => x.Product)
+                .WithMany()
+                .HasForeignKey(x => x.ProductId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.Entity<SupportTicket>()
                 .HasOne(x => x.User)

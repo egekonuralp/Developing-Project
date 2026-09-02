@@ -42,14 +42,22 @@ body {
     grid-row: 3;
     background-color: #171310;
     border-top: 1px solid #4a3c2c;
-    padding: 20px 0;
+    padding: 48px 0 18px;
     font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
 }
 
 .site-footer-inner {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr;
+    gap: 45px;
     color: #8a7a64;
     font-size: 14px;
 }
+
+.footer-logo { display: inline-flex; align-items: center; gap: 8px; color: #d8cbb3 !important; font-family: 'Alfa Slab One', Georgia, serif; font-size: 22px; text-decoration: none; }
+.footer-logo span { color: #a3803f; }.footer-brand p { max-width: 300px; margin: 14px 0 0; line-height: 1.55; }
+.footer-links { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }.footer-links div { display: grid; align-content: start; gap: 9px; }.footer-links h3 { margin: 0 0 4px; color: #d8cbb3; font-size: 14px; text-transform: uppercase; }.footer-links a { font-size: 13px; }.footer-contact p { max-width: 250px; margin: 10px 0 16px; line-height: 1.5; }.footer-label { color: #a3803f; font-size: 11px; font-weight: 800; letter-spacing: 1px; }.footer-cta { display: inline-block; font-weight: 800; text-transform: uppercase; }
+.footer-bottom { display: flex; justify-content: space-between; gap: 20px; margin-top: 36px; padding-top: 18px; border-top: 1px solid #4a3c2c; color: #6f604e; font-size: 12px; }
 
 .site-footer a {
     color: #a3803f;
@@ -59,3 +67,6 @@ body {
     .site-footer a:hover {
         color: #bd9a5c;
     }
+
+@media (max-width: 800px) { .site-footer-inner { grid-template-columns: 1fr 1fr; gap: 30px; }.footer-brand { grid-column: 1 / -1; }.footer-bottom { align-items: flex-start; flex-direction: column; gap: 7px; } }
+@media (max-width: 500px) { .site-footer-inner, .footer-links { grid-template-columns: 1fr; } }
