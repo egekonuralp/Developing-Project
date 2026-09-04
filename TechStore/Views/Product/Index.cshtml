@@ -121,6 +121,7 @@
                 <th class="price-column">Fiyat</th>
                 <th class="stock-column">Stok</th>
                 <th>Marka</th>
+                <th>Durum</th>
                 <th class="action-column">İşlemler</th>
 
             </tr>
@@ -213,6 +214,23 @@
 
                         </td>
 
+                        <td>
+
+                            @if (product.IsActive)
+                            {
+                                <span class="status-badge active">
+                                    Aktif
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="status-badge inactive">
+                                    Pasif
+                                </span>
+                            }
+
+                        </td>
+
                         <td class="action-column">
 
                             <div class="action-buttons">
@@ -224,6 +242,28 @@
                                     <i class="fa-solid fa-pen"></i>
 
                                 </a>
+
+                                @if (product.IsActive)
+                                {
+                                    <form asp-action="Deactivate" method="post" style="display:inline;">
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="id" value="@product.Id" />
+
+                                        <button type="submit" class="btn-icon btn-toggle-off" title="Ürünü pasif yap">
+                                            <i class="fa-solid fa-toggle-off"></i>
+                                        </button>
+                                    </form>
+                                }
+                                else
+                                {
+                                    <form asp-action="Activate" method="post" style="display:inline;">
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="id" value="@product.Id" />
+                                        <button type="submit" class="btn-icon btn-toggle-on" title="Ürünü aktif yap">
+                                            <i class="fa-solid fa-toggle-on"></i>
+                                        </button>
+                                    </form>
+                                }
 
                                 <a asp-action="Delete"
                                    asp-route-id="@product.Id"
@@ -244,7 +284,7 @@
             {
                 <tr>
 
-                    <td colspan="7">
+                    <td colspan="8">
 
                         Henüz ürün bulunmuyor.
 

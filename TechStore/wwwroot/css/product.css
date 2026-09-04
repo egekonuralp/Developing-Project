@@ -233,6 +233,26 @@
         border: 1px solid #8a4030;
     }
 
+.status-badge {
+    display: inline-block;
+    padding: 4px 11px;
+    border-radius: 2px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+    .status-badge.active {
+        color: #cfd8bf;
+        background: rgba(92, 107, 70, 0.18);
+        border: 1px solid #5c6b46;
+    }
+
+    .status-badge.inactive {
+        color: #e0c3ba;
+        background: rgba(138, 64, 48, 0.18);
+        border: 1px solid #8a4030;
+    }
+
 .action-column {
     width: 90px;
 }
@@ -269,6 +289,22 @@
 
     .btn-delete:hover {
         border-color: #8a4030;
+    }
+
+.btn-toggle-off {
+    color: #a1503d;
+}
+
+    .btn-toggle-off:hover {
+        border-color: #8a4030;
+    }
+
+.btn-toggle-on {
+    color: #7a8f5c;
+}
+
+    .btn-toggle-on:hover {
+        border-color: #5c6b46;
     }
 
 /* =========================================================

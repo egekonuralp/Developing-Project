@@ -29,6 +29,24 @@ namespace TechStore.Services.Implementations
 
             try
             {
+                foreach (var cartItem in cart.CartItems)
+                {
+                    var product = await _context.Products
+                        .FirstOrDefaultAsync(x => x.Id == cartItem.ProductId);
+
+                    if (product == null)
+                    {
+                        throw new InvalidOperationException(
+                            $"{cartItem.ProductName} ürünü artık mevcut değil.");
+                    }
+
+                    if (!product.IsActive)
+                    {
+                        throw new InvalidOperationException(
+                            $"{cartItem.ProductName} ürünü artık satışta değil.");
+                    }
+                }
+
                 var order = new Order
                 {
                     UserId = userId,

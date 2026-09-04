@@ -65,6 +65,13 @@
                                 @item.ProductName
                             </h3>
 
+                            @if (!item.Product.IsActive)
+                            {
+                                <p class="inactive-product-warning">
+                                    Bu ürün artık satışta değil. Sipariş vermek için ürünü sepetinizden kaldırınız.
+                                </p>
+                            }
+
                             <p class="brand">
                                 @item.Product.Brand
                             </p>
@@ -105,15 +112,24 @@
                                     @item.Quantity
                                 </span>
 
-                                <form asp-action="IncreaseQuantity" method="post">
+                                @if (item.Product.IsActive)
+                                {
+                                    <form asp-action="IncreaseQuantity" method="post">
 
-                                    <input type="hidden" name="cartItemId" value="@item.Id" />
+                                        <input type="hidden" name="cartItemId" value="@item.Id" />
 
-                                    <button type="submit" aria-label="Ürün artır">
+                                        <button type="submit" aria-label="Ürün artır">
+                                            +
+                                        </button>
+
+                                    </form>
+                                }
+                                else
+                                {
+                                    <button type="button" disabled aria-label="Pasif ürün artırılamaz">
                                         +
                                     </button>
-
-                                </form>
+                                }
 
                             </div>
 
@@ -216,11 +232,30 @@
 
                 </div>
 
+                @if (Model.HasInactiveItems)
+                {
+                    <p class="checkout-blocked-message">
+                        Sepetinizde satışta olmayan ürün(ler) var. 
+                        Siparişi tamamlayabilmek için lütfen bu ürünleri sepetinizden kaldırın.
+                    </p>
+                }
+
                 <div class="summary-buttons">
 
-                    <a asp-controller="Order" asp-action="Checkout" class="tech-btn tech-btn-primary">
-                        Siparişi Tamamla
-                    </a>
+                     @if (Model.HasInactiveItems)
+                     {
+                         <button type="button" 
+                             class="tech-btn tech-btn-primary tech-btn-disabled" 
+                             disabled title="Devam etmeden önce satışta olmayan ürünleri sepetinizden kaldırın.">
+                                Siparişi Tamamla
+                        </button>
+                     }
+                     else
+                     {
+                        <a asp-controller="Order" asp-action="Checkout" class="tech-btn tech-btn-primary">
+                            Siparişi Tamamla
+                        </a>
+                     }
 
                     <a asp-controller="Home" asp-action="Index" class="tech-btn tech-btn-outline">
                         Alışverişe Devam Et

@@ -405,6 +405,26 @@
         color: #a3803f;
     }
 
+.tech-btn-disabled,
+.tech-btn-disabled:hover {
+    background: #4a3c2c;
+    border-color: #4a3c2c;
+    outline-color: #4a3c2c;
+    color: #8a7d68;
+    cursor: not-allowed;
+}
+
+.checkout-blocked-message {
+    margin: 0 0 12px;
+    padding: 10px 12px;
+    border: 1px solid #8a4030;
+    border-radius: 2px;
+    background: rgba(138, 64, 48, 0.12);
+    color: #d8cbb3;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
 /* =========================================================
    RESPONSIVE
    ========================================================= */

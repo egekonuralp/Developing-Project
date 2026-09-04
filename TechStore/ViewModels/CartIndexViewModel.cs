@@ -9,5 +9,7 @@ namespace TechStore.ViewModels
         public decimal TotalPrice { get; set; }
 
         public int TotalQuantity { get; set; }
+
+        public bool HasInactiveItems => Cart.CartItems.Any(x => !x.Product.IsActive);
     }
 }

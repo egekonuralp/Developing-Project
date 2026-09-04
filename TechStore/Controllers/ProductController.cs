@@ -343,5 +343,21 @@ namespace TechStore.Controllers
             await _productService.DeleteAsync(product.Id);
             return RedirectToAction(nameof(Index));
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Activate(int id)
+        {
+            await _productService.ActivateAsync(id);
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Deactivate(int id)
+        {
+            await _productService.DeactivateAsync(id);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

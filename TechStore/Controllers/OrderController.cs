@@ -38,6 +38,12 @@ namespace TechStore.Controllers
                 return RedirectToAction("Index", "Cart");
             }
 
+            if (cart.CartItems.Any(x => !x.Product.IsActive))
+            {
+                TempData["Error"] = "Sepetinizde satışta olmayan ürün(ler) var. Siparişi tamamlayabilmek için lütfen bu ürünleri sepetinizden kaldırın.";
+                return RedirectToAction("Index", "Cart");
+            }
+
             var viewModel = new CheckoutViewModel
             {
                 Cart = cart,
@@ -79,6 +85,12 @@ namespace TechStore.Controllers
                 return RedirectToAction("Index", "Cart");
             }
 
+            if (currentCart.CartItems.Any(x => !x.Product.IsActive))
+            {
+                TempData["Error"] = "Sepetinizde satışta olmayan ürün(ler) var. Siparişi tamamlayabilmek için lütfen bu ürünleri sepetinizden kaldırın.";
+                return RedirectToAction("Index", "Cart");
+            }
+
             var deliveryInformation = new DeliveryInformationViewModel
             {
                 FullName = model.FullName,
@@ -107,6 +119,12 @@ namespace TechStore.Controllers
 
             if (cart == null || !cart.CartItems.Any())
             {
+                return RedirectToAction("Index", "Cart");
+            }
+
+            if (cart.CartItems.Any(x => !x.Product.IsActive))
+            {
+                TempData["Error"] = "Sepetinizde satışta olmayan ürün(ler) var. Siparişi tamamlayabilmek için lütfen bu ürünleri sepetinizden kaldırın.";
                 return RedirectToAction("Index", "Cart");
             }
 

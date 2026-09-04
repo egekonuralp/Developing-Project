@@ -24,22 +24,29 @@ namespace TechStore.Services.Implementations
 
             if (product == null)
             {
-                throw new Exception("Ürün Bulunamadı.");
+                throw new InvalidOperationException("Ürün Bulunamadı.");
+            }
+
+            if (!product.IsActive)
+            {
+                throw new InvalidOperationException(
+                    $"{product.Name} ürünü artık satışta değil.");
             }
 
             if (product.Stock <= 0)
             {
-                throw new Exception("Ürün Stokta Bulunmamaktadır.");
+                throw new InvalidOperationException("Ürün Stokta Bulunmamaktadır.");
             }
 
             if (quantity <= 0)
             {
-                throw new Exception("Geçersiz Ürün Miktarı.");
+                throw new InvalidOperationException("Geçersiz Ürün Miktarı.");
             }
 
             if (quantity > product.Stock)
             {
-                throw new Exception("Stokta Eklemek İstediğiniz Kadar Ürün Bulunmamaktadır.");
+                throw new InvalidOperationException(
+                    "Stokta Eklemek İstediğiniz Kadar Ürün Bulunmamaktadır.");
             }
 
             var cart = await _cartRepository.GetCartByUserIdAsync(userId);
@@ -63,7 +70,8 @@ namespace TechStore.Services.Implementations
 
                 if (newQuantity > product.Stock)
                 {
-                    throw new Exception($"Bu üründen en fazla {product.Stock} adet satın alabilirsiniz.");
+                    throw new InvalidOperationException(
+                        $"Bu üründen en fazla {product.Stock} adet satın alabilirsiniz.");
                 }
 
                 cartItem.Quantity = newQuantity;
@@ -103,6 +111,12 @@ namespace TechStore.Services.Implementations
             if (product == null)
             {
                 throw new Exception("Ürün Bulunamadı.");
+            }
+
+            if (!product.IsActive)
+            {
+                throw new InvalidOperationException(
+                    $"{product.Name} ürünü artık satışta değil.");
             }
 
             if (cartItem.Quantity >= product.Stock)
