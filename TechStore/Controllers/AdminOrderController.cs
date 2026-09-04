@@ -54,8 +54,12 @@ namespace TechStore.Controllers
             {
                 TempData["Error"] = exception.Message;
             }
+            catch (InvalidOperationException exception)
+            {
+                TempData["Error"] = exception.Message;
+            }
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Detail), new { id });
         }
     }
 }

@@ -168,6 +168,30 @@ namespace TechStore.Services.Implementations
                 return false;
             }
 
+            if (order.Status == OrderStatuses.Cancelled)
+            {
+                throw new InvalidOperationException(
+                    "İptal edilmiş bir siparişin durumu değiştirilemez.");
+            }
+
+            if (order.Status == OrderStatuses.Delivered)
+            {
+                throw new InvalidOperationException(
+                    "Teslim edilmiş bir siparişin durumu değiştirilemez.");
+            }
+
+            if (status == OrderStatuses.Cancelled &&
+                order.Status != OrderStatuses.Preparing)
+            {
+                throw new InvalidOperationException(
+                    "Yalnızca hazırlanma durumundaki siparişler iptal edilebilir.");
+            }
+
+            if (order.Status == status)
+            {
+                return true;
+            }
+
             order.Status = status;
 
             await _orderRepository.SaveAsync();
