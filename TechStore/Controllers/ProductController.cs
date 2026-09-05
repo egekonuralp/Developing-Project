@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using TechStore.DTOs;
 using TechStore.Models;
 using TechStore.Services.Interfaces;
@@ -327,26 +328,28 @@ namespace TechStore.Controllers
                 return NotFound();
             }
 
-            if (!string.IsNullOrEmpty(product.ImageUrl))
-            {
-                var filePath = Path.Combine(
-                    _environment.WebRootPath,
-                    product.ImageUrl.TrimStart('/')
-                        .Replace('/', Path.DirectorySeparatorChar));
-
-                if (System.IO.File.Exists(filePath))
-                {
-                    System.IO.File.Delete(filePath);
-                }
-            }
-
             try
             {
                 await _productService.DeleteAsync(product.Id);
+
+                if (!string.IsNullOrEmpty(product.ImageUrl))
+                {
+                    var filePath = Path.Combine(
+                        _environment.WebRootPath,
+                        product.ImageUrl.TrimStart('/')
+                            .Replace('/', Path.DirectorySeparatorChar));
+
+                    if (System.IO.File.Exists(filePath))
+                    {
+                        System.IO.File.Delete(filePath);
+                    }
+                }
+
+                TempData["Success"] = "Ürün başarıyla silindi.";
             }
-            catch (Exception ex)
+            catch (DbUpdateException)
             {
-                TempData["Error"] = ex.Message;
+                TempData["Error"] = "Bu ürün kullanıldığı için silinemiyor.";
             }
 
             return RedirectToAction(nameof(Delete), new { id = product.Id });

@@ -94,7 +94,30 @@ namespace TechStore.Services.Implementations
 
         public async Task<Cart?> GetCartByUserIdAsync(string userId)
         {
-            return await _cartRepository.GetCartByUserIdAsync(userId);
+            var cart = await _cartRepository.GetCartByUserIdAsync(userId);
+
+            if (cart != null && SyncCartItemPrices(cart))
+            {
+                await _cartRepository.SaveAsync();
+            }
+
+            return cart;
+        }
+
+        private static bool SyncCartItemPrices(Cart cart)
+        {
+            var pricesChanged = false;
+
+            foreach (var cartItem in cart.CartItems)
+            {
+                if (cartItem.Product != null && cartItem.UnitPrice != cartItem.Product.Price)
+                {
+                    cartItem.UnitPrice = cartItem.Product.Price;
+                    pricesChanged = true;
+                }
+            }
+
+            return pricesChanged;
         }
 
         public async Task IncreaseQuantityAsync(string userId, int cartItemId)
@@ -141,7 +164,7 @@ namespace TechStore.Services.Implementations
             if (cartItem.Quantity > 1)
             {
                 cartItem.Quantity--;
-                
+
                 await _cartRepository.SaveAsync();
             }
         }
@@ -160,7 +183,7 @@ namespace TechStore.Services.Implementations
 
         public async Task<CartIndexViewModel> GetCartSummaryAsync(string userId)
         {
-            var cart = await _cartRepository.GetCartByUserIdAsync(userId);
+            var cart = await GetCartByUserIdAsync(userId);
 
             if (cart == null)
             {

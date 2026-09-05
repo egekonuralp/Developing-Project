@@ -58,6 +58,10 @@ namespace TechStore.Controllers
             {
                 TempData["Error"] = exception.Message;
             }
+            catch (Exception)
+            {
+                TempData["Error"] = "Sipariş durumu güncellenirken bir hata oluştu, lütfen tekrar deneyiniz.";
+            }
 
             return RedirectToAction(nameof(Detail), new { id });
         }

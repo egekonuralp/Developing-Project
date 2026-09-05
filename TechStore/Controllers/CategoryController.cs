@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using TechStore.Models;
 using TechStore.Services.Interfaces;
 
@@ -91,12 +92,12 @@ namespace TechStore.Controllers
             {
                 await _categoryService.DeleteAsync(id);
             }
-            catch (Exception ex)
+            catch (DbUpdateException)
             {
-                TempData["Error"] = ex.Message;               
+                TempData["Error"] = "Bu kategoriye bağlı ürünler bulunduğu için silinemiyor.";               
             }
 
-            return RedirectToAction(nameof(Delete));
+            return RedirectToAction(nameof(Delete), new { id });
         }
     }
 }

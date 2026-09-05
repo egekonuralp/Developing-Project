@@ -170,32 +170,47 @@ namespace TechStore.Services.Implementations
 
             if (order.Status == OrderStatuses.Cancelled)
             {
-                throw new InvalidOperationException(
-                    "İptal edilmiş bir siparişin durumu değiştirilemez.");
+                throw new InvalidOperationException("İptal edilmiş bir siparişin durumu değiştirilemez.");
             }
 
             if (order.Status == OrderStatuses.Delivered)
             {
-                throw new InvalidOperationException(
-                    "Teslim edilmiş bir siparişin durumu değiştirilemez.");
+                throw new InvalidOperationException("Teslim edilmiş bir siparişin durumu değiştirilemez.");
             }
 
-            if (status == OrderStatuses.Cancelled &&
-                order.Status != OrderStatuses.Preparing)
+            if (order.Status == OrderStatuses.Cancelled && order.Status != OrderStatuses.Preparing)
             {
-                throw new InvalidOperationException(
-                    "Yalnızca hazırlanma durumundaki siparişler iptal edilebilir.");
+                throw new InvalidOperationException("Yalnızca hazırlanıyor durumundaki siparişler iptal edilebilir.");
             }
 
-            if (order.Status == status)
+            var isBeingCanceled = status == OrderStatuses.Cancelled && order.Status != OrderStatuses.Cancelled;
+
+            await using var transaction = await _context.Database.BeginTransactionAsync();
+
+            try
             {
+                order.Status = status;
+                await _orderRepository.SaveAsync();
+
+                if (isBeingCanceled)
+                {
+                    foreach (var orderItem in order.OrderItems)
+                    {
+                        await _context.Products
+                            .Where(p => p.Id == orderItem.ProductId)
+                            .ExecuteUpdateAsync(setters => setters.
+                            SetProperty(p => p.Stock, p => p.Stock + orderItem.Quantity));
+                    }
+                }
+
+                await transaction.CommitAsync();
                 return true;
             }
-
-            order.Status = status;
-
-            await _orderRepository.SaveAsync();
-            return true;
+            catch
+            {
+                await transaction.RollbackAsync();
+                throw;
+            }
         }
 
         public async Task<int> GetOrderCountAsync()
