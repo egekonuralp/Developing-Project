@@ -29,6 +29,39 @@
     text-transform: uppercase;
 }
 
+.order-meta {
+    display: flex;
+    gap: 20px;
+    margin-top: 8px;
+    color: #8a7a64;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+}
+
+    .order-meta strong {
+        color: #d8cbb3;
+    }
+
+.admin-alert {
+    padding: 12px 15px;
+    margin-bottom: 16px;
+    border-radius: 2px;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+}
+
+.admin-alert-success {
+    color: #cfd8bf;
+    background: rgba(92, 107, 70, 0.18);
+    border: 1px solid #5c6b46;
+}
+
+.admin-alert-danger {
+    color: #e0c3ba;
+    background: rgba(138, 64, 48, 0.18);
+    border: 1px solid #8a4030;
+}
+
 /* =========================================================
    DETAIL CARD (shared shell)
    ========================================================= */
@@ -150,6 +183,20 @@
     color: #8a4030 !important;
     font-weight: 700;
 }
+
+.grand-total-row td {
+    padding-top: 16px;
+    border-top: 2px solid #4a3c2c !important;
+    color: #d8cbb3;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    text-align: right;
+}
+
+    .grand-total-row td:first-child {
+        text-align: left;
+    }
 
 /* =========================================================
    STATUS UPDATE FORM

@@ -1,4 +1,4 @@
-﻿@model TechStore.Models.Order
+﻿@model TechStore.ViewModels.AdminOrderDetailViewModel
 @{
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -8,21 +8,22 @@
 
     @if (TempData["Success"] != null)
     {
-        <div class="alert alert-success">
-            @TempData["Success"]
-        </div>
+        <div class="admin-alert admin-alert-success">@TempData["Success"]</div>
     }
 
     @if (TempData["Error"] != null)
     {
-        <div class="alert alert-danger">
-            @TempData["Error"]
-        </div>
+        <div class="admin-alert admin-alert-danger">@TempData["Error"]</div>
     }
 
     <div class="page-header">
         <span class="page-eyebrow">SİPARİŞ YÖNETİMİ</span>
-        <h2>Sipariş Detayı #@Model.Id</h2>
+        <h2>Sipariş Detayı #@Model.OrderId</h2>
+
+        <div class="order-meta">
+            <span>Durum: <strong>@Model.Status</strong></span>
+            <span>Tarih: <strong>@Model.OrderDate.ToString("dd.MM.yyyy HH:mm")</strong></span>
+        </div>
     </div>
 
     <!-- CUSTOMER INFO -->
@@ -36,7 +37,7 @@
 
             <div class="info-item">
                 <span>Sipariş No</span>
-                <strong>#@Model.Id</strong>
+                <strong>#@Model.OrderId</strong>
             </div>
 
             <div class="info-item">
@@ -72,7 +73,7 @@
     <div class="detail-card">
 
         <div class="detail-card-header">
-            <h3><i class="fa-solid fa-boxes-stacked"></i> Ürünler</h3>
+            <h3><i class="fa-solid fa-boxes-stacked"></i> Sipariş Ürünleri</h3>
         </div>
 
         <div class="table-wrapper">
@@ -89,7 +90,7 @@
                 </thead>
 
                 <tbody>
-                    @foreach (var item in Model.OrderItems)
+                    @foreach (var item in Model.Items)
                     {
                         <tr>
                             <td>@item.ProductName</td>
@@ -99,6 +100,13 @@
                         </tr>
                     }
                 </tbody>
+
+                <tfoot>
+                    <tr class="grand-total-row">
+                        <td colspan="3">Genel Toplam</td>
+                        <td class="line-total">@Model.TotalPrice.ToString("N2") ₺</td>
+                    </tr>
+                </tfoot>
 
             </table>
 
@@ -110,30 +118,21 @@
     <div class="detail-card">
 
         <div class="detail-card-header">
-            <h3><i class="fa-solid fa-truck"></i> Durum</h3>
+            <h3><i class="fa-solid fa-truck"></i> Sipariş Durumu</h3>
         </div>
 
         <form asp-action="UpdateStatus" method="post" class="status-form">
 
-            <input type="hidden" name="id" value="@Model.Id" />
+            <input type="hidden" name="id" value="@Model.OrderId" />
 
             <select name="status" class="status-select">
 
-                <option value="Hazırlanıyor" selected="@(Model.Status == "Hazırlanıyor")">
-                    Hazırlanıyor
-                </option>
-
-                <option value="Kargoya Verildi" selected="@(Model.Status == "Kargoya Verildi")">
-                    Kargoya Verildi
-                </option>
-
-                <option value="Teslim Edildi" selected="@(Model.Status == "Teslim Edildi")">
-                    Teslim Edildi
-                </option>
-
-                <option value="İptal Edildi" selected="@(Model.Status == "İptal Edildi")">
-                    İptal Edildi
-                </option>
+                @foreach (var statusOption in Model.StatusOptions)
+                {
+                    <option value="@statusOption" selected="@(Model.Status == statusOption)">
+                        @statusOption
+                    </option>
+                }
 
             </select>
 

@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using TechStore.Models;
 using TechStore.Services.Interfaces;
+using TechStore.ViewModels;
 
 namespace TechStore.Controllers
 {
@@ -35,7 +37,28 @@ namespace TechStore.Controllers
                 return NotFound();
             }
 
-            return View(order);
+            var model = new AdminOrderDetailViewModel
+            {
+                OrderId = order.Id,
+                OrderDate = order.OrderDate,
+                Status = order.Status,
+                TotalPrice = order.TotalPrice,
+                FullName = order.FullName,
+                Phone = order.Phone,
+                City = order.City,
+                District = order.District,
+                Address = order.Address,
+                Items = order.OrderItems.ToList(),
+                StatusOptions = new List<string>
+                {
+                    OrderStatuses.Preparing,
+                    OrderStatuses.Shipped,
+                    OrderStatuses.Delivered,
+                    OrderStatuses.Cancelled
+                }
+            };
+
+            return View(model);
         }
 
         [HttpPost]
