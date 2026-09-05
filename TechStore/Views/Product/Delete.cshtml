@@ -5,6 +5,13 @@
     Layout = "_AdminLayout";
 }
 
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["Error"]
+    </div>
+}
+
 <div class="product-delete-page">
 
     <!-- PAGE HEADER -->

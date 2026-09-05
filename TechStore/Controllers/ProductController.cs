@@ -340,8 +340,16 @@ namespace TechStore.Controllers
                 }
             }
 
-            await _productService.DeleteAsync(product.Id);
-            return RedirectToAction(nameof(Index));
+            try
+            {
+                await _productService.DeleteAsync(product.Id);
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = ex.Message;
+            }
+
+            return RedirectToAction(nameof(Delete), new { id = product.Id });
         }
 
         [HttpPost]

@@ -87,9 +87,16 @@ namespace TechStore.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            await _categoryService.DeleteAsync(id);
+            try
+            {
+                await _categoryService.DeleteAsync(id);
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = ex.Message;               
+            }
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Delete));
         }
     }
 }

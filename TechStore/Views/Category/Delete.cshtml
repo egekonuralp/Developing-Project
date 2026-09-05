@@ -4,6 +4,13 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["Error"]
+    </div>
+}
+
 <div class="category-delete-page">
 
     <div class="page-header">
