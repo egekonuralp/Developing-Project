@@ -98,15 +98,24 @@
 
                             <div class="quantity-controls">
 
-                                <form asp-action="DecreaseQuantity" method="post">
+                                @if (item.Quantity > 1)
+                                {
+                                    <form asp-action="DecreaseQuantity" method="post">
 
-                                    <input type="hidden" name="cartItemId" value="@item.Id" />
+                                        <input type="hidden" name="cartItemId" value="@item.Id" />
 
-                                    <button type="submit" aria-label="Ürün azalt">
+                                        <button type="submit" aria-label="Ürün azalt">
+                                            -
+                                        </button>
+
+                                    </form>
+                                }
+                                else
+                                {
+                                    <button type="button" disabled aria-label="Ürün Azaltılamaz">
                                         -
                                     </button>
-
-                                </form>
+                                }
 
                                 <span>
                                     @item.Quantity
