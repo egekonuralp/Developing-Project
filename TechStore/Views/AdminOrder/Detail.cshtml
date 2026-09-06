@@ -129,9 +129,18 @@
 
                 @foreach (var statusOption in Model.StatusOptions)
                 {
-                    <option value="@statusOption" selected="@(Model.Status == statusOption)">
-                        @statusOption
-                    </option>
+                    if (Model.Status == statusOption)
+                    {
+                        <option value="@statusOption" selected>
+                            @statusOption
+                        </option>
+                    }
+                    else
+                    {
+                        <option value="@statusOption">
+                            @statusOption
+                        </option>
+                    }
                 }
 
             </select>
