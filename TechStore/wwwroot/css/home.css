@@ -294,6 +294,16 @@
     padding: 18px;
 }
 
+.product-card-link {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+}
+
+.product-content-bottom {
+    padding-top: 0;
+}
+
 .product-brand {
     margin: 0 0 5px;
     color: #6b5a44;

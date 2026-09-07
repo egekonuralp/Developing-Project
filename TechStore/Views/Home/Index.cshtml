@@ -168,33 +168,41 @@
                 {
                     <article class="product-card">
 
-                        <div class="product-image">
+                        <a asp-action="Details" asp-route-id="@product.Id" class="product-card-link">
 
-                            @if (!string.IsNullOrEmpty(product.ImageUrl)) 
-                            { 
-                                <img src="@product.ImageUrl" alt="@product.Name" /> 
-                            }
-                            else 
-                            {
-                                <div class="no-product-image">
-                                    <span>⚡</span>
-                                    <small>RESİM YOK</small>
-                                </div> 
-                            }
+                            <div class="product-image">
 
-                            <span class="product-category">@product.Category.Name</span>
+                                @if (!string.IsNullOrEmpty(product.ImageUrl))
+                                {
+                                    <img src="@product.ImageUrl" alt="@product.Name" />
+                                }
+                                else
+                                {
+                                    <div class="no-product-image">
+                                        <span>⚡</span>
+                                        <small>RESİM YOK</small>
+                                    </div>
+                                }
 
-                            @if (product.Stock > 0) 
-                            {
-                                <span class="product-stock">Stokta</span> 
-                            }
+                                <span class="product-category">@product.Category.Name</span>
 
-                        </div>
+                                @if (product.Stock > 0)
+                                {
+                                    <span class="product-stock">Stokta</span>
+                                }
 
-                        <div class="product-content">
+                            </div>
 
-                            <span class="product-brand">@product.Brand</span>
-                            <h3 class="product-name">@product.Name</h3>
+                            <div class="product-content">
+
+                                <span class="product-brand">@product.Brand</span>
+                                <h3 class="product-name">@product.Name</h3>
+
+                            </div>
+
+                        </a>
+
+                        <div class="product-content product-content-bottom">
 
                             <div class="product-bottom">
 

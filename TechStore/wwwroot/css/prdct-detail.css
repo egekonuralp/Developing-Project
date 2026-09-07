@@ -1,0 +1,281 @@
+﻿/* =========================================================
+   PRODUCT DETAIL PAGE
+   ========================================================= */
+
+.product-detail-page {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* =========================
+   BREADCRUMB
+   ========================= */
+
+.product-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 24px;
+    color: #8a7a64;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 13px;
+}
+
+    .product-breadcrumb a {
+        color: #8a7a64;
+        text-decoration: none;
+    }
+
+        .product-breadcrumb a:hover {
+            color: #a3803f;
+        }
+
+    .product-breadcrumb strong {
+        color: #d8cbb3;
+        font-weight: 700;
+    }
+
+/* =========================
+   MAIN GRID
+   ========================= */
+
+.product-detail-grid {
+    display: grid;
+    grid-template-columns: 460px 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+/* =========================
+   IMAGE — home.css'teki .product-card ile aynı krem tonu
+   ========================= */
+
+.product-detail-image {
+    position: relative;
+    height: 460px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #c3b499;
+    border: 1px solid #8a7a64;
+    border-radius: 3px;
+    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.3);
+}
+
+    .product-detail-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+.no-product-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #6b5a44;
+}
+
+    .no-product-image span {
+        font-size: 45px;
+        margin-bottom: 8px;
+    }
+
+    .no-product-image small {
+        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+        font-size: 11px;
+        letter-spacing: 2px;
+    }
+
+/* =========================
+   INFO COLUMN
+   ========================= */
+
+.product-detail-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.product-detail-category {
+    padding: 5px 9px;
+    color: #171310;
+    background: #a3803f;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-radius: 2px;
+}
+
+.product-detail-info h1 {
+    margin: 6px 0 0;
+    color: #d8cbb3;
+    font-family: 'Alfa Slab One', Georgia, serif;
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 1.25;
+}
+
+.product-detail-brand {
+    color: #8a7a64;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.product-detail-price {
+    margin: 6px 0;
+    color: #8a4030;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 30px;
+    font-weight: 800;
+}
+
+.product-detail-stock {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+    .product-detail-stock .status-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+    }
+
+    .product-detail-stock.in-stock {
+        color: #cfd8bf;
+    }
+
+        .product-detail-stock.in-stock .status-dot {
+            background: #5c6b46;
+        }
+
+    .product-detail-stock.out-of-stock {
+        color: #e0c3ba;
+    }
+
+        .product-detail-stock.out-of-stock .status-dot {
+            background: #8a4030;
+        }
+
+/* =========================
+   ADD TO CART FORM
+   ========================= */
+
+.product-detail-cart-form {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+    .product-detail-cart-form label {
+        color: #8a7a64;
+        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+        font-size: 13px;
+    }
+
+    .product-detail-cart-form input[type="number"] {
+        width: 70px;
+        height: 44px;
+        padding: 0 10px;
+        color: #d8cbb3;
+        background: #171310;
+        border: 1px solid #4a3c2c;
+        border-radius: 2px;
+        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+        font-size: 14px;
+        text-align: center;
+    }
+
+        .product-detail-cart-form input[type="number"]:focus {
+            outline: none;
+            border-color: #a3803f;
+        }
+
+.product-detail-add-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 22px;
+    color: #171310;
+    background: #a3803f;
+    border: 1px dashed #171310;
+    outline: 2px solid #a3803f;
+    outline-offset: -4px;
+    border-radius: 2px;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+    .product-detail-add-btn:hover {
+        background: #bd9a5c;
+    }
+
+    .product-detail-add-btn:disabled {
+        color: #8a7d68;
+        background: #4a3c2c;
+        outline-color: #4a3c2c;
+        cursor: not-allowed;
+    }
+
+/* =========================
+   DESCRIPTION
+   ========================= */
+
+.product-detail-description {
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px solid #4a3c2c;
+    width: 100%;
+}
+
+    .product-detail-description h3 {
+        margin: 0 0 10px;
+        color: #d8cbb3;
+        font-family: 'Alfa Slab One', Georgia, serif;
+        font-size: 15px;
+        font-weight: 400;
+        text-transform: uppercase;
+    }
+
+    .product-detail-description p {
+        margin: 0;
+        color: #a99b85;
+        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+        font-size: 15px;
+        line-height: 1.6;
+        white-space: pre-line;
+    }
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 850px) {
+
+    .product-detail-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .product-detail-image {
+        height: 320px;
+    }
+}

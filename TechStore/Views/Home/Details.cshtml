@@ -1,0 +1,90 @@
+﻿@model TechStore.ViewModels.ProductDetailViewModel
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<div class="product-detail-page">
+
+    <nav class="product-breadcrumb" aria-label="breadcrumb">
+        <a asp-action="Index">Ana Sayfa</a>
+        <span>/</span>
+        <a asp-action="Index" asp-route-categoryId="@Model.CategoryId">@Model.CategoryName</a>
+        <span>/</span>
+        <strong>@Model.Name</strong>
+    </nav>
+
+    <div class="product-detail-grid">
+
+        <div class="product-detail-image">
+
+            @if (!string.IsNullOrEmpty(Model.ImageUrl))
+            {
+                <img src="@Model.ImageUrl" alt="@Model.Name" />
+            }
+            else
+            {
+                <div class="no-product-image">
+                    <span>⚡</span>
+                    <small>RESİM YOK</small>
+                </div>
+            }
+
+        </div>
+
+        <div class="product-detail-info">
+
+            <span class="product-detail-category">@Model.CategoryName</span>
+
+            <h1>@Model.Name</h1>
+
+            <span class="product-detail-brand">@Model.Brand</span>
+
+            <strong class="product-detail-price">@Model.Price.ToString("N2") ₺</strong>
+
+            @if (Model.Stock > 0)
+            {
+                <span class="product-detail-stock in-stock">
+                    <span class="status-dot"></span>
+                    Stokta (@Model.Stock adet)
+                </span>
+            }
+            else
+            {
+                <span class="product-detail-stock out-of-stock">
+                    <span class="status-dot"></span>
+                    Stokta Yok
+                </span>
+            }
+
+            @if (Model.Stock > 0)
+            {
+                <form asp-controller="Cart" asp-action="AddToCart" method="post" class="product-detail-cart-form">
+
+                    <input type="hidden" name="productId" value="@Model.Id" />
+
+                    <label for="quantity">Adet</label>
+                    <input type="number" id="quantity" name="quantity" value="1" min="1" max="@Model.Stock" />
+
+                    <button type="submit" class="product-detail-add-btn">
+                        🛒 Sepete Ekle
+                    </button>
+
+                </form>
+            }
+            else
+            {
+                <button type="button" class="product-detail-add-btn" disabled>
+                    Stokta Yok
+                </button>
+            }
+
+            <div class="product-detail-description">
+                <h3>Ürün Açıklaması</h3>
+                <p>@Model.Description</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

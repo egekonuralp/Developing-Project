@@ -22,10 +22,16 @@
         <link rel="stylesheet" href="~/css/footer.css" asp-append-version="true" />
 
     <!-- HOME -->
-    @if (ViewContext.RouteData.Values["Controller"]?.ToString() == "Home")       
+    @if (ViewContext.RouteData.Values["Controller"]?.ToString() == "Home")
     {
         <link rel="stylesheet" href="~/css/home.css" asp-append-version="true" />
         <link rel="stylesheet" href="~/css/home-enhancements.css" asp-append-version="true" />
+    }
+
+    @if (ViewContext.RouteData.Values["Controller"]?.ToString() == "Home" &&
+        ViewContext.RouteData.Values["Action"]?.ToString() == "Details")
+    {
+        <link rel="stylesheet" href="~/css/prdct-detail.css" asp-append-version="true" />
     }
 
     <!-- ACCOUNT -->
