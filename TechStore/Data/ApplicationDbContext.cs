@@ -67,6 +67,21 @@ namespace TechStore.Data
                 .HasForeignKey(x => x.SenderId)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            builder.Entity<Review>()
+                .HasOne(x => x.Product)
+                .WithMany(x => x.Reviews)
+                .HasForeignKey(x => x.ProductId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<Review>()
+                .HasOne(x => x.User)
+                .WithMany()
+                .HasForeignKey(x => x.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Review>()
+                .HasIndex(x => new { x.ProductId, x.UserId })
+                .IsUnique();
         }
 
         public DbSet<Category> Categories { get; set; }
@@ -84,6 +99,8 @@ namespace TechStore.Data
         public DbSet<SupportTicket> SupportTickets { get; set; }
 
         public DbSet<SupportMessage> SupportMessages { get; set; }
+
+        public DbSet<Review> Reviews { get; set; }
     }
         
 }
