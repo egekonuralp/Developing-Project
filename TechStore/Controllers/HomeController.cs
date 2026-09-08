@@ -6,6 +6,7 @@ using TechStore.DTOs;
 using TechStore.Models;
 using TechStore.Services.Interfaces;
 using TechStore.ViewModels;
+using Microsoft.AspNetCore.Identity;
 
 namespace TechStore.Controllers
 {
@@ -14,12 +15,17 @@ namespace TechStore.Controllers
         private readonly IProductService _productService;
         private readonly ICategoryService _categoryService;
         private readonly IReviewService _reviewService;
+        private readonly UserManager<AppUser> _userManager;
 
-        public HomeController(IProductService productService, ICategoryService categoryService, IReviewService reviewService)
+        public HomeController(IProductService productService, 
+            ICategoryService categoryService, 
+            IReviewService reviewService,
+            UserManager<AppUser> userManager)
         {
             _productService = productService;
             _categoryService = categoryService;
             _reviewService = reviewService;
+            _userManager = userManager;
         }
 
         public async Task<IActionResult> Index(string? search, int? categoryId, int Page = 1, int PageSize = 12)
@@ -82,14 +88,12 @@ namespace TechStore.Controllers
                 CategoryId = product.CategoryId,
                 CategoryName = product.Category.Name,
                 Reviews = reviews,
-
                 AverageRating = reviews.Any()
                     ? reviews.Average(r => r.Rating)
                     : 0,
 
                 ReviewCount = reviews.Count,
                 CanReview = canReview
-
             };
 
             return View(viewModel);

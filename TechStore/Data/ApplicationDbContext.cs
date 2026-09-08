@@ -82,6 +82,22 @@ namespace TechStore.Data
             builder.Entity<Review>()
                 .HasIndex(x => new { x.ProductId, x.UserId })
                 .IsUnique();
+
+            builder.Entity<WishlistItem>()
+                .HasOne(x => x.Product)
+                .WithMany(x => x.WishlistItems)
+                .HasForeignKey(x => x.ProductId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<WishlistItem>()
+                .HasOne(x => x.User)
+                .WithMany()
+                .HasForeignKey(x => x.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<WishlistItem>()
+                .HasIndex(x => new { x.UserId, x.ProductId })
+                .IsUnique();
         }
 
         public DbSet<Category> Categories { get; set; }
@@ -101,6 +117,8 @@ namespace TechStore.Data
         public DbSet<SupportMessage> SupportMessages { get; set; }
 
         public DbSet<Review> Reviews { get; set; }
+
+        public DbSet<WishlistItem> WishlistItems { get; set; }
     }
-        
+    
 }
