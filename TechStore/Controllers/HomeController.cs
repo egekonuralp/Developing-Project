@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using System.Diagnostics;
+using System.Security.Claims;
 using TechStore.DTOs;
 using TechStore.Models;
 using TechStore.Services.Interfaces;
@@ -11,11 +13,13 @@ namespace TechStore.Controllers
     {
         private readonly IProductService _productService;
         private readonly ICategoryService _categoryService;
+        private readonly IReviewService _reviewService;
 
-        public HomeController(IProductService productService, ICategoryService categoryService)
+        public HomeController(IProductService productService, ICategoryService categoryService, IReviewService reviewService)
         {
             _productService = productService;
             _categoryService = categoryService;
+            _reviewService = reviewService;
         }
 
         public async Task<IActionResult> Index(string? search, int? categoryId, int Page = 1, int PageSize = 12)
@@ -42,6 +46,7 @@ namespace TechStore.Controllers
             return View(viewModel);
         }
 
+        [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
             var product = await _productService.GetByIdAsync(id);
@@ -51,7 +56,21 @@ namespace TechStore.Controllers
                 return NotFound();
             }
 
-            var model = new ProductDetailViewModel
+            var reviews = await _reviewService.GetByProductIdAsync(id);
+
+            var canReview = false;
+
+            if (User.Identity?.IsAuthenticated == true)
+            {
+                var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+                if (!string.IsNullOrEmpty(userId))
+                {
+                    canReview = !await _reviewService.HasUserReviewedAsync(id, userId);
+                }
+            }
+
+            var viewModel = new ProductDetailViewModel
             {
                 Id = product.Id,
                 Name = product.Name,
@@ -61,10 +80,49 @@ namespace TechStore.Controllers
                 ImageUrl = product.ImageUrl,
                 Brand = product.Brand,
                 CategoryId = product.CategoryId,
-                CategoryName = product.Category.Name
+                CategoryName = product.Category.Name,
+                Reviews = reviews,
+
+                AverageRating = reviews.Any()
+                    ? reviews.Average(r => r.Rating)
+                    : 0,
+
+                ReviewCount = reviews.Count,
+                CanReview = canReview
+
             };
 
-            return View(model);
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddReview(int productId, int rating, string comment)
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (string.IsNullOrEmpty(userId))
+            {
+                return Unauthorized();
+            }
+
+            try
+            {
+                await _reviewService.AddReviewAsync(productId, userId, rating, comment);
+
+                TempData["ReviewMessage"] = "Deðerlendirmeniz Baþarýyla Eklendi.";
+            }
+            catch (ArgumentException)
+            {
+                TempData["ReviewError"] = "Deðerlendirmeniz Eklenirken Bir Hata Oluþtu.";
+            }
+            catch (InvalidOperationException)
+            {
+                TempData["ReviewError"] = "Deðerlendirmeniz Eklenirken Bir Hata Oluþtu.";
+            }
+
+            return RedirectToAction(nameof(Details), new { id = productId });
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

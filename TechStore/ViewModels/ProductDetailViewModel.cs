@@ -1,4 +1,6 @@
-﻿namespace TechStore.ViewModels
+﻿using TechStore.Models;
+
+namespace TechStore.ViewModels
 {
     public class ProductDetailViewModel
     {
@@ -19,5 +21,13 @@
         public int CategoryId { get; set; }
 
         public string CategoryName { get; set; } = string.Empty;
-    }
+
+        public List<Review> Reviews { get; set; } = new();
+
+        public double AverageRating { get; set; }
+
+        public int ReviewCount { get; set; }
+
+        public bool CanReview { get; set; }
+        }
 }

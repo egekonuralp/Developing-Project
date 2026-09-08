@@ -316,13 +316,40 @@
 
 .product-name {
     min-height: 48px;
-    margin: 0 0 18px;
+    margin: 0 0 8px;
     color: #171310;
     font-family: 'Alfa Slab One', Georgia, serif;
     font-size: 18px;
     font-weight: 400;
     line-height: 1.35;
     text-transform: none;
+}
+
+.product-card-rating {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0 0 14px;
+}
+
+    .product-card-rating .stars {
+        display: inline-flex;
+        gap: 1px;
+        font-size: 13px;
+    }
+
+    .product-card-rating .star {
+        color: #b3a486;
+    }
+
+        .product-card-rating .star.filled {
+            color: #a3803f;
+        }
+
+.product-card-rating-count {
+    color: #6b5a44;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 12px;
 }
 
 /* =========================

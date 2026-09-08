@@ -69,6 +69,7 @@ namespace TechStore.Repositories.Implementations
         {
             return await _context.Products
                 .Include(p => p.Category)
+                .Include(p => p.Reviews)
                 .FirstOrDefaultAsync(p => p.Id == id);
         }
 
@@ -134,6 +135,7 @@ namespace TechStore.Repositories.Implementations
         {
             var query = _context.Products
                 .Include(p => p.Category)
+                .Include(p => p.Reviews)
                 .AsQueryable();
 
             query = query.Where(p => p.IsActive);

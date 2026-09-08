@@ -198,6 +198,30 @@
                                 <span class="product-brand">@product.Brand</span>
                                 <h3 class="product-name">@product.Name</h3>
 
+                                <div class="product-card-rating">
+                                    <span class="stars">
+                                        @{
+                                            var avgRating = product.Reviews.Any() ? product.Reviews.Average(r => r.Rating) : 0;
+                                        }
+                                        @for (var i = 1; i <= 5; i++)
+                                        {
+                                            if (i <= Math.Round(avgRating))
+                                            {
+                                                <span class="star filled">★</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="star">★</span>
+                                            }
+                                        }
+                                    </span>
+
+                                    @if (product.Reviews.Any())
+                                    {
+                                        <span class="product-card-rating-count">(@product.Reviews.Count)</span>
+                                    }
+                                </div>
+
                             </div>
 
                         </a>

@@ -38,6 +38,7 @@ namespace TechStore
             builder.Services.AddScoped<IOrderRepository, OrderRepository>();
             builder.Services.AddScoped<IAdminUserRepository, AdminUserRepository>();
             builder.Services.AddScoped<ISupportRepository, SupportRepository>();
+            builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
 
             // Services
             builder.Services.AddScoped<ICategoryService, CategoryService>();
@@ -46,6 +47,7 @@ namespace TechStore
             builder.Services.AddScoped<IOrderService, OrderService>();
             builder.Services.AddScoped<IAdminUserService, AdminUserService>();
             builder.Services.AddScoped<ISupportService, SupportService>();
+            builder.Services.AddScoped<IReviewService, ReviewService>();
 
             var app = builder.Build();
 

@@ -56,6 +56,31 @@
                 </span>
             }
 
+            <div class="product-detail-rating-summary">
+                <span class="stars">
+                    @for (var i = 1; i <= 5; i++)
+                    {
+                        if (i <= Math.Round(Model.AverageRating))
+                        {
+                            <span class="star filled">★</span>
+                        }
+                        else
+                        {
+                            <span class="star">★</span>
+                        }
+                    }
+                </span>
+
+                @if (Model.ReviewCount > 0)
+                {
+                    <span class="rating-text">@Model.AverageRating.ToString("0.0") (@Model.ReviewCount değerlendirme)</span>
+                }
+                else
+                {
+                    <span class="rating-text">Henüz değerlendirme yok</span>
+                }
+            </div>
+
             @if (Model.Stock > 0)
             {
                 <form asp-controller="Cart" asp-action="AddToCart" method="post" class="product-detail-cart-form">
@@ -84,6 +109,104 @@
             </div>
 
         </div>
+
+    </div>
+
+    <!-- REVIEWS -->
+    <div class="product-detail-reviews">
+
+        <h3>Değerlendirmeler (@Model.ReviewCount)</h3>
+
+        @if (TempData["ReviewSuccess"] != null)
+        {
+            <div class="admin-alert admin-alert-success">@TempData["ReviewSuccess"]</div>
+        }
+
+        @if (TempData["ReviewError"] != null)
+        {
+            <div class="admin-alert admin-alert-danger">@TempData["ReviewError"]</div>
+        }
+
+        @if (Model.CanReview)
+        {
+            <form asp-action="AddReview" method="post" class="review-form">
+
+                <input type="hidden" name="productId" value="@Model.Id" />
+
+                <div class="review-form-rating">
+                    <span>Puanınız:</span>
+
+                    <div class="star-input-group">
+                        @for (var i = 5; i >= 1; i--)
+                        {
+                            <label>
+                                <input type="radio" name="rating" value="@i" required />
+                                <span>★</span>
+                            </label>
+                        }
+                    </div>
+                </div>
+
+                <textarea name="comment" rows="3" maxlength="1000" placeholder="Bu ürün hakkındaki görüşünü yaz..." required></textarea>
+
+                <button type="submit" class="product-detail-add-btn">
+                    Değerlendirmeyi Gönder
+                </button>
+
+            </form>
+        }
+        else if (User.Identity?.IsAuthenticated != true)
+        {
+            <p class="review-prompt">
+                Değerlendirme yapmak için <a asp-controller="Account" asp-action="Login">giriş yapmalısın</a>.
+            </p>
+        }
+        else
+        {
+            <p class="review-prompt">Bu ürünü zaten değerlendirdin.</p>
+        }
+
+        @if (Model.Reviews.Any())
+        {
+            <div class="review-list">
+
+                @foreach (var review in Model.Reviews)
+                {
+                    <div class="review-item">
+
+                        <div class="review-item-header">
+
+                            <strong>@review.User.FirstName @review.User.LastName</strong>
+
+                            <span class="review-item-stars">
+                                @for (var i = 1; i <= 5; i++)
+                                {
+                                    if (i <= review.Rating)
+                                    {
+                                        <span class="star filled">★</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="star">★</span>
+                                    }
+                                }
+                            </span>
+
+                            <span class="review-item-date">@review.CreatedDate.ToString("dd.MM.yyyy")</span>
+
+                        </div>
+
+                        <p>@review.Comment</p>
+
+                    </div>
+                }
+
+            </div>
+        }
+        else
+        {
+            <p class="review-prompt">Bu ürün için henüz bir değerlendirme yapılmamış. İlk yorumu sen bırak!</p>
+        }
 
     </div>
 
