@@ -11,5 +11,7 @@ namespace TechStore.ViewModels
         public string? Search { get; set; }
 
         public int? SelectedCategoryId { get; set; }
+
+        public HashSet<int> WishlistProductIds { get; set; } = new();
     }
 }

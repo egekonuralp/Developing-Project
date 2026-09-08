@@ -88,11 +88,30 @@
                     <input type="hidden" name="productId" value="@Model.Id" />
 
                     <label for="quantity">Adet</label>
+
                     <input type="number" id="quantity" name="quantity" value="1" min="1" max="@Model.Stock" />
 
                     <button type="submit" class="product-detail-add-btn">
                         🛒 Sepete Ekle
                     </button>
+
+                    @if (User.Identity?.IsAuthenticated == true)
+                    {
+                        <button type="button"
+                                class="product-detail-wishlist-btn @(Model.IsInWishlist ? "active" : "")"
+                                data-product-id="@Model.Id"
+                                data-in-wishlist="@(Model.IsInWishlist ? "true" : "false")">
+                            <i class="fa-solid fa-heart"></i>
+                            <span>@(Model.IsInWishlist ? "Favorilerde" : "Favorilere Ekle")</span>
+                        </button>
+                    }
+                    else
+                    {
+                        <a asp-controller="Account" asp-action="Login" class="product-detail-wishlist-btn">
+                            <i class="fa-solid fa-heart"></i>
+                            <span>Favorilere Ekle</span>
+                        </a>
+                    }
 
                 </form>
             }
@@ -101,6 +120,24 @@
                 <button type="button" class="product-detail-add-btn" disabled>
                     Stokta Yok
                 </button>
+
+                @if (User.Identity?.IsAuthenticated == true)
+                {
+                    <button type="button"
+                            class="product-detail-wishlist-btn @(Model.IsInWishlist ? "active" : "")"
+                            data-product-id="@Model.Id"
+                            data-in-wishlist="@(Model.IsInWishlist ? "true" : "false")">
+                        <i class="fa-solid fa-heart"></i>
+                        <span>@(Model.IsInWishlist ? "Favorilerde" : "Favorilere Ekle")</span>
+                    </button>
+                }
+                else
+                {
+                    <a asp-controller="Account" asp-action="Login" class="product-detail-wishlist-btn">
+                        <i class="fa-solid fa-heart"></i>
+                        <span>Favorilere Ekle</span>
+                    </a>
+                }
             }
 
             <div class="product-detail-description">

@@ -15,16 +15,19 @@ namespace TechStore.Controllers
         private readonly IProductService _productService;
         private readonly ICategoryService _categoryService;
         private readonly IReviewService _reviewService;
+        private readonly IWishlistService _wishlistService;
         private readonly UserManager<AppUser> _userManager;
 
         public HomeController(IProductService productService, 
             ICategoryService categoryService, 
             IReviewService reviewService,
+            IWishlistService wishlistService,
             UserManager<AppUser> userManager)
         {
             _productService = productService;
             _categoryService = categoryService;
             _reviewService = reviewService;
+            _wishlistService = wishlistService;
             _userManager = userManager;
         }
 
@@ -41,12 +44,26 @@ namespace TechStore.Controllers
             var products = await _productService.GetActiveProductsAsync(filter);
             var categories = await _categoryService.GetAllAsync();
 
+            var wishlistProductIds = new HashSet<int>();
+
+            if (User.Identity?.IsAuthenticated == true)
+            {
+                var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+                if (!string.IsNullOrEmpty(userId))
+                {
+                    var wishlistItems = await _wishlistService.GetByUserIdAsync(userId);
+                    wishlistProductIds = wishlistItems.Select(x => x.ProductId).ToHashSet();
+                }
+            }
+
             var viewModel = new HomeIndexViewModel
             {
                 Products = products,
                 Categories = categories,
                 Search = search,
-                SelectedCategoryId = categoryId
+                SelectedCategoryId = categoryId,
+                WishlistProductIds = wishlistProductIds
             };
 
             return View(viewModel);
@@ -65,6 +82,7 @@ namespace TechStore.Controllers
             var reviews = await _reviewService.GetByProductIdAsync(id);
 
             var canReview = false;
+            var isInWishlist = false;
 
             if (User.Identity?.IsAuthenticated == true)
             {
@@ -73,6 +91,7 @@ namespace TechStore.Controllers
                 if (!string.IsNullOrEmpty(userId))
                 {
                     canReview = !await _reviewService.HasUserReviewedAsync(id, userId);
+                    isInWishlist = await _wishlistService.IsInWishlistAsync(userId, id);
                 }
             }
 
@@ -93,7 +112,8 @@ namespace TechStore.Controllers
                     : 0,
 
                 ReviewCount = reviews.Count,
-                CanReview = canReview
+                CanReview = canReview,
+                IsInWishlist = isInWishlist
             };
 
             return View(viewModel);

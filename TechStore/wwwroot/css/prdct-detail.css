@@ -267,6 +267,42 @@
         cursor: not-allowed;
     }
 
+.product-detail-wishlist-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 18px;
+    color: #d8cbb3;
+    background: transparent;
+    border: 1px solid #4a3c2c;
+    border-radius: 2px;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+    .product-detail-wishlist-btn i {
+        color: #8a7a64;
+        transition: color 0.2s ease;
+    }
+
+    .product-detail-wishlist-btn:hover {
+        border-color: #a3803f;
+    }
+
+    .product-detail-wishlist-btn.active {
+        border-color: #8a4030;
+        color: #e0c3ba;
+    }
+
+        .product-detail-wishlist-btn.active i {
+            color: #8a4030;
+        }
+
 /* =========================
    DESCRIPTION
    ========================= */

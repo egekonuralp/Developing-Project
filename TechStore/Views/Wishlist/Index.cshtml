@@ -1,0 +1,71 @@
+﻿@model List<TechStore.Models.WishlistItem>
+@{
+    ViewData["Title"] = "Favorilerim";
+}
+
+<div class="wishlist-page">
+
+    <div class="page-header">
+        <span class="page-eyebrow">HESABIM</span>
+        <h2>Favorilerim</h2>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="wishlist-empty">
+            <span>💔</span>
+            <p>Henüz favori ürünün yok.</p>
+            <a asp-controller="Home" asp-action="Index">Alışverişe başla</a>
+        </div>
+    }
+    else
+    {
+        <div class="wishlist-grid">
+
+            @foreach (var item in Model)
+            {
+                <article class="wishlist-item" data-product-id="@item.ProductId">
+
+                    <button type="button"
+                            class="wishlist-remove-btn"
+                            data-product-id="@item.ProductId"
+                            data-in-wishlist="true"
+                            aria-label="Favorilerden kaldır">
+                        <i class="fa-solid fa-heart"></i>
+                    </button>
+
+                    <a asp-controller="Home" asp-action="Details" asp-route-id="@item.ProductId" class="wishlist-item-link">
+
+                        <div class="wishlist-item-image">
+
+                            @if (!string.IsNullOrEmpty(item.Product.ImageUrl))
+                            {
+                                <img src="@item.Product.ImageUrl" alt="@item.Product.Name" />
+                            }
+                            else
+                            {
+                                <div class="no-product-image">
+                                    <span>⚡</span>
+                                    <small>RESİM YOK</small>
+                                </div>
+                            }
+
+                        </div>
+
+                        <div class="wishlist-item-content">
+
+                            <span class="wishlist-item-category">@item.Product.Category.Name</span>
+                            <h3>@item.Product.Name</h3>
+                            <strong>@item.Product.Price.ToString("N2") ₺</strong>
+
+                        </div>
+
+                    </a>
+
+                </article>
+            }
+
+        </div>
+    }
+
+</div>

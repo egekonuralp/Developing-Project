@@ -29,5 +29,7 @@ namespace TechStore.ViewModels
         public int ReviewCount { get; set; }
 
         public bool CanReview { get; set; }
-        }
+
+        public bool IsInWishlist { get; set; }
+    }
 }

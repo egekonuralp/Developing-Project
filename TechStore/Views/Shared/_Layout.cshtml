@@ -34,6 +34,12 @@
         <link rel="stylesheet" href="~/css/prdct-detail.css" asp-append-version="true" />
     }
 
+    <!-- WISHLIST -->
+    @if (ViewContext.RouteData.Values["Controller"]?.ToString() == "Wishlist")
+    {
+        <link rel="stylesheet" href="~/css/wishlist.css" asp-append-version="true" />
+    }
+
     <!-- ACCOUNT -->
     @if (ViewContext.RouteData.Values["Controller"]?.ToString() == "Account" &&
         ViewContext.RouteData.Values["Action"]?.ToString() == "Login")
@@ -274,6 +280,7 @@
         <script src="~/lib/jquery/dist/jquery.min.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/js/wishlist.js" asp-append-version="true"></script>
 
         @await RenderSectionAsync("Scripts", required: false)
 

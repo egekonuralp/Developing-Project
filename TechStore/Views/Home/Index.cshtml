@@ -168,6 +168,23 @@
                 {
                     <article class="product-card">
 
+                        @if (User.Identity?.IsAuthenticated == true)
+                        {
+                            <button type="button"
+                                    class="wishlist-heart-btn @(Model.WishlistProductIds.Contains(product.Id) ? "active" : "")"
+                                    data-product-id="@product.Id"
+                                    data-in-wishlist="@(Model.WishlistProductIds.Contains(product.Id) ? "true" : "false")"
+                                    aria-label="Favorilere ekle/çıkar">
+                                <i class="fa-solid fa-heart"></i>
+                            </button>
+                        }
+                        else
+                        {
+                            <a asp-controller="Account" asp-action="Login" class="wishlist-heart-btn" aria-label="Favorilemek için giriş yap">
+                                <i class="fa-solid fa-heart"></i>
+                            </a>
+                        }
+
                         <a asp-action="Details" asp-route-id="@product.Id" class="product-card-link">
 
                             <div class="product-image">

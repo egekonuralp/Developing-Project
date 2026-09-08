@@ -31,7 +31,7 @@ namespace TechStore.Controllers
 
             await _wishlistService.AddAsync(userId!, productId);
 
-            return RedirectToAction("Index");
+            return Json(new { success = true, isInWishlist = true });
         }
 
         [HttpPost]
@@ -41,7 +41,7 @@ namespace TechStore.Controllers
 
             await _wishlistService.RemoveAsync(userId!, productId);
 
-            return RedirectToAction("Index");
+            return Json(new { success = true, isInWishlist = false });
         }  
     }
 }
