@@ -27,5 +27,7 @@
         public List<Review> Reviews { get; set; } = new();
 
         public List<WishlistItem> WishlistItems { get; set; } = new();
+
+        public List<ProductImage> Images { get; set; } = new ();
     }
 }

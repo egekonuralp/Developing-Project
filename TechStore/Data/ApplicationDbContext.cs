@@ -98,6 +98,12 @@ namespace TechStore.Data
             builder.Entity<WishlistItem>()
                 .HasIndex(x => new { x.UserId, x.ProductId })
                 .IsUnique();
+
+            builder.Entity<ProductImage>()
+                .HasOne(x => x.Product)
+                .WithMany(x => x.Images)
+                .HasForeignKey(x => x.ProductId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
 
         public DbSet<Category> Categories { get; set; }
@@ -119,6 +125,8 @@ namespace TechStore.Data
         public DbSet<Review> Reviews { get; set; }
 
         public DbSet<WishlistItem> WishlistItems { get; set; }
+
+        public DbSet<ProductImage> ProductImages { get; set; }
     }
     
 }
