@@ -86,7 +86,7 @@ namespace TechStore.Controllers
                 model.Categories = await _categoryService.GetAllAsync();
                 return View(model);
             }
-               
+
             if (model.ImageFiles.Count > 8)
             {
                 ModelState.AddModelError(
@@ -149,7 +149,9 @@ namespace TechStore.Controllers
                 await _productImageService.AddImageAsync(product.Id, imageUrl);
             }
 
-            return RedirectToAction(nameof(Create));
+            TempData["Success"] = "Ürün başarıyla eklendi.";
+
+            return RedirectToAction(nameof(Index));
         }
 
         [HttpGet]
@@ -198,48 +200,6 @@ namespace TechStore.Controllers
                 return NotFound();
             }
 
-            if (model.ImageFile != null)
-            {
-                if (!IsValidImage(model.ImageFile, out var errorMessage))
-                {
-                    ModelState.AddModelError(nameof(model.ImageFile), errorMessage);
-                    model.Categories = await _categoryService.GetAllAsync();
-                    return View(model);
-                }
-
-                var fileName = Guid.NewGuid().ToString() +
-                               Path.GetExtension(model.ImageFile.FileName);
-
-                var folderPath = Path.Combine(
-                    _environment.WebRootPath,
-                    "uploads",
-                    "products");
-
-                Directory.CreateDirectory(folderPath);
-
-                var filePath = Path.Combine(folderPath, fileName);
-
-                using (var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    await model.ImageFile.CopyToAsync(stream);
-                }
-
-                if (!string.IsNullOrEmpty(product.ImageUrl))
-                {
-                    var oldFilePath = Path.Combine(
-                        _environment.WebRootPath,
-                        product.ImageUrl.TrimStart('/')
-                            .Replace('/', Path.DirectorySeparatorChar));
-
-                    if (System.IO.File.Exists(oldFilePath))
-                    {
-                        System.IO.File.Delete(oldFilePath);
-                    }
-                }
-
-                product.ImageUrl = "/uploads/products/" + fileName;
-            }
-
             product.Name = model.Name;
             product.Description = model.Description;
             product.Price = model.Price;
@@ -248,6 +208,8 @@ namespace TechStore.Controllers
             product.CategoryId = model.CategoryId;
 
             await _productService.UpdateAsync(product);
+
+            TempData["Success"] = "Ürün başarıyla güncellendi.";
 
             return RedirectToAction(nameof(Index));
         }

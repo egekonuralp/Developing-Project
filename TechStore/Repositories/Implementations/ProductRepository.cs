@@ -15,8 +15,6 @@ namespace TechStore.Repositories.Implementations
             _context = context;
         }
 
-        // Search/CategoryId/MinPrice/MaxPrice filtrelerini tek yerden uyguluyoruz.
-        // GetAllAsync, CountAsync ve GetActiveProductsAsync artık bu metodu kullanıyor.
         private static IQueryable<Product> ApplyFilters(IQueryable<Product> query, ProductFilterDto filter)
         {
             if (!string.IsNullOrWhiteSpace(filter.Search))
@@ -52,6 +50,7 @@ namespace TechStore.Repositories.Implementations
         {
             var query = _context.Products
                 .Include(p => p.Category)
+                .Include(p => p.Images)
                 .AsQueryable();
 
             query = ApplyFilters(query, filter);
@@ -102,6 +101,7 @@ namespace TechStore.Repositories.Implementations
         {
             return await _context.Products
                 .Include(x => x.Category)
+                .Include(x => x.Images)
                 .OrderByDescending(x => x.Id)
                 .Take(count)
                 .ToListAsync();
@@ -136,6 +136,7 @@ namespace TechStore.Repositories.Implementations
             var query = _context.Products
                 .Include(p => p.Category)
                 .Include(p => p.Reviews)
+                .Include(p => p.Images)
                 .AsQueryable();
 
             query = query.Where(p => p.IsActive);

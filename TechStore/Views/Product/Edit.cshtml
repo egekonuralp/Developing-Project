@@ -214,14 +214,14 @@
                         <div class="form-card-title">
 
                             <div class="form-card-icon icon-gold">
-                                <i class="fa-solid fa-image"></i>
+                                <i class="fa-solid fa-images"></i>
                             </div>
 
                             <div>
 
-                                <span>PRODUCT IMAGE</span>
+                                <span>PRODUCT GALLERY</span>
 
-                                <h3>Ürün Görseli</h3>
+                                <h3>Ürün Galerisi</h3>
 
                             </div>
 
@@ -231,26 +231,34 @@
 
                     <div class="form-card-body">
 
-                        @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                        @if (Model.GalleryImages.Any())
+                        {
+                            <div class="edit-gallery-preview">
+
+                                @foreach (var image in Model.GalleryImages.Take(4))
+                                {
+                                    <div class="edit-gallery-thumb">
+                                        <img src="@image.ImageUrl" alt="@Model.Name" />
+                                        @if (image.IsMain)
+                                        {
+                                            <span class="edit-gallery-main-badge">Ana</span>
+                                        }
+                                    </div>
+                                }
+
+                                @if (Model.GalleryImages.Count > 4)
+                                {
+                                    <div class="edit-gallery-more">+@(Model.GalleryImages.Count - 4)</div>
+                                }
+
+                            </div>
+                        }
+                        else if (!string.IsNullOrEmpty(Model.ImageUrl))
                         {
                             <div class="current-image-section">
 
                                 <div class="current-image-title">
-
-                                    <div>
-
-                                        <strong>Mevcut Görsel</strong>
-
-                                        <span>
-                                            Ürünün şu anda kullanılan görseli
-                                        </span>
-
-                                    </div>
-
-                                    <span class="current-image-badge">
-                                        Mevcut
-                                    </span>
-
+                                    <strong>Mevcut Görsel (eski sistem)</strong>
                                 </div>
 
                                 <div class="current-image-preview">
@@ -259,50 +267,18 @@
 
                             </div>
                         }
+                        else
+                        {
+                            <p class="edit-gallery-empty">Bu ürün için henüz görsel eklenmemiş.</p>
+                        }
 
-                        <div class="upload-section">
-
-                            <div class="upload-header">
-
-                                <div>
-
-                                    <strong>Yeni Görsel</strong>
-
-                                    <span>
-                                        Mevcut görseli değiştirmek için yeni bir dosya seçin.
-                                    </span>
-
-                                </div>
-
-                            </div>
-
-                            <label class="upload-box">
-
-                                <i class="fa-solid fa-cloud-arrow-up"></i>
-
-                                <strong>
-                                    Yeni ürün görseli seçin
-                                </strong>
-
-                                <span>
-                                    JPG, JPEG, PNG veya WEBP
-                                </span>
-
-                                <input asp-for="ImageFile" type="file" accept="image/*" />
-
-                            </label>
-
-                            <small class="upload-note">
-
-                                <i class="fa-solid fa-circle-info"></i>
-
-                                Yeni bir resim seçmezseniz mevcut resim korunacaktır.
-
-                            </small>
-
-                            <span asp-validation-for="ImageFile" class="field-validation"></span>
-
-                        </div>
+                        <a asp-controller="ProductImage"
+                           asp-action="Index"
+                           asp-route-productId="@Model.Id"
+                           class="btn-manage-gallery">
+                            <i class="fa-solid fa-images"></i>
+                            <span>Galeriyi Yönet</span>
+                        </a>
 
                     </div>
 
@@ -354,8 +330,8 @@
 
                             <strong class="summary-product-name">
                                 @(string.IsNullOrWhiteSpace(Model.Name)
-                                    ? "Yeni Ürün"
-                                    : Model.Name)
+                                                                ? "Yeni Ürün"
+                                                                : Model.Name)
                             </strong>
 
                         </div>
@@ -430,35 +406,4 @@
 @section Scripts
 {
     <partial name="_ValidationScriptsPartial" />
-
-    <script>
-
-        document.addEventListener("DOMContentLoaded", function () {
-
-            const fileInput = document.getElementById("ImageFile");
-            const uploadBox = document.querySelector(".upload-box");
-
-            if (!fileInput || !uploadBox) {
-                return;
-            }
-
-            fileInput.addEventListener("change", function () {
-
-                if (this.files && this.files.length > 0) {
-
-                    const fileName = this.files[0].name;
-
-                    const strong = uploadBox.querySelector("strong");
-
-                    if (strong) {
-                        strong.textContent = fileName;
-                    }
-
-                }
-
-            });
-
-        });
-
-    </script>
 }

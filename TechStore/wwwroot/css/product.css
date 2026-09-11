@@ -25,6 +25,26 @@
         font-size: 14px;
     }
 
+.admin-alert {
+    padding: 12px 15px;
+    margin-bottom: 16px;
+    border-radius: 2px;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+}
+
+.admin-alert-success {
+    color: #cfd8bf;
+    background: rgba(92, 107, 70, 0.18);
+    border: 1px solid #5c6b46;
+}
+
+.admin-alert-danger {
+    color: #e0c3ba;
+    background: rgba(138, 64, 48, 0.18);
+    border: 1px solid #8a4030;
+}
+
 .btn-primary-custom {
     display: flex;
     align-items: center;

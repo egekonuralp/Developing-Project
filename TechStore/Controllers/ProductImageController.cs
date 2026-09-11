@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Cryptography.Xml;
 using TechStore.Services.Interfaces;
 using TechStore.ViewModels;
 using static TechStore.Helpers.ImageValidationHelper;
@@ -50,7 +49,7 @@ namespace TechStore.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Upload(int productId, IFormFile imageFile)
         {
-            var product = await _productImageService.GetByIdAsync(productId);
+            var product = await _productService.GetByIdAsync(productId);
 
             if (product == null)
             {
@@ -140,7 +139,7 @@ namespace TechStore.Controllers
         {
             try
             {
-                await _productImageService.SetMainImageAsync(id, productId);
+                await _productImageService.SetMainImageAsync(productId, id);
 
                 TempData["Success"] = "Ana görsel güncellendi.";
             }

@@ -26,6 +26,16 @@
 
 </div>
 
+@if (TempData["Success"] != null)
+{
+    <div class="admin-alert admin-alert-success">@TempData["Success"]</div>
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="admin-alert admin-alert-danger">@TempData["Error"]</div>
+}
+
 <form method="get" asp-action="Index">
 
     <div class="action-bar">

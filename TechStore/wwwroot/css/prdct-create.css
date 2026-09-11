@@ -346,3 +346,39 @@
             justify-content: center;
         }
 }
+
+/* =========================================================
+   IMAGE PREVIEW (Product/Create — çoklu görsel önizleme)
+   ========================================================= */
+
+.form-hint {
+    display: block;
+    margin-top: 8px;
+    color: #6b5a44;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.image-preview {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.image-preview-item {
+    position: relative;
+    height: 80px;
+    overflow: hidden;
+    border: 1px solid #4a3c2c;
+    border-radius: 3px;
+    background: #171310;
+}
+
+    .image-preview-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
