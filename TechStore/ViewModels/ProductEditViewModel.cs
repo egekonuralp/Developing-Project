@@ -27,8 +27,6 @@ namespace TechStore.ViewModels
         [Required(ErrorMessage = "Kategori seçmelisiniz.")]
         public int CategoryId { get; set; }
 
-        public string? ImageUrl { get; set; }
-
         public List<ProductImage> GalleryImages { get; set; } = new();
 
         public List<Category> Categories { get; set; } = new();

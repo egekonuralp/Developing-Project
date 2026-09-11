@@ -67,9 +67,10 @@
             <!-- IMAGE -->
             <div class="delete-product-image">
 
-                @if (!string.IsNullOrEmpty(Model.ImageUrl))
-                {
-                    <img src="@Model.ImageUrl" alt="@Model.Name" />
+                @{
+                    var mainImage = Model.GalleryImages
+                        .FirstOrDefault(x => x.IsMain)
+                            ?? Model.GalleryImages.FirstOrDefault();
                 }
                 else
                 {

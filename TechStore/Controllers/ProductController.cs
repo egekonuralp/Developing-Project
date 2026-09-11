@@ -174,8 +174,7 @@ namespace TechStore.Controllers
                 Price = product.Price,
                 Stock = product.Stock,
                 Brand = product.Brand,
-                CategoryId = product.CategoryId,
-                ImageUrl = product.ImageUrl,
+                CategoryId = product.CategoryId,                
                 GalleryImages = galleryImages,
                 Categories = await _categoryService.GetAllAsync()
             };
@@ -224,14 +223,16 @@ namespace TechStore.Controllers
                 return NotFound();
             }
 
+            var galleryImages = await _productImageService.GetByProductIdAsync(id);
+
             var viewModel = new ProductDeleteViewModel
             {
                 Id = product.Id,
                 Name = product.Name,
                 Brand = product.Brand,
                 Price = product.Price,
-                ImageUrl = product.ImageUrl,
-                CategoryName = product.Category.Name
+                CategoryName = product.Category.Name,
+                GalleryImages = galleryImages
             };
 
             return View(viewModel);
@@ -248,31 +249,39 @@ namespace TechStore.Controllers
                 return NotFound();
             }
 
+            var galleryImages = await _productImageService.GetByProductIdAsync(product.Id);
+
             try
             {
                 await _productService.DeleteAsync(product.Id);
 
-                if (!string.IsNullOrEmpty(product.ImageUrl))
+                foreach (var image in galleryImages)
                 {
+                    if (string.IsNullOrEmpty(image.ImageUrl))
+                    {
+                        continue;
+                    }
+
                     var filePath = Path.Combine(
                         _environment.WebRootPath,
-                        product.ImageUrl.TrimStart('/')
-                            .Replace('/', Path.DirectorySeparatorChar));
+                        image.ImageUrl.TrimStart('/')
+                        .Replace('/', Path.DirectorySeparatorChar));
 
-                    if (System.IO.File.Exists(filePath))
-                    {
-                        System.IO.File.Delete(filePath);
+                    if (System.IO.File.Exists(filePath)) 
+                    { 
+                        System.IO.File.Delete(filePath); 
                     }
                 }
 
-                TempData["Success"] = "Ürün başarıyla silindi.";
+                TempData["Success"] = "Ürün Başarıyla Silindi.";
+
+                return RedirectToAction(nameof(Index));
             }
             catch (DbUpdateException)
             {
                 TempData["Error"] = "Bu ürün kullanıldığı için silinemiyor.";
-            }
-
-            return RedirectToAction(nameof(Delete), new { id = product.Id });
+                return RedirectToAction(nameof(Delete), new { id = product.Id });
+            }   
         }
 
         [HttpPost]

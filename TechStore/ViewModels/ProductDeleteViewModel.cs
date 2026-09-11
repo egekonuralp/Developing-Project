@@ -1,4 +1,6 @@
-﻿namespace TechStore.ViewModels
+﻿using TechStore.Models;
+
+namespace TechStore.ViewModels
 {
     public class ProductDeleteViewModel
     {
@@ -10,8 +12,8 @@
 
         public decimal Price { get; set; }
 
-        public string? ImageUrl { get; set; }
-
         public string CategoryName { get; set; } = string.Empty;
+
+        public List<ProductImage> GalleryImages { get; set; } = new();
     }
 }

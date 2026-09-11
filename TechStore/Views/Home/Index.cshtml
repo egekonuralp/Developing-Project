@@ -189,17 +189,23 @@
 
                             <div class="product-image">
 
-                                @if (!string.IsNullOrEmpty(product.ImageUrl))
+                                @{
+                                    var mainImage = product.Images
+                                        .FirstOrDefault(x => x.IsMain)?.ImageUrl
+                                            ?? product.Images.FirstOrDefault()?.ImageUrl;
+                                }
+
+                                @if (!string.IsNullOrEmpty(mainImage))
                                 {
-                                    <img src="@product.ImageUrl" alt="@product.Name" />
+                                    <img src="@mainImage" alt="@product.Name" />
                                 }
                                 else
                                 {
                                     <div class="no-product-image">
-                                        <span>⚡</span>
+                                        <span> ⚡ </span>
                                         <small>RESİM YOK</small>
                                     </div>
-                                }
+                                }                            
 
                                 <span class="product-category">@product.Category.Name</span>
 

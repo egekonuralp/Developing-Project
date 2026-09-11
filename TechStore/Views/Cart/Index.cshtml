@@ -54,7 +54,13 @@
                         <!-- PRODUCT IMAGE -->
                         <div class="cart-item-image">
 
-                            <img src="@item.Product.ImageUrl" alt="@item.ProductName" />
+                            @{
+                                var mainImage = item.Product.Images
+                                .FirstOrDefault(x => x.IsMain)
+                                ?? item.Product.Images.FirstOrDefault();
+                            }
+
+                            <img src="@mainImage?.ImageUrl" alt="@item.ProductName" />
 
                         </div>
 

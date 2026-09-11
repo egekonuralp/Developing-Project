@@ -38,9 +38,15 @@
 
                         <div class="wishlist-item-image">
 
-                            @if (!string.IsNullOrEmpty(item.Product.ImageUrl))
+                            @{
+                                var mainImage = item.Product.Images
+                                .FirstOrDefault(x => x.IsMain)
+                                ?? item.Product.Images.FirstOrDefault();
+                            }
+
+                            @if (mainImage != null)
                             {
-                                <img src="@item.Product.ImageUrl" alt="@item.Product.Name" />
+                                <img src="@mainImage.ImageUrl" alt="@item.Product.Name" />
                             }
                             else
                             {

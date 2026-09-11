@@ -349,7 +349,13 @@
 
                                                 <div class="product-image-wrapper">
 
-                                                    <img src="@product.ImageUrl" class="table-image" alt="@product.Name" />
+                                                    @{
+                                                        var mainImage = product.Images
+                                                        .FirstOrDefault(x => x.IsMain)
+                                                        ?? product.Images.FirstOrDefault();
+                                                    }
+
+                                                    <img src="@mainImage?.ImageUrl" class="table-image" alt="@product.Name" />
 
                                                 </div>
 

@@ -18,7 +18,9 @@ namespace TechStore.Repositories.Implementations
         {
             return await _context.WishlistItems
                 .Include(x => x.Product)
-                .ThenInclude(x => x.Category)
+                    .ThenInclude(x => x.Category)
+                .Include(x => x.Product)
+                    .ThenInclude(x => x.Images)
                 .Where(x => x.UserId == userId)
                 .OrderByDescending(x => x.Id)
                 .ToListAsync();

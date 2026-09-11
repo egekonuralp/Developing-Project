@@ -17,8 +17,7 @@
 
         @{
             var coverImage = Model.GalleryImages.FirstOrDefault(x => x.IsMain)?.ImageUrl
-            ?? Model.GalleryImages.FirstOrDefault()?.ImageUrl
-            ?? Model.ImageUrl;
+            ?? Model.GalleryImages.FirstOrDefault()?.ImageUrl;
         }
 
         <div class="product-detail-media">

@@ -148,11 +148,15 @@
 
                         <td class="image-column">
 
-                            @if (!string.IsNullOrEmpty(product.ImageUrl))
+                            @{
+                                var mainImage = product.Images
+                                    .FirstOrDefault(x => x.IsMain)?.ImageUrl
+                                        ?? product.Images.FirstOrDefault()?.ImageUrl;
+                            }
+
+                            @if (!string.IsNullOrEmpty(mainImage))
                             {
-                                <img src="@product.ImageUrl"
-                                     class="product-image"
-                                     alt="@product.Name" />
+                                <img src="@mainImage" class="product-image" alt="@product.Name" />
                             }
                             else
                             {

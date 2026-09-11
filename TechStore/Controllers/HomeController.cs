@@ -106,7 +106,6 @@ namespace TechStore.Controllers
                 Description = product.Description,
                 Price = product.Price,
                 Stock = product.Stock,
-                ImageUrl = product.ImageUrl,
                 Brand = product.Brand,
                 CategoryId = product.CategoryId,
                 CategoryName = product.Category.Name,
