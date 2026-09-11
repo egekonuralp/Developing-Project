@@ -16,18 +16,21 @@ namespace TechStore.Controllers
         private readonly ICategoryService _categoryService;
         private readonly IReviewService _reviewService;
         private readonly IWishlistService _wishlistService;
+        private readonly IProductImageService _productImageService;
         private readonly UserManager<AppUser> _userManager;
 
-        public HomeController(IProductService productService, 
-            ICategoryService categoryService, 
+        public HomeController(IProductService productService,
+            ICategoryService categoryService,
             IReviewService reviewService,
             IWishlistService wishlistService,
+            IProductImageService productImageService,
             UserManager<AppUser> userManager)
         {
             _productService = productService;
             _categoryService = categoryService;
             _reviewService = reviewService;
             _wishlistService = wishlistService;
+            _productImageService = productImageService;
             _userManager = userManager;
         }
 
@@ -80,6 +83,7 @@ namespace TechStore.Controllers
             }
 
             var reviews = await _reviewService.GetByProductIdAsync(id);
+            var galleryImages = await _productImageService.GetByProductIdAsync(id);
 
             var canReview = false;
             var isInWishlist = false;
@@ -113,7 +117,8 @@ namespace TechStore.Controllers
 
                 ReviewCount = reviews.Count,
                 CanReview = canReview,
-                IsInWishlist = isInWishlist
+                IsInWishlist = isInWishlist,
+                GalleryImages = galleryImages
             };
 
             return View(viewModel);

@@ -1,5 +1,4 @@
 ﻿@model TechStore.ViewModels.ProductCreateViewModel
-
 @{
     ViewData["Title"] = "Ürün Ekle";
     Layout = "_AdminLayout";
@@ -37,7 +36,9 @@
     </div>
 
     <!-- FORM -->
-    <form method="post" enctype="multipart/form-data" class="product-form">
+    <form method="post"
+          enctype="multipart/form-data"
+          class="product-form">
 
         <div class="product-form-grid">
 
@@ -79,11 +80,14 @@
 
                                 <i class="fa-solid fa-tag input-icon"></i>
 
-                                <input asp-for="Name" class="form-control-custom" placeholder="Enter product name..." />
+                                <input asp-for="Name"
+                                       class="form-control-custom"
+                                       placeholder="Enter product name..." />
 
                             </div>
 
-                            <span asp-validation-for="Name" class="validation-message">
+                            <span asp-validation-for="Name"
+                                  class="validation-message">
                             </span>
 
                         </div>
@@ -95,9 +99,12 @@
                                 Description
                             </label>
 
-                            <textarea asp-for="Description" class="form-control-custom textarea-custom" placeholder="Describe the product..."></textarea>
+                            <textarea asp-for="Description"
+                                      class="form-control-custom textarea-custom"
+                                      placeholder="Describe the product..."></textarea>
 
-                            <span asp-validation-for="Description" class="validation-message">
+                            <span asp-validation-for="Description"
+                                  class="validation-message">
                             </span>
 
                         </div>
@@ -117,11 +124,18 @@
                                         ₺
                                     </span>
 
-                                    <input asp-for="Price" class="form-control-custom price-input" type="number" step="0.01" min="0" placeholder="0.00" />
+                                    <input asp-for="Price"
+                                           class="form-control-custom price-input"
+                                           type="number"
+                                           step="0.01"
+                                           min="0"
+                                           placeholder="0.00" />
 
                                 </div>
 
-                                <span asp-validation-for="Price" class="validation-message"></span>
+                                <span asp-validation-for="Price"
+                                      class="validation-message">
+                                </span>
 
                             </div>
 
@@ -135,11 +149,17 @@
 
                                     <i class="fa-solid fa-boxes-stacked input-icon"></i>
 
-                                    <input asp-for="Stock" class="form-control-custom" type="number" min="0" placeholder="0" />
+                                    <input asp-for="Stock"
+                                           class="form-control-custom"
+                                           type="number"
+                                           min="0"
+                                           placeholder="0" />
 
                                 </div>
 
-                                <span asp-validation-for="Stock" class="validation-message"></span>
+                                <span asp-validation-for="Stock"
+                                      class="validation-message">
+                                </span>
 
                             </div>
 
@@ -158,11 +178,15 @@
 
                                     <i class="fa-solid fa-copyright input-icon"></i>
 
-                                    <input asp-for="Brand" class="form-control-custom" placeholder="Enter brand..." />
+                                    <input asp-for="Brand"
+                                           class="form-control-custom"
+                                           placeholder="Enter brand..." />
 
                                 </div>
 
-                                <span asp-validation-for="Brand" class="validation-message"></span>
+                                <span asp-validation-for="Brand"
+                                      class="validation-message">
+                                </span>
 
                             </div>
 
@@ -176,7 +200,8 @@
 
                                     <i class="fa-solid fa-layer-group input-icon"></i>
 
-                                    <select asp-for="CategoryId" class="form-control-custom">
+                                    <select asp-for="CategoryId"
+                                            class="form-control-custom">
 
                                         <option value="">
                                             Select category
@@ -193,7 +218,9 @@
 
                                 </div>
 
-                                <span asp-validation-for="CategoryId" class="validation-message"></span>
+                                <span asp-validation-for="CategoryId"
+                                      class="validation-message">
+                                </span>
 
                             </div>
 
@@ -205,10 +232,10 @@
 
             </div>
 
-            <!-- RİGHT COLUMN -->
+            <!-- RIGHT COLUMN -->
             <div class="product-form-side">
 
-                <!-- IMAGE -->
+                <!-- PRODUCT IMAGES -->
                 <div class="form-card">
 
                     <div class="form-card-header">
@@ -220,42 +247,48 @@
                             </span>
 
                             <h3>
-                                Product Image
+                                Product Images
                             </h3>
 
                         </div>
 
                         <div class="form-header-icon gold">
-                            <i class="fa-solid fa-image"></i>
+                            <i class="fa-solid fa-images"></i>
                         </div>
 
                     </div>
 
                     <div class="form-card-body">
 
-                        <label class="image-upload-area">
+                        <div class="form-group">
 
-                            <input asp-for="ImageFile" type="file" accept="image/*" id="productImageInput" />
+                            <label asp-for="ImageFiles"
+                                   class="form-label-custom">
+                                Product Images
+                            </label>
 
-                            <div class="upload-icon">
+                            <input asp-for="ImageFiles"
+                                   type="file"
+                                   accept=".jpg,.jpeg,.png,.webp"
+                                   multiple
+                                   class="form-control-custom"
+                                   id="productImages" />
 
-                                <i class="fa-solid fa-cloud-arrow-up"></i>
-
-                            </div>
-
-                            <strong>
-                                Upload Product Image
-                            </strong>
-
-                            <span>
-                                Click to browse or drag an image here
+                            <span asp-validation-for="ImageFiles"
+                                  class="validation-message">
                             </span>
 
-                            <small>
-                                JPG, JPEG, PNG or WEBP
+                            <small class="form-hint">
+                                You can select up to 8 images.
+                                JPG, JPEG, PNG or WEBP — maximum 5 MB per image.
                             </small>
 
-                        </label>
+                        </div>
+
+                        <!-- IMAGE PREVIEW -->
+                        <div id="imagePreview"
+                             class="image-preview">
+                        </div>
 
                     </div>
 
@@ -305,7 +338,7 @@
 
                             <li>
                                 <i class="fa-solid fa-check"></i>
-                                Use a high-quality product image.
+                                Add clear, high-quality product images.
                             </li>
 
                         </ul>
@@ -318,10 +351,11 @@
 
         </div>
 
-        <!-- FORM ACTİONS -->
+        <!-- FORM ACTIONS -->
         <div class="form-actions">
 
-            <a asp-action="Index" class="btn-secondary-custom">
+            <a asp-action="Index"
+               class="btn-secondary-custom">
 
                 <i class="fa-solid fa-xmark"></i>
 
@@ -329,7 +363,8 @@
 
             </a>
 
-            <button type="submit" class="btn-primary-custom">
+            <button type="submit"
+                    class="btn-primary-custom">
 
                 <i class="fa-solid fa-check"></i>
 
@@ -346,4 +381,48 @@
 @section Scripts
 {
     <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const input = document.getElementById("productImages");
+            const preview = document.getElementById("imagePreview");
+
+            if (!input || !preview) {
+                return;
+            }
+
+            input.addEventListener("change", function () {
+
+                preview.innerHTML = "";
+
+                const files = Array.from(input.files);
+
+                files.forEach(function (file) {
+
+                    if (!file.type.startsWith("image/")) {
+                        return;
+                    }
+
+                    const reader = new FileReader();
+
+                    reader.onload = function (event) {
+
+                        const wrapper = document.createElement("div");
+                        wrapper.className = "image-preview-item";
+
+                        const img = document.createElement("img");
+                        img.src = event.target.result;
+                        img.alt = file.name;
+
+                        wrapper.appendChild(img);
+                        preview.appendChild(wrapper);
+                    };
+
+                    reader.readAsDataURL(file);
+                });
+            });
+        });
+    </script>
+
 }

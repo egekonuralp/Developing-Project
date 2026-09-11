@@ -1,0 +1,114 @@
+﻿@model TechStore.ViewModels.ProductImageIndexViewModel
+@{
+    ViewData["Title"] = "Ürün Galerisi";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="prdct-image-page">
+
+    <div class="prdct-image-header">
+
+        <div>
+            <span class="prdct-image-eyebrow">GALERİ YÖNETİMİ</span>
+            <h2>@Model.ProductName</h2>
+        </div>
+
+        <a asp-controller="Product" asp-action="Index" class="form-back-button">
+            <i class="fa-solid fa-arrow-left"></i>
+            Ürünlere Dön
+        </a>
+
+    </div>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="admin-alert admin-alert-success">@TempData["Success"]</div>
+    }
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="admin-alert admin-alert-danger">@TempData["Error"]</div>
+    }
+
+    <!-- UPLOAD -->
+    <div class="detail-card">
+
+        <div class="detail-card-header">
+            <h3><i class="fa-solid fa-upload"></i> Yeni Görsel Ekle</h3>
+        </div>
+
+        <form asp-action="Upload" method="post" enctype="multipart/form-data" class="prdct-image-upload-form">
+
+            <input type="hidden" name="productId" value="@Model.ProductId" />
+
+            <input type="file" name="imageFile" accept=".jpg,.jpeg,.png,.webp" required />
+
+            <button type="submit" class="btn-primary-custom">
+                <i class="fa-solid fa-plus"></i>
+                Yükle
+            </button>
+
+        </form>
+
+        <p class="prdct-image-hint">.jpg, .jpeg, .png veya .webp — en fazla 5 MB, ürün başına en fazla 8 görsel.</p>
+
+    </div>
+
+    <!-- GALLERY -->
+    <div class="detail-card">
+
+        <div class="detail-card-header">
+            <h3><i class="fa-solid fa-images"></i> Galeri (@Model.Images.Count)</h3>
+        </div>
+
+        @if (!Model.Images.Any())
+        {
+            <p class="prdct-image-empty">Bu ürün için henüz görsel eklenmemiş.</p>
+        }
+        else
+        {
+            <div class="prdct-image-grid">
+
+                @foreach (var image in Model.Images)
+                {
+                    <div class="prdct-image-card">
+
+                        @if (image.IsMain)
+                        {
+                            <span class="prdct-image-main-badge">Ana Görsel</span>
+                        }
+
+                        <img src="@image.ImageUrl" alt="@Model.ProductName" />
+
+                        <div class="prdct-image-actions">
+
+                            @if (!image.IsMain)
+                            {
+                                <form asp-action="SetMain" method="post">
+                                    <input type="hidden" name="id" value="@image.Id" />
+                                    <input type="hidden" name="productId" value="@Model.ProductId" />
+                                    <button type="submit" class="btn-icon" title="Ana görsel yap">
+                                        <i class="fa-solid fa-star"></i>
+                                    </button>
+                                </form>
+                            }
+
+                            <form asp-action="Delete" method="post">
+                                <input type="hidden" name="id" value="@image.Id" />
+                                <input type="hidden" name="productId" value="@Model.ProductId" />
+                                <button type="submit" class="btn-icon btn-delete" title="Sil">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </form>
+
+                        </div>
+
+                    </div>
+                }
+
+            </div>
+        }
+
+    </div>
+
+</div>

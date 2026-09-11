@@ -41,6 +41,12 @@
         <link rel="stylesheet" href="~/css/wishlist.css" asp-append-version="true" />
     }
 
+    <!-- PRODUCT IMAGE GALLERY (ADMIN) -->
+    @if (ViewContext.RouteData.Values["Controller"]?.ToString() == "ProductImage")
+    {
+        <link rel="stylesheet" href="~/css/prdct-image.css" asp-append-version="true" />
+    }
+
     <!-- ACCOUNT -->
     @if (ViewContext.RouteData.Values["Controller"]?.ToString() == "Account" &&
         ViewContext.RouteData.Values["Action"]?.ToString() == "Login")
@@ -282,6 +288,12 @@
         <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
         <script src="~/js/wishlist.js" asp-append-version="true"></script>
+
+        @if (ViewContext.RouteData.Values["Controller"]?.ToString() == "Home" &&
+            ViewContext.RouteData.Values["Action"]?.ToString() == "Details")
+        {
+            <script src="~/js/product-gallery.js" asp-append-version="true"></script>
+        }
 
         @await RenderSectionAsync("Scripts", required: false)
 

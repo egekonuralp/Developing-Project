@@ -243,6 +243,16 @@
 
                                 </a>
 
+                                <a asp-controller="ProductImage"
+                                   asp-action="Index"
+                                   asp-route-productId="@product.Id"
+                                   class="btn-icon"
+                                   title="Galeri">
+
+                                    <i class="fa-solid fa-images"></i>
+
+                                </a>
+
                                 @if (product.IsActive)
                                 {
                                     <form asp-action="Deactivate" method="post" style="display:inline;">

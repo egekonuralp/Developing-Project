@@ -1,0 +1,265 @@
+﻿/* =========================================================
+   PRODUCT IMAGE GALLERY (ADMIN)
+   ========================================================= */
+
+.prdct-image-page {
+    max-width: 1000px;
+}
+
+.prdct-image-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.prdct-image-eyebrow {
+    display: block;
+    margin-bottom: 6px;
+    color: #a3803f;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.prdct-image-header h2 {
+    margin: 0;
+    color: #d8cbb3;
+    font-family: 'Alfa Slab One', Georgia, serif;
+    font-size: 22px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.form-back-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    color: #d8cbb3;
+    background: transparent;
+    border: 1px solid #4a3c2c;
+    border-radius: 2px;
+    text-decoration: none;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap;
+    transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+    .form-back-button:hover {
+        border-color: #a3803f;
+        color: #a3803f;
+    }
+
+/* =========================
+   ALERTS
+   ========================= */
+
+.admin-alert {
+    padding: 12px 15px;
+    margin-bottom: 16px;
+    border-radius: 2px;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+}
+
+.admin-alert-success {
+    color: #cfd8bf;
+    background: rgba(92, 107, 70, 0.18);
+    border: 1px solid #5c6b46;
+}
+
+.admin-alert-danger {
+    color: #e0c3ba;
+    background: rgba(138, 64, 48, 0.18);
+    border: 1px solid #8a4030;
+}
+
+/* =========================
+   DETAIL CARD (shared shell)
+   ========================= */
+
+.detail-card {
+    background: #262019;
+    border: 1px solid #4a3c2c;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+}
+
+.detail-card-header {
+    padding: 18px 24px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #4a3c2c;
+}
+
+    .detail-card-header h3 {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 0;
+        color: #d8cbb3;
+        font-family: 'Alfa Slab One', Georgia, serif;
+        font-size: 16px;
+        font-weight: 400;
+        text-transform: uppercase;
+    }
+
+        .detail-card-header h3 i {
+            color: #a3803f;
+            font-size: 14px;
+        }
+
+/* =========================
+   UPLOAD FORM
+   ========================= */
+
+.prdct-image-upload-form {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 24px;
+}
+
+    .prdct-image-upload-form input[type="file"] {
+        flex: 1;
+        color: #8a7a64;
+        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+        font-size: 13px;
+    }
+
+.btn-primary-custom {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 20px;
+    color: #171310;
+    background: #a3803f;
+    border: 1px dashed #171310;
+    outline: 2px solid #a3803f;
+    outline-offset: -4px;
+    border-radius: 2px;
+    text-decoration: none;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    text-transform: uppercase;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+    .btn-primary-custom:hover {
+        background: #bd9a5c;
+    }
+
+.prdct-image-hint {
+    margin: 14px 24px 0;
+    color: #6b5a44;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 12px;
+}
+
+.prdct-image-empty {
+    margin: 0 24px;
+    color: #8a7a64;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+}
+
+/* =========================
+   GALLERY GRID
+   ========================= */
+
+.prdct-image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 16px;
+    padding: 0 24px;
+}
+
+.prdct-image-card {
+    position: relative;
+    overflow: hidden;
+    background: #171310;
+    border: 1px solid #4a3c2c;
+    border-radius: 3px;
+}
+
+    .prdct-image-card img {
+        width: 100%;
+        height: 140px;
+        object-fit: cover;
+        display: block;
+    }
+
+.prdct-image-main-badge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    z-index: 2;
+    padding: 3px 8px;
+    color: #171310;
+    background: #a3803f;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border-radius: 2px;
+}
+
+.prdct-image-actions {
+    display: flex;
+    gap: 6px;
+    padding: 8px;
+    background: #201a15;
+    border-top: 1px solid #4a3c2c;
+}
+
+    .prdct-image-actions form {
+        flex: 1;
+        display: flex;
+    }
+
+/* =========================
+   ICON BUTTONS (form içindeki <button>'lar için reset + stil)
+   ========================= */
+
+button.btn-icon {
+    width: 100%;
+    background: transparent;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.btn-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 32px;
+    border: 1px solid #4a3c2c;
+    border-radius: 3px;
+    text-decoration: none;
+    font-size: 13px;
+    transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+    .btn-icon:not(.btn-delete) {
+        color: #a3803f;
+    }
+
+        .btn-icon:not(.btn-delete):hover {
+            border-color: #a3803f;
+        }
+
+.btn-delete {
+    color: #a1503d;
+}
+
+    .btn-delete:hover {
+        border-color: #8a4030;
+    }

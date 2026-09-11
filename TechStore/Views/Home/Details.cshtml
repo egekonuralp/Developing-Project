@@ -15,17 +15,43 @@
 
     <div class="product-detail-grid">
 
-        <div class="product-detail-image">
+        @{
+            var coverImage = Model.GalleryImages.FirstOrDefault(x => x.IsMain)?.ImageUrl
+            ?? Model.GalleryImages.FirstOrDefault()?.ImageUrl
+            ?? Model.ImageUrl;
+        }
 
-            @if (!string.IsNullOrEmpty(Model.ImageUrl))
+        <div class="product-detail-media">
+
+            <div class="product-detail-image">
+
+                @if (!string.IsNullOrEmpty(coverImage))
+                {
+                    <img id="mainProductImage" src="@coverImage" alt="@Model.Name" />
+                }
+                else
+                {
+                    <div class="no-product-image">
+                        <span>⚡</span>
+                        <small>RESİM YOK</small>
+                    </div>
+                }
+
+            </div>
+
+            @if (Model.GalleryImages.Any())
             {
-                <img src="@Model.ImageUrl" alt="@Model.Name" />
-            }
-            else
-            {
-                <div class="no-product-image">
-                    <span>⚡</span>
-                    <small>RESİM YOK</small>
+                <div class="product-detail-thumbnails">
+
+                    @foreach (var image in Model.GalleryImages)
+                    {
+                        <button type="button"
+                                class="product-thumbnail @(image.ImageUrl == coverImage ? "active" : "")"
+                                data-image-url="@image.ImageUrl">
+                            <img src="@image.ImageUrl" alt="@Model.Name" />
+                        </button>
+                    }
+
                 </div>
             }
 
@@ -88,7 +114,6 @@
                     <input type="hidden" name="productId" value="@Model.Id" />
 
                     <label for="quantity">Adet</label>
-
                     <input type="number" id="quantity" name="quantity" value="1" min="1" max="@Model.Stock" />
 
                     <button type="submit" class="product-detail-add-btn">

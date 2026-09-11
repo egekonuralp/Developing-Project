@@ -29,7 +29,7 @@ namespace TechStore.ViewModels
 
         public string? ImageUrl { get; set; }
 
-        public IFormFile? ImageFile { get; set; }
+        public List<ProductImage> GalleryImages { get; set; } = new();
 
         public List<Category> Categories { get; set; } = new();
     }

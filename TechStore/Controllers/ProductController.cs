@@ -5,6 +5,7 @@ using TechStore.DTOs;
 using TechStore.Models;
 using TechStore.Services.Interfaces;
 using TechStore.ViewModels;
+using static TechStore.Helpers.ImageValidationHelper;
 
 namespace TechStore.Controllers
 {
@@ -13,79 +14,19 @@ namespace TechStore.Controllers
     {
         private readonly IProductService _productService;
         private readonly ICategoryService _categoryService;
+        private readonly IProductImageService _productImageService;
         private readonly IWebHostEnvironment _environment;
-
-        private static readonly string[] AllowedImageExtensions = { ".jpg", ".jpeg", ".png", ".webp" };
-        private const long MaxImageSizeBytes = 5 * 1024 * 1024;
 
         public ProductController(
             IProductService productService,
             ICategoryService categoryService,
-            IWebHostEnvironment environment)
+            IWebHostEnvironment environment,
+            IProductImageService productImageService)
         {
             _productService = productService;
             _categoryService = categoryService;
             _environment = environment;
-        }
-
-        private static bool IsValidImage(IFormFile file, out string errorMessage)
-        {
-            var extension = Path.GetExtension(file.FileName).ToLowerInvariant();
-
-            if (!AllowedImageExtensions.Contains(extension))
-            {
-                errorMessage = "Sadece .jpg, .jpeg, .png veya .webp uzantılı dosyalar yüklenebilir.";
-                return false;
-            }
-
-            var allowedContentTypes = new[] { "image/jpeg", "image/png", "image/webp" };
-
-            if (!allowedContentTypes.Contains(file.ContentType))
-            {
-                errorMessage = "Geçersiz dosya türü.";
-                return false;
-            }
-
-            if (file.Length > MaxImageSizeBytes)
-            {
-                errorMessage = "Dosya boyutu 5 MB'ı geçemez.";
-                return false;
-            }
-
-            if (file.Length == 0)
-            {
-                errorMessage = "Boş dosya yüklenemez.";
-                return false;
-            }
-
-            if (!HasValidImageSignature(file, extension))
-            {
-                errorMessage = "Dosya içeriği seçilen görsel türüyle eşleşmiyor.";
-                return false;
-            }
-
-            errorMessage = string.Empty;
-            return true;
-        }
-
-        private static bool HasValidImageSignature(IFormFile file, string extension)
-        {
-            Span<byte> header = stackalloc byte[12];
-
-            using var stream = file.OpenReadStream();
-            var bytesRead = stream.Read(header);
-
-            return extension switch
-            {
-                ".jpg" or ".jpeg" => bytesRead >= 3 &&
-                    header[0] == 0xFF && header[1] == 0xD8 && header[2] == 0xFF,
-                ".png" => bytesRead >= 8 &&
-                    header[..8].SequenceEqual(new byte[] { 0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A }),
-                ".webp" => bytesRead >= 12 &&
-                    header[..4].SequenceEqual("RIFF"u8) &&
-                    header.Slice(8, 4).SequenceEqual("WEBP"u8),
-                _ => false
-            };
+            _productImageService = productImageService;
         }
 
         [HttpGet]
@@ -145,37 +86,28 @@ namespace TechStore.Controllers
                 model.Categories = await _categoryService.GetAllAsync();
                 return View(model);
             }
-
-            string imageUrl = string.Empty;
-
-            if (model.ImageFile != null)
+               
+            if (model.ImageFiles.Count > 8)
             {
-                if (!IsValidImage(model.ImageFile, out var errorMessage))
+                ModelState.AddModelError(
+                    nameof(model.ImageFiles),
+                    "Bir ürüne en fazla 8 görsel eklenebilir.");
+
+                model.Categories = await _categoryService.GetAllAsync();
+                return View(model);
+            }
+
+            foreach (var imageFile in model.ImageFiles)
+            {
+                if (!IsValidImage(imageFile, out var errorMessage))
                 {
-                    ModelState.AddModelError(nameof(model.ImageFile), errorMessage);
+                    ModelState.AddModelError(
+                        nameof(model.ImageFiles),
+                        $"{imageFile.FileName}: {errorMessage}");
+
                     model.Categories = await _categoryService.GetAllAsync();
                     return View(model);
                 }
-
-                var fileName =
-                    Guid.NewGuid().ToString() +
-                    Path.GetExtension(model.ImageFile.FileName);
-
-                var folderPath = Path.Combine(
-                    _environment.WebRootPath,
-                    "uploads",
-                    "products");
-
-                Directory.CreateDirectory(folderPath);
-
-                var filePath = Path.Combine(folderPath, fileName);
-
-                using (var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    await model.ImageFile.CopyToAsync(stream);
-                }
-
-                imageUrl = "/uploads/products/" + fileName;
             }
 
             var product = new Product
@@ -186,13 +118,36 @@ namespace TechStore.Controllers
                 Stock = model.Stock,
                 Brand = model.Brand,
                 CategoryId = model.CategoryId,
-
-                ImageUrl = imageUrl,
                 CreatedDate = DateTime.Now,
                 IsActive = true
             };
 
             await _productService.AddAsync(product);
+
+            foreach (var imageFile in model.ImageFiles)
+            {
+                var fileName =
+                    Guid.NewGuid().ToString() +
+                    Path.GetExtension(imageFile.FileName).ToLowerInvariant();
+
+                var folderPath = Path.Combine(
+                    _environment.WebRootPath,
+                    "uploads",
+                    "products");
+
+                Directory.CreateDirectory(folderPath);
+
+                var filePath = Path.Combine(folderPath, fileName);
+
+                await using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await imageFile.CopyToAsync(stream);
+                }
+
+                var imageUrl = "/uploads/products/" + fileName;
+
+                await _productImageService.AddImageAsync(product.Id, imageUrl);
+            }
 
             return RedirectToAction(nameof(Create));
         }
@@ -207,6 +162,8 @@ namespace TechStore.Controllers
                 return NotFound();
             }
 
+            var galleryImages = await _productImageService.GetByProductIdAsync(id);
+
             var viewModel = new ProductEditViewModel
             {
                 Id = product.Id,
@@ -217,6 +174,7 @@ namespace TechStore.Controllers
                 Brand = product.Brand,
                 CategoryId = product.CategoryId,
                 ImageUrl = product.ImageUrl,
+                GalleryImages = galleryImages,
                 Categories = await _categoryService.GetAllAsync()
             };
 

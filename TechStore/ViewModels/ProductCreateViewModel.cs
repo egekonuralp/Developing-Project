@@ -25,7 +25,7 @@ namespace TechStore.ViewModels
         [Required(ErrorMessage = "Kategori seçmelisiniz.")]
         public int CategoryId { get; set; }
 
-        public IFormFile? ImageFile { get; set; }
+        public List<IFormFile> ImageFiles { get; set; } = new();
 
         public List<Category> Categories { get; set; } = new();
     }
