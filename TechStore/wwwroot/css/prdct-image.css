@@ -123,14 +123,34 @@
     align-items: center;
     gap: 12px;
     padding: 0 24px;
+    flex-wrap: wrap;
 }
 
     .prdct-image-upload-form input[type="file"] {
         flex: 1;
+        min-width: 200px;
         color: #8a7a64;
         font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
         font-size: 13px;
     }
+
+        .prdct-image-upload-form input[type="file"]::file-selector-button {
+            padding: 8px 14px;
+            margin-right: 12px;
+            color: #d8cbb3;
+            background: #201a15;
+            border: 1px solid #4a3c2c;
+            border-radius: 2px;
+            font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: border-color 0.2s ease;
+        }
+
+            .prdct-image-upload-form input[type="file"]::file-selector-button:hover {
+                border-color: #a3803f;
+            }
 
 .btn-primary-custom {
     display: flex;
@@ -263,3 +283,29 @@ button.btn-icon {
     .btn-delete:hover {
         border-color: #8a4030;
     }
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 700px) {
+
+    .prdct-image-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .prdct-image-upload-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+        .prdct-image-upload-form input[type="file"] {
+            min-width: 0;
+        }
+
+    .prdct-image-grid {
+        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    }
+}

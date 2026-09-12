@@ -180,6 +180,29 @@
         box-shadow: 0 0 0 2px rgba(163, 128, 63, 0.18);
     }
 
+input[type="file"].form-control-custom {
+    padding: 0 13px;
+    line-height: 44px;
+}
+
+    input[type="file"].form-control-custom::file-selector-button {
+        padding: 8px 14px;
+        margin-right: 12px;
+        color: #d8cbb3;
+        background: #201a15;
+        border: 1px solid #4a3c2c;
+        border-radius: 2px;
+        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: border-color 0.2s ease;
+    }
+
+        input[type="file"].form-control-custom::file-selector-button:hover {
+            border-color: #a3803f;
+        }
+
 .textarea-custom {
     height: auto;
     min-height: 110px;

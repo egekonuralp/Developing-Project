@@ -46,6 +46,12 @@
         <link rel="stylesheet" href="~/css/prdct-delete.css" asp-append-version="true" />
     }
 
+    <!-- PRODUCT IMAGE GALLERY (ADMIN) -->
+    @if (ViewContext.RouteData.Values["Controller"]?.ToString() == "ProductImage")
+    {
+        <link rel="stylesheet" href="~/css/prdct-image.css" asp-append-version="true" />
+    }
+
     <!-- CATEGORY -->
     @if (ViewContext.RouteData.Values["Controller"]?.ToString() == "Category" &&
         ViewContext.RouteData.Values["Action"]?.ToString() == "Index")
