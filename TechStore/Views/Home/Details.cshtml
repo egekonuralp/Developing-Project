@@ -108,6 +108,14 @@
 
             @if (Model.Stock > 0)
             {
+                <div class="product-detail-shipping">
+                    <i class="fa-solid fa-truck-fast"></i>
+                    <span>Tahmini teslimat: <strong>2-4 iş günü</strong></span>
+                </div>
+            }
+
+            @if (Model.Stock > 0)
+            {
                 <form asp-controller="Cart" asp-action="AddToCart" method="post" class="product-detail-cart-form">
 
                     <input type="hidden" name="productId" value="@Model.Id" />
@@ -270,5 +278,54 @@
         }
 
     </div>
+
+    <!-- RELATED PRODUCTS -->
+    @if (Model.RelatedProducts.Any())
+    {
+        <div class="related-products">
+
+            <h3>İlgili Ürünler</h3>
+
+            <div class="related-products-grid">
+
+                @foreach (var related in Model.RelatedProducts)
+                {
+                    
+                    var relatedImage = related.Images.FirstOrDefault(x => x.IsMain)?.ImageUrl
+                        ?? related.Images.FirstOrDefault()?.ImageUrl;                 
+
+                    <a asp-action="Details" asp-route-id="@related.Id" class="related-product-card">
+
+                        <div class="related-product-image">
+
+                            @if (!string.IsNullOrEmpty(relatedImage))
+                            {
+                                <img src="@relatedImage" alt="@related.Name" />
+                            }
+                            else
+                            {
+                                <div class="no-product-image">
+                                    <span>⚡</span>
+                                    <small>RESİM YOK</small>
+                                </div>
+                            }
+
+                        </div>
+
+                        <div class="related-product-content">
+
+                            <span class="related-product-brand">@related.Brand</span>
+                            <h4>@related.Name</h4>
+                            <strong>@related.Price.ToString("N2") ₺</strong>
+
+                        </div>
+
+                    </a>
+                }
+
+            </div>
+
+        </div>
+    }
 
 </div>

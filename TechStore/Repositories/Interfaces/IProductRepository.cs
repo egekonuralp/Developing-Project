@@ -26,5 +26,7 @@ namespace TechStore.Repositories.Interfaces
         Task<int> CountAsync(ProductFilterDto filter);
 
         Task<List<Product>> GetActiveProductsAsync(ProductFilterDto filter);
+
+        Task<List<Product>> GetRelatedProductsAsync(int categoryId, int excludeProductId, int count);
     }
 }

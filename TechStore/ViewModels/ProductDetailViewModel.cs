@@ -31,5 +31,7 @@ namespace TechStore.ViewModels
         public bool IsInWishlist { get; set; }
 
         public List<ProductImage> GalleryImages { get; set; } = new();
+
+        public List<Product> RelatedProducts { get; set; } = new();
     }
 }

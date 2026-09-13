@@ -72,6 +72,11 @@
                         .FirstOrDefault(x => x.IsMain)
                             ?? Model.GalleryImages.FirstOrDefault();
                 }
+
+                @if (mainImage != null)
+                {
+                    <img src="@mainImage.ImageUrl" alt="@Model.Name" />
+                }
                 else
                 {
                     <div class="delete-no-image">

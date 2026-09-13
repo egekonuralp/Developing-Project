@@ -151,5 +151,17 @@ namespace TechStore.Repositories.Implementations
 
             return await query.ToListAsync();
         }
+
+        public async Task<List<Product>> GetRelatedProductsAsync(int categoryId, int excludeProductId, int count)
+        {
+            return await _context.Products
+                .Include(p => p.Category)
+                .Include(p => p.Reviews)
+                .Include(p => p.Images)
+                .Where(p => p.IsActive && p.CategoryId == categoryId && p.Id != excludeProductId)
+                .OrderByDescending(p => p.Id)
+                .Take(count)
+                .ToListAsync();
+        }
     }
 }

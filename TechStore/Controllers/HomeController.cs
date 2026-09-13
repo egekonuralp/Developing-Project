@@ -84,6 +84,7 @@ namespace TechStore.Controllers
 
             var reviews = await _reviewService.GetByProductIdAsync(id);
             var galleryImages = await _productImageService.GetByProductIdAsync(id);
+            var relatedProducts = await _productService.GetRelatedProductsAsync(product.CategoryId, product.Id, 4);
 
             var canReview = false;
             var isInWishlist = false;
@@ -117,7 +118,8 @@ namespace TechStore.Controllers
                 ReviewCount = reviews.Count,
                 CanReview = canReview,
                 IsInWishlist = isInWishlist,
-                GalleryImages = galleryImages
+                GalleryImages = galleryImages,
+                RelatedProducts = relatedProducts,
             };
 
             return View(viewModel);

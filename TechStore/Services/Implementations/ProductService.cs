@@ -131,5 +131,10 @@ namespace TechStore.Services.Implementations
         {
             return await _productRepository.GetActiveProductsAsync(filter);
         }
+
+        public async Task<List<Product>> GetRelatedProductsAsync(int categoryId, int excludeProductId, int count)
+        {
+            return await _productRepository.GetRelatedProductsAsync(categoryId, excludeProductId, count);
+        }
     }
 }
