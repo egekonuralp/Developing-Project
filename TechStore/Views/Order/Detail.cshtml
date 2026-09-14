@@ -1,4 +1,4 @@
-﻿@model TechStore.Models.Order
+﻿@model TechStore.ViewModels.OrderDetailViewModel
 
 <div class="order-detail-page">
 
@@ -12,7 +12,7 @@
             </span>
 
             <h1>
-                Sipariş #@Model.Id
+                Sipariş #@Model.OrderId
             </h1>
 
             <p>
@@ -37,7 +37,7 @@
             </span>
 
             <strong>
-                #@Model.Id
+                #@Model.OrderId
             </strong>
 
         </div>
@@ -75,6 +75,106 @@
             <strong>
                 @Model.TotalPrice.ToString("N2") ₺
             </strong>
+
+        </div>
+
+    </div>
+
+    <!-- ORDER TRACKİNG -->
+    <div class="order-tracking-card">
+
+        <div class="order-card-header">
+
+            <h2> Sipariş Takibi </h2>
+
+        </div>
+
+        @{
+            var isPreparing = Model.Status == OrderStatuses.Preparing;
+            var isShipped = Model.Status == OrderStatuses.Shipped;
+            var isDelivered = Model.Status == OrderStatuses.Delivered;
+
+            var preparingCompleted = isShipped || isDelivered;
+            var shippedCompleted = isDelivered;
+        }
+
+        <div class="order-tracking">
+
+            <!-- PREPARING -->
+            <div class="tracking-step @(isPreparing ? "active" : "") @(preparingCompleted ? "completed" : "")">
+
+                <div class="tracking-icon">
+                    @if (preparingCompleted)
+                    {
+                        <i class="fa-solid fa-check"></i>
+                    }
+                    else
+                    {
+                        <i class="fa-solid fa-box"></i>
+                    }
+                </div>
+
+                <div class="tracking-content">
+
+                    <strong> Sipariş Hazırlanıyor </strong>
+
+                    <span> Siparişiniz hazırlanıyor. </span>
+
+                </div>
+
+            </div>
+
+            <div class="tracking-line @(preparingCompleted ? "completed" : "")"></div>
+
+            <!-- SHIPPED -->
+            <div class="tracking-step @(isShipped ? "active" : "") @(shippedCompleted ? "completed" : "")">
+
+                <div class="tracking-icon">
+                    @if (shippedCompleted)
+                    {
+                        <i class="fa-solid fa-check"></i>
+                    }
+                    else
+                    {
+                        <i class="fa-solid fa-truck"></i>
+                    }
+                </div>
+
+                <div class="tracking-content">
+
+                    <strong> Kargoya Verildi </strong>
+
+                    <span> Siparişiniz kargoya teslim edildi. </span>
+
+                </div>
+
+            </div>
+
+            <div class="tracking-line @(shippedCompleted ? "completed" : "")"></div>
+
+            <!-- DELIVERED -->
+            <div class="tracking-step @(isDelivered ? "active completed" : "")">
+
+                <div class="tracking-icon">
+                    @if (isDelivered)
+                    {
+                        <i class="fa-solid fa-check"></i>
+                    }
+                    else
+                    {
+                        <i class="fa-solid fa-house-circle-check"></i>
+                    }
+                </div>
+
+                <div class="tracking-content">
+
+                    <strong> Teslim Edildi </strong>
+
+                    <span> Siparişiniz teslim edildi. </span>
+
+                </div>
+
+            </div>
 
         </div>
 

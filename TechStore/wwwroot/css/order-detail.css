@@ -156,6 +156,121 @@
     }
 
 /* =========================================================
+ORDER TRACKING
+========================================================= */
+.order-tracking-card {
+    margin-bottom: 25px;
+    background: #262019;
+    border: 1px solid #4a3c2c;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+    .order-tracking-card .order-card-header {
+        padding: 20px 24px;
+        border-bottom: 1px solid #4a3c2c;
+    }
+
+.order-tracking {
+    display: flex;
+    align-items: flex-start;
+    padding: 28px 24px 30px;
+}
+
+.tracking-step {
+    display: flex;
+    align-items: flex-start;
+    flex: 1;
+    min-width: 0;
+}
+
+.tracking-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 42px;
+    width: 42px;
+    height: 42px;
+    color: #6f624f;
+    background: #201a15;
+    border: 1px solid #4a3c2c;
+    border-radius: 50%;
+    font-size: 15px;
+    transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+
+.tracking-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-left: 12px;
+    padding-top: 2px;
+}
+
+    .tracking-content strong {
+        color: #7f715e;
+        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+    .tracking-content span {
+        max-width: 150px;
+        color: #625543;
+        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+        font-size: 12px;
+        line-height: 1.4;
+    }
+
+.tracking-line {
+    flex: 1;
+    height: 1px;
+    min-width: 30px;
+    margin: 21px 14px 0;
+    background: #4a3c2c;
+}
+
+/* ---------------------------------------------------------
+ACTIVE STEP
+--------------------------------------------------------- */
+
+.tracking-step.active .tracking-icon {
+    color: #d8cbb3;
+    background: #3a2f24;
+    border-color: #a3803f;
+}
+
+.tracking-step.active .tracking-content strong {
+    color: #a3803f;
+}
+
+.tracking-step.active .tracking-content span {
+    color: #8a7a64;
+}
+
+/* ---------------------------------------------------------
+COMPLETED STEP
+--------------------------------------------------------- */
+
+.tracking-step.completed .tracking-icon {
+    color: #d8cbb3;
+    background: #2f3329;
+    border-color: #687051;
+}
+
+.tracking-step.completed .tracking-content strong {
+    color: #b5ae8f;
+}
+
+.tracking-step.completed .tracking-content span {
+    color: #8a7a64;
+}
+
+.tracking-line.completed {
+    background: #687051;
+}
+
+/* =========================================================
    PRODUCTS CARD
    ========================================================= */
 
@@ -366,5 +481,54 @@
     .order-products-table thead th,
     .order-products-table tbody td {
         padding: 12px 16px;
+    }
+}
+
+@media (max-width: 700px) {
+
+    .order-tracking {
+        flex-direction: column;
+        padding: 24px 20px 28px;
+    }
+
+    .tracking-step {
+        width: 100%;
+    }
+
+    .tracking-content span {
+        max-width: none;
+    }
+
+    .tracking-line {
+        width: 1px;
+        height: 28px;
+        min-width: 0;
+        margin: 8px 0 8px 21px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .order-tracking-card .order-card-header {
+        padding: 16px 18px;
+    }
+
+    .order-tracking {
+        padding: 20px 18px 24px;
+    }
+
+    .tracking-icon {
+        flex-basis: 38px;
+        width: 38px;
+        height: 38px;
+        font-size: 14px;
+    }
+
+    .tracking-line {
+        margin-left: 19px;
+    }
+
+    .tracking-content {
+        margin-left: 10px;
     }
 }

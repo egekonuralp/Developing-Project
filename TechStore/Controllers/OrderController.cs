@@ -241,27 +241,41 @@ namespace TechStore.Controllers
             return View(); 
         }
 
+        [HttpGet]
         public async Task<IActionResult> MyOrders()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             if (string.IsNullOrEmpty(userId))
             {
-                return Challenge();
+                return Unauthorized();
             }
 
             var orders = await _orderService.GetOrdersByUserIdAsync(userId);
 
-            return View(orders);
+            var viewModel = new MyOrdersListViewModel
+            {
+                Orders = orders.Select(order => new MyOrdersViewModel
+                {
+                    OrderId = order.Id,
+                    OrderDate = order.OrderDate,
+                    TotalPrice = order.TotalPrice,
+                    Status = order.Status,
+                    ItemCount = order.OrderItems.Count
+                }).ToList()
+            };
+
+            return View(viewModel);
         }
 
+        [HttpGet]
         public async Task<IActionResult> Detail(int id)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             if (string.IsNullOrEmpty(userId))
             {
-                return Challenge();
+                return Unauthorized();
             }
 
             var order = await _orderService.GetOrderByIdAsync(id, userId);
@@ -271,7 +285,23 @@ namespace TechStore.Controllers
                 return NotFound();
             }
 
-            return View(order);
+            var viewModel = new OrderDetailViewModel
+            {
+                OrderId = order.Id,
+                OrderDate = order.OrderDate,
+                TotalPrice = order.TotalPrice,
+                Status = order.Status,
+                FullName = order.FullName,
+                Phone = order.Phone,
+                City = order.City,
+                District = order.District,
+                Address = order.Address,
+                CouponCode = order.CouponCode,
+                DiscountAmount = order.DiscountAmount,
+                OrderItems = order.OrderItems.ToList()
+            };
+
+            return View(viewModel);
         }
 
         private DeliveryInformationViewModel? GetDeliveryInformation()

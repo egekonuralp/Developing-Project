@@ -1,4 +1,4 @@
-﻿@model List<TechStore.Models.Order>
+﻿@model TechStore.ViewModels.MyOrdersListViewModel
 
 @{
     ViewData["Title"] = "Siparişlerim";
@@ -33,7 +33,7 @@
 
         </div>
 
-        @if (!Model.Any())
+        @if (!Model.Orders.Any())
         {
             <!-- EMPTY ORDERS -->
             <div class="orders-empty">
@@ -63,7 +63,7 @@
             <!-- ORDERS LİST -->
             <div class="orders-list">
 
-                @foreach (var order in Model)
+                @foreach (var order in Model.Orders)
                 {
                     <div class="order-card">
 
@@ -77,7 +77,7 @@
                                 </span>
 
                                 <strong>
-                                    #@order.Id
+                                    #@order.OrderId
                                 </strong>
 
                             </div>
@@ -130,7 +130,7 @@
                             <!-- ORDER ACTION -->
                             <div class="order-action">
 
-                                <a asp-action="Detail" asp-route-id="@order.Id" class="order-detail-button">
+                                <a asp-action="Detail" asp-route-id="@order.OrderId" class="order-detail-button">
 
                                     <span>
                                         Sipariş Detayı
