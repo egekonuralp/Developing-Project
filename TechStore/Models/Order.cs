@@ -22,6 +22,10 @@
 
         public string Status { get; set; } = "Hazırlanıyor";
 
+        public string? CouponCode { get; set; }
+
+        public decimal DiscountAmount { get; set; } 
+
         public ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
     }
 }

@@ -104,6 +104,22 @@ namespace TechStore.Data
                 .WithMany(x => x.Images)
                 .HasForeignKey(x => x.ProductId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<Order>()
+                .Property(x => x.DiscountAmount)
+                .HasPrecision(18, 2);
+
+            builder.Entity<Coupon>()
+                .Property(x => x.DiscountValue)
+                .HasPrecision(18, 2);
+
+            builder.Entity<Coupon>()
+                .Property(x => x.MinOrderAmount)
+                .HasPrecision(18, 2);
+
+            builder.Entity<Coupon>()
+                .HasIndex(x => x.Code)
+                .IsUnique();
         }
 
         public DbSet<Category> Categories { get; set; }
@@ -127,6 +143,8 @@ namespace TechStore.Data
         public DbSet<WishlistItem> WishlistItems { get; set; }
 
         public DbSet<ProductImage> ProductImages { get; set; }
+
+        public DbSet<Coupon> Coupons { get; set; }
     }
     
 }
