@@ -52,6 +52,19 @@
         <link rel="stylesheet" href="~/css/prdct-image.css" asp-append-version="true" />
     }
 
+    <!-- COUPON -->
+    @if (ViewContext.RouteData.Values["Controller"]?.ToString() == "Coupon" &&
+        ViewContext.RouteData.Values["Action"]?.ToString() == "Index")
+    {
+        <link rel="stylesheet" href="~/css/coupon.css" asp-append-version="true" />
+    }
+
+    @if (ViewContext.RouteData.Values["Controller"]?.ToString() == "Coupon" &&
+        ViewContext.RouteData.Values["Action"]?.ToString() == "Create")
+    {
+        <link rel="stylesheet" href="~/css/coupon-create.css" asp-append-version="true" />
+    }
+
     <!-- CATEGORY -->
     @if (ViewContext.RouteData.Values["Controller"]?.ToString() == "Category" &&
         ViewContext.RouteData.Values["Action"]?.ToString() == "Index")
@@ -207,6 +220,16 @@
                     <span>Support</span>
 
                 </a>
+
+                <a asp-controller="Coupon"
+                   asp-action="Index"
+                   class="@(currentController == "Coupon" ? "active" : "")">
+
+                   <i class="fa-solid fa-ticket"></i>
+
+                   <span>Coupons</span>
+
+               </a>
 
             </nav>
 

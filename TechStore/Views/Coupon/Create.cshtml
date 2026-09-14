@@ -1,0 +1,329 @@
+﻿@model TechStore.ViewModels.CouponCreateViewModel
+
+@{
+    ViewData["Title"] = "Create Coupon";
+    Layout = "_AdminLayout";
+}
+
+<div class="coupon-form-page">
+
+    <div class="page-header">
+
+        <div>
+
+            <span class="page-eyebrow">
+                SALES MANAGEMENT
+            </span>
+
+            <h2>
+                Create Coupon
+            </h2>
+
+            <p>
+                Define a discount code and its usage rules.
+            </p>
+
+        </div>
+
+        <a asp-action="Index" class="coupon-back-btn">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Back to Coupons
+
+        </a>
+
+    </div>
+
+    <form asp-action="Create"
+          method="post"
+          class="coupon-form-card">
+
+        @Html.AntiForgeryToken()
+
+        <div class="coupon-form-header">
+
+            <div>
+
+                <span class="coupon-form-kicker">
+                    COUPON INFORMATION
+                </span>
+
+                <h3>
+                    Discount Details
+                </h3>
+
+            </div>
+
+            <div class="coupon-form-icon">
+                <i class="fa-solid fa-ticket"></i>
+            </div>
+
+        </div>
+
+        <div class="coupon-form-body">
+
+            <div asp-validation-summary="ModelOnly"
+                 class="coupon-validation-summary">
+            </div>
+
+            <!-- CODE -->
+
+            <div class="coupon-form-group full-width">
+
+                <label asp-for="Code" class="coupon-form-label">
+                    Coupon Code
+                </label>
+
+                <div class="coupon-input-wrapper">
+
+                    <i class="fa-solid fa-ticket coupon-input-icon"></i>
+
+                    <input asp-for="Code"
+                           class="coupon-input"
+                           placeholder="Örn. WELCOME20"
+                           autocomplete="off" />
+
+                </div>
+
+                <span asp-validation-for="Code"
+                      class="coupon-validation">
+                </span>
+
+                <span class="coupon-help">
+                    Kod, sistem tarafından büyük harfe çevrilerek kaydedilir.
+                </span>
+
+            </div>
+
+            <!-- DISCOUNT TYPE -->
+
+            <div class="coupon-form-group">
+
+                <label asp-for="DiscountType" class="coupon-form-label">
+                    Discount Type
+                </label>
+
+                <div class="coupon-input-wrapper">
+
+                    <i class="fa-solid fa-percent coupon-input-icon"></i>
+
+                    <select asp-for="DiscountType"
+                            class="coupon-select">
+
+                        <option value="@DiscountType.Percentage">
+                            Percentage
+                        </option>
+
+                        <option value="@DiscountType.FixedAmount">
+                            Fixed Amount
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <span asp-validation-for="DiscountType"
+                      class="coupon-validation">
+                </span>
+
+            </div>
+
+            <!-- DISCOUNT VALUE -->
+
+            <div class="coupon-form-group">
+
+                <label asp-for="DiscountValue" class="coupon-form-label">
+                    Discount Value
+                </label>
+
+                <div class="coupon-input-wrapper">
+
+                    <i class="fa-solid fa-tag coupon-input-icon"></i>
+
+                    <input asp-for="DiscountValue"
+                           class="coupon-input"
+                           type="number"
+                           min="0.01"
+                           max="999999.99"
+                           step="0.01"
+                           placeholder="20" />
+
+                </div>
+
+                <span asp-validation-for="DiscountValue"
+                      class="coupon-validation">
+                </span>
+
+                <span class="coupon-help">
+                    Percentage seçilirse 1–100 arası oran kullanılır.
+                </span>
+
+            </div>
+
+            <!-- MIN ORDER -->
+
+            <div class="coupon-form-group">
+
+                <label asp-for="MinOrderAmount" class="coupon-form-label">
+                    Minimum Order Amount
+                </label>
+
+                <div class="coupon-input-wrapper">
+
+                    <i class="fa-solid fa-cart-shopping coupon-input-icon"></i>
+
+                    <input asp-for="MinOrderAmount"
+                           class="coupon-input"
+                           type="number"
+                           min="0"
+                           max="999999999.99"
+                           step="0.01"
+                           placeholder="500" />
+
+                </div>
+
+                <span asp-validation-for="MinOrderAmount"
+                      class="coupon-validation">
+                </span>
+
+                <span class="coupon-help">
+                    Kuponun kullanılabilmesi için gereken minimum sepet tutarı.
+                </span>
+
+            </div>
+
+            <!-- EXPIRY -->
+
+            <div class="coupon-form-group">
+
+                <label asp-for="ExpiryDate" class="coupon-form-label">
+                    Expiry Date
+                </label>
+
+                <div class="coupon-input-wrapper">
+
+                    <i class="fa-solid fa-calendar-days coupon-input-icon"></i>
+
+                    <input asp-for="ExpiryDate"
+                           class="coupon-input"
+                           type="datetime-local" />
+
+                </div>
+
+                <span asp-validation-for="ExpiryDate"
+                      class="coupon-validation">
+                </span>
+
+            </div>
+
+            <!-- MAX USAGE -->
+
+            <div class="coupon-form-group">
+
+                <label asp-for="MaxUsageCount" class="coupon-form-label">
+                    Maximum Usage
+                </label>
+
+                <div class="coupon-input-wrapper">
+
+                    <i class="fa-solid fa-users coupon-input-icon"></i>
+
+                    <input asp-for="MaxUsageCount"
+                           class="coupon-input"
+                           type="number"
+                           min="1"
+                           step="1"
+                           placeholder="100" />
+
+                </div>
+
+                <span asp-validation-for="MaxUsageCount"
+                      class="coupon-validation">
+                </span>
+
+                <span class="coupon-help">
+                    Boş bırakırsan kullanım limiti olmaz.
+                </span>
+
+            </div>
+
+            <!-- ACTIVE -->
+
+            <div class="coupon-form-group">
+
+                <label class="coupon-form-label">
+                    Coupon Status
+                </label>
+
+                <div class="coupon-switch">
+
+                    <div class="coupon-switch-text">
+
+                        <strong>
+                            Active
+                        </strong>
+
+                        <span>
+                            Kupon oluşturulduğunda kullanılabilir olsun.
+                        </span>
+
+                    </div>
+
+                    <input asp-for="IsActive"
+                           class="coupon-checkbox" />
+
+                </div>
+
+                <span asp-validation-for="IsActive"
+                      class="coupon-validation">
+                </span>
+
+            </div>
+
+            <!-- INFO -->
+
+            <div class="coupon-info-box">
+
+                <i class="fa-solid fa-circle-info"></i>
+
+                <span>
+                    Yüzdesel indirimde maksimum değer %100'dür.
+                    Sabit tutar indirimi ise sipariş toplamını aşamaz;
+                    sistem indirimi sipariş tutarıyla sınırlar.
+                </span>
+
+            </div>
+
+        </div>
+
+        <div class="coupon-form-actions">
+
+            <a asp-action="Index"
+               class="coupon-cancel-btn">
+
+                <i class="fa-solid fa-xmark"></i>
+
+                Cancel
+
+            </a>
+
+            <button type="submit"
+                    class="coupon-save-btn">
+
+                <i class="fa-solid fa-check"></i>
+
+                Create Coupon
+
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}

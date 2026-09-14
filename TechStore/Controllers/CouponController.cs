@@ -126,7 +126,7 @@ namespace TechStore.Controllers
             {
                 await _couponService.SetActiveAsync(coupon);
 
-                TempData["Success"] = "Kupon aktifleştirildi.";
+                TempData["Success"] = "Kupon pasifleştirildi.";
             }
             catch (Exception)
             {

@@ -1,0 +1,282 @@
+﻿@model TechStore.ViewModels.CouponIndexViewModel
+
+@{
+    ViewData["Title"] = "Coupons";
+    Layout = "_AdminLayout";
+}
+
+<div class="coupon-page">
+
+    <div class="page-header">
+
+        <div>
+
+            <span class="page-eyebrow">
+                SALES MANAGEMENT
+            </span>
+
+            <h2>
+                Coupons
+            </h2>
+
+            <p>
+                Create and manage discount coupons for your customers.
+            </p>
+
+        </div>
+
+        <a asp-action="Create" class="coupon-primary-btn">
+
+            <i class="fa-solid fa-ticket"></i>
+
+            New Coupon
+
+        </a>
+
+    </div>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="coupon-alert coupon-alert-success">
+            <i class="fa-solid fa-circle-check"></i>
+            @TempData["Success"]
+        </div>
+    }
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="coupon-alert coupon-alert-danger">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            @TempData["Error"]
+        </div>
+    }
+
+    <div class="coupon-card">
+
+        <div class="coupon-card-header">
+
+            <div>
+
+                <span class="coupon-section-kicker">
+                    DISCOUNT SYSTEM
+                </span>
+
+                <h3>
+                    All Coupons
+                </h3>
+
+                <p>
+                    Manage active, expired and disabled discount codes.
+                </p>
+
+            </div>
+
+            <div class="coupon-count">
+                @Model.Coupons.Count
+            </div>
+
+        </div>
+
+        @if (Model.Coupons.Any())
+        {
+            <div class="coupon-table-wrapper">
+
+                <table class="coupon-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Coupon</th>
+                            <th>Discount</th>
+                            <th>Minimum Order</th>
+                            <th>Usage</th>
+                            <th>Expires</th>
+                            <th>Status</th>
+                            <th>Action</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        @foreach (var coupon in Model.Coupons)
+                        {
+                            var isExpired = coupon.ExpiryDate < DateTime.Now;
+
+                            <tr>
+
+                                <td>
+
+                                    <span class="coupon-code">
+
+                                        <i class="fa-solid fa-ticket"></i>
+
+                                        @coupon.Code
+
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="discount-value">
+
+                                        @if (coupon.DiscountType == DiscountType.Percentage)
+                                        {
+                                            @($"{coupon.DiscountValue:N2}%")
+                                        }
+                                        else
+                                        {
+                                            @($"{coupon.DiscountValue:N2} ₺")
+                                        }
+
+                                </span>
+
+                                <span class="discount-type">
+
+                                    @(coupon.DiscountType == DiscountType.Percentage
+                                                                    ? "Percentage discount"
+                                                                    : "Fixed amount discount")
+
+                            </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="money-value">
+                                        @coupon.MinOrderAmount.ToString("N2") ₺
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="usage-text">
+                                        @coupon.UsageCount
+                                    </span>
+
+                                    <span class="usage-limit">
+
+                                        /
+                                        @(coupon.MaxUsageCount?.ToString() ?? "∞")
+
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <div class="coupon-date">
+
+                                        <strong>
+                                            @coupon.ExpiryDate.ToString("dd.MM.yyyy")
+                                        </strong>
+
+                                        <span>
+                                            @coupon.ExpiryDate.ToString("HH:mm")
+                                        </span>
+
+                                    </div>
+
+                                </td>
+
+                                <td>
+
+                            @if (!coupon.IsActive)
+                                    {
+                                        <span class="coupon-status coupon-status-disabled">
+                                            Disabled
+                                        </span>
+                                    }
+                                    else if (isExpired)
+                                    {
+                                        <span class="coupon-status coupon-status-expired">
+                                            Expired
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="coupon-status coupon-status-active">
+                                            Active
+                                        </span>
+                                    }
+
+                                </td>
+
+                                <td>
+
+                                    @if (coupon.IsActive)
+                                    {
+                                        <form asp-action="Deactivate"
+                                              method="post"
+                                              class="coupon-action-form">
+
+                                            @Html.AntiForgeryToken()
+
+                                            <input type="hidden"
+                                                   name="id"
+                                                   value="@coupon.Id" />
+
+                                            <button type="submit"
+                                                    class="coupon-deactivate-btn"
+                                                    onclick="return confirm('Bu kuponu pasifleştirmek istediğinize emin misiniz?');">
+
+                                                <i class="fa-solid fa-ban"></i>
+
+                                                Disable
+
+                                            </button>
+
+                                        </form>
+                                    }
+                                    else
+                                    {
+                                        <span class="coupon-no-action">
+                                            No action
+                                        </span>
+                                    }
+
+                                </td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+        }
+        else
+        {
+            <div class="coupon-empty">
+
+                <div class="coupon-empty-icon">
+                    <i class="fa-solid fa-ticket"></i>
+                </div>
+
+                <strong>
+                    No coupons yet
+                </strong>
+
+                <span>
+                    Create your first discount coupon to start offering promotions to your customers.
+                </span>
+
+                <a asp-action="Create" class="coupon-primary-btn">
+
+                    <i class="fa-solid fa-plus"></i>
+
+                    Create Coupon
+
+                </a>
+
+            </div>
+        }
+
+    </div>
+
+</div>
