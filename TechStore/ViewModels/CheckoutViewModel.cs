@@ -9,9 +9,20 @@ namespace TechStore.ViewModels
         [ValidateNever]
         public Cart Cart { get; set; } = null!;
 
+        [ValidateNever]
         public int TotalQuantity { get; set; }
 
+        [ValidateNever]
         public decimal TotalPrice { get; set; }
+
+        [ValidateNever]
+        public string? AppliedCouponCode { get; set; }
+
+        [ValidateNever]
+        public decimal DiscountAmount { get; set; }
+
+        [ValidateNever]
+        public decimal FinalTotal => TotalPrice - DiscountAmount;
 
         [Required(ErrorMessage = "Ad Soyad Alanı Zorunludur.")]
         [StringLength(100, ErrorMessage = "Ad Soyad Alanı En Fazla 100 Karakter Olabilir.")]

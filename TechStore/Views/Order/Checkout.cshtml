@@ -2,7 +2,6 @@
 
 @{
     ViewData["Title"] = "Siparişi Tamamla";
-    var appliedCouponCode = TempData.Peek("AppliedCouponCode") as string;
 }
 
 <div class="checkout-page">
@@ -219,20 +218,64 @@
 
                     </div>
 
-                    <!-- TOTAL PRICE -->
+                    <!-- SUBTOTAL -->
                     <div class="summary-row">
 
                         <span>
                             Sepet Toplamı
                         </span>
 
-                        <strong class="checkout-total">
+                        <strong>
                             @Model.TotalPrice.ToString("N2") ₺
                         </strong>
 
                     </div>
 
-                    @if (!string.IsNullOrEmpty(appliedCouponCode))
+                    <!-- COUPON -->
+                    @if (!string.IsNullOrWhiteSpace(Model.AppliedCouponCode) && Model.DiscountAmount > 0)
+                    {
+                        <div class="summary-row checkout-coupon-row">
+
+                            <span>
+                                Kupon
+                            </span>
+
+                            <strong class="checkout-coupon-code">
+                                @Model.AppliedCouponCode
+                            </strong>
+
+                        </div>
+
+                        <div class="summary-row checkout-discount-row">
+
+                            <span>
+                                Kupon İndirimi
+                            </span>
+
+                            <strong>
+                                -@Model.DiscountAmount.ToString("N2") ₺
+                            </strong>
+
+                        </div>
+                    }
+
+                    <!-- DIVIDER -->
+                    <div class="checkout-summary-divider"></div>
+
+                    <!-- FINAL TOTAL -->
+                    <div class="summary-row checkout-final-row">
+
+                        <span>
+                            Genel Toplam
+                        </span>
+
+                        <strong class="checkout-total">
+                            @Model.FinalTotal.ToString("N2") ₺
+                        </strong>
+
+                    </div>
+                    
+                    @if (!string.IsNullOrEmpty(Model.AppliedCouponCode))
                     {
                         <div class="checkout-coupon-summary">
 
@@ -247,7 +290,7 @@
                                 </span>
 
                                 <strong>
-                                    @appliedCouponCode
+                                    @Model.AppliedCouponCode
                                 </strong>
 
                             </div>

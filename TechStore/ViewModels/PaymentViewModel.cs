@@ -12,11 +12,15 @@ namespace TechStore.ViewModels
         [ValidateNever]
         public decimal TotalPrice { get; set; }
 
+        public decimal DiscountAmount { get; set; }
+
+        public decimal FinalTotal => TotalPrice - DiscountAmount;
+
         [ValidateNever]
         public int TotalQuantity { get; set; }
 
         [ValidateNever]
-        public string? AppliedCouponCode { get; set; }
+        public string? AppliedCouponCode { get; set; }      
 
         [ValidateNever]
         [Required(ErrorMessage = "Ad Soyad Zorunludur.")]

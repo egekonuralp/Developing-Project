@@ -14,11 +14,13 @@ namespace TechStore.Controllers
         private const string DeliveryInformationTempDataKey = "DeliveryInformation";
         private readonly ICartService _cartService;
         private readonly IOrderService _orderService;
+        private readonly ICouponService _couponService;
 
-        public OrderController(ICartService cartService, IOrderService orderService)
+        public OrderController(ICartService cartService, IOrderService orderService, ICouponService couponService)
         {
             _cartService = cartService;
             _orderService = orderService;
+            _couponService = couponService;
         }
 
         [HttpGet]
@@ -44,11 +46,37 @@ namespace TechStore.Controllers
                 return RedirectToAction("Index", "Cart");
             }
 
+            var totalPrice = cart.CartItems.Sum(x => x.Quantity * x.UnitPrice);
+
+            var appliedCouponCode = TempData.Peek("AppliedCouponCode") as string;
+
+            decimal discountAmount = 0;
+
+            if (!string.IsNullOrWhiteSpace(appliedCouponCode))
+            {
+                var coupon = await _couponService.GetByCodeAsync(appliedCouponCode);
+
+                if (coupon != null && await _couponService.IsValidAsync(appliedCouponCode, totalPrice))
+                {
+                    discountAmount = _couponService.CalculateDiscount(coupon, totalPrice);
+                }
+                else
+                {
+                    TempData.Remove("AppliedCouponCode");
+
+                    TempData["Error"] = "Uygulanan kupon artık geçerli değil.";
+
+                    appliedCouponCode = null;
+                }
+            }
+
             var viewModel = new CheckoutViewModel
             {
                 Cart = cart,
                 TotalQuantity = cart.CartItems.Sum(x => x.Quantity),
-                TotalPrice = cart.CartItems.Sum(x => x.Quantity * x.UnitPrice)
+                TotalPrice = totalPrice,
+                AppliedCouponCode = appliedCouponCode,
+                DiscountAmount = discountAmount
             };
 
             return View(viewModel);
@@ -65,8 +93,24 @@ namespace TechStore.Controllers
                 var cart = await _cartService.GetCartByUserIdAsync(userId!);
 
                 model.Cart = cart!;
-                model.TotalQuantity = cart!.CartItems.Sum(x => x.Quantity);
-                model.TotalPrice = cart.CartItems.Sum(x => x.Quantity * x.UnitPrice);
+                
+                var totalPrice = cart!.CartItems.Sum(x => x.Quantity * x.UnitPrice);
+
+                model.TotalQuantity = cart.CartItems.Sum(x => x.Quantity);
+                model.TotalPrice = totalPrice;
+
+                var appliedCouponCode = TempData.Peek("AppliedCouponCode") as string;
+
+                if (!string.IsNullOrWhiteSpace(appliedCouponCode))
+                {
+                    var coupon = await _couponService.GetByCodeAsync(appliedCouponCode);
+
+                    if (coupon != null && await _couponService.IsValidAsync(appliedCouponCode, totalPrice))
+                    {
+                        model.AppliedCouponCode = appliedCouponCode;
+                        model.DiscountAmount = _couponService.CalculateDiscount(coupon, totalPrice);
+                    }
+                }
 
                 return View(model);
             }
@@ -136,13 +180,37 @@ namespace TechStore.Controllers
                 return RedirectToAction(nameof(Checkout));
             }
 
+            var totalPrice = cart.CartItems.Sum(x => x.Quantity * x.UnitPrice);
+
             var appliedCouponCode = TempData.Peek("AppliedCouponCode") as string;
+
+            decimal discountAmount = 0;
+
+            if (!string.IsNullOrWhiteSpace(appliedCouponCode))
+            {
+                var coupon = await _couponService.GetByCodeAsync(appliedCouponCode);
+
+                if (coupon != null &&
+                    await _couponService.IsValidAsync(appliedCouponCode, totalPrice))
+                {
+                    discountAmount = _couponService.CalculateDiscount(coupon, totalPrice);
+                }
+                else
+                {
+                    TempData.Remove("AppliedCouponCode");
+
+                    TempData["Error"] = "Uygulanan kupon artık geçerli değil.";
+
+                    appliedCouponCode = null;
+                }
+            }
 
             var model = new PaymentViewModel
             {
                 Cart = cart,
                 TotalQuantity = cart.CartItems.Sum(x => x.Quantity),
-                TotalPrice = cart.CartItems.Sum(x => x.Quantity * x.UnitPrice),
+                TotalPrice = totalPrice,
+                DiscountAmount = discountAmount,
                 AppliedCouponCode = appliedCouponCode,
                 FullName = deliveryInformation.FullName,
                 PhoneNumber = deliveryInformation.PhoneNumber,
@@ -166,6 +234,8 @@ namespace TechStore.Controllers
                 return RedirectToAction(nameof(Checkout));
             }
 
+            var appliedCouponCode = TempData.Peek("AppliedCouponCode") as string;
+
             if (!ModelState.IsValid)
             {
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -183,8 +253,24 @@ namespace TechStore.Controllers
                 }
 
                 model.Cart = cart;
+
+                var totalPrice = cart.CartItems.Sum(x => x.Quantity * x.UnitPrice);
+
                 model.TotalQuantity = cart.CartItems.Sum(x => x.Quantity);
-                model.TotalPrice = cart.CartItems.Sum(x => x.Quantity * x.UnitPrice);
+                model.TotalPrice = totalPrice;
+
+                if (!string.IsNullOrWhiteSpace(appliedCouponCode))
+                {
+                    var coupon = await _couponService.GetByCodeAsync(appliedCouponCode);
+
+                    if (coupon != null &&
+                        await _couponService.IsValidAsync(appliedCouponCode, totalPrice))
+                    {
+                        model.AppliedCouponCode = appliedCouponCode;
+                        model.DiscountAmount = _couponService.CalculateDiscount(coupon, totalPrice);
+                    }
+                }
+
                 ApplyDeliveryInformation(model, deliveryInformation);
 
                 return View(model);
@@ -203,8 +289,6 @@ namespace TechStore.Controllers
             {
                 return RedirectToAction("Index", "Cart");
             }
-
-            var appliedCouponCode = TempData.Peek("AppliedCouponCode") as string;
 
             try
             {
@@ -225,8 +309,24 @@ namespace TechStore.Controllers
                 ModelState.AddModelError("", ex.Message);
 
                 model.Cart = currentCart;
+
+                var totalPrice = currentCart.CartItems.Sum(x => x.Quantity * x.UnitPrice);
+
                 model.TotalQuantity = currentCart.CartItems.Sum(x => x.Quantity);
-                model.TotalPrice = currentCart.CartItems.Sum(x => x.Quantity * x.UnitPrice);
+                model.TotalPrice = totalPrice;
+
+                if (!string.IsNullOrWhiteSpace(appliedCouponCode))
+                {
+                    var coupon = await _couponService.GetByCodeAsync(appliedCouponCode);
+
+                    if (coupon != null &&
+                        await _couponService.IsValidAsync(appliedCouponCode, totalPrice))
+                    {
+                        model.AppliedCouponCode = appliedCouponCode;
+                        model.DiscountAmount = _couponService.CalculateDiscount(coupon, totalPrice);
+                    }
+                }
+
                 ApplyDeliveryInformation(model, deliveryInformation);
 
                 return View(model);

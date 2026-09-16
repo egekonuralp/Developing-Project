@@ -72,7 +72,7 @@ namespace TechStore.Services.Implementations
                 {
                     UserId = userId,
                     OrderDate = DateTime.Now,
-                    TotalPrice = cart.CartItems.Sum(x => x.UnitPrice * x.Quantity),
+                    TotalPrice = cartTotal - discountAmount,
                     FullName = model.FullName,
                     Phone = model.PhoneNumber,
                     City = model.City,
