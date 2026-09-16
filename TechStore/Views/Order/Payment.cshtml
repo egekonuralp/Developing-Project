@@ -1,5 +1,9 @@
 ﻿@model TechStore.ViewModels.PaymentViewModel
 
+@{
+    ViewData["Title"] = "Ödeme";
+}
+
 <div class="payment-page">
 
     <div class="payment-card">
@@ -8,12 +12,18 @@
         <div class="payment-header">
 
             <div class="payment-header-icon">
-                💳
+                <i class="fa-solid fa-credit-card"></i>
             </div>
 
             <div>
 
-                <h1>Ödeme</h1>
+                <span class="payment-eyebrow">
+                    SİPARİŞİ TAMAMLA
+                </span>
+
+                <h1>
+                    Ödeme
+                </h1>
 
                 <p>
                     Siparişinizi tamamlamak için ödeme bilgilerinizi giriniz.
@@ -25,20 +35,26 @@
 
         <form asp-action="Payment" method="post">
 
-            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+            @Html.AntiForgeryToken()
+
+            <div asp-validation-summary="ModelOnly"
+                 class="text-danger mb-3"></div>
 
             <div class="payment-content">
 
                 <!-- SOL TARAF -->
                 <div class="payment-form">
 
+                    <!-- PAYMENT INFORMATION -->
                     <div class="section-title">
 
                         <span class="section-icon">
-                            💳
+                            <i class="fa-solid fa-credit-card"></i>
                         </span>
 
-                        <h2>Ödeme Bilgileri</h2>
+                        <h2>
+                            Ödeme Bilgileri
+                        </h2>
 
                     </div>
 
@@ -49,9 +65,14 @@
                             Kart Üzerindeki İsim
                         </label>
 
-                        <input asp-for="CardHolderName" class="form-control" placeholder="Ad Soyad" autocomplete="cc-name" />
+                        <input asp-for="CardHolderName"
+                               class="form-control"
+                               placeholder="Ad Soyad"
+                               autocomplete="cc-name" />
 
-                        <span asp-validation-for="CardHolderName" class="text-danger"></span>
+                        <span asp-validation-for="CardHolderName"
+                              class="text-danger">
+                        </span>
 
                     </div>
 
@@ -62,9 +83,15 @@
                             Kart Numarası
                         </label>
 
-                        <input asp-for="CardNumber" class="form-control" placeholder="1234 5678 1234 5678" maxlength="19" autocomplete="cc-number" />
+                        <input asp-for="CardNumber"
+                               class="form-control"
+                               placeholder="1234 5678 1234 5678"
+                               maxlength="19"
+                               autocomplete="cc-number" />
 
-                        <span asp-validation-for="CardNumber" class="text-danger"></span>
+                        <span asp-validation-for="CardNumber"
+                              class="text-danger">
+                        </span>
 
                     </div>
 
@@ -77,9 +104,15 @@
                                 Son Kullanma Tarihi
                             </label>
 
-                            <input asp-for="ExpirationDate" class="form-control" placeholder="MM/YY" maxlength="5" autocomplete="cc-exp" />
+                            <input asp-for="ExpirationDate"
+                                   class="form-control"
+                                   placeholder="MM/YY"
+                                   maxlength="5"
+                                   autocomplete="cc-exp" />
 
-                            <span asp-validation-for="ExpirationDate" class="text-danger"></span>
+                            <span asp-validation-for="ExpirationDate"
+                                  class="text-danger">
+                            </span>
 
                         </div>
 
@@ -89,9 +122,15 @@
                                 CVV
                             </label>
 
-                            <input asp-for="CVV" class="form-control" placeholder="123" maxlength="4" autocomplete="cc-csc" />
+                            <input asp-for="CVV"
+                                   class="form-control"
+                                   placeholder="123"
+                                   maxlength="4"
+                                   autocomplete="cc-csc" />
 
-                            <span asp-validation-for="CVV" class="text-danger"></span>
+                            <span asp-validation-for="CVV"
+                                  class="text-danger">
+                            </span>
 
                         </div>
 
@@ -101,7 +140,7 @@
                     <div class="payment-security">
 
                         <span class="payment-security-icon">
-                            🔒
+                            <i class="fa-solid fa-lock"></i>
                         </span>
 
                         <div>
@@ -111,7 +150,8 @@
                             </strong>
 
                             <p>
-                                Kart bilgileriniz güvenli bir şekilde işlenir.
+                                Kart bilgileriniz bu demo ödeme akışında
+                                güvenli biçimde işlenir.
                             </p>
 
                         </div>
@@ -124,10 +164,12 @@
                     <div class="section-title">
 
                         <span class="section-icon">
-                            📦
+                            <i class="fa-solid fa-truck"></i>
                         </span>
 
-                        <h2>Teslimat Bilgileri</h2>
+                        <h2>
+                            Teslimat Bilgileri
+                        </h2>
 
                     </div>
 
@@ -135,7 +177,9 @@
 
                         <div class="delivery-row">
 
-                            <span>Ad Soyad</span>
+                            <span>
+                                Ad Soyad
+                            </span>
 
                             <strong>
                                 @Model.FullName
@@ -145,7 +189,9 @@
 
                         <div class="delivery-row">
 
-                            <span>Telefon</span>
+                            <span>
+                                Telefon
+                            </span>
 
                             <strong>
                                 @Model.PhoneNumber
@@ -155,7 +201,9 @@
 
                         <div class="delivery-row">
 
-                            <span>Konum</span>
+                            <span>
+                                Konum
+                            </span>
 
                             <strong>
                                 @Model.City / @Model.District
@@ -165,7 +213,9 @@
 
                         <div class="delivery-row">
 
-                            <span>Teslimat Adresi</span>
+                            <span>
+                                Teslimat Adresi
+                            </span>
 
                             <strong>
                                 @Model.Address
@@ -182,17 +232,30 @@
 
                     <div class="summary-header">
 
-                        <span class="summary-icon">
-                            🛒
-                        </span>
+                        <div>
 
-                        <h2>Sipariş Özeti</h2>
+                            <span class="summary-eyebrow">
+                                ÖDEME
+                            </span>
+
+                            <h2>
+                                Sipariş Özeti
+                            </h2>
+
+                        </div>
+
+                        <span class="summary-icon">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </span>
 
                     </div>
 
+                    <!-- TOTAL QUANTITY -->
                     <div class="summary-row">
 
-                        <span>Toplam Ürün</span>
+                        <span>
+                            Toplam Ürün
+                        </span>
 
                         <strong>
                             @Model.TotalQuantity
@@ -200,9 +263,12 @@
 
                     </div>
 
+                    <!-- PRODUCT TYPE COUNT -->
                     <div class="summary-row">
 
-                        <span>Ürün Çeşidi</span>
+                        <span>
+                            Ürün Çeşidi
+                        </span>
 
                         <strong>
                             @Model.Cart.CartItems.Count
@@ -210,9 +276,44 @@
 
                     </div>
 
+                    <!-- COUPON -->
+                    @if (!string.IsNullOrEmpty(Model.AppliedCouponCode))
+                    {
+                        <div class="payment-coupon">
+
+                            <div class="payment-coupon-icon">
+                                <i class="fa-solid fa-ticket"></i>
+                            </div>
+
+                            <div class="payment-coupon-content">
+
+                                <span>
+                                    Uygulanan Kupon
+                                </span>
+
+                                <strong>
+                                    @Model.AppliedCouponCode
+                                </strong>
+
+                            </div>
+
+                            <span class="payment-coupon-status">
+                                <i class="fa-solid fa-check"></i>
+                            </span>
+
+                        </div>
+
+                        <p class="payment-coupon-note">
+                            Kuponunuz sipariş oluşturulurken tekrar doğrulanıp uygulanacaktır.
+                        </p>
+                    }
+
+                    <!-- TOTAL -->
                     <div class="summary-total">
 
-                        <span>Genel Toplam</span>
+                        <span>
+                            Sipariş Tutarı
+                        </span>
 
                         <strong>
                             @Model.TotalPrice.ToString("N2") ₺
@@ -222,22 +323,36 @@
 
                     <div class="summary-buttons">
 
-                        <a asp-controller="Cart" asp-action="Index" class="tech-btn tech-btn-outline">
+                        <a asp-controller="Cart"
+                           asp-action="Index"
+                           class="tech-btn tech-btn-outline">
+
+                            <i class="fa-solid fa-arrow-left"></i>
+
                             Sepete Dön
+
                         </a>
 
-                        <button type="submit" class="tech-btn tech-btn-primary">
-                            🔒 Ödemeyi Tamamla
+                        <button type="submit"
+                                class="tech-btn tech-btn-primary">
+
+                            <i class="fa-solid fa-lock"></i>
+
+                            Ödemeyi Tamamla
+
                         </button>
 
                     </div>
 
                     <div class="payment-note">
 
-                        <span>✓</span>
+                        <span>
+                            <i class="fa-solid fa-circle-check"></i>
+                        </span>
 
                         <p>
-                            Siparişinizi onayladıktan sonra ödeme işleminiz tamamlanacaktır.
+                            Siparişinizi onayladıktan sonra ödeme işleminiz tamamlanacak
+                            ve siparişiniz hesabınıza kaydedilecektir.
                         </p>
 
                     </div>

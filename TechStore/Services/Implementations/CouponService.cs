@@ -23,6 +23,11 @@ namespace TechStore.Services.Implementations
             return await _couponRepository.GetByIdAsync(id);
         }
 
+        public async Task<Coupon?> GetByCodeAsync(string code)
+        {
+            return await _couponRepository.GetByCodeAsync(code.Trim().ToUpperInvariant());
+        }
+
         public async Task AddAsync(Coupon coupon)
         {
             coupon.Code = coupon.Code.Trim().ToUpperInvariant();

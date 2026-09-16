@@ -16,6 +16,9 @@ namespace TechStore.ViewModels
         public int TotalQuantity { get; set; }
 
         [ValidateNever]
+        public string? AppliedCouponCode { get; set; }
+
+        [ValidateNever]
         [Required(ErrorMessage = "Ad Soyad Zorunludur.")]
         public string FullName { get; set; } = string.Empty;
 

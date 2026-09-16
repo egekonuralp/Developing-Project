@@ -11,5 +11,11 @@ namespace TechStore.ViewModels
         public int TotalQuantity { get; set; }
 
         public bool HasInactiveItems => Cart.CartItems.Any(x => !x.Product.IsActive);
+
+        public string? AppliedCouponCode { get; set; }
+
+        public decimal DiscountAmount { get; set; }
+
+        public decimal FinalTotal => TotalPrice - DiscountAmount;
     }
 }

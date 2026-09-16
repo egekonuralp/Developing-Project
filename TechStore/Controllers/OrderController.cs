@@ -136,11 +136,14 @@ namespace TechStore.Controllers
                 return RedirectToAction(nameof(Checkout));
             }
 
+            var appliedCouponCode = TempData.Peek("AppliedCouponCode") as string;
+
             var model = new PaymentViewModel
             {
                 Cart = cart,
                 TotalQuantity = cart.CartItems.Sum(x => x.Quantity),
                 TotalPrice = cart.CartItems.Sum(x => x.Quantity * x.UnitPrice),
+                AppliedCouponCode = appliedCouponCode,
                 FullName = deliveryInformation.FullName,
                 PhoneNumber = deliveryInformation.PhoneNumber,
                 City = deliveryInformation.City,
@@ -163,7 +166,6 @@ namespace TechStore.Controllers
                 return RedirectToAction(nameof(Checkout));
             }
 
-            // Form Doğrulaması Başarısısızsa
             if (!ModelState.IsValid)
             {
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -188,7 +190,6 @@ namespace TechStore.Controllers
                 return View(model);
             }
 
-            // Giriş Yapan Kullanıcı Id'sini Al 
             var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             if (string.IsNullOrEmpty(currentUserId))
@@ -196,7 +197,6 @@ namespace TechStore.Controllers
                 return Challenge();
             }
 
-            // Kullanıcın Sepetini Tekrar Getir
             var currentCart = await _cartService.GetCartByUserIdAsync(currentUserId);
 
             if (currentCart == null || !currentCart.CartItems.Any())
@@ -204,7 +204,8 @@ namespace TechStore.Controllers
                 return RedirectToAction("Index", "Cart");
             }
 
-            // Siparişi Oluştur 
+            var appliedCouponCode = TempData.Peek("AppliedCouponCode") as string;
+
             try
             {
                 await _orderService.CreateOrderAsync(currentUserId,
@@ -216,7 +217,8 @@ namespace TechStore.Controllers
                     District = deliveryInformation.District,
                     Address = deliveryInformation.Address
                 },
-                currentCart);
+                currentCart,
+                appliedCouponCode);
             }
             catch (Exception ex)
             {
@@ -232,7 +234,6 @@ namespace TechStore.Controllers
 
             TempData.Remove(DeliveryInformationTempDataKey);
 
-            // Başarılı Sayfasına Gönder
             return RedirectToAction(nameof(Success));
         }
 

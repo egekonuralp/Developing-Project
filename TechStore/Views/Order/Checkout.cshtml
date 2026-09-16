@@ -1,5 +1,10 @@
 ﻿@model TechStore.ViewModels.CheckoutViewModel
 
+@{
+    ViewData["Title"] = "Siparişi Tamamla";
+    var appliedCouponCode = TempData.Peek("AppliedCouponCode") as string;
+}
+
 <div class="checkout-page">
 
     <!-- HEADER -->
@@ -21,19 +26,26 @@
 
         </div>
 
-        <a asp-controller="Cart" asp-action="Index" class="checkout-back-button">
+        <a asp-controller="Cart"
+           asp-action="Index"
+           class="checkout-back-button">
             ← Sepete Dön
         </a>
 
     </div>
 
-    <form asp-action="Checkout" method="post">
+    <form asp-action="Checkout"
+          method="post">
 
-        <div asp-validation-summary="ModelOnly" class="checkout-validation"></div>
+        @Html.AntiForgeryToken()
+
+        <div asp-validation-summary="ModelOnly"
+             class="checkout-validation">
+        </div>
 
         <div class="checkout-content">
 
-            <!-- LEFT SİDE -->
+            <!-- LEFT SIDE -->
             <div class="checkout-form">
 
                 <div class="checkout-card-header">
@@ -65,9 +77,14 @@
                             Ad Soyad
                         </label>
 
-                        <input asp-for="FullName" class="form-control" autocomplete="name" placeholder="Adınız ve soyadınız" />
-                        
-                        <span asp-validation-for="FullName" class="text-danger"></span>
+                        <input asp-for="FullName"
+                               class="form-control"
+                               autocomplete="name"
+                               placeholder="Adınız ve soyadınız" />
+
+                        <span asp-validation-for="FullName"
+                              class="text-danger">
+                        </span>
 
                     </div>
 
@@ -78,9 +95,14 @@
                             Telefon
                         </label>
 
-                        <input asp-for="PhoneNumber" class="form-control" autocomplete="tel" placeholder="05XX XXX XX XX" />
+                        <input asp-for="PhoneNumber"
+                               class="form-control"
+                               autocomplete="tel"
+                               placeholder="05XX XXX XX XX" />
 
-                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        <span asp-validation-for="PhoneNumber"
+                              class="text-danger">
+                        </span>
 
                     </div>
 
@@ -93,9 +115,14 @@
                                 Şehir
                             </label>
 
-                            <input asp-for="City" class="form-control" autocomplete="address-level1" placeholder="Şehir" />
+                            <input asp-for="City"
+                                   class="form-control"
+                                   autocomplete="address-level1"
+                                   placeholder="Şehir" />
 
-                            <span asp-validation-for="City" class="text-danger"></span>
+                            <span asp-validation-for="City"
+                                  class="text-danger">
+                            </span>
 
                         </div>
 
@@ -105,9 +132,14 @@
                                 İlçe
                             </label>
 
-                            <input asp-for="District" class="form-control" autocomplete="address-level2" placeholder="İlçe" />
+                            <input asp-for="District"
+                                   class="form-control"
+                                   autocomplete="address-level2"
+                                   placeholder="İlçe" />
 
-                            <span asp-validation-for="District" class="text-danger"></span>
+                            <span asp-validation-for="District"
+                                  class="text-danger">
+                            </span>
 
                         </div>
 
@@ -120,9 +152,15 @@
                             Açık Adres
                         </label>
 
-                        <textarea asp-for="Address" rows="5" class="form-control" autocomplete="street-address" placeholder="Mahalle, sokak, bina no, daire no vb."></textarea>
+                        <textarea asp-for="Address"
+                                  rows="5"
+                                  class="form-control"
+                                  autocomplete="street-address"
+                                  placeholder="Mahalle, sokak, bina no, daire no vb."></textarea>
 
-                        <span asp-validation-for="Address" class="text-danger"></span>
+                        <span asp-validation-for="Address"
+                              class="text-danger">
+                        </span>
 
                     </div>
 
@@ -143,7 +181,7 @@
 
             </div>
 
-            <!-- RİGHT SİDE -->
+            <!-- RIGHT SIDE -->
             <div class="checkout-summary">
 
                 <div class="checkout-card-header">
@@ -185,7 +223,7 @@
                     <div class="summary-row">
 
                         <span>
-                            Genel Toplam
+                            Sepet Toplamı
                         </span>
 
                         <strong class="checkout-total">
@@ -193,6 +231,35 @@
                         </strong>
 
                     </div>
+
+                    @if (!string.IsNullOrEmpty(appliedCouponCode))
+                    {
+                        <div class="checkout-coupon-summary">
+
+                            <div class="checkout-coupon-icon">
+                                <i class="fa-solid fa-ticket"></i>
+                            </div>
+
+                            <div class="checkout-coupon-content">
+
+                                <span>
+                                    Uygulanan Kupon
+                                </span>
+
+                                <strong>
+                                    @appliedCouponCode
+                                </strong>
+
+                            </div>
+
+                            <i class="fa-solid fa-check checkout-coupon-check"></i>
+
+                        </div>
+
+                        <p class="checkout-coupon-note">
+                            Kuponunuz ödeme sırasında tekrar doğrulanarak siparişinize uygulanacaktır.
+                        </p>
+                    }
 
                     <!-- DIVIDER -->
                     <div class="checkout-summary-divider"></div>
@@ -220,13 +287,22 @@
                     </div>
 
                     <!-- SUBMIT -->
-                    <button type="submit" class="tech-btn tech-btn-primary checkout-submit">
+                    <button type="submit"
+                            class="tech-btn tech-btn-primary checkout-submit">
+
+                        <i class="fa-solid fa-lock"></i>
+
                         Siparişi Onayla
+
                     </button>
 
                     <!-- BACK TO CART -->
-                    <a asp-controller="Cart" asp-action="Index" class="checkout-cart-link">
+                    <a asp-controller="Cart"
+                       asp-action="Index"
+                       class="checkout-cart-link">
+
                         ← Sepeti Düzenle
+
                     </a>
 
                 </div>

@@ -11,19 +11,23 @@ namespace TechStore.Services.Implementations
     {
         private readonly IOrderRepository _orderRepository;
         private readonly ICartRepository _cartRepository;
+        private readonly ICouponService _couponService;
         private readonly ApplicationDbContext _context;
 
         public OrderService(
             IOrderRepository orderRepository,
             ICartRepository cartRepository,
-            ApplicationDbContext context)
+            ApplicationDbContext context,
+            ICouponService couponService)
         {
             _orderRepository = orderRepository;
             _cartRepository = cartRepository;
             _context = context;
+            _couponService = couponService;
+
         }
 
-        public async Task CreateOrderAsync(string userId, CheckoutViewModel model, Cart cart)
+        public async Task CreateOrderAsync(string userId, CheckoutViewModel model, Cart cart, string? couponCode)
         {
             await using var transaction = await _context.Database.BeginTransactionAsync();
 
@@ -47,6 +51,23 @@ namespace TechStore.Services.Implementations
                     }
                 }
 
+                var cartTotal = cart.CartItems.Sum(x => x.UnitPrice * x.Quantity);
+
+                Coupon? coupon = null;
+                decimal discountAmount = 0;
+
+                if (!string.IsNullOrWhiteSpace(couponCode))
+                {
+                    coupon = await _couponService.GetByCodeAsync(couponCode);
+
+                    if (coupon == null || !await _couponService.IsValidAsync(couponCode, cartTotal))
+                    {
+                        throw new InvalidOperationException("Uygulanan kupon artık geçerli değil.");
+                    }
+
+                    discountAmount = _couponService.CalculateDiscount(coupon, cartTotal);
+                }
+
                 var order = new Order
                 {
                     UserId = userId,
@@ -57,7 +78,9 @@ namespace TechStore.Services.Implementations
                     City = model.City,
                     District = model.District,
                     Address = model.Address,
-                    Status = OrderStatuses.Preparing
+                    Status = OrderStatuses.Preparing,
+                    CouponCode = coupon?.Code,
+                    DiscountAmount = discountAmount
                 };
 
                 foreach (var cartItem in cart.CartItems)
@@ -91,6 +114,12 @@ namespace TechStore.Services.Implementations
 
                 await _orderRepository.AddAsync(order);
                 await _orderRepository.SaveAsync();
+
+                if (coupon != null)
+                {
+                    await _couponService.IncrementUsageAsync(coupon);
+                }
+
                 await _cartRepository.ClearCartAsync(cart);
                 await transaction.CommitAsync();
             }

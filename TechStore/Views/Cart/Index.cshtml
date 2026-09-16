@@ -29,7 +29,7 @@
             <p>
                 Sepetinizde bulunan ürünleri buradan yönetebilirsiniz.
             </p>
-            
+
         </div>
 
         @if (Model.Cart.CartItems.Any())
@@ -163,8 +163,8 @@
 
                         </div>
 
-                    </div>    
-                    
+                    </div>
+
                 }
 
             }
@@ -233,6 +233,49 @@
 
                 </div>
 
+                @if (!string.IsNullOrEmpty(Model.AppliedCouponCode))
+                {
+                    <div class="summary-row summary-row-discount">
+
+                        <span>
+                            İndirim (<strong class="applied-coupon-code">@Model.AppliedCouponCode</strong>)
+                        </span>
+
+                        <strong>
+                            -@Model.DiscountAmount.ToString("N2") ₺
+                        </strong>
+
+                    </div>
+                }
+
+                <div class="coupon-apply-box">
+
+                    @if (!string.IsNullOrEmpty(Model.AppliedCouponCode))
+                    {
+                        <form asp-action="RemoveCoupon" method="post" class="coupon-remove-form">
+
+                            <span>
+                                <i class="fa-solid fa-tag"></i>
+                                <strong>@Model.AppliedCouponCode</strong> uygulandı
+                            </span>
+
+                            <button type="submit">Kaldır</button>
+
+                        </form>
+                    }
+                    else
+                    {
+                        <form asp-action="ApplyCoupon" method="post" class="coupon-apply-form">
+
+                            <input type="text" name="code" placeholder="Kupon kodu" autocomplete="off" />
+
+                            <button type="submit">Uygula</button>
+
+                        </form>
+                    }
+
+                </div>
+
                 <div class="summary-divider"></div>
 
                 <div class="summary-total">
@@ -242,7 +285,7 @@
                     </span>
 
                     <strong>
-                        @Model.TotalPrice.ToString("N2") ₺
+                        @Model.FinalTotal.ToString("N2") ₺
                     </strong>
 
                 </div>
@@ -250,27 +293,27 @@
                 @if (Model.HasInactiveItems)
                 {
                     <p class="checkout-blocked-message">
-                        Sepetinizde satışta olmayan ürün(ler) var. 
+                        Sepetinizde satışta olmayan ürün(ler) var.
                         Siparişi tamamlayabilmek için lütfen bu ürünleri sepetinizden kaldırın.
                     </p>
                 }
 
                 <div class="summary-buttons">
 
-                     @if (Model.HasInactiveItems)
-                     {
-                         <button type="button" 
-                             class="tech-btn tech-btn-primary tech-btn-disabled" 
-                             disabled title="Devam etmeden önce satışta olmayan ürünleri sepetinizden kaldırın.">
-                                Siparişi Tamamla
+                    @if (Model.HasInactiveItems)
+                    {
+                        <button type="button"
+                                class="tech-btn tech-btn-primary tech-btn-disabled"
+                                disabled title="Devam etmeden önce satışta olmayan ürünleri sepetinizden kaldırın.">
+                            Siparişi Tamamla
                         </button>
-                     }
-                     else
-                     {
+                    }
+                    else
+                    {
                         <a asp-controller="Order" asp-action="Checkout" class="tech-btn tech-btn-primary">
                             Siparişi Tamamla
                         </a>
-                     }
+                    }
 
                     <a asp-controller="Home" asp-action="Index" class="tech-btn tech-btn-outline">
                         Alışverişe Devam Et

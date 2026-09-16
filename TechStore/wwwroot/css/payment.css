@@ -1,6 +1,6 @@
 ﻿/* =========================================================
-   PAYMENT PAGE — mat, eskimiş, neon/canlı renk yok
-   ========================================================= */
+PAYMENT PAGE — mat, eskimiş, neon/canlı renk yok
+========================================================= */
 
 .payment-page {
     max-width: 1150px;
@@ -17,8 +17,8 @@
 }
 
 /* =========================================================
-   HEADER
-   ========================================================= */
+HEADER
+========================================================= */
 
 .payment-header {
     display: flex;
@@ -39,7 +39,16 @@
     background: #171310;
     border: 1px solid #4a3c2c;
     border-radius: 3px;
-    font-size: 24px;
+    font-size: 20px;
+}
+
+.payment-eyebrow {
+    display: block;
+    margin-bottom: 5px;
+    color: #5c7686;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 13px;
+    letter-spacing: 1.4px;
 }
 
 .payment-header h1 {
@@ -71,8 +80,8 @@
     }
 
 /* =========================================================
-   CONTENT LAYOUT
-   ========================================================= */
+CONTENT LAYOUT
+========================================================= */
 
 .payment-content {
     display: grid;
@@ -86,8 +95,8 @@
 }
 
 /* =========================================================
-   SECTION TITLES
-   ========================================================= */
+SECTION TITLES
+========================================================= */
 
 .section-title {
     display: flex;
@@ -106,7 +115,7 @@
     background: #171310;
     border: 1px solid #4a3c2c;
     border-radius: 3px;
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .section-title h2 {
@@ -119,8 +128,8 @@
 }
 
 /* =========================================================
-   FORM
-   ========================================================= */
+FORM
+========================================================= */
 
 .form-group {
     margin-bottom: 18px;
@@ -164,8 +173,8 @@
 }
 
 /* =========================================================
-   SECURITY NOTICE
-   ========================================================= */
+SECURITY NOTICE
+========================================================= */
 
 .payment-security {
     display: flex;
@@ -178,8 +187,13 @@
 }
 
 .payment-security-icon {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
     flex-shrink: 0;
-    font-size: 18px;
+    width: 20px;
+    color: #5c6b46;
+    font-size: 15px;
 }
 
 .payment-security strong {
@@ -195,6 +209,7 @@
     color: #8a7a64;
     font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
     font-size: 13px;
+    line-height: 1.45;
 }
 
 .payment-form hr {
@@ -204,8 +219,8 @@
 }
 
 /* =========================================================
-   DELIVERY SUMMARY
-   ========================================================= */
+DELIVERY SUMMARY
+========================================================= */
 
 .delivery-summary {
     padding: 16px 18px;
@@ -241,8 +256,8 @@
     }
 
 /* =========================================================
-   RIGHT SIDE — SUMMARY
-   ========================================================= */
+RIGHT SIDE — SUMMARY
+========================================================= */
 
 .payment-summary {
     height: 100%;
@@ -254,13 +269,25 @@
 .summary-header {
     display: flex;
     align-items: center;
-    gap: 10px;
+    justify-content: space-between;
+    gap: 12px;
     margin-bottom: 20px;
     padding-bottom: 16px;
     border-bottom: 1px solid #4a3c2c;
 }
 
+.summary-eyebrow {
+    display: block;
+    margin-bottom: 4px;
+    color: #5c7686;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
 .summary-icon {
+    color: #a3803f;
     font-size: 18px;
 }
 
@@ -288,6 +315,80 @@
         font-weight: 700;
     }
 
+/* =========================================================
+APPLIED COUPON
+========================================================= */
+
+.payment-coupon {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    margin: 16px 0 8px;
+    padding: 12px 13px;
+    background: #171310;
+    border: 1px solid #4a3c2c;
+    border-left: 3px solid #a3803f;
+    border-radius: 3px;
+}
+
+.payment-coupon-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 32px;
+    width: 32px;
+    height: 32px;
+    color: #a3803f;
+    background: #201a15;
+    border: 1px solid #4a3c2c;
+    border-radius: 3px;
+    font-size: 12px;
+}
+
+.payment-coupon-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+    flex: 1;
+}
+
+    .payment-coupon-content span {
+        color: #8a7a64;
+        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.6px;
+    }
+
+    .payment-coupon-content strong {
+        overflow: hidden;
+        color: #d8cbb3;
+        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 800;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+.payment-coupon-status {
+    flex-shrink: 0;
+    color: #5c6b46;
+    font-size: 14px;
+}
+
+.payment-coupon-note {
+    margin: 0 0 14px;
+    color: #6f624f;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 11px;
+    line-height: 1.45;
+}
+
+/* =========================================================
+TOTAL
+========================================================= */
+
 .summary-total {
     display: flex;
     align-items: center;
@@ -307,8 +408,8 @@
     }
 
 /* =========================================================
-   BUTTONS
-   ========================================================= */
+BUTTONS
+========================================================= */
 
 .summary-buttons {
     display: flex;
@@ -360,8 +461,8 @@
     }
 
 /* =========================================================
-   NOTE
-   ========================================================= */
+NOTE
+========================================================= */
 
 .payment-note {
     display: flex;
@@ -372,10 +473,10 @@
     border-radius: 3px;
 }
 
-    .payment-note span {
+    .payment-note > span {
         flex-shrink: 0;
         color: #5c6b46;
-        font-weight: 900;
+        font-size: 14px;
     }
 
     .payment-note p {
@@ -387,8 +488,8 @@
     }
 
 /* =========================================================
-   RESPONSIVE
-   ========================================================= */
+RESPONSIVE
+========================================================= */
 
 @media (max-width: 900px) {
 
@@ -397,12 +498,18 @@
     }
 
     .payment-summary {
+        height: auto;
         border-left: 0;
         border-top: 1px solid #4a3c2c;
     }
+
 }
 
 @media (max-width: 600px) {
+
+    .payment-page {
+        padding: 0 18px;
+    }
 
     .payment-header {
         padding: 22px 20px;
@@ -425,4 +532,9 @@
         .delivery-row strong {
             text-align: left;
         }
+
+    .payment-coupon {
+        padding: 11px 12px;
+    }
+
 }

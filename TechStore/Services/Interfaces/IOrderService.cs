@@ -5,7 +5,7 @@ namespace TechStore.Services.Interfaces
 {
     public interface IOrderService
     {
-        Task CreateOrderAsync(string userId, CheckoutViewModel model, Cart cart);
+        Task CreateOrderAsync(string userId, CheckoutViewModel model, Cart cart, string? couponCode);
 
         Task<List<Order>> GetOrdersByUserIdAsync(string userId);
 

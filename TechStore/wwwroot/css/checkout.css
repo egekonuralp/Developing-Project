@@ -92,7 +92,7 @@
 }
 
 /* =========================================================
-   SHARED CARD HEADER (both columns)
+   SHARED CARD HEADER
    ========================================================= */
 
 .checkout-card-header {
@@ -267,6 +267,80 @@
     font-size: 20px;
 }
 
+/* =========================================================
+   APPLIED COUPON
+   ========================================================= */
+
+.checkout-coupon-summary {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 4px 0 8px;
+    padding: 12px 13px;
+    background: #201a15;
+    border: 1px solid #4a3c2c;
+    border-left: 3px solid #a3803f;
+    border-radius: 3px;
+}
+
+.checkout-coupon-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 32px;
+    width: 32px;
+    height: 32px;
+    color: #a3803f;
+    background: #171310;
+    border: 1px solid #4a3c2c;
+    border-radius: 3px;
+    font-size: 13px;
+}
+
+.checkout-coupon-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+    flex: 1;
+}
+
+    .checkout-coupon-content span {
+        color: #8a7a64;
+        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.6px;
+    }
+
+    .checkout-coupon-content strong {
+        overflow: hidden;
+        color: #d8cbb3;
+        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 800;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+.checkout-coupon-check {
+    flex-shrink: 0;
+    color: #5c6b46;
+    font-size: 14px;
+}
+
+.checkout-coupon-note {
+    margin: 0 0 14px;
+    color: #6f624f;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+/* =========================================================
+   DIVIDER
+   ========================================================= */
+
 .checkout-summary-divider {
     height: 1px;
     margin: 16px 0;
@@ -325,6 +399,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 8px;
     width: 100%;
     padding: 13px;
     border-radius: 2px;
@@ -386,6 +461,10 @@
 
 @media (max-width: 600px) {
 
+    .checkout-page {
+        padding: 0 18px;
+    }
+
     .checkout-header {
         flex-direction: column;
         align-items: flex-start;
@@ -403,5 +482,9 @@
 
     .checkout-card-header {
         padding: 18px 20px;
+    }
+
+    .checkout-coupon-summary {
+        padding: 11px 12px;
     }
 }

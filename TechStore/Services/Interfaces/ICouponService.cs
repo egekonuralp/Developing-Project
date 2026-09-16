@@ -8,6 +8,8 @@ namespace TechStore.Services.Interfaces
 
         Task<Coupon?> GetByIdAsync(int id);
 
+        Task<Coupon?> GetByCodeAsync(string code);
+
         Task AddAsync(Coupon coupon);
 
         Task<bool> IsValidAsync(string code, decimal orderAmount);
