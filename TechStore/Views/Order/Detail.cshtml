@@ -274,11 +274,56 @@
 
             </div>
 
-            <!-- TOTAL -->
+            <!-- ORDERS TOTAL -->
             <div class="order-products-total">
 
+                <div class="order-total-row">
+
+                    <span>
+                        Ürünler Toplamı
+                    </span>
+
+                    <strong>
+                        @Model.Subtotal.ToString("N2") ₺
+                    </strong>
+
+                </div>
+
+            </div>
+
+            @if (!string.IsNullOrWhiteSpace(Model.CouponCode) && Model.DiscountAmount > 0)
+            {
+                <div class="order-total-row order-discount-row">
+
+                    <span>
+                        Kupon İndirimi
+                    </span>
+
+                    <strong>
+                        -@Model.DiscountAmount.ToString("N2") ₺
+                    </strong>
+
+                </div>
+
+                <div class="order-total-row order-coupon-row">
+
+                    <span>
+                        Kullanılan Kupon
+                    </span>
+
+                    <strong>
+                        @Model.CouponCode
+                    </strong>
+
+                </div>
+            }
+
+            <div class="order-total-divider"></div>
+
+            <div class="order-total-row order-final-total">
+
                 <span>
-                    Sipariş Toplamı
+                    Genel Toplam
                 </span>
 
                 <strong>
@@ -287,93 +332,93 @@
 
             </div>
 
-        </div>
+            <!-- DELIVERY -->
+            <div class="delivery-card">
 
-        <!-- DELIVERY -->
-        <div class="delivery-card">
+                <div class="order-card-header">
 
-            <div class="order-card-header">
+                    <h2>
+                        Teslimat Bilgileri
+                    </h2>
 
-                <h2>
-                    Teslimat Bilgileri
-                </h2>
+                </div>
+
+                <div class="delivery-content">
+
+                    <div class="delivery-row">
+
+                        <span class="delivery-label">
+                            Ad Soyad
+                        </span>
+
+                        <strong>
+                            @Model.FullName
+                        </strong>
+
+                    </div>
+
+                    <div class="delivery-row">
+
+                        <span class="delivery-label">
+                            Telefon
+                        </span>
+
+                        <strong>
+                            @Model.Phone
+                        </strong>
+
+                    </div>
+
+                    <div class="delivery-row">
+
+                        <span class="delivery-label">
+                            Şehir
+                        </span>
+
+                        <strong>
+                            @Model.City
+                        </strong>
+
+                    </div>
+
+                    <div class="delivery-row">
+
+                        <span class="delivery-label">
+                            İlçe
+                        </span>
+
+                        <strong>
+                            @Model.District
+                        </strong>
+
+                    </div>
+
+                    <div class="delivery-address">
+
+                        <span class="delivery-label">
+                            Adres
+                        </span>
+
+                        <p>
+                            @Model.Address
+                        </p>
+
+                    </div>
+
+                </div>
 
             </div>
 
-            <div class="delivery-content">
-
-                <div class="delivery-row">
-
-                    <span class="delivery-label">
-                        Ad Soyad
-                    </span>
-
-                    <strong>
-                        @Model.FullName
-                    </strong>
-
-                </div>
-
-                <div class="delivery-row">
-
-                    <span class="delivery-label">
-                        Telefon
-                    </span>
-
-                    <strong>
-                        @Model.Phone
-                    </strong>
-
-                </div>
-
-                <div class="delivery-row">
-
-                    <span class="delivery-label">
-                        Şehir
-                    </span>
-
-                    <strong>
-                        @Model.City
-                    </strong>
-
-                </div>
-
-                <div class="delivery-row">
-
-                    <span class="delivery-label">
-                        İlçe
-                    </span>
-
-                    <strong>
-                        @Model.District
-                    </strong>
-
-                </div>
-
-                <div class="delivery-address">
-
-                    <span class="delivery-label">
-                        Adres
-                    </span>
-
-                    <p>
-                        @Model.Address
-                    </p>
-
-                </div>
-
-            </div>
-
         </div>
 
-    </div>
+        <!-- FOOTER ACTION -->
+        <div class="order-detail-footer">
 
-    <!-- FOOTER ACTION -->
-    <div class="order-detail-footer">
+            <a asp-action="MyOrders" class="order-back-button">
+                ← Siparişlerime Dön
+            </a>
 
-        <a asp-action="MyOrders" class="order-back-button">
-            ← Siparişlerime Dön
-        </a>
+        </div>
 
     </div>
 

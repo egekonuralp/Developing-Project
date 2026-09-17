@@ -343,9 +343,6 @@ COMPLETED STEP
    ========================================================= */
 
 .order-products-total {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     padding: 18px 24px;
     background: #201a15;
     border-top: 1px solid #4a3c2c;
@@ -355,7 +352,54 @@ COMPLETED STEP
     font-weight: 700;
 }
 
-    .order-products-total strong {
+.order-total-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 7px 0;
+}
+
+    .order-total-row strong {
+        color: #d8cbb3;
+        font-size: 15px;
+        white-space: nowrap;
+    }
+
+.order-discount-row {
+    color: #7f9471;
+}
+
+    .order-discount-row strong {
+        color: #7f9471;
+    }
+
+.order-coupon-row {
+    color: #8a7a64;
+}
+
+    .order-coupon-row strong {
+        color: #a3803f;
+        font-size: 13px;
+        letter-spacing: 0.5px;
+    }
+
+.order-total-divider {
+    height: 1px;
+    margin: 10px 0 8px;
+    background: #4a3c2c;
+}
+
+.order-final-total {
+    padding-top: 10px;
+}
+
+    .order-final-total span {
+        color: #d8cbb3;
+        font-size: 16px;
+    }
+
+    .order-final-total strong {
         color: #8a4030;
         font-size: 20px;
     }

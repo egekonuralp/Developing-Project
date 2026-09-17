@@ -27,5 +27,7 @@ namespace TechStore.ViewModels
         public decimal DiscountAmount { get; set; }
 
         public List<OrderItem> OrderItems { get; set; } = new();
+
+        public decimal Subtotal => OrderItems.Sum(x => x.UnitPrice * x.Quantity);
     }
 }
