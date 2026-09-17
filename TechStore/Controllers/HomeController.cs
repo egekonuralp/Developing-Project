@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+ï»¿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using System.Diagnostics;
 using System.Security.Claims;
@@ -141,15 +141,15 @@ namespace TechStore.Controllers
             {
                 await _reviewService.AddReviewAsync(productId, userId, rating, comment);
 
-                TempData["ReviewMessage"] = "Deðerlendirmeniz Baþarýyla Eklendi.";
+                TempData["ReviewMessage"] = "DeÄŸerlendirmeniz BaÅŸarÄ±yla Eklendi.";
             }
             catch (ArgumentException)
             {
-                TempData["ReviewError"] = "Deðerlendirmeniz Eklenirken Bir Hata Oluþtu.";
+                TempData["ReviewError"] = "DeÄŸerlendirmeniz Eklenirken Bir Hata OluÅŸtu.";
             }
             catch (InvalidOperationException)
             {
-                TempData["ReviewError"] = "Deðerlendirmeniz Eklenirken Bir Hata Oluþtu.";
+                TempData["ReviewError"] = "DeÄŸerlendirmeniz Eklenirken Bir Hata OluÅŸtu.";
             }
 
             return RedirectToAction(nameof(Details), new { id = productId });
