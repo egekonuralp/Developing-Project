@@ -276,47 +276,64 @@
 
                     </div>
 
-                    <!-- COUPON -->
-                    @if (!string.IsNullOrEmpty(Model.AppliedCouponCode))
-                    {
-                        <div class="payment-coupon">
-
-                            <div class="payment-coupon-icon">
-                                <i class="fa-solid fa-ticket"></i>
-                            </div>
-
-                            <div class="payment-coupon-content">
-
-                                <span>
-                                    Uygulanan Kupon
-                                </span>
-
-                                <strong>
-                                    @Model.AppliedCouponCode
-                                </strong>
-
-                            </div>
-
-                            <span class="payment-coupon-status">
-                                <i class="fa-solid fa-check"></i>
-                            </span>
-
-                        </div>
-
-                        <p class="payment-coupon-note">
-                            Kuponunuz sipariş oluşturulurken tekrar doğrulanıp uygulanacaktır.
-                        </p>
-                    }
-
-                    <!-- TOTAL -->
-                    <div class="summary-total">
+                    <!-- SUBTOTAL -->
+                    <div class="summary-row">
 
                         <span>
-                            Sipariş Tutarı
+                            Sepet Toplamı
                         </span>
 
                         <strong>
                             @Model.TotalPrice.ToString("N2") ₺
+                        </strong>
+
+                    </div>
+
+                    <!-- COUPON -->
+                    @if (!string.IsNullOrWhiteSpace(Model.AppliedCouponCode) &&
+                                        Model.DiscountAmount > 0)
+                    {
+                        <div class="summary-row payment-coupon-row">
+
+                            <span>
+                                Kupon
+                            </span>
+
+                            <strong class="payment-coupon-code">
+                                @Model.AppliedCouponCode
+                            </strong>
+
+                        </div>
+
+                        <div class="summary-row payment-discount-row">
+
+                            <span>
+                                Kupon İndirimi
+                            </span>
+
+                            <strong>
+                                -@Model.DiscountAmount.ToString("N2") ₺
+                            </strong>
+
+                        </div>
+
+                        <p class="payment-coupon-note">
+                            Kuponunuz sipariş oluşturulurken tekrar doğrulanacaktır.
+                        </p>
+                    }
+
+                    <!-- DIVIDER -->
+                    <div class="payment-summary-divider"></div>
+
+                    <!-- FINAL TOTAL -->
+                    <div class="summary-row payment-final-row">
+
+                        <span>
+                            Genel Toplam
+                        </span>
+
+                        <strong class="payment-total">
+                            @Model.FinalTotal.ToString("N2") ₺
                         </strong>
 
                     </div>
