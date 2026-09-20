@@ -1,0 +1,378 @@
+﻿@using Microsoft.AspNetCore.Mvc.Rendering
+@model TechStore.ViewModels.ProductIndexViewModel
+@{
+    ViewData["Title"] = "Pasif Ürünler";
+    Layout = "_AdminLayout";
+}
+
+<div class="page-header">
+
+    <div>
+
+        <h2>Pasif Ürünler</h2>
+
+        <p>Vitrinden kaldırılmış ürünler burada listelenir, dilediğin zaman tekrar aktif edebilirsin.</p>
+
+    </div>
+
+    <div class="page-header-actions">
+
+        <a asp-action="Index"
+           class="btn-secondary-custom">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Aktif Ürünler
+
+        </a>
+
+    </div>
+
+</div>
+
+@if (TempData["Success"] != null)
+{
+    <div class="admin-alert admin-alert-success">@TempData["Success"]</div>
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="admin-alert admin-alert-danger">@TempData["Error"]</div>
+}
+
+<form method="get" asp-action="Inactive">
+
+    <div class="action-bar">
+
+        <div class="search-box">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input type="text"
+                   name="search"
+                   value="@Model.Filter.Search"
+                   placeholder="Search product..."
+                   class="search-input" />
+
+        </div>
+
+        <select name="categoryId"
+                class="search-input">
+
+            <option value="">All Categories</option>
+
+            @foreach (var category in Model.Categories)
+            {
+                if (Model.Filter.CategoryId == category.Id)
+                {
+                    <option value="@category.Id" selected>
+                        @category.Name
+                    </option>
+                }
+                else
+                {
+                    <option value="@category.Id">
+                        @category.Name
+                    </option>
+                }
+            }
+
+        </select>
+
+        <input type="number"
+               name="minPrice"
+               value="@Model.Filter.MinPrice"
+               placeholder="Min Price"
+               min="0"
+               step="0.01"
+               class="search-input" />
+
+        <input type="number"
+               name="maxPrice"
+               value="@Model.Filter.MaxPrice"
+               placeholder="Max Price"
+               min="0"
+               step="0.01"
+               class="search-input" />
+
+        <div class="action-right">
+
+            <button type="submit"
+                    class="btn-secondary-custom">
+
+                <i class="fa-solid fa-filter"></i>
+
+                Filter
+
+            </button>
+
+            <a asp-action="Inactive"
+               class="btn-secondary-custom">
+
+                <i class="fa-solid fa-rotate-left"></i>
+
+                Clear
+
+            </a>
+
+        </div>
+
+    </div>
+
+</form>
+
+<div class="card-custom">
+
+    <table class="table-custom">
+
+        <thead>
+
+            <tr>
+
+                <th class="image-column">Resim</th>
+                <th>Ürün</th>
+                <th>Kategori</th>
+                <th class="price-column">Fiyat</th>
+                <th class="stock-column">Stok</th>
+                <th>Marka</th>
+                <th>Durum</th>
+                <th class="action-column">İşlemler</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            @if (Model.Products.Any())
+            {
+                @foreach (var product in Model.Products)
+                {
+                    <tr>
+
+                        <td class="image-column">
+
+                            @{
+                                var mainImage = product.Images
+                                .FirstOrDefault(x => x.IsMain)?.ImageUrl
+                                ?? product.Images.FirstOrDefault()?.ImageUrl;
+                            }
+
+                            @if (!string.IsNullOrEmpty(mainImage))
+                            {
+                                <img src="@mainImage" class="product-image" alt="@product.Name" />
+                            }
+                            else
+                            {
+                                <span>Resim Yok</span>
+                            }
+
+                        </td>
+
+                        <td>
+
+                            <div class="product-info">
+
+                                <div class="product-name">
+
+                                    @product.Name
+
+                                </div>
+
+                                <div class="product-brand">
+
+                                    @product.Brand
+
+                                </div>
+
+                            </div>
+
+                        </td>
+
+                        <td>
+
+                            <span class="category-badge">
+
+                                @product.Category.Name
+
+                            </span>
+
+                        </td>
+
+                        <td class="price-column">
+
+                            @product.Price.ToString("N2") ₺
+
+                        </td>
+
+                        <td class="stock-column">
+
+                            @if (product.Stock > 10)
+                            {
+                                <span class="badge-stock in-stock">
+
+                                    @product.Stock
+
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="badge-stock low-stock">
+
+                                    @product.Stock
+
+                                </span>
+                            }
+
+                        </td>
+
+                        <td>
+
+                            @product.Brand
+
+                        </td>
+
+                        <td>
+
+                            <span class="status-badge inactive">
+                                Pasif
+                            </span>
+
+                        </td>
+
+                        <td class="action-column">
+
+                            <div class="action-buttons">
+
+                                <a asp-action="Edit"
+                                   asp-route-id="@product.Id"
+                                   class="btn-icon btn-edit">
+
+                                    <i class="fa-solid fa-pen"></i>
+
+                                </a>
+
+                                <a asp-controller="ProductImage"
+                                   asp-action="Index"
+                                   asp-route-productId="@product.Id"
+                                   class="btn-icon"
+                                   title="Galeri">
+
+                                    <i class="fa-solid fa-images"></i>
+
+                                </a>
+
+                                <form asp-action="Activate" method="post" style="display:inline;">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="id" value="@product.Id" />
+                                    <button type="submit" class="btn-icon btn-toggle-on" title="Ürünü aktif yap">
+                                        <i class="fa-solid fa-toggle-on"></i>
+                                    </button>
+                                </form>
+
+                                <a asp-action="Delete"
+                                   asp-route-id="@product.Id"
+                                   class="btn-icon btn-delete">
+
+                                    <i class="fa-solid fa-trash"></i>
+
+                                </a>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+
+                    <td colspan="8">
+
+                        Pasif ürün bulunmuyor.
+
+                    </td>
+
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+
+</div>
+
+<div class="pagination-info">
+
+    Showing @Model.Products.Count of @Model.TotalCount products
+
+</div>
+
+@{
+    var startPage = Math.Max(1, Model.CurrentPage - 2);
+    var endPage = Math.Min(Model.TotalPages, Model.CurrentPage + 2);
+}
+
+@if (Model.TotalPages > 1)
+{
+    <div class="pagination">
+
+        @if (Model.CurrentPage > 1)
+        {
+            <a asp-action="Inactive"
+               asp-route-search="@Model.Filter.Search"
+               asp-route-categoryId="@Model.Filter.CategoryId"
+               asp-route-minPrice="@Model.Filter.MinPrice"
+               asp-route-maxPrice="@Model.Filter.MaxPrice"
+               asp-route-page="@(Model.CurrentPage - 1)"
+               class="pagination-btn">
+                <i class="fa-solid fa-chevron-left"></i>
+                Previous
+            </a>
+        }
+        else
+        {
+            <span class="pagination-btn disabled">
+                <i class="fa-solid fa-chevron-left"></i>
+                Previous
+            </span>
+        }
+
+        @for (int i = startPage; i <= endPage; i++)
+        {
+            <a asp-action="Inactive"
+               asp-route-search="@Model.Filter.Search"
+               asp-route-categoryId="@Model.Filter.CategoryId"
+               asp-route-minPrice="@Model.Filter.MinPrice"
+               asp-route-maxPrice="@Model.Filter.MaxPrice"
+               asp-route-page="@i"
+               class="page-number @(i == Model.CurrentPage ? "active" : "")">
+                @i
+            </a>
+        }
+
+        @if (Model.CurrentPage < Model.TotalPages)
+        {
+            <a asp-action="Inactive"
+               asp-route-search="@Model.Filter.Search"
+               asp-route-categoryId="@Model.Filter.CategoryId"
+               asp-route-minPrice="@Model.Filter.MinPrice"
+               asp-route-maxPrice="@Model.Filter.MaxPrice"
+               asp-route-page="@(Model.CurrentPage + 1)"
+               class="pagination-btn">
+                Next
+                <i class="fa-solid fa-chevron-right"></i>
+            </a>
+        }
+        else
+        {
+            <span class="pagination-btn disabled">
+                Next
+                <i class="fa-solid fa-chevron-right"></i>
+            </span>
+        }
+
+    </div>
+}

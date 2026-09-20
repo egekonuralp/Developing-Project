@@ -1,21 +1,19 @@
 ﻿/* =========================================================
-   FONTS — navbar.css her sayfada yüklendiği için
-   font import'unu burada tutuyoruz.
+   FONTS — navbar.css her sayfada yüklendiği için font
+   import'unu burada tutuyoruz. Vintage fontlar (Alfa Slab One,
+   Permanent Marker, Barlow Semi Condensed) hâlâ diğer sayfalarda
+   kullanıldığı için kaldırılmadı, yeni tema fontları eklendi.
    ========================================================= */
-@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Permanent+Marker&family=Barlow+Semi+Condensed:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Permanent+Marker&family=Barlow+Semi+Condensed:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 /* =========================================================
-   GLOBAL — body/html burada, çünkü navbar.css her sayfada
-   yüklenen tek dosya. Diğer tüm sayfa css'leri sadece
-   kendi içeriklerini stiller.
+   GLOBAL — body/html burada değil (bkz. footer.css), bu dosya
+   sadece header/navbar'a odaklanıyor.
 
-   Renk paleti: eskimiş / tozlu / vintage 90'lar blues-rock —
-   neon veya parlak canlı renk YOK. Solmuş pirinç, tozlu
-   denim mavisi, kavrulmuş deri, is siyahı.
+   Renk paleti: TECHSTORE — performans/teknoloji teması.
+   Neredeyse siyah zemin, tek sinyal rengi asit yeşili.
+   (home.css / footer.css ile aynı token seti.)
    ========================================================= */
-
-/* body/html/footer ayarları artık footer.css'te — bu dosya
-   sadece header/navbar'a odaklanıyor. */
 
 /* =========================================================
    HEADER
@@ -34,22 +32,19 @@
 .main-navbar {
     position: relative;
     min-height: 74px;
-    background: #262019;
-    border-bottom: 3px solid #4a3c2c;
-    box-shadow: 0 5px 16px rgba(0, 0, 0, 0.45);
+    background: #0b0d0e;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.09);
 }
 
-    /* Sade pirinç renkli alt çizgi — neon parlaması yok */
-
+    /* İnce yeşil sinyal çizgisi */
     .main-navbar::after {
         content: "";
         position: absolute;
         left: 0;
         right: 0;
-        bottom: 0;
-        height: 2px;
-        background: #a3803f;
-        opacity: 0.55;
+        bottom: -1px;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(62, 232, 129, 0.55) 25%, rgba(62, 232, 129, 0.55) 75%, transparent);
     }
 
 /* =========================================================
@@ -75,34 +70,32 @@
     align-items: center;
     gap: 9px;
     margin-right: 30px;
-    color: #d8cbb3;
+    color: #eef1ef;
     text-decoration: none;
     white-space: nowrap;
 }
 
     .navbar-brand:hover {
-        color: #bd9a5c;
+        color: #eef1ef;
     }
 
 .brand-icon {
-    color: #a3803f;
-    font-size: 23px;
-    transition: transform 0.25s ease, color 0.25s ease;
+    color: #3ee881;
+    font-size: 21px;
+    text-shadow: 0 0 14px rgba(62, 232, 129, 0.55);
+    transition: transform 0.25s ease;
 }
 
 .navbar-brand:hover .brand-icon {
-    transform: rotate(-6deg) scale(1.08);
+    transform: scale(1.1);
 }
 
-/* Logo text — afiş görünümü, sade tek renk gölge (neon yok) */
-
 .brand-text {
-    font-family: 'Alfa Slab One', Georgia, serif;
-    font-size: 24px;
-    font-weight: 400;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.55);
+    font-family: 'Space Grotesk', 'Segoe UI', Arial, sans-serif;
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: -0.2px;
+    text-transform: none;
 }
 
 /* =========================================================
@@ -138,8 +131,8 @@
 .search-icon {
     position: absolute;
     left: 13px;
-    color: #8a7a64;
-    font-size: 14px;
+    color: #656d68;
+    font-size: 13px;
     pointer-events: none;
 }
 
@@ -147,23 +140,23 @@
     width: 100%;
     height: 40px;
     padding: 0 15px 0 38px;
-    color: #d8cbb3;
-    background: #171310;
-    border: 1px solid #4a3c2c;
-    border-radius: 2px;
+    color: #eef1ef;
+    background: #131619;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 6px;
     outline: none;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 15px;
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    font-size: 14.5px;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
     .search-wrapper input::placeholder {
-        color: #8a7a64;
+        color: #656d68;
     }
 
     .search-wrapper input:focus {
-        border-color: #a3803f;
-        box-shadow: 0 0 0 2px rgba(163, 128, 63, 0.18);
+        border-color: rgba(62, 232, 129, 0.5);
+        box-shadow: 0 0 0 3px rgba(62, 232, 129, 0.12);
     }
 
 /* =========================================================
@@ -189,22 +182,19 @@
     align-items: center;
     height: 74px;
     padding: 0 15px;
-    color: #d8cbb3;
+    color: #9ea6a1;
     text-decoration: none;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 15px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.6px;
-    transition: color 0.2s ease, background 0.2s ease;
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    font-size: 14.5px;
+    font-weight: 500;
+    text-transform: none;
+    letter-spacing: 0.1px;
+    transition: color 0.2s ease;
 }
 
     .navbar-link:hover {
-        color: #bd9a5c;
-        background: rgba(163, 128, 63, 0.08);
+        color: #eef1ef;
     }
-
-    /* Sade pirinç alt çizgi, parlama efekti yok */
 
     .navbar-link::after {
         content: "";
@@ -213,7 +203,7 @@
         right: 15px;
         bottom: 16px;
         height: 2px;
-        background: #a3803f;
+        background: #3ee881;
         transform: scaleX(0);
         transform-origin: center;
         transition: transform 0.25s ease;
@@ -230,7 +220,7 @@
 .navbar-right {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 18px;
     margin-left: auto;
 }
 
@@ -245,21 +235,21 @@
     justify-content: center;
     width: 42px;
     height: 42px;
-    color: #d8cbb3;
+    color: #9ea6a1;
     text-decoration: none;
-    border: 1px solid #4a3c2c;
-    border-radius: 2px;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 6px;
     transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
 }
 
     .navbar-cart:hover {
-        color: #171310;
-        background: #a3803f;
-        border-color: #a3803f;
+        color: #3ee881;
+        background: rgba(62, 232, 129, 0.1);
+        border-color: rgba(62, 232, 129, 0.4);
     }
 
 .cart-icon {
-    font-size: 18px;
+    font-size: 17px;
 }
 
 /* =========================================================
@@ -279,19 +269,18 @@
     gap: 8px;
     min-height: 42px;
     padding: 0 11px;
-    color: #d8cbb3;
+    color: #9ea6a1;
     text-decoration: none;
-    border-left: 1px solid #4a3c2c;
-    transition: color 0.2s ease, background 0.2s ease;
+    border-left: 1px solid rgba(255, 255, 255, 0.09);
+    transition: color 0.2s ease;
 }
 
     .account-toggle:hover {
-        color: #bd9a5c;
-        background: rgba(163, 128, 63, 0.08);
+        color: #eef1ef;
     }
 
 .account-icon {
-    font-size: 16px;
+    font-size: 15px;
 }
 
 .account-name {
@@ -299,13 +288,13 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 15px;
-    font-weight: 700;
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
 }
 
 .account-arrow {
-    color: #a3803f;
+    color: #656d68;
     font-size: 9px;
 }
 
@@ -320,10 +309,10 @@
     min-width: 230px;
     margin: 0;
     padding: 7px;
-    background: #322922;
-    border: 1px solid #4a3c2c;
-    border-radius: 2px;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    background: #131619;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.55);
     list-style: none;
     z-index: 1100;
     display: none;
@@ -339,45 +328,46 @@
     gap: 10px;
     width: 100%;
     padding: 10px 12px;
-    color: #d8cbb3;
+    color: #c7ccc9;
     background: transparent;
     border: 0;
-    border-radius: 2px;
+    border-radius: 6px;
     text-decoration: none;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 14px;
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    font-size: 13.5px;
+    font-weight: 500;
     transition: color 0.2s ease, background 0.2s ease;
 }
 
     .account-dropdown .dropdown-item:hover {
-        color: #bd9a5c;
-        background: #262019;
+        color: #eef1ef;
+        background: #181c1f;
     }
 
     .account-dropdown .dropdown-item i {
         width: 17px;
-        color: #a3803f;
+        color: #3ee881;
         text-align: center;
     }
 
 .account-dropdown .dropdown-divider {
     height: 0;
     margin: 7px 0;
-    border-top: 1px solid #4a3c2c;
+    border-top: 1px solid rgba(255, 255, 255, 0.09);
     opacity: 1;
 }
 
 .account-dropdown .admin-link {
-    color: #5c7686;
+    color: #9c8cf9;
 }
 
     .account-dropdown .admin-link i {
-        color: #5c7686;
+        color: #9c8cf9;
     }
 
     .account-dropdown .admin-link:hover {
-        color: #74909f;
-        background: #262019;
+        color: #b6aafa;
+        background: #181c1f;
     }
 
 .account-dropdown .logout-item {
@@ -390,12 +380,12 @@
 }
 
     .account-dropdown .logout-item:hover {
-        color: #ecd9d2;
-        background: #8a4030;
+        color: #ffb3ab;
+        background: rgba(227, 91, 83, 0.14);
     }
 
         .account-dropdown .logout-item:hover i {
-            color: #ecd9d2;
+            color: #ffb3ab;
         }
 
 /* =========================================================
@@ -405,46 +395,43 @@
 .guest-actions {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
 }
 
 .login-link {
-    color: #d8cbb3;
+    color: #9ea6a1;
     text-decoration: none;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 15px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.4px;
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    font-size: 14.5px;
+    font-weight: 600;
+    text-transform: none;
     transition: color 0.2s ease;
 }
 
     .login-link:hover {
-        color: #bd9a5c;
+        color: #eef1ef;
     }
 
-/* "Konser bileti" kayıt butonu — kesik çizgili kenar, düz pirinç */
-
 .register-button {
-    padding: 9px 15px;
-    color: #171310;
-    background: #a3803f;
-    border: 1px dashed #171310;
-    outline: 2px solid #a3803f;
-    outline-offset: -4px;
-    border-radius: 2px;
+    padding: 9px 16px;
+    color: #06120a;
+    background: linear-gradient(100deg, #82ffb4, #3ee881);
+    border: none;
+    border-radius: 0;
+    outline: none;
+    clip-path: polygon(0 0, 100% 0, 100% 70%, 90% 100%, 0 100%);
     text-decoration: none;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 14px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    transition: background 0.2s ease, outline-color 0.2s ease;
+    font-family: 'Space Grotesk', 'Segoe UI', Arial, sans-serif;
+    font-size: 13.5px;
+    font-weight: 600;
+    text-transform: none;
+    letter-spacing: 0.1px;
+    transition: filter 0.2s ease, transform 0.2s ease;
 }
 
     .register-button:hover {
-        background: #bd9a5c;
-        outline-color: #bd9a5c;
+        filter: brightness(1.06);
+        transform: translateY(-1px);
     }
 
 /* =========================================================
@@ -462,10 +449,10 @@
     min-width: 210px;
     margin: 0;
     padding: 7px;
-    background: #322922;
-    border: 1px solid #4a3c2c;
-    border-radius: 2px;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    background: #131619;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.55);
     list-style: none;
     z-index: 1100;
     display: none;
@@ -479,34 +466,34 @@
     display: block;
     width: 100%;
     padding: 10px 12px;
-    color: #d8cbb3;
+    color: #c7ccc9;
     background: transparent;
-    border-radius: 2px;
+    border-radius: 6px;
     text-decoration: none;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 14px;
-    font-weight: 600;
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    font-size: 13.5px;
+    font-weight: 500;
     transition: background 0.2s ease, color 0.2s ease;
 }
 
     .category-dropdown .dropdown-item:hover {
-        color: #bd9a5c;
-        background: #262019;
+        color: #82ffb4;
+        background: #181c1f;
     }
 
 .category-arrow {
     margin-left: 7px;
-    color: #a3803f;
+    color: #656d68;
     font-size: 9px;
 }
 
 .category-empty {
-    color: #8a7a64;
+    color: #656d68;
     cursor: default;
 }
 
     .category-empty:hover {
-        color: #8a7a64;
+        color: #656d68;
         background: transparent;
     }
 
@@ -514,7 +501,7 @@
    FOOTER
    ========================================================= */
 
-/* Footer kuralları artık footer.css'te. */
+/* Footer kuralları footer.css'te. */
 
 /* =========================================================
    RESPONSIVE
@@ -557,7 +544,7 @@
     }
 
     .brand-text {
-        font-size: 20px;
+        font-size: 18px;
     }
 
     .navbar-search {
@@ -630,11 +617,11 @@
     }
 
     .brand-text {
-        font-size: 18px;
+        font-size: 17px;
     }
 
     .brand-icon {
-        font-size: 20px;
+        font-size: 19px;
     }
 
     .navbar-content {

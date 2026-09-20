@@ -9,21 +9,27 @@
     margin-bottom: 22px;
 }
 
-    .page-header h2 {
-        margin: 0 0 6px;
-        color: #d8cbb3;
-        font-family: 'Alfa Slab One', Georgia, serif;
-        font-size: 22px;
-        font-weight: 400;
-        text-transform: uppercase;
-    }
+.page-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 
-    .page-header p {
-        margin: 0;
-        color: #8a7a64;
-        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-        font-size: 14px;
-    }
+.page-header h2 {
+    margin: 0 0 6px;
+    color: #d8cbb3;
+    font-family: 'Alfa Slab One', Georgia, serif;
+    font-size: 22px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.page-header p {
+    margin: 0;
+    color: #8a7a64;
+    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+}
 
 .admin-alert {
     padding: 12px 15px;

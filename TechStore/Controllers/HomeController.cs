@@ -41,8 +41,13 @@ namespace TechStore.Controllers
                 Page = Page,
                 PageSize = PageSize,
                 Search = search,
-                CategoryId = categoryId
+                CategoryId = categoryId,
+                IsActive = true
             };
+
+            var totalCount = await _productService.CountAsync(filter);
+
+            var totalPages = (int)Math.Ceiling((double)totalCount / filter.PageSize);
 
             var products = await _productService.GetActiveProductsAsync(filter);
             var categories = await _categoryService.GetAllAsync();
@@ -66,7 +71,11 @@ namespace TechStore.Controllers
                 Categories = categories,
                 Search = search,
                 SelectedCategoryId = categoryId,
-                WishlistProductIds = wishlistProductIds
+                WishlistProductIds = wishlistProductIds,
+                CurrentPage = filter.Page,
+                TotalPages = totalPages,
+                TotalCount = totalCount,
+                PageSize = filter.PageSize
             };
 
             return View(viewModel);

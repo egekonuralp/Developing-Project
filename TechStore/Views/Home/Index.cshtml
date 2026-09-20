@@ -7,19 +7,20 @@
         <div class="hero-content">
 
             <span class="hero-eyebrow">
-                TEKNOLOJİ • GÜNLÜK FIRSATLAR
+                <i class="hero-eyebrow-dot" aria-hidden="true"></i>
+                Stok anlık güncelleniyor
             </span>
 
-            <p class="hero-kicker">Geleceği bugünden keşfet</p>
+            <p class="hero-kicker">Dystopia // seçili teknoloji ekipmanı</p>
 
-            <h1>Teknolojini<br />yükselt.</h1>
+            <h1>Performansını<br />bir üst seviyeye taşı.</h1>
 
-            <p>Günlük yaşamını ve oyun deneyimini geliştirecek seçili ürünleri keşfet.</p>
+            <p>Oyun performansından günlük verimliliğe — ihtiyacın olan teknolojiyi tek noktadan keşfet.</p>
 
             <div class="hero-actions">
 
                 <a asp-action="Index" class="hero-button">
-                    Ürünleri Keşfet 
+                    Ürünleri Keşfet
                     <span>→</span>
                 </a>
 
@@ -33,17 +34,17 @@
 
                 <li>
                     <span>✓</span>
-                    Güvenli alışveriş
+                    Güvenli ödeme
                 </li>
 
                 <li>
                     <span>✓</span>
-                    Hızlı destek
+                    7/24 destek
                 </li>
 
                 <li>
                     <span>✓</span>
-                    Güncel teknoloji
+                    Hızlı teslimat
                 </li>
 
             </ul>
@@ -89,21 +90,21 @@
                 <b data-days>00</b>
                 <small>GÜN</small>
 
-                </span><span>
+            </span><span>
 
                 <b data-hours>00</b>
                 <small>SAAT</small>
-            
-                </span><span>
-                    
+
+            </span><span>
+
                 <b data-minutes>00</b>
                 <small>DK</small>
-            
-                </span><span>
-                    
+
+            </span><span>
+
                 <b data-seconds>00</b>
                 <small>SN</small>
-            
+
             </span>
 
         </div>
@@ -116,13 +117,14 @@
     {
         <section class="category-discovery">
 
-            <div class="section-heading"><div>
-                
-                <span class="section-eyebrow">KATEGORİLER</span>
-                
-                <h2>Aradığını kolayca bul</h2>
-            
-            </div>  
+            <div class="section-heading">
+                <div>
+
+                    <span class="section-eyebrow">KATEGORİLER</span>
+
+                    <h2>Aradığını kolayca bul</h2>
+
+                </div>
                 <a asp-action="Index" class="view-all-link">Tümünü Gör →</a>
             </div>
 
@@ -151,13 +153,13 @@
             <div>
 
                 <span class="section-eyebrow">@(!string.IsNullOrWhiteSpace(Model.Search) || Model.SelectedCategoryId.HasValue ? "ARAMA SONUÇLARI" : "ÖNE ÇIKANLAR")</span>
-                
+
                 <h2>@(!string.IsNullOrWhiteSpace(Model.Search) || Model.SelectedCategoryId.HasValue ? "Sana uygun ürünler" : "Yeni gelen teknoloji")</h2>
-            
+
             </div>
 
             <a asp-action="Index" class="view-all-link">Tüm Ürünler →</a>
-        
+
         </div>
 
         @if (Model.Products.Any())
@@ -191,8 +193,8 @@
 
                                 @{
                                     var mainImage = product.Images
-                                        .FirstOrDefault(x => x.IsMain)?.ImageUrl
-                                            ?? product.Images.FirstOrDefault()?.ImageUrl;
+                                    .FirstOrDefault(x => x.IsMain)?.ImageUrl
+                                    ?? product.Images.FirstOrDefault()?.ImageUrl;
                                 }
 
                                 @if (!string.IsNullOrEmpty(mainImage))
@@ -205,7 +207,7 @@
                                         <span> ⚡ </span>
                                         <small>RESİM YOK</small>
                                     </div>
-                                }                            
+                                }
 
                                 <span class="product-category">@product.Category.Name</span>
 
@@ -269,6 +271,102 @@
 
             </div>
 
+            <div class="pagination-info">
+                @(Model.TotalCount == 0 ? "0" : ((Model.CurrentPage - 1) * Model.PageSize + 1).ToString())–@(Math.Min(Model.CurrentPage * Model.PageSize, Model.TotalCount)) / @Model.TotalCount ürün
+            </div>
+
+            var startPage = Math.Max(1, Model.CurrentPage - 2);
+            var endPage = Math.Min(Model.TotalPages, Model.CurrentPage + 2);
+
+            @if (Model.TotalPages > 1)
+            {
+                <div class="pagination">
+
+                    @if (Model.CurrentPage > 1)
+                    {
+                        <a asp-action="Index"
+                           asp-route-search="@Model.Search"
+                           asp-route-categoryId="@Model.SelectedCategoryId"
+                           asp-route-page="@(Model.CurrentPage - 1)"
+                           asp-fragment="featured-products"
+                           class="pagination-btn">
+                            <i class="fa-solid fa-chevron-left"></i>
+                            Önceki
+                        </a>
+                    }
+                    else
+                    {
+                        <span class="pagination-btn disabled">
+                            <i class="fa-solid fa-chevron-left"></i>
+                            Önceki
+                        </span>
+                    }
+
+                    @if (startPage > 1)
+                    {
+                        <a asp-action="Index"
+                           asp-route-search="@Model.Search"
+                           asp-route-categoryId="@Model.SelectedCategoryId"
+                           asp-route-page="1"
+                           asp-fragment="featured-products"
+                           class="page-number">1</a>
+
+                        if (startPage > 2)
+                        {
+                            <span class="page-ellipsis">…</span>
+                        }
+                    }
+
+                    @for (int i = startPage; i <= endPage; i++)
+                    {
+                        <a asp-action="Index"
+                           asp-route-search="@Model.Search"
+                           asp-route-categoryId="@Model.SelectedCategoryId"
+                           asp-route-page="@i"
+                           asp-fragment="featured-products"
+                           class="page-number @(i == Model.CurrentPage ? "active" : "")">
+                            @i
+                        </a>
+                    }
+
+                    @if (endPage < Model.TotalPages)
+                    {
+                        if (endPage < Model.TotalPages - 1)
+                        {
+                            <span class="page-ellipsis">…</span>
+                        }
+
+                        <a asp-action="Index"
+                           asp-route-search="@Model.Search"
+                           asp-route-categoryId="@Model.SelectedCategoryId"
+                           asp-route-page="@Model.TotalPages"
+                           asp-fragment="featured-products"
+                           class="page-number">@Model.TotalPages</a>
+                    }
+
+                    @if (Model.CurrentPage < Model.TotalPages)
+                    {
+                        <a asp-action="Index"
+                           asp-route-search="@Model.Search"
+                           asp-route-categoryId="@Model.SelectedCategoryId"
+                           asp-route-page="@(Model.CurrentPage + 1)"
+                           asp-fragment="featured-products"
+                           class="pagination-btn">
+                            Sonraki
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </a>
+                    }
+                    else
+                    {
+                        <span class="pagination-btn disabled">
+                            Sonraki
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </span>
+                    }
+
+                </div>
+            }
+
         }
         else
         {
@@ -306,7 +404,7 @@
                 <p>Siparişini kolayca takip et.</p>
             </div>
         </article>
-        
+
         <article>
             <span>↺</span>
             <div>
@@ -314,7 +412,7 @@
                 <p>İhtiyacın olduğunda yanındayız.</p>
             </div>
         </article>
-        
+
         <article>
             <span>✦</span>
             <div>
@@ -327,13 +425,13 @@
 
     <section class="club-section">
         <div>
-            <span class="section-eyebrow">TECHSTORE KULÜBÜ</span>
+            <span class="section-eyebrow">DYSTOPİA KULÜBÜ</span>
             <h2>Yeni fırsatları ilk sen gör.</h2>
             <p>Hesabını oluştur, siparişlerini takip et ve destek ekibimize doğrudan ulaş.</p>
         </div>
 
         <a asp-controller="Account" asp-action="Register" class="hero-button">
-            Hesap Oluştur 
+            Hesap Oluştur
             <span>→</span>
         </a>
 
@@ -341,4 +439,6 @@
 
 </div>
 
-@section Scripts { <script src="~/js/home.js" asp-append-version="true"></script> }
+@section Scripts {
+    <script src="~/js/home.js" asp-append-version="true"></script>
+}

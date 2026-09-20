@@ -31,6 +31,12 @@ namespace TechStore.Repositories.Implementations
                     p.CategoryId == filter.CategoryId.Value);
             }
 
+            if (filter.IsActive.HasValue)
+            {
+                query = query.Where(p =>
+                    p.IsActive == filter.IsActive.Value);
+            }
+
             if (filter.MinPrice.HasValue)
             {
                 query = query.Where(p =>

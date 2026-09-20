@@ -25,8 +25,7 @@
     <!-- HOME -->
     @if (ViewContext.RouteData.Values["Controller"]?.ToString() == "Home")
     {
-        <link rel="stylesheet" href="~/css/home.css" asp-append-version="true" />
-        <link rel="stylesheet" href="~/css/home-enhancements.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/home.css" asp-append-version="true" />       
     }
 
     @if (ViewContext.RouteData.Values["Controller"]?.ToString() == "Home" &&
@@ -129,12 +128,8 @@
                     <!-- LOGO -->
                     <a class="navbar-brand" asp-controller="Home" asp-action="Index">
 
-                        <span class="brand-icon">
-                            ⚡
-                        </span>
-
                         <span class="brand-text">
-                            TechStore
+                            Dystopia
                         </span>
 
                     </a>
@@ -256,7 +251,7 @@
         <footer class="site-footer">
             <div class="container site-footer-inner">
                 <div class="footer-brand">
-                    <a asp-controller="Home" asp-action="Index" class="footer-logo"><span>⚡</span> TechStore</a>
+                    <a asp-controller="Home" asp-action="Index" class="footer-logo"> Dystopia</a>
                     <p>Teknolojiyi daha erişilebilir, alışverişi daha keyifli hâle getiriyoruz.</p>
                 </div>
 
@@ -266,13 +261,13 @@
                 </div>
 
                 <div class="footer-contact">
-                    <span class="footer-label">TECHSTORE KULÜBÜ</span>
+                    <span class="footer-label">DYSTOPIA KULÜBÜ</span>
                     <p>Yeni ürünleri, fırsatları ve mağaza yeniliklerini keşfet.</p>
                     <a asp-controller="Account" asp-action="Register" class="footer-cta">Aramıza katıl →</a>
                 </div>
             </div>
             <div class="container footer-bottom">
-                <span>&copy; 2026 TechStore. Tüm hakları saklıdır.</span>
+                <span>&copy; 2026 Dystopia. Tüm hakları saklıdır.</span>
                 <span>Güvenli alışveriş için tasarlandı.</span>
             </div>
         </footer>

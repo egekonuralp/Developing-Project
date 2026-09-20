@@ -40,7 +40,46 @@ namespace TechStore.Controllers
                 CategoryId = categoryId,
                 MinPrice = minPrice,
                 MaxPrice = maxPrice,
-                Page = page
+                Page = page,
+                IsActive = true
+            };
+
+            var totalCount = await _productService.CountAsync(filter);
+
+            var totalPages = (int)Math.Ceiling((double)totalCount / filter.PageSize);
+
+            var products = await _productService.GetAllAsync(filter);
+
+            var categories = await _categoryService.GetAllAsync();
+
+            var viewModel = new ProductIndexViewModel
+            {
+                Products = products,
+                Categories = categories,
+                Filter = filter,
+
+                CurrentPage = filter.Page,
+                TotalPages = totalPages,
+                TotalCount = totalCount,
+                PageSize = filter.PageSize
+            };
+
+            return View(viewModel);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Inactive(string? search, int? categoryId, decimal? minPrice, decimal? maxPrice, int page = 1)
+        {
+            page = Math.Max(1, page);
+
+            var filter = new ProductFilterDto
+            {
+                Search = search,
+                CategoryId = categoryId,
+                MinPrice = minPrice,
+                MaxPrice = maxPrice,
+                Page = page,
+                IsActive = false
             };
 
             var totalCount = await _productService.CountAsync(filter);
@@ -174,7 +213,7 @@ namespace TechStore.Controllers
                 Price = product.Price,
                 Stock = product.Stock,
                 Brand = product.Brand,
-                CategoryId = product.CategoryId,                
+                CategoryId = product.CategoryId,
                 GalleryImages = galleryImages,
                 Categories = await _categoryService.GetAllAsync()
             };
@@ -267,9 +306,9 @@ namespace TechStore.Controllers
                         image.ImageUrl.TrimStart('/')
                         .Replace('/', Path.DirectorySeparatorChar));
 
-                    if (System.IO.File.Exists(filePath)) 
-                    { 
-                        System.IO.File.Delete(filePath); 
+                    if (System.IO.File.Exists(filePath))
+                    {
+                        System.IO.File.Delete(filePath);
                     }
                 }
 
@@ -281,7 +320,7 @@ namespace TechStore.Controllers
             {
                 TempData["Error"] = "Bu ürün kullanıldığı için silinemiyor.";
                 return RedirectToAction(nameof(Delete), new { id = product.Id });
-            }   
+            }
         }
 
         [HttpPost]

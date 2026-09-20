@@ -15,14 +15,27 @@
 
     </div>
 
-    <a asp-action="Create"
-       class="btn-primary-custom">
+    <div class="page-header-actions">
 
-        <i class="fa-solid fa-plus"></i>
+        <a asp-action="Inactive"
+           class="btn-secondary-custom">
 
-        New Product
+            <i class="fa-solid fa-box-archive"></i>
 
-    </a>
+            Pasif Ürünler
+
+        </a>
+
+        <a asp-action="Create"
+           class="btn-primary-custom">
+
+            <i class="fa-solid fa-plus"></i>
+
+            New Product
+
+        </a>
+
+    </div>
 
 </div>
 
@@ -150,8 +163,8 @@
 
                             @{
                                 var mainImage = product.Images
-                                    .FirstOrDefault(x => x.IsMain)?.ImageUrl
-                                        ?? product.Images.FirstOrDefault()?.ImageUrl;
+                                .FirstOrDefault(x => x.IsMain)?.ImageUrl
+                                ?? product.Images.FirstOrDefault()?.ImageUrl;
                             }
 
                             @if (!string.IsNullOrEmpty(mainImage))

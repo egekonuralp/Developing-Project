@@ -207,7 +207,7 @@ namespace TechStore.Services.Implementations
                 throw new InvalidOperationException("Teslim edilmiş bir siparişin durumu değiştirilemez.");
             }
 
-            if (order.Status == OrderStatuses.Cancelled && order.Status != OrderStatuses.Preparing)
+            if (status == OrderStatuses.Cancelled && order.Status != OrderStatuses.Preparing)
             {
                 throw new InvalidOperationException("Yalnızca hazırlanıyor durumundaki siparişler iptal edilebilir.");
             }

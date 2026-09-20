@@ -46,6 +46,12 @@
         <link rel="stylesheet" href="~/css/prdct-delete.css" asp-append-version="true" />
     }
 
+    @if (ViewContext.RouteData.Values["Controller"]?.ToString() == "Product" &&
+        ViewContext.RouteData.Values["Action"]?.ToString() == "Inactive")
+    {
+        <link rel="stylesheet" href="~/css/prdct-inactive.css" asp-append-version="true" />
+    }
+
     <!-- PRODUCT IMAGE GALLERY (ADMIN) -->
     @if (ViewContext.RouteData.Values["Controller"]?.ToString() == "ProductImage")
     {
@@ -134,8 +140,8 @@
 </head>
 
 @{
-        var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
-        var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+            var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+            var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
 }
 
 <body>
@@ -173,11 +179,21 @@
 
                 <a asp-controller="Product"
                    asp-action="Index"
-                   class="@(currentController == "Product" ? "active" : "")">
+                   class="@(currentController == "Product" && currentAction != "Inactive" ? "active" : "")">
 
                     <i class="fa-solid fa-box"></i>
 
                     <span>Products</span>
+
+                </a>
+
+                <a asp-controller="Product"
+                   asp-action="Inactive"
+                   class="@(currentController == "Product" && currentAction == "Inactive" ? "active" : "")">
+
+                    <i class="fa-solid fa-box-archive"></i>
+
+                    <span>Pasif Ürünler</span>
 
                 </a>
 
@@ -191,15 +207,15 @@
 
                 </a>
 
-                <a asp-controller="AdminOrder" 
-                   asp-action="Index" 
+                <a asp-controller="AdminOrder"
+                   asp-action="Index"
                    class="@(currentController == "AdminOrder" ? "active" : "")">
 
                     <i class="fa-solid fa-cart-shopping"></i>
 
                     <span>Orders</span>
 
-                </a> 
+                </a>
 
                 <a asp-controller="AdminUser"
                    asp-action="Index"
@@ -225,11 +241,11 @@
                    asp-action="Index"
                    class="@(currentController == "Coupon" ? "active" : "")">
 
-                   <i class="fa-solid fa-ticket"></i>
+                    <i class="fa-solid fa-ticket"></i>
 
-                   <span>Coupons</span>
+                    <span>Coupons</span>
 
-               </a>
+                </a>
 
             </nav>
 
