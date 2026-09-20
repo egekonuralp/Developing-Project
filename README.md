@@ -1,4 +1,4 @@
-# Dystopia
+# TechStore
 
 Dystopia is a layered **ASP.NET Core MVC** e-commerce portfolio project built with **Entity Framework Core**. It implements the core end-to-end flows of a real e-commerce site: product catalog, cart, coupons, order management, and support ticketing.
 
