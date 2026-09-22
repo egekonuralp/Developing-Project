@@ -4,64 +4,84 @@
 
     <section class="home-hero">
 
-        <div class="hero-content">
+        <div class="hero-decoration">
 
-            <span class="hero-eyebrow">
-                <i class="hero-eyebrow-dot" aria-hidden="true"></i>
-                Stok anlık güncelleniyor
-            </span>
+            <span class="hero-orbit orbit-one" aria-hidden="true"></span>
+            <span class="hero-orbit orbit-two" aria-hidden="true"></span>
 
-            <p class="hero-kicker">Dystopia // seçili teknoloji ekipmanı</p>
+            <div class="hero-carousel"
+                 data-hero-carousel
+                 aria-label="Öne çıkan görseller">
 
-            <h1>Performansını<br />bir üst seviyeye taşı.</h1>
+                <button type="button"
+                        class="hero-carousel-arrow hero-carousel-prev"
+                        data-carousel-prev
+                        aria-label="Önceki görsel">
 
-            <p>Oyun performansından günlük verimliliğe — ihtiyacın olan teknolojiyi tek noktadan keşfet.</p>
+                    <i class="fa-solid fa-chevron-left"></i>
 
-            <div class="hero-actions">
+                </button>
 
-                <a asp-action="Index" class="hero-button">
-                    Ürünleri Keşfet
-                    <span>→</span>
-                </a>
+                <div class="hero-carousel-viewport">
 
-                <a href="#featured-products" class="hero-text-button">
-                    Öne Çıkanlar ↓
-                </a>
+                    <div class="hero-carousel-track">
 
-            </div>
+                        <div class="hero-carousel-slide active">
+                            <img src="~/uploads/img/banner-3.png"
+                                 alt="Dystopia öne çıkan görsel 1" />
+                        </div>
 
-            <ul class="hero-benefits" aria-label="Mağaza avantajları">
+                        <div class="hero-carousel-slide">
+                            <img src="~/uploads/img/34b5bf180145769.6505ae7623131.jpg"
+                                 alt="Dystopia öne çıkan görsel 2" />
+                        </div>
 
-                <li>
-                    <span>✓</span>
-                    Güvenli ödeme
-                </li>
+                        <div class="hero-carousel-slide">
+                            <img src="~/uploads/img/1581342925_Logitech_Renewal_SoMe.jpg"
+                                 alt="Dystopia öne çıkan görsel 3" />
+                        </div>
 
-                <li>
-                    <span>✓</span>
-                    7/24 destek
-                </li>
+                        <div class="hero-carousel-slide">
+                            <img src="~/uploads/img/GTA6GTAOnlineBanner.jpg"
+                                 alt="Dystopia öne çıkan görsel 4" />
+                        </div>
 
-                <li>
-                    <span>✓</span>
-                    Hızlı teslimat
-                </li>
+                    </div>
 
-            </ul>
+                </div>
 
-        </div>
+                <button type="button"
+                        class="hero-carousel-arrow hero-carousel-next"
+                        data-carousel-next
+                        aria-label="Sonraki görsel">
 
-        <div class="hero-decoration" aria-hidden="true">
+                    <i class="fa-solid fa-chevron-right"></i>
 
-            <span class="hero-lightning">⚡</span>
-            <span class="hero-orbit orbit-one"></span>
-            <span class="hero-orbit orbit-two"></span>
+                </button>
 
-            <div class="hero-stat-card">
+                <div class="hero-carousel-dots" aria-label="Görsel seçimi">
 
-                <strong>12+</strong>
+                    <button type="button"
+                            class="hero-carousel-dot active"
+                            data-carousel-dot="0"
+                            aria-label="1. görsel"></button>
 
-                <span>Seçili teknoloji ürünü</span>
+                    <button type="button"
+                            class="hero-carousel-dot"
+                            data-carousel-dot="1"
+                            aria-label="2. görsel"></button>
+
+                    <button type="button"
+                            class="hero-carousel-dot"
+                            data-carousel-dot="2"
+                            aria-label="3. görsel"></button>
+
+                    <button type="button"
+                            class="hero-carousel-dot"
+                            data-carousel-dot="3"
+                            aria-label="4. görsel"></button>
+
+                </div>
 
             </div>
 
