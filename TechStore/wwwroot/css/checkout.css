@@ -1,12 +1,40 @@
 ﻿/* =========================================================
-   CHECKOUT PAGE — mat, eskimiş, neon/canlı renk yok
+   TECHSTORE — CHECKOUT
+   Dark / Modern / Performance-Tech Design
+   Consistent with Home / Details / Cart / Wishlist
+   ========================================================= */
+
+
+/* =========================================================
+   BASE
    ========================================================= */
 
 .checkout-page {
+    --bg: #08090a;
+    --panel: #0e1012;
+    --card: #131619;
+    --card-hover: #181c1f;
+    --border: rgba(255, 255, 255, 0.09);
+    --border-strong: rgba(255, 255, 255, 0.18);
+    --text: #eef1ef;
+    --text-dim: #9ea6a1;
+    --text-faint: #68706b;
+    --green: #3ee881;
+    --green-bright: #82ffb4;
+    --green-dark: #0f5c33;
+    --green-soft: rgba(62, 232, 129, 0.11);
+    --red: #d9786b;
+    --red-soft: rgba(217, 120, 107, 0.1);
+    --font-display: 'Space Grotesk', 'Segoe UI', Arial, sans-serif;
+    --font-body: 'Inter', 'Segoe UI', Arial, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Consolas', monospace;
     max-width: 1150px;
     margin: 45px auto 80px;
     padding: 0 25px;
+    color: var(--text);
+    font-family: var(--font-body);
 }
+
 
 /* =========================================================
    HEADER
@@ -18,108 +46,143 @@
     justify-content: space-between;
     margin-bottom: 30px;
     padding-bottom: 22px;
-    border-bottom: 1px solid #4a3c2c;
+    border-bottom: 1px solid var(--border);
 }
 
 .checkout-label {
     display: block;
-    margin-bottom: 6px;
-    color: #5c7686;
-    font-family: 'Permanent Marker', cursive;
-    font-size: 15px;
-    letter-spacing: 1px;
+    margin-bottom: 8px;
+    color: var(--green);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
 }
 
 .checkout-header h1 {
-    margin: 0 0 6px;
-    color: #d8cbb3;
-    font-family: 'Alfa Slab One', Georgia, serif;
-    font-size: 30px;
-    font-weight: 400;
-    text-transform: uppercase;
-    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
+    margin: 0 0 7px;
+    color: var(--text);
+    font-family: var(--font-display);
+    font-size: 38px;
+    font-weight: 700;
+    letter-spacing: -0.6px;
 }
 
 .checkout-header p {
     margin: 0;
-    color: #8a7a64;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 15px;
+    color: var(--text-dim);
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.5;
 }
 
+
+/* =========================================================
+   BACK BUTTON
+   ========================================================= */
+
 .checkout-back-button {
-    padding: 10px 18px;
-    color: #d8cbb3;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    padding: 0 16px;
+    color: var(--text-dim);
     background: transparent;
-    border: 1px solid #4a3c2c;
-    border-radius: 2px;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 600;
     text-decoration: none;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 14px;
-    font-weight: 700;
     white-space: nowrap;
-    transition: border-color 0.2s ease, color 0.2s ease;
+    transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
 }
 
     .checkout-back-button:hover {
-        border-color: #a3803f;
-        color: #a3803f;
+        color: var(--green-bright);
+        background: var(--green-soft);
+        border-color: rgba(62, 232, 129, 0.35);
+        transform: translateY(-1px);
     }
+
 
 /* =========================================================
    VALIDATION
    ========================================================= */
 
 .checkout-validation {
-    color: #a1503d;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    margin-bottom: 16px;
+    margin-bottom: 18px;
+    padding: 12px 15px;
+    color: var(--red);
+    background: var(--red-soft);
+    border: 1px solid rgba(217, 120, 107, 0.25);
+    border-left: 3px solid var(--red);
+    border-radius: 5px;
+    font-family: var(--font-body);
+    font-size: 13px;
 }
 
     .checkout-validation:empty {
         display: none;
     }
 
+
 /* =========================================================
-   CONTENT LAYOUT
+   CONTENT
    ========================================================= */
 
 .checkout-content {
     display: grid;
-    grid-template-columns: 1fr 380px;
+    grid-template-columns: minmax(0, 1fr) 380px;
     align-items: start;
-    gap: 25px;
+    gap: 22px;
 }
+
 
 /* =========================================================
    SHARED CARD HEADER
    ========================================================= */
 
 .checkout-card-header {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 22px 28px;
-    border-bottom: 1px solid #4a3c2c;
+    padding: 22px 26px;
+    border-bottom: 1px solid var(--border);
 }
+
+    .checkout-card-header::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 55px;
+        height: 2px;
+        background: var(--green);
+        box-shadow: 0 0 12px rgba(62, 232, 129, 0.35);
+    }
 
 .checkout-section-label {
     display: block;
-    margin-bottom: 4px;
-    color: #a3803f;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 2px;
+    margin-bottom: 5px;
+    color: var(--green);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
 }
 
 .checkout-card-header h2 {
     margin: 0;
-    color: #d8cbb3;
-    font-family: 'Alfa Slab One', Georgia, serif;
+    color: var(--text);
+    font-family: var(--font-display);
     font-size: 20px;
-    font-weight: 400;
-    text-transform: uppercase;
+    font-weight: 650;
+    letter-spacing: -0.2px;
 }
 
 .checkout-step {
@@ -128,65 +191,82 @@
     justify-content: center;
     width: 34px;
     height: 34px;
-    color: #a3803f;
-    border: 1px solid #4a3c2c;
+    color: var(--green);
+    background: var(--green-soft);
+    border: 1px solid rgba(62, 232, 129, 0.28);
     border-radius: 50%;
-    font-family: 'Alfa Slab One', Georgia, serif;
-    font-size: 14px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
 }
 
+
 /* =========================================================
-   LEFT SIDE — FORM
+   LEFT — FORM CARD
    ========================================================= */
 
 .checkout-form {
-    background: #262019;
-    border: 1px solid #4a3c2c;
-    border-top: 3px solid #a3803f;
-    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.24);
 }
 
 .checkout-form-body {
     padding: 28px;
 }
 
+
+/* =========================================================
+   FORM GROUP
+   ========================================================= */
+
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 21px;
 }
 
     .form-group label {
         display: block;
-        margin-bottom: 7px;
-        color: #d8cbb3;
-        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-        font-size: 14px;
-        font-weight: 700;
+        margin-bottom: 8px;
+        color: var(--text);
+        font-family: var(--font-display);
+        font-size: 13px;
+        font-weight: 600;
     }
 
     .form-group .form-control {
+        display: block;
         width: 100%;
-        padding: 11px 13px;
-        color: #d8cbb3;
-        background: #171310;
-        border: 1px solid #4a3c2c;
-        border-radius: 2px;
-        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-        font-size: 15px;
-        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        padding: 12px 13px;
+        color: var(--text);
+        background: #0d0f11;
+        border: 1px solid var(--border);
+        border-radius: 5px;
+        font-family: var(--font-body);
+        font-size: 14px;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
     }
 
         .form-group .form-control::placeholder {
-            color: #8a7a64;
+            color: var(--text-faint);
+        }
+
+        .form-group .form-control:hover {
+            border-color: var(--border-strong);
         }
 
         .form-group .form-control:focus {
             outline: none;
-            border-color: #a3803f;
-            box-shadow: 0 0 0 2px rgba(163, 128, 63, 0.18);
+            background: #0f1214;
+            border-color: rgba(62, 232, 129, 0.55);
+            box-shadow: 0 0 0 3px rgba(62, 232, 129, 0.08), 0 0 18px rgba(62, 232, 129, 0.05);
         }
 
     .form-group textarea.form-control {
         resize: vertical;
+        min-height: 125px;
     }
 
 .checkout-form-row {
@@ -195,56 +275,79 @@
     gap: 0 16px;
 }
 
+
+/* =========================================================
+   VALIDATION TEXT
+   ========================================================= */
+
 .text-danger {
     display: block;
     margin-top: 6px;
-    color: #a1503d;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 13px;
+    color: var(--red);
+    font-family: var(--font-body);
+    font-size: 12px;
 }
 
+
 /* =========================================================
-   NOTICE BOX
+   DELIVERY NOTICE
    ========================================================= */
 
 .checkout-notice {
     display: flex;
     gap: 12px;
-    padding: 14px 16px;
-    background: #171310;
-    border: 1px dashed #4a3c2c;
-    border-radius: 3px;
+    padding: 14px 15px;
+    background: rgba(62, 232, 129, 0.045);
+    border: 1px solid rgba(62, 232, 129, 0.15);
+    border-left: 2px solid var(--green);
+    border-radius: 5px;
 }
 
 .checkout-notice-icon {
     flex-shrink: 0;
-    color: #5c7686;
-    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    color: var(--green);
+    background: var(--green-soft);
+    border-radius: 50%;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 700;
 }
 
 .checkout-notice p {
     margin: 0;
-    color: #8a7a64;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 13px;
-    line-height: 1.5;
+    color: var(--text-dim);
+    font-family: var(--font-body);
+    font-size: 12px;
+    line-height: 1.55;
 }
 
+
 /* =========================================================
-   RIGHT SIDE — SUMMARY
+   RIGHT — SUMMARY
    ========================================================= */
 
 .checkout-summary {
     position: sticky;
     top: 95px;
-    background: #262019;
-    border: 1px solid #4a3c2c;
-    border-top: 3px solid #8a4030;
-    border-radius: 4px;
+    overflow: hidden;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
 }
 
+
+/* =========================================================
+   SUMMARY BODY
+   ========================================================= */
+
 .checkout-summary-body {
-    padding: 24px 28px 28px;
+    padding: 24px 26px 26px;
 }
 
 .summary-row {
@@ -252,29 +355,31 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: 14px;
-    color: #8a7a64;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 14px;
+    color: var(--text-dim);
+    font-family: var(--font-body);
+    font-size: 13px;
 }
 
     .summary-row strong {
-        color: #d8cbb3;
-        font-weight: 700;
+        color: var(--text);
+        font-family: var(--font-mono);
+        font-size: 13px;
+        font-weight: 600;
     }
 
-.checkout-total {
-    color: #8a4030 !important;
-    font-size: 20px;
-}
+
+/* =========================================================
+   COUPON
+   ========================================================= */
 
 .checkout-coupon-row {
-    margin-bottom: 10px;
+    margin-bottom: 9px;
 }
 
 .checkout-coupon-code {
-    color: #a3803f !important;
-    font-size: 13px;
-    letter-spacing: 1px;
+    color: var(--green) !important;
+    font-size: 11px !important;
+    letter-spacing: 0.8px;
 }
 
 .checkout-discount-row {
@@ -282,17 +387,44 @@
 }
 
     .checkout-discount-row strong {
-        color: #5c6b46 !important;
+        color: var(--green) !important;
     }
+
+
+/* =========================================================
+   DIVIDER
+   ========================================================= */
+
+.checkout-summary-divider {
+    height: 1px;
+    margin: 17px 0;
+    background: var(--border);
+}
+
+
+/* =========================================================
+   FINAL TOTAL
+   ========================================================= */
 
 .checkout-final-row {
     margin-bottom: 0;
 }
 
     .checkout-final-row span {
-        color: #d8cbb3;
-        font-weight: 700;
+        color: var(--text);
+        font-family: var(--font-display);
+        font-size: 14px;
+        font-weight: 650;
     }
+
+.checkout-total {
+    color: var(--green-bright) !important;
+    font-family: var(--font-mono) !important;
+    font-size: 21px !important;
+    font-weight: 600 !important;
+    text-shadow: 0 0 18px rgba(62, 232, 129, 0.18);
+}
+
 
 /* =========================================================
    APPLIED COUPON
@@ -304,10 +436,10 @@
     gap: 12px;
     margin: 4px 0 8px;
     padding: 12px 13px;
-    background: #201a15;
-    border: 1px solid #4a3c2c;
-    border-left: 3px solid #a3803f;
-    border-radius: 3px;
+    background: rgba(62, 232, 129, 0.045);
+    border: 1px solid rgba(62, 232, 129, 0.16);
+    border-left: 2px solid var(--green);
+    border-radius: 5px;
 }
 
 .checkout-coupon-icon {
@@ -317,75 +449,66 @@
     flex: 0 0 32px;
     width: 32px;
     height: 32px;
-    color: #a3803f;
-    background: #171310;
-    border: 1px solid #4a3c2c;
-    border-radius: 3px;
-    font-size: 13px;
+    color: var(--green);
+    background: var(--green-soft);
+    border: 1px solid rgba(62, 232, 129, 0.18);
+    border-radius: 5px;
+    font-size: 12px;
 }
 
 .checkout-coupon-content {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 3px;
     min-width: 0;
     flex: 1;
 }
 
     .checkout-coupon-content span {
-        color: #8a7a64;
-        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-        font-size: 11px;
+        color: var(--text-faint);
+        font-family: var(--font-mono);
+        font-size: 9px;
+        letter-spacing: 1px;
         text-transform: uppercase;
-        letter-spacing: 0.6px;
     }
 
     .checkout-coupon-content strong {
         overflow: hidden;
-        color: #d8cbb3;
-        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-        font-size: 14px;
-        font-weight: 800;
+        color: var(--text);
+        font-family: var(--font-mono);
+        font-size: 12px;
+        font-weight: 600;
         text-overflow: ellipsis;
         white-space: nowrap;
     }
 
 .checkout-coupon-check {
     flex-shrink: 0;
-    color: #5c6b46;
-    font-size: 14px;
+    color: var(--green);
+    font-size: 13px;
 }
 
 .checkout-coupon-note {
     margin: 0 0 14px;
-    color: #6f624f;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 11px;
-    line-height: 1.4;
+    color: var(--text-faint);
+    font-family: var(--font-body);
+    font-size: 10.5px;
+    line-height: 1.45;
 }
 
-/* =========================================================
-   DIVIDER
-   ========================================================= */
-
-.checkout-summary-divider {
-    height: 1px;
-    margin: 16px 0;
-    background: #4a3c2c;
-}
 
 /* =========================================================
-   INFO BOX
+   SUMMARY INFO
    ========================================================= */
 
 .checkout-summary-info {
     display: flex;
     gap: 12px;
     margin-bottom: 22px;
-    padding: 14px 16px;
-    background: #171310;
-    border: 1px solid #4a3c2c;
-    border-radius: 3px;
+    padding: 14px 15px;
+    background: #0d0f11;
+    border: 1px solid var(--border);
+    border-radius: 5px;
 }
 
 .summary-info-icon {
@@ -393,33 +516,36 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 22px;
-    height: 22px;
-    color: #5c6b46;
-    border: 1px solid #5c6b46;
+    width: 23px;
+    height: 23px;
+    color: var(--green);
+    border: 1px solid rgba(62, 232, 129, 0.3);
     border-radius: 50%;
-    font-size: 12px;
-    font-weight: 900;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 700;
 }
 
 .checkout-summary-info strong {
     display: block;
     margin-bottom: 4px;
-    color: #d8cbb3;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 14px;
+    color: var(--text);
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 600;
 }
 
 .checkout-summary-info p {
     margin: 0;
-    color: #8a7a64;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 13px;
+    color: var(--text-dim);
+    font-family: var(--font-body);
+    font-size: 11.5px;
     line-height: 1.5;
 }
 
+
 /* =========================================================
-   SUBMIT / LINKS
+   SUBMIT BUTTON
    ========================================================= */
 
 .tech-btn {
@@ -428,48 +554,54 @@
     justify-content: center;
     gap: 8px;
     width: 100%;
-    padding: 13px;
-    border-radius: 2px;
-    text-decoration: none;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 15px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    cursor: pointer;
+    min-height: 46px;
+    padding: 0 15px;
     border: 0;
-    transition: background 0.2s ease;
+    border-radius: 5px;
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease;
 }
 
 .tech-btn-primary {
-    color: #171310;
-    background: #a3803f;
-    border: 1px dashed #171310;
-    outline: 2px solid #a3803f;
-    outline-offset: -4px;
+    color: #06120a;
+    background: linear-gradient( 100deg, var(--green-bright), var(--green) );
+    box-shadow: 0 8px 25px rgba(62, 232, 129, 0.12);
 }
 
     .tech-btn-primary:hover {
-        background: #bd9a5c;
+        filter: brightness(1.07);
+        transform: translateY(-2px);
+        box-shadow: 0 12px 30px rgba(62, 232, 129, 0.2);
     }
 
 .checkout-submit {
     margin-bottom: 14px;
 }
 
+
+/* =========================================================
+   CART LINK
+   ========================================================= */
+
 .checkout-cart-link {
     display: block;
+    color: var(--text-dim);
+    font-family: var(--font-body);
+    font-size: 12px;
     text-align: center;
-    color: #8a7a64;
     text-decoration: none;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 14px;
     transition: color 0.2s ease;
 }
 
     .checkout-cart-link:hover {
-        color: #a3803f;
+        color: var(--green);
     }
+
 
 /* =========================================================
    RESPONSIVE
@@ -486,17 +618,23 @@
     }
 }
 
+
 @media (max-width: 600px) {
 
     .checkout-page {
+        margin-top: 30px;
         padding: 0 18px;
     }
 
     .checkout-header {
         flex-direction: column;
         align-items: flex-start;
-        gap: 14px;
+        gap: 15px;
     }
+
+        .checkout-header h1 {
+            font-size: 31px;
+        }
 
     .checkout-form-row {
         grid-template-columns: 1fr;
@@ -510,8 +648,24 @@
     .checkout-card-header {
         padding: 18px 20px;
     }
+}
 
-    .checkout-coupon-summary {
-        padding: 11px 12px;
+
+@media (max-width: 420px) {
+
+    .checkout-page {
+        padding: 0 14px;
+    }
+
+    .checkout-header h1 {
+        font-size: 27px;
+    }
+
+    .checkout-back-button {
+        width: 100%;
+    }
+
+    .checkout-card-header h2 {
+        font-size: 18px;
     }
 }

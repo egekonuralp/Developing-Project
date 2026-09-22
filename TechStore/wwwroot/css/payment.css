@@ -1,31 +1,72 @@
 ﻿/* =========================================================
-PAYMENT PAGE — mat, eskimiş, neon/canlı renk yok
-========================================================= */
+   TECHSTORE — PAYMENT
+   Dark / Modern / Performance-Tech Design
+   ========================================================= */
 
 .payment-page {
+    --bg: #08090a;
+    --panel: #0e1012;
+    --card: #131619;
+    --card-hover: #181c1f;
+    --border: rgba(255, 255, 255, 0.09);
+    --border-strong: rgba(255, 255, 255, 0.18);
+    --text: #eef1ef;
+    --text-dim: #9ea6a1;
+    --text-faint: #68706b;
+    --green: #3ee881;
+    --green-bright: #82ffb4;
+    --green-soft: rgba(62, 232, 129, 0.11);
+    --green-deep: #0f5c33;
+    --red: #d9786b;
+    --red-soft: rgba(217, 120, 107, 0.1);
+    --font-display: 'Space Grotesk', 'Segoe UI', Arial, sans-serif;
+    --font-body: 'Inter', 'Segoe UI', Arial, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Consolas', monospace;
     max-width: 1150px;
     margin: 45px auto 80px;
     padding: 0 25px;
+    color: var(--text);
+    font-family: var(--font-body);
 }
 
-.payment-card {
-    background: #262019;
-    border: 1px solid #4a3c2c;
-    border-top: 3px solid #a3803f;
-    border-radius: 4px;
-    overflow: hidden;
-}
 
 /* =========================================================
-HEADER
-========================================================= */
+   MAIN CARD
+   ========================================================= */
+
+.payment-card {
+    position: relative;
+    overflow: hidden;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    box-shadow: 0 22px 55px rgba(0, 0, 0, 0.3);
+}
+
+    .payment-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 90px;
+        height: 2px;
+        background: var(--green);
+        box-shadow: 0 0 18px rgba(62, 232, 129, 0.4);
+        z-index: 5;
+    }
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
 
 .payment-header {
     display: flex;
     align-items: center;
     gap: 18px;
     padding: 28px 32px;
-    border-bottom: 1px solid #4a3c2c;
+    background: linear-gradient( 135deg, rgba(62, 232, 129, 0.025), transparent 55% );
+    border-bottom: 1px solid var(--border);
 }
 
 .payment-header-icon {
@@ -35,136 +76,162 @@ HEADER
     width: 54px;
     height: 54px;
     flex-shrink: 0;
-    color: #a3803f;
-    background: #171310;
-    border: 1px solid #4a3c2c;
-    border-radius: 3px;
-    font-size: 20px;
+    color: var(--green);
+    background: var(--green-soft);
+    border: 1px solid rgba(62, 232, 129, 0.28);
+    border-radius: 6px;
+    font-size: 19px;
+    box-shadow: 0 0 22px rgba(62, 232, 129, 0.06);
 }
 
 .payment-eyebrow {
     display: block;
     margin-bottom: 5px;
-    color: #5c7686;
-    font-family: 'Permanent Marker', cursive;
-    font-size: 13px;
-    letter-spacing: 1.4px;
+    color: var(--green);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.6px;
 }
 
 .payment-header h1 {
     margin: 0 0 6px;
-    color: #d8cbb3;
-    font-family: 'Alfa Slab One', Georgia, serif;
-    font-size: 26px;
-    font-weight: 400;
-    text-transform: uppercase;
-    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
+    color: var(--text);
+    font-family: var(--font-display);
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
 }
 
 .payment-header p {
     margin: 0;
-    color: #8a7a64;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 14px;
+    color: var(--text-dim);
+    font-family: var(--font-body);
+    font-size: 13px;
 }
+
+
+/* =========================================================
+   VALIDATION
+   ========================================================= */
 
 .text-danger {
     display: block;
-    color: #a1503d;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 13px;
+    color: var(--red);
+    font-family: var(--font-body);
+    font-size: 12px;
 }
 
     .text-danger:empty {
         display: none;
     }
 
+
 /* =========================================================
-CONTENT LAYOUT
-========================================================= */
+   CONTENT
+   ========================================================= */
 
 .payment-content {
     display: grid;
-    grid-template-columns: 1fr 340px;
-    align-items: start;
+    grid-template-columns: minmax(0, 1fr) 340px;
+    align-items: stretch;
     gap: 0;
 }
 
-.payment-form {
-    padding: 28px 32px;
-}
 
 /* =========================================================
-SECTION TITLES
-========================================================= */
+   LEFT FORM
+   ========================================================= */
+
+.payment-form {
+    padding: 30px 32px;
+}
+
+
+/* =========================================================
+   SECTION TITLES
+   ========================================================= */
 
 .section-title {
+    position: relative;
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 18px;
+    margin-bottom: 20px;
 }
 
 .section-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 30px;
-    height: 30px;
-    color: #a3803f;
-    background: #171310;
-    border: 1px solid #4a3c2c;
-    border-radius: 3px;
-    font-size: 13px;
+    width: 31px;
+    height: 31px;
+    flex-shrink: 0;
+    color: var(--green);
+    background: var(--green-soft);
+    border: 1px solid rgba(62, 232, 129, 0.22);
+    border-radius: 5px;
+    font-size: 12px;
 }
 
 .section-title h2 {
     margin: 0;
-    color: #d8cbb3;
-    font-family: 'Alfa Slab One', Georgia, serif;
-    font-size: 18px;
-    font-weight: 400;
-    text-transform: uppercase;
+    color: var(--text);
+    font-family: var(--font-display);
+    font-size: 19px;
+    font-weight: 650;
+    letter-spacing: -0.2px;
 }
 
+
 /* =========================================================
-FORM
-========================================================= */
+   FORM
+   ========================================================= */
 
 .form-group {
-    margin-bottom: 18px;
+    margin-bottom: 19px;
 }
 
     .form-group label {
         display: block;
         margin-bottom: 7px;
-        color: #d8cbb3;
-        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-        font-size: 14px;
-        font-weight: 700;
+        color: var(--text);
+        font-family: var(--font-display);
+        font-size: 13px;
+        font-weight: 600;
     }
 
     .form-group .form-control {
         width: 100%;
-        padding: 11px 13px;
-        color: #d8cbb3;
-        background: #171310;
-        border: 1px solid #4a3c2c;
-        border-radius: 2px;
-        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-        font-size: 15px;
-        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        padding: 12px 13px;
+        color: var(--text);
+        background: #0d0f11;
+        border: 1px solid var(--border);
+        border-radius: 5px;
+        font-family: var(--font-body);
+        font-size: 14px;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
     }
 
         .form-group .form-control::placeholder {
-            color: #8a7a64;
+            color: var(--text-faint);
+        }
+
+        .form-group .form-control:hover {
+            border-color: var(--border-strong);
         }
 
         .form-group .form-control:focus {
             outline: none;
-            border-color: #a3803f;
-            box-shadow: 0 0 0 2px rgba(163, 128, 63, 0.18);
+            background: #0f1214;
+            border-color: rgba(62, 232, 129, 0.55);
+            box-shadow: 0 0 0 3px rgba(62, 232, 129, 0.07), 0 0 18px rgba(62, 232, 129, 0.04);
         }
+
+
+/* =========================================================
+   EXPIRATION / CVV
+   ========================================================= */
 
 .payment-row {
     display: grid;
@@ -172,18 +239,20 @@ FORM
     gap: 0 16px;
 }
 
+
 /* =========================================================
-SECURITY NOTICE
-========================================================= */
+   SECURITY
+   ========================================================= */
 
 .payment-security {
     display: flex;
     gap: 12px;
-    margin-bottom: 22px;
+    margin: 6px 0 22px;
     padding: 14px 16px;
-    background: #171310;
-    border: 1px solid #5c6b46;
-    border-radius: 3px;
+    background: rgba(62, 232, 129, 0.045);
+    border: 1px solid rgba(62, 232, 129, 0.16);
+    border-left: 2px solid var(--green);
+    border-radius: 5px;
 }
 
 .payment-security-icon {
@@ -192,41 +261,43 @@ SECURITY NOTICE
     justify-content: center;
     flex-shrink: 0;
     width: 20px;
-    color: #5c6b46;
-    font-size: 15px;
+    color: var(--green);
+    font-size: 14px;
 }
 
 .payment-security strong {
     display: block;
     margin-bottom: 4px;
-    color: #cfd8bf;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 14px;
+    color: var(--text);
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 600;
 }
 
 .payment-security p {
     margin: 0;
-    color: #8a7a64;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 13px;
-    line-height: 1.45;
+    color: var(--text-dim);
+    font-family: var(--font-body);
+    font-size: 11.5px;
+    line-height: 1.5;
 }
 
 .payment-form hr {
-    margin: 26px 0;
+    margin: 27px 0;
     border: 0;
-    border-top: 1px solid #4a3c2c;
+    border-top: 1px solid var(--border);
 }
 
+
 /* =========================================================
-DELIVERY SUMMARY
-========================================================= */
+   DELIVERY SUMMARY
+   ========================================================= */
 
 .delivery-summary {
-    padding: 16px 18px;
-    background: #171310;
-    border: 1px dashed #4a3c2c;
-    border-radius: 3px;
+    padding: 15px 17px;
+    background: #0d0f11;
+    border: 1px solid var(--border);
+    border-radius: 5px;
 }
 
 .delivery-row {
@@ -234,10 +305,10 @@ DELIVERY SUMMARY
     align-items: flex-start;
     justify-content: space-between;
     gap: 20px;
-    padding: 8px 0;
-    border-bottom: 1px solid #4a3c2c;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 14px;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--border);
+    font-family: var(--font-body);
+    font-size: 13px;
 }
 
     .delivery-row:last-child {
@@ -245,26 +316,33 @@ DELIVERY SUMMARY
     }
 
     .delivery-row span {
-        color: #8a7a64;
+        color: var(--text-faint);
         white-space: nowrap;
     }
 
     .delivery-row strong {
-        color: #d8cbb3;
-        font-weight: 700;
+        max-width: 70%;
+        color: var(--text);
+        font-weight: 600;
         text-align: right;
     }
 
+
 /* =========================================================
-RIGHT SIDE — SUMMARY
-========================================================= */
+   RIGHT SIDE — SUMMARY
+   ========================================================= */
 
 .payment-summary {
-    height: 100%;
-    padding: 28px 32px;
-    background: #201a15;
-    border-left: 1px solid #4a3c2c;
+    min-height: 100%;
+    padding: 28px 27px;
+    background: linear-gradient( 180deg, rgba(62, 232, 129, 0.025), transparent 35% ), #0e1012;
+    border-left: 1px solid var(--border);
 }
+
+
+/* =========================================================
+   SUMMARY HEADER
+   ========================================================= */
 
 .summary-header {
     display: flex;
@@ -273,149 +351,127 @@ RIGHT SIDE — SUMMARY
     gap: 12px;
     margin-bottom: 20px;
     padding-bottom: 16px;
-    border-bottom: 1px solid #4a3c2c;
+    border-bottom: 1px solid var(--border);
 }
 
 .summary-eyebrow {
     display: block;
     margin-bottom: 4px;
-    color: #5c7686;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 11px;
-    font-weight: 800;
+    color: var(--green);
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 600;
     letter-spacing: 1.5px;
-}
-
-.summary-icon {
-    color: #a3803f;
-    font-size: 18px;
 }
 
 .summary-header h2 {
     margin: 0;
-    color: #d8cbb3;
-    font-family: 'Alfa Slab One', Georgia, serif;
+    color: var(--text);
+    font-family: var(--font-display);
     font-size: 18px;
-    font-weight: 400;
-    text-transform: uppercase;
+    font-weight: 650;
 }
+
+.summary-icon {
+    color: var(--green);
+    font-size: 17px;
+}
+
+
+/* =========================================================
+   SUMMARY ROWS
+   ========================================================= */
 
 .summary-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 12px;
-    color: #8a7a64;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 14px;
+    gap: 15px;
+    margin-bottom: 13px;
+    color: var(--text-dim);
+    font-family: var(--font-body);
+    font-size: 12.5px;
 }
 
     .summary-row strong {
-        color: #d8cbb3;
-        font-weight: 700;
+        color: var(--text);
+        font-family: var(--font-mono);
+        font-size: 12px;
+        font-weight: 600;
     }
+
 
 /* =========================================================
-APPLIED COUPON
-========================================================= */
+   COUPON
+   ========================================================= */
 
-.payment-coupon {
-    display: flex;
-    align-items: center;
-    gap: 11px;
-    margin: 16px 0 8px;
-    padding: 12px 13px;
-    background: #171310;
-    border: 1px solid #4a3c2c;
-    border-left: 3px solid #a3803f;
-    border-radius: 3px;
+.payment-coupon-row {
+    margin-top: 16px;
 }
 
-.payment-coupon-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex: 0 0 32px;
-    width: 32px;
-    height: 32px;
-    color: #a3803f;
-    background: #201a15;
-    border: 1px solid #4a3c2c;
-    border-radius: 3px;
-    font-size: 12px;
+.payment-coupon-code {
+    color: var(--green) !important;
+    font-size: 10.5px !important;
+    letter-spacing: 0.8px;
 }
 
-.payment-coupon-content {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    min-width: 0;
-    flex: 1;
-}
-
-    .payment-coupon-content span {
-        color: #8a7a64;
-        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-        font-size: 11px;
-        text-transform: uppercase;
-        letter-spacing: 0.6px;
-    }
-
-    .payment-coupon-content strong {
-        overflow: hidden;
-        color: #d8cbb3;
-        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-        font-size: 14px;
-        font-weight: 800;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-
-.payment-coupon-status {
-    flex-shrink: 0;
-    color: #5c6b46;
-    font-size: 14px;
+.payment-discount-row strong {
+    color: var(--green-bright);
 }
 
 .payment-coupon-note {
     margin: 0 0 14px;
-    color: #6f624f;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 11px;
+    color: var(--text-faint);
+    font-family: var(--font-body);
+    font-size: 10px;
     line-height: 1.45;
 }
 
-/* =========================================================
-TOTAL
-========================================================= */
 
-.summary-total {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 16px 0 22px;
-    padding-top: 16px;
-    border-top: 1px solid #4a3c2c;
-    color: #d8cbb3;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 15px;
-    font-weight: 700;
+/* =========================================================
+   DIVIDER
+   ========================================================= */
+
+.payment-summary-divider {
+    height: 1px;
+    margin: 17px 0;
+    background: var(--border);
 }
 
-    .summary-total strong {
-        color: #8a4030;
-        font-size: 20px;
-    }
 
 /* =========================================================
-BUTTONS
-========================================================= */
+   FINAL TOTAL
+   ========================================================= */
+
+.payment-final-row {
+    margin-bottom: 22px;
+}
+
+    .payment-final-row span {
+        color: var(--text);
+        font-family: var(--font-display);
+        font-size: 14px;
+        font-weight: 650;
+    }
+
+.payment-total {
+    color: var(--green-bright) !important;
+    font-family: var(--font-mono) !important;
+    font-size: 20px !important;
+    font-weight: 600 !important;
+    text-shadow: 0 0 16px rgba(62, 232, 129, 0.16);
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
 
 .summary-buttons {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 19px;
 }
 
 .tech-btn {
@@ -424,72 +480,76 @@ BUTTONS
     justify-content: center;
     gap: 8px;
     width: 100%;
-    padding: 13px;
-    border-radius: 2px;
+    min-height: 44px;
+    padding: 0 14px;
+    border-radius: 5px;
+    font-family: var(--font-display);
+    font-size: 12.5px;
+    font-weight: 650;
+    letter-spacing: 0.25px;
     text-decoration: none;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 15px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
     cursor: pointer;
-    border: 0;
-    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    transition: transform 0.2s ease, filter 0.2s ease, color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
 }
 
 .tech-btn-primary {
-    color: #171310;
-    background: #a3803f;
-    border: 1px dashed #171310;
-    outline: 2px solid #a3803f;
-    outline-offset: -4px;
+    color: #06120a;
+    background: linear-gradient( 100deg, var(--green-bright), var(--green) );
+    border: 0;
+    box-shadow: 0 8px 24px rgba(62, 232, 129, 0.1);
 }
 
     .tech-btn-primary:hover {
-        background: #bd9a5c;
+        filter: brightness(1.07);
+        transform: translateY(-2px);
+        box-shadow: 0 12px 30px rgba(62, 232, 129, 0.18);
     }
 
 .tech-btn-outline {
-    color: #d8cbb3;
+    color: var(--text-dim);
     background: transparent;
-    border: 1px solid #4a3c2c;
+    border: 1px solid var(--border);
 }
 
     .tech-btn-outline:hover {
-        border-color: #a3803f;
-        color: #a3803f;
+        color: var(--green-bright);
+        background: var(--green-soft);
+        border-color: rgba(62, 232, 129, 0.35);
+        transform: translateY(-1px);
     }
 
+
 /* =========================================================
-NOTE
-========================================================= */
+   FINAL NOTE
+   ========================================================= */
 
 .payment-note {
     display: flex;
     gap: 10px;
-    padding: 12px 14px;
-    background: #171310;
-    border: 1px solid #4a3c2c;
-    border-radius: 3px;
+    padding: 12px 13px;
+    background: #0b0d0e;
+    border: 1px solid var(--border);
+    border-radius: 5px;
 }
 
     .payment-note > span {
         flex-shrink: 0;
-        color: #5c6b46;
-        font-size: 14px;
+        color: var(--green);
+        font-size: 13px;
     }
 
     .payment-note p {
         margin: 0;
-        color: #8a7a64;
-        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-        font-size: 12px;
+        color: var(--text-faint);
+        font-family: var(--font-body);
+        font-size: 10.5px;
         line-height: 1.5;
     }
 
+
 /* =========================================================
-RESPONSIVE
-========================================================= */
+   RESPONSIVE
+   ========================================================= */
 
 @media (max-width: 900px) {
 
@@ -498,22 +558,27 @@ RESPONSIVE
     }
 
     .payment-summary {
-        height: auto;
+        min-height: auto;
         border-left: 0;
-        border-top: 1px solid #4a3c2c;
+        border-top: 1px solid var(--border);
     }
-
 }
+
 
 @media (max-width: 600px) {
 
     .payment-page {
+        margin-top: 30px;
         padding: 0 18px;
     }
 
     .payment-header {
-        padding: 22px 20px;
+        padding: 23px 20px;
     }
+
+        .payment-header h1 {
+            font-size: 27px;
+        }
 
     .payment-form,
     .payment-summary {
@@ -526,15 +591,42 @@ RESPONSIVE
 
     .delivery-row {
         flex-direction: column;
-        gap: 3px;
+        gap: 4px;
     }
 
         .delivery-row strong {
+            max-width: 100%;
             text-align: left;
         }
+}
 
-    .payment-coupon {
-        padding: 11px 12px;
+
+@media (max-width: 420px) {
+
+    .payment-page {
+        padding: 0 14px;
     }
 
+    .payment-header {
+        align-items: flex-start;
+    }
+
+    .payment-header-icon {
+        width: 46px;
+        height: 46px;
+        font-size: 16px;
+    }
+
+    .payment-header h1 {
+        font-size: 24px;
+    }
+
+    .section-title h2 {
+        font-size: 17px;
+    }
+
+    .payment-form,
+    .payment-summary {
+        padding: 20px 16px;
+    }
 }
