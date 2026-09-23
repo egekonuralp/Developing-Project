@@ -1,11 +1,26 @@
 ﻿/* =========================================================
-   SUPPORT MY TICKETS PAGE — mat, eskimiş, neon/canlı renk yok
+   SUPPORT MY TICKETS PAGE
+   TechStore — Modern Dark / Neon Green
    ========================================================= */
 
 .support-tickets-page {
+    --support-bg: #08090a;
+    --support-card: #131619;
+    --support-panel: #0e1012;
+    --support-input: #0a0c0d;
+    --support-green: #3ee881;
+    --support-green-bright: #82ffb4;
+    --support-green-soft: rgba(62, 232, 129, 0.12);
+    --support-text: #eef1ef;
+    --support-muted: #9ea6a1;
+    --support-faint: #68706b;
+    --support-border: rgba(255, 255, 255, 0.08);
+    --support-border-green: rgba(62, 232, 129, 0.32);
     max-width: 1150px;
     margin: 45px auto 80px;
     padding: 0 25px;
+    color: var(--support-text);
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
 }
 
 /* =========================================================
@@ -16,60 +31,71 @@
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
+    gap: 25px;
     margin-bottom: 30px;
     padding-bottom: 22px;
-    border-bottom: 1px solid #4a3c2c;
+    border-bottom: 1px solid var(--support-border);
 }
 
 .support-tickets-label {
     display: block;
     margin-bottom: 6px;
-    color: #5c7686;
-    font-family: 'Permanent Marker', cursive;
-    font-size: 15px;
-    letter-spacing: 1px;
+    color: var(--support-green);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
 }
 
 .support-tickets-header h1 {
-    margin: 0 0 6px;
-    color: #d8cbb3;
-    font-family: 'Alfa Slab One', Georgia, serif;
+    margin: 0 0 7px;
+    color: var(--support-text);
+    font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
     font-size: 28px;
-    font-weight: 400;
-    text-transform: uppercase;
-    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
+    font-weight: 700;
+    letter-spacing: -0.5px;
 }
 
 .support-tickets-header p {
     margin: 0;
-    color: #8a7a64;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 15px;
+    color: var(--support-muted);
+    font-size: 14px;
+    line-height: 1.6;
 }
+
+/* =========================================================
+   CREATE TICKET BUTTON
+   ========================================================= */
 
 .support-ticket-create-btn {
-    display: flex;
+    display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
-    padding: 11px 20px;
-    color: #171310;
-    background: #a3803f;
-    border: 1px dashed #171310;
-    outline: 2px solid #a3803f;
-    outline-offset: -4px;
-    border-radius: 2px;
+    min-height: 44px;
+    padding: 11px 19px;
+    color: #061009;
+    background: linear-gradient( 135deg, var(--support-green), var(--support-green-bright) );
+    border: 1px solid var(--support-green);
+    border-radius: 5px;
     text-decoration: none;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 14px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.4px;
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
     white-space: nowrap;
-    transition: background 0.2s ease;
+    box-shadow: 0 5px 18px rgba(62, 232, 129, 0.12);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+    .support-ticket-create-btn span {
+        font-size: 18px;
+        line-height: 1;
+    }
+
     .support-ticket-create-btn:hover {
-        background: #bd9a5c;
+        color: #061009;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(62, 232, 129, 0.22);
     }
 
 /* =========================================================
@@ -77,52 +103,66 @@
    ========================================================= */
 
 .support-tickets-empty {
-    padding: 80px 20px;
+    padding: 75px 20px;
     text-align: center;
-    background: #262019;
-    border: 1px dashed #4a3c2c;
-    border-radius: 4px;
+    background: linear-gradient( 135deg, rgba(62, 232, 129, 0.025), transparent 50% ), var(--support-card);
+    border: 1px dashed var(--support-border-green);
+    border-radius: 7px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.22);
 }
 
 .support-empty-icon {
-    font-size: 50px;
-    margin-bottom: 15px;
-    opacity: 0.6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 58px;
+    height: 58px;
+    margin: 0 auto 18px;
+    background: var(--support-green-soft);
+    border: 1px solid var(--support-border-green);
+    border-radius: 7px;
+    font-size: 27px;
+    box-shadow: 0 0 25px rgba(62, 232, 129, 0.07);
 }
 
 .support-tickets-empty h2 {
-    margin: 0 0 8px;
-    color: #d8cbb3;
-    font-family: 'Alfa Slab One', Georgia, serif;
-    font-size: 20px;
-    font-weight: 400;
-    text-transform: uppercase;
+    margin: 0 0 9px;
+    color: var(--support-text);
+    font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+    font-size: 21px;
+    font-weight: 650;
 }
 
 .support-tickets-empty p {
-    max-width: 420px;
-    margin: 0 auto 25px;
-    color: #8a7a64;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    line-height: 1.5;
+    max-width: 440px;
+    margin: 0 auto 26px;
+    color: var(--support-muted);
+    font-size: 13px;
+    line-height: 1.65;
 }
 
 .support-empty-btn {
-    display: inline-block;
-    padding: 12px 28px;
-    color: #171310;
-    background: #a3803f;
-    border-radius: 2px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 11px 22px;
+    color: #061009;
+    background: linear-gradient( 135deg, var(--support-green), var(--support-green-bright) );
+    border: 1px solid var(--support-green);
+    border-radius: 5px;
     text-decoration: none;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    transition: background 0.2s ease;
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    box-shadow: 0 5px 18px rgba(62, 232, 129, 0.12);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
     .support-empty-btn:hover {
-        background: #bd9a5c;
+        color: #061009;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(62, 232, 129, 0.22);
     }
 
 /* =========================================================
@@ -130,31 +170,37 @@
    ========================================================= */
 
 .support-tickets-card {
-    background: #262019;
-    border: 1px solid #4a3c2c;
-    border-top: 3px solid #a3803f;
-    border-radius: 4px;
+    position: relative;
     overflow: hidden;
+    background: var(--support-card);
+    border: 1px solid var(--support-border);
+    border-top: 2px solid var(--support-green);
+    border-radius: 7px;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.30);
 }
 
+/* =========================================================
+   CARD HEADER
+   ========================================================= */
+
 .support-tickets-card-header {
-    padding: 22px 26px;
-    border-bottom: 1px solid #4a3c2c;
+    padding: 23px 26px;
+    border-bottom: 1px solid var(--support-border);
+    background: linear-gradient( 135deg, rgba(62, 232, 129, 0.025), transparent 55% );
 }
 
     .support-tickets-card-header h2 {
-        margin: 0 0 4px;
-        color: #d8cbb3;
-        font-family: 'Alfa Slab One', Georgia, serif;
+        margin: 0 0 5px;
+        color: var(--support-text);
+        font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
         font-size: 18px;
-        font-weight: 400;
-        text-transform: uppercase;
+        font-weight: 650;
     }
 
     .support-tickets-card-header span {
-        color: #8a7a64;
-        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-        font-size: 13px;
+        color: var(--support-muted);
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11px;
     }
 
 /* =========================================================
@@ -162,6 +208,7 @@
    ========================================================= */
 
 .support-table-wrapper {
+    width: 100%;
     overflow-x: auto;
 }
 
@@ -170,181 +217,285 @@
     border-collapse: collapse;
 }
 
+    /* TABLE HEADER */
+
     .support-tickets-table thead th {
-        padding: 12px 26px;
-        color: #8a7a64;
-        background: #201a15;
-        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-        font-size: 12px;
+        padding: 13px 26px;
+        color: var(--support-faint);
+        background: var(--support-panel);
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 10px;
         font-weight: 700;
         text-transform: uppercase;
-        letter-spacing: 0.5px;
+        letter-spacing: 0.7px;
         text-align: left;
         white-space: nowrap;
     }
 
+    /* TABLE BODY */
+
     .support-tickets-table tbody td {
-        padding: 15px 26px;
-        border-top: 1px solid #4a3c2c;
-        color: #d8cbb3;
-        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-        font-size: 14px;
+        padding: 16px 26px;
+        border-top: 1px solid var(--support-border);
+        color: var(--support-text);
+        font-size: 13px;
         white-space: nowrap;
+        transition: background 0.2s ease;
     }
 
-    .support-tickets-table tbody tr:hover {
-        background: rgba(163, 128, 63, 0.04);
+    .support-tickets-table tbody tr {
+        transition: background 0.2s ease;
     }
+
+        .support-tickets-table tbody tr:hover {
+            background: rgba(62, 232, 129, 0.035);
+        }
+
+/* =========================================================
+   TICKET TITLE
+   ========================================================= */
 
 .ticket-title {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
+    min-width: 220px;
     white-space: normal;
 }
 
 .ticket-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 31px;
+    height: 31px;
     flex-shrink: 0;
-    color: #a3803f;
-}
-
-.ticket-category {
-    display: inline-block;
-    padding: 4px 11px;
-    color: #8a7a64;
-    background: #171310;
-    border: 1px solid #4a3c2c;
-    border-radius: 2px;
-    font-size: 12px;
-    font-weight: 600;
-}
-
-.ticket-date {
-    color: #8a7a64;
+    color: var(--support-green);
+    background: var(--support-green-soft);
+    border: 1px solid rgba(62, 232, 129, 0.18);
+    border-radius: 5px;
     font-size: 13px;
 }
 
+.ticket-title strong {
+    color: var(--support-text);
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
 /* =========================================================
-   STATUS BADGES — nötr/mat renkler, neon yok
+   CATEGORY
+   ========================================================= */
+
+.ticket-category {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 10px;
+    color: var(--support-muted);
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid var(--support-border);
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* =========================================================
+   DATE
+   ========================================================= */
+
+.ticket-date {
+    color: var(--support-muted);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+}
+
+/* =========================================================
+   STATUS BADGES
    ========================================================= */
 
 .ticket-status {
     display: inline-flex;
     align-items: center;
     gap: 7px;
-    padding: 5px 12px;
-    border-radius: 2px;
-    font-size: 12px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.25px;
+    white-space: nowrap;
 }
 
 .status-dot {
-    width: 7px;
-    height: 7px;
+    width: 6px;
+    height: 6px;
+    flex-shrink: 0;
     border-radius: 50%;
 }
 
-/* Açık — denim mavisi (yeni/işlemde) */
+/* =========================================================
+   AÇIK
+   ========================================================= */
 
 .status-open {
-    color: #a9c1cd;
-    background: rgba(92, 118, 134, 0.18);
-    border: 1px solid #5c7686;
+    color: #72b9ff;
+    background: rgba(73, 153, 255, 0.08);
+    border: 1px solid rgba(73, 153, 255, 0.24);
 }
 
     .status-open .status-dot {
-        background: #5c7686;
-    }
-
-/* Beklemede — pirinç/amber (bekliyor) */
-
-.status-pending {
-    color: #e0c99a;
-    background: rgba(163, 128, 63, 0.18);
-    border: 1px solid #a3803f;
-}
-
-    .status-pending .status-dot {
-        background: #a3803f;
-    }
-
-/* Çözüldü — olive yeşil (tamamlandı) */
-
-.status-resolved {
-    color: #cfd8bf;
-    background: rgba(92, 107, 70, 0.18);
-    border: 1px solid #5c6b46;
-}
-
-    .status-resolved .status-dot {
-        background: #5c6b46;
-    }
-
-/* Kapalı — soluk taupe (nötr, arşivlenmiş) */
-
-.status-closed {
-    color: #b6a88f;
-    background: rgba(138, 122, 100, 0.15);
-    border: 1px solid #6b5a44;
-}
-
-    .status-closed .status-dot {
-        background: #8a7a64;
-    }
-
-.status-default {
-    color: #b6a88f;
-    background: rgba(138, 122, 100, 0.12);
-    border: 1px solid #4a3c2c;
-}
-
-    .status-default .status-dot {
-        background: #8a7a64;
+        background: #72b9ff;
+        box-shadow: 0 0 7px rgba(114, 185, 255, 0.55);
     }
 
 /* =========================================================
-   DETAIL LINK
+   BEKLEMEDE
+   ========================================================= */
+
+.status-pending {
+    color: #ffd166;
+    background: rgba(255, 209, 102, 0.08);
+    border: 1px solid rgba(255, 209, 102, 0.24);
+}
+
+    .status-pending .status-dot {
+        background: #ffd166;
+        box-shadow: 0 0 7px rgba(255, 209, 102, 0.45);
+    }
+
+/* =========================================================
+   ÇÖZÜLDÜ
+   ========================================================= */
+
+.status-resolved {
+    color: var(--support-green-bright);
+    background: rgba(62, 232, 129, 0.08);
+    border: 1px solid rgba(62, 232, 129, 0.25);
+}
+
+    .status-resolved .status-dot {
+        background: var(--support-green);
+        box-shadow: 0 0 7px rgba(62, 232, 129, 0.55);
+    }
+
+/* =========================================================
+   KAPALI
+   ========================================================= */
+
+.status-closed {
+    color: #aeb6b1;
+    background: rgba(174, 182, 177, 0.06);
+    border: 1px solid rgba(174, 182, 177, 0.16);
+}
+
+    .status-closed .status-dot {
+        background: #7c8580;
+    }
+
+/* =========================================================
+   DEFAULT STATUS
+   ========================================================= */
+
+.status-default {
+    color: var(--support-muted);
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid var(--support-border);
+}
+
+    .status-default .status-dot {
+        background: var(--support-faint);
+    }
+
+/* =========================================================
+   DETAIL BUTTON
    ========================================================= */
 
 .ticket-detail-btn {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    color: #a3803f;
+    padding: 7px 10px;
+    color: var(--support-muted);
+    background: transparent;
+    border: 1px solid var(--support-border);
+    border-radius: 4px;
     text-decoration: none;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 13px;
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    font-size: 11px;
     font-weight: 700;
-    text-transform: uppercase;
-    transition: color 0.2s ease, gap 0.2s ease;
+    transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, gap 0.2s ease;
 }
 
     .ticket-detail-btn:hover {
-        color: #bd9a5c;
-        gap: 10px;
+        color: var(--support-green-bright);
+        background: rgba(62, 232, 129, 0.05);
+        border-color: var(--support-border-green);
+        gap: 9px;
+    }
+
+    .ticket-detail-btn span {
+        font-size: 14px;
+        line-height: 1;
     }
 
 /* =========================================================
-   RESPONSIVE
+   RESPONSIVE — 700px
    ========================================================= */
 
 @media (max-width: 700px) {
 
+    .support-tickets-page {
+        margin-top: 30px;
+        padding: 0 15px;
+    }
+
     .support-tickets-header {
         flex-direction: column;
         align-items: flex-start;
-        gap: 16px;
+        gap: 17px;
     }
 
     .support-ticket-create-btn {
         width: 100%;
-        justify-content: center;
     }
 
     .support-tickets-table thead th,
     .support-tickets-table tbody td {
         padding: 12px 16px;
     }
+
+    .support-tickets-card-header {
+        padding: 20px;
+    }
+}
+
+/* =========================================================
+   RESPONSIVE — 480px
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .support-tickets-header h1 {
+        font-size: 23px;
+    }
+
+    .support-tickets-header p {
+        font-size: 13px;
+    }
+
+    .support-tickets-empty {
+        padding: 55px 18px;
+    }
+
+        .support-tickets-empty h2 {
+            font-size: 19px;
+        }
+
+        .support-tickets-empty p {
+            font-size: 12px;
+        }
 }

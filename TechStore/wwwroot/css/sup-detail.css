@@ -1,11 +1,25 @@
 ﻿/* =========================================================
-   SUPPORT TICKET DETAIL PAGE — mat, eskimiş, neon/canlı renk yok
+   SUPPORT TICKET DETAIL PAGE
+   TechStore — Modern Dark / Neon Green
    ========================================================= */
 
 .support-detail-page {
+    --support-card: #131619;
+    --support-panel: #0e1012;
+    --support-input: #0a0c0d;
+    --support-green: #3ee881;
+    --support-green-bright: #82ffb4;
+    --support-green-soft: rgba(62, 232, 129, 0.12);
+    --support-text: #eef1ef;
+    --support-muted: #9ea6a1;
+    --support-faint: #68706b;
+    --support-border: rgba(255, 255, 255, 0.08);
+    --support-border-green: rgba(62, 232, 129, 0.32);
     max-width: 900px;
     margin: 45px auto 80px;
     padding: 0 25px;
+    color: var(--support-text);
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
 }
 
 /* =========================================================
@@ -13,53 +27,66 @@
    ========================================================= */
 
 .support-ticket-card {
-    margin-bottom: 30px;
-    background: #262019;
-    border: 1px solid #4a3c2c;
-    border-top: 3px solid #a3803f;
-    border-radius: 4px;
+    margin-bottom: 32px;
     overflow: hidden;
+    background: var(--support-card);
+    border: 1px solid var(--support-border);
+    border-top: 2px solid var(--support-green);
+    border-radius: 7px;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.30);
 }
+
+/* =========================================================
+   TICKET HEADER
+   ========================================================= */
 
 .support-ticket-header {
     display: flex;
     align-items: center;
     gap: 16px;
-    padding: 24px 28px;
-    border-bottom: 1px solid #4a3c2c;
+    padding: 26px 28px;
+    border-bottom: 1px solid var(--support-border);
+    background: linear-gradient( 135deg, rgba(62, 232, 129, 0.035), transparent 55% );
 }
 
 .support-ticket-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 50px;
-    height: 50px;
+    width: 52px;
+    height: 52px;
     flex-shrink: 0;
-    background: #171310;
-    border: 1px solid #4a3c2c;
-    border-radius: 3px;
+    background: var(--support-green-soft);
+    border: 1px solid var(--support-border-green);
+    border-radius: 6px;
+    color: var(--support-green-bright);
     font-size: 22px;
+    box-shadow: 0 0 22px rgba(62, 232, 129, 0.07);
 }
 
 .support-ticket-label {
     display: block;
     margin-bottom: 5px;
-    color: #5c7686;
-    font-family: 'Permanent Marker', cursive;
-    font-size: 14px;
-    letter-spacing: 1px;
+    color: var(--support-green);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
 }
 
 .support-ticket-header h1 {
     margin: 0;
-    color: #d8cbb3;
-    font-family: 'Alfa Slab One', Georgia, serif;
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 1.35;
-    text-transform: none;
+    color: var(--support-text);
+    font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+    font-size: 22px;
+    font-weight: 650;
+    line-height: 1.4;
+    word-break: break-word;
 }
+
+/* =========================================================
+   TICKET INFORMATION
+   ========================================================= */
 
 .support-ticket-info {
     display: grid;
@@ -69,9 +96,9 @@
 .support-info-row {
     display: flex;
     flex-direction: column;
-    gap: 5px;
-    padding: 16px 22px;
-    border-right: 1px solid #4a3c2c;
+    gap: 6px;
+    padding: 17px 22px;
+    border-right: 1px solid var(--support-border);
 }
 
     .support-info-row:last-child {
@@ -79,30 +106,32 @@
     }
 
     .support-info-row span {
-        color: #8a7a64;
-        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-        font-size: 12px;
+        color: var(--support-faint);
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 10px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.6px;
     }
 
     .support-info-row strong {
-        color: #d8cbb3;
-        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-        font-size: 14px;
-        font-weight: 700;
+        color: var(--support-text);
+        font-size: 13px;
+        font-weight: 600;
     }
 
 .support-status {
-    color: #a3803f !important;
+    color: var(--support-green-bright) !important;
 }
 
 /* =========================================================
-   SECTION HEADER (Messages / New Message)
+   SECTION HEADER
    ========================================================= */
 
 .support-section-header {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 11px;
     margin-bottom: 18px;
 }
 
@@ -112,29 +141,29 @@
     justify-content: center;
     width: 34px;
     height: 34px;
-    background: #171310;
-    border: 1px solid #4a3c2c;
-    border-radius: 3px;
-    font-size: 15px;
+    background: var(--support-green-soft);
+    border: 1px solid var(--support-border-green);
+    border-radius: 5px;
+    color: var(--support-green);
+    font-size: 14px;
 }
 
 .support-section-header span {
     display: block;
     margin-bottom: 3px;
-    color: #8a7a64;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 11px;
+    color: var(--support-green);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
     font-weight: 700;
-    letter-spacing: 1.5px;
+    letter-spacing: 1.6px;
 }
 
 .support-section-header h2 {
     margin: 0;
-    color: #d8cbb3;
-    font-family: 'Alfa Slab One', Georgia, serif;
+    color: var(--support-text);
+    font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
     font-size: 18px;
-    font-weight: 400;
-    text-transform: uppercase;
+    font-weight: 650;
 }
 
 /* =========================================================
@@ -145,67 +174,86 @@
     display: flex;
     align-items: center;
     gap: 16px;
-    margin-bottom: 30px;
-    padding: 24px;
-    background: #262019;
-    border: 1px dashed #4a3c2c;
-    border-radius: 4px;
+    margin-bottom: 32px;
+    padding: 22px 24px;
+    background: var(--support-card);
+    border: 1px dashed var(--support-border-green);
+    border-radius: 6px;
 }
 
 .support-empty-icon {
-    font-size: 32px;
-    opacity: 0.6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    background: var(--support-green-soft);
+    border: 1px solid rgba(62, 232, 129, 0.18);
+    border-radius: 5px;
+    font-size: 19px;
 }
 
 .support-empty-message strong {
     display: block;
-    margin-bottom: 3px;
-    color: #d8cbb3;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 15px;
+    margin-bottom: 4px;
+    color: var(--support-text);
+    font-size: 14px;
+    font-weight: 650;
 }
 
 .support-empty-message p {
     margin: 0;
-    color: #8a7a64;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 13px;
+    color: var(--support-muted);
+    font-size: 12px;
+    line-height: 1.5;
 }
 
 /* =========================================================
-   MESSAGES
+   MESSAGE LIST
    ========================================================= */
 
 .support-messages {
     display: flex;
     flex-direction: column;
     gap: 14px;
-    margin-bottom: 30px;
+    margin-bottom: 32px;
 }
 
 .support-message {
     max-width: 82%;
-    padding: 16px 20px;
-    border-radius: 4px;
+    padding: 16px 19px;
+    border-radius: 6px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
 }
 
-/* Kullanıcı mesajı — pirinç kenarlı, sağa yaslı */
+/* =========================================================
+   USER MESSAGE
+   ========================================================= */
 
 .support-message-user {
     align-self: flex-end;
-    background: #262019;
-    border: 1px solid #4a3c2c;
-    border-right: 3px solid #a3803f;
+    background: var(--support-card);
+    border: 1px solid rgba(62, 232, 129, 0.18);
+    border-right: 3px solid var(--support-green);
+    border-radius: 6px 3px 6px 6px;
 }
 
-/* Destek ekibi mesajı — denim mavisi kenarlı, sola yaslı */
+/* =========================================================
+   ADMIN MESSAGE
+   ========================================================= */
 
 .support-message-admin {
     align-self: flex-start;
-    background: #201a15;
-    border: 1px solid #4a3c2c;
-    border-left: 3px solid #5c7686;
+    background: var(--support-panel);
+    border: 1px solid var(--support-border);
+    border-left: 3px solid #62a7ff;
+    border-radius: 3px 6px 6px 6px;
 }
+
+/* =========================================================
+   MESSAGE HEADER
+   ========================================================= */
 
 .support-message-header {
     display: flex;
@@ -221,60 +269,103 @@
     gap: 8px;
 }
 
-    .support-message-author strong {
-        color: #d8cbb3;
-        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-        font-size: 13px;
-        font-weight: 700;
-    }
+.support-message-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25px;
+    height: 25px;
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid var(--support-border);
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+.support-message-user .support-message-icon {
+    background: var(--support-green-soft);
+    border-color: rgba(62, 232, 129, 0.18);
+}
+
+.support-message-admin .support-message-icon {
+    background: rgba(98, 167, 255, 0.08);
+    border-color: rgba(98, 167, 255, 0.18);
+}
+
+.support-message-author strong {
+    color: var(--support-text);
+    font-size: 12px;
+    font-weight: 650;
+}
 
 .support-message-date {
-    color: #8a7a64;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 12px;
+    color: var(--support-faint);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
     white-space: nowrap;
 }
 
+/* =========================================================
+   MESSAGE BODY
+   ========================================================= */
+
 .support-message-body {
-    color: #d8cbb3;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 14px;
-    line-height: 1.6;
+    color: var(--support-muted);
+    font-size: 13px;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    word-break: break-word;
 }
 
 /* =========================================================
-   NEW MESSAGE FORM
+   NEW MESSAGE CARD
    ========================================================= */
 
 .support-new-message {
-    padding: 24px 28px;
-    background: #262019;
-    border: 1px solid #4a3c2c;
-    border-radius: 4px;
+    padding: 26px 28px;
+    background: var(--support-card);
+    border: 1px solid var(--support-border);
+    border-top: 2px solid var(--support-green);
+    border-radius: 7px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.22);
 }
+
+/* =========================================================
+   MESSAGE FORM
+   ========================================================= */
 
 .support-message-form textarea {
     width: 100%;
-    padding: 13px;
-    color: #d8cbb3;
-    background: #171310;
-    border: 1px solid #4a3c2c;
-    border-radius: 2px;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 14px;
+    min-height: 150px;
+    padding: 13px 14px;
+    color: var(--support-text);
+    background: var(--support-input);
+    border: 1px solid var(--support-border);
+    border-radius: 5px;
+    outline: none;
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    font-size: 13px;
+    line-height: 1.6;
     resize: vertical;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
     .support-message-form textarea::placeholder {
-        color: #8a7a64;
+        color: var(--support-faint);
+    }
+
+    .support-message-form textarea:hover {
+        border-color: rgba(255, 255, 255, 0.13);
     }
 
     .support-message-form textarea:focus {
-        outline: none;
-        border-color: #a3803f;
-        box-shadow: 0 0 0 2px rgba(163, 128, 63, 0.18);
+        background: #0c0f10;
+        border-color: var(--support-green);
+        box-shadow: 0 0 0 3px rgba(62, 232, 129, 0.08), 0 0 18px rgba(62, 232, 129, 0.05);
     }
+
+/* =========================================================
+   FORM LABEL
+   ========================================================= */
 
 .support-form-label {
     margin-bottom: 10px;
@@ -283,17 +374,19 @@
     .support-form-label label {
         display: block;
         margin-bottom: 4px;
-        color: #d8cbb3;
-        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-        font-size: 14px;
-        font-weight: 700;
+        color: var(--support-text);
+        font-size: 13px;
+        font-weight: 650;
     }
 
     .support-form-label span {
-        color: #8a7a64;
-        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-        font-size: 13px;
+        color: var(--support-muted);
+        font-size: 12px;
     }
+
+/* =========================================================
+   FORM FOOTER
+   ========================================================= */
 
 .support-form-footer {
     display: flex;
@@ -304,36 +397,45 @@
 }
 
 .support-form-hint {
-    color: #8a7a64;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 12px;
-    line-height: 1.4;
+    color: var(--support-muted);
+    font-size: 11px;
+    line-height: 1.5;
 }
 
+/* =========================================================
+   SEND BUTTON
+   ========================================================= */
+
 .support-send-button {
-    display: flex;
+    display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
-    padding: 11px 22px;
-    color: #171310;
-    background: #a3803f;
-    border: 1px dashed #171310;
-    outline: 2px solid #a3803f;
-    outline-offset: -4px;
-    border-radius: 2px;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 14px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.4px;
+    min-height: 44px;
+    padding: 11px 21px;
+    color: #061009;
+    background: linear-gradient( 135deg, var(--support-green), var(--support-green-bright) );
+    border: 1px solid var(--support-green);
+    border-radius: 5px;
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
     white-space: nowrap;
     cursor: pointer;
-    transition: background 0.2s ease, gap 0.2s ease;
+    box-shadow: 0 5px 18px rgba(62, 232, 129, 0.12);
+    transition: transform 0.2s ease, gap 0.2s ease, box-shadow 0.2s ease;
 }
 
     .support-send-button:hover {
-        background: #bd9a5c;
+        color: #061009;
+        transform: translateY(-2px);
         gap: 12px;
+        box-shadow: 0 8px 25px rgba(62, 232, 129, 0.22);
+    }
+
+    .support-send-button span {
+        font-size: 15px;
+        line-height: 1;
     }
 
 /* =========================================================
@@ -343,38 +445,51 @@
 .support-closed-message {
     display: flex;
     align-items: center;
-    gap: 16px;
-    padding: 18px 20px;
-    background: #171310;
-    border: 1px solid #4a3c2c;
-    border-radius: 3px;
+    gap: 14px;
+    padding: 17px 19px;
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid var(--support-border);
+    border-radius: 5px;
 }
 
 .support-closed-icon {
-    font-size: 26px;
-    opacity: 0.7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid var(--support-border);
+    border-radius: 5px;
+    font-size: 17px;
 }
 
 .support-closed-message strong {
     display: block;
     margin-bottom: 3px;
-    color: #d8cbb3;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 14px;
+    color: var(--support-text);
+    font-size: 13px;
+    font-weight: 650;
 }
 
 .support-closed-message p {
     margin: 0;
-    color: #8a7a64;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 13px;
+    color: var(--support-muted);
+    font-size: 12px;
+    line-height: 1.5;
 }
 
 /* =========================================================
-   RESPONSIVE
+   RESPONSIVE — 700px
    ========================================================= */
 
 @media (max-width: 700px) {
+
+    .support-detail-page {
+        margin-top: 30px;
+        padding: 0 15px;
+    }
 
     .support-ticket-info {
         grid-template-columns: 1fr;
@@ -382,7 +497,7 @@
 
     .support-info-row {
         border-right: 0;
-        border-bottom: 1px solid #4a3c2c;
+        border-bottom: 1px solid var(--support-border);
     }
 
         .support-info-row:last-child {
@@ -398,7 +513,58 @@
         align-items: stretch;
     }
 
+    .support-form-hint {
+        order: 2;
+    }
+
     .support-send-button {
-        justify-content: center;
+        width: 100%;
+    }
+}
+
+/* =========================================================
+   RESPONSIVE — 480px
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .support-ticket-header {
+        align-items: flex-start;
+        padding: 22px 20px;
+    }
+
+        .support-ticket-header h1 {
+            font-size: 19px;
+        }
+
+    .support-ticket-info {
+        grid-template-columns: 1fr;
+    }
+
+    .support-info-row {
+        padding: 14px 20px;
+    }
+
+    .support-section-header h2 {
+        font-size: 16px;
+    }
+
+    .support-empty-message {
+        align-items: flex-start;
+        padding: 18px;
+    }
+
+    .support-new-message {
+        padding: 22px 18px;
+    }
+
+    .support-message-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 7px;
+    }
+
+    .support-message-date {
+        font-size: 8px;
     }
 }
