@@ -1,329 +1,126 @@
 ﻿@model TechStore.ViewModels.OrderDetailViewModel
+@using TechStore.Models
+
+@{
+    ViewData["Title"] = $"Sipariş #{Model.OrderId}";
+
+    var statusClass = Model.Status switch
+    {
+        OrderStatuses.Preparing => "status-preparing",
+        OrderStatuses.Shipped => "status-shipped",
+        OrderStatuses.Delivered => "status-delivered",
+        OrderStatuses.Cancelled => "status-cancelled",
+        _ => "status-default"
+    };
+
+    var statusIcon = Model.Status switch
+    {
+        OrderStatuses.Preparing => "fa-solid fa-box",
+        OrderStatuses.Shipped => "fa-solid fa-truck",
+        OrderStatuses.Delivered => "fa-solid fa-circle-check",
+        OrderStatuses.Cancelled => "fa-solid fa-circle-xmark",
+        _ => "fa-solid fa-circle-info"
+    };
+
+    var isPreparing = Model.Status == OrderStatuses.Preparing;
+    var isShipped = Model.Status == OrderStatuses.Shipped;
+    var isDelivered = Model.Status == OrderStatuses.Delivered;
+
+    var preparingCompleted = isShipped || isDelivered;
+    var shippedCompleted = isDelivered;
+}
 
 <div class="order-detail-page">
 
-    <!-- HEADER -->
-    <div class="order-detail-header">
+    <div class="order-detail-container">
 
-        <div>
+        <!-- =====================================================
+             HEADER
+             ===================================================== -->
 
-            <span class="order-detail-label">
-                SİPARİŞ DETAYI
-            </span>
+        <div class="order-detail-header">
 
-            <h1>
-                Sipariş #@Model.OrderId
-            </h1>
+            <div class="order-detail-header-main">
 
-            <p>
-                Siparişinizin detaylarını ve teslimat bilgilerini aşağıda görebilirsiniz.
-            </p>
+                <a asp-action="MyOrders" class="order-back-button order-back-button-icon" aria-label="Siparişlerime dön">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </a>
 
-        </div>
+                <div>
 
-        <a asp-action="MyOrders" class="order-back-button">
-            ← Siparişlerime Dön
-        </a>
+                    <span class="order-detail-eyebrow">
+                        HESABIM / SİPARİŞLER / #@Model.OrderId
+                    </span>
 
-    </div>
+                    <h1>
+                        Sipariş #@Model.OrderId
+                    </h1>
 
-    <!-- ORDER SUMMARY -->
-    <div class="order-summary-card">
-
-        <div class="order-info-item">
-
-            <span class="order-info-label">
-                Sipariş No
-            </span>
-
-            <strong>
-                #@Model.OrderId
-            </strong>
-
-        </div>
-
-        <div class="order-info-item">
-
-            <span class="order-info-label">
-                Sipariş Tarihi
-            </span>
-
-            <strong>
-                @Model.OrderDate.ToString("dd.MM.yyyy HH:mm")
-            </strong>
-
-        </div>
-
-        <div class="order-info-item">
-
-            <span class="order-info-label">
-                Durum
-            </span>
-
-            <strong class="order-status">
-                @Model.Status
-            </strong>
-
-        </div>
-
-        <div class="order-info-item order-total">
-
-            <span class="order-info-label">
-                Toplam
-            </span>
-
-            <strong>
-                @Model.TotalPrice.ToString("N2") ₺
-            </strong>
-
-        </div>
-
-    </div>
-
-    <!-- ORDER TRACKİNG -->
-    <div class="order-tracking-card">
-
-        <div class="order-card-header">
-
-            <h2> Sipariş Takibi </h2>
-
-        </div>
-
-        @{
-            var isPreparing = Model.Status == OrderStatuses.Preparing;
-            var isShipped = Model.Status == OrderStatuses.Shipped;
-            var isDelivered = Model.Status == OrderStatuses.Delivered;
-
-            var preparingCompleted = isShipped || isDelivered;
-            var shippedCompleted = isDelivered;
-        }
-
-        <div class="order-tracking">
-
-            <!-- PREPARING -->
-            <div class="tracking-step @(isPreparing ? "active" : "") @(preparingCompleted ? "completed" : "")">
-
-                <div class="tracking-icon">
-                    @if (preparingCompleted)
-                    {
-                        <i class="fa-solid fa-check"></i>
-                    }
-                    else
-                    {
-                        <i class="fa-solid fa-box"></i>
-                    }
-                </div>
-
-                <div class="tracking-content">
-
-                    <strong> Sipariş Hazırlanıyor </strong>
-
-                    <span> Siparişiniz hazırlanıyor. </span>
+                    <p>
+                        Siparişinizin detaylarını ve teslimat bilgilerini aşağıda görebilirsiniz.
+                    </p>
 
                 </div>
 
             </div>
 
-            <div class="tracking-line @(preparingCompleted ? "completed" : "")"></div>
-
-            <!-- SHIPPED -->
-            <div class="tracking-step @(isShipped ? "active" : "") @(shippedCompleted ? "completed" : "")">
-
-                <div class="tracking-icon">
-                    @if (shippedCompleted)
-                    {
-                        <i class="fa-solid fa-check"></i>
-                    }
-                    else
-                    {
-                        <i class="fa-solid fa-truck"></i>
-                    }
-                </div>
-
-                <div class="tracking-content">
-
-                    <strong> Kargoya Verildi </strong>
-
-                    <span> Siparişiniz kargoya teslim edildi. </span>
-
-                </div>
-
-            </div>
-
-            <div class="tracking-line @(shippedCompleted ? "completed" : "")"></div>
-
-            <!-- DELIVERED -->
-            <div class="tracking-step @(isDelivered ? "active completed" : "")">
-
-                <div class="tracking-icon">
-                    @if (isDelivered)
-                    {
-                        <i class="fa-solid fa-check"></i>
-                    }
-                    else
-                    {
-                        <i class="fa-solid fa-house-circle-check"></i>
-                    }
-                </div>
-
-                <div class="tracking-content">
-
-                    <strong> Teslim Edildi </strong>
-
-                    <span> Siparişiniz teslim edildi. </span>
-
-                </div>
-
+            <div class="order-detail-status @statusClass">
+                <i class="@statusIcon"></i>
+                <span>@Model.Status</span>
             </div>
 
         </div>
 
-    </div>
+        <!-- =====================================================
+             ORDER SUMMARY
+             ===================================================== -->
 
-    <!-- MAIN CONTENT -->
-    <div class="order-detail-content">
+        <div class="order-summary-card">
 
-        <!-- PRODUCTS -->
-        <div class="order-products-card">
+            <div class="order-info-item">
 
-            <div class="order-card-header">
-
-                <h2>
-                    Sipariş Ürünleri
-                </h2>
-
-                <span>
-                    @Model.OrderItems.Count Ürün
+                <span class="order-info-label">
+                    <i class="fa-solid fa-hashtag"></i>
+                    Sipariş No
                 </span>
 
-            </div>
-
-            <div class="order-products-table-wrapper">
-
-                <table class="order-products-table">
-
-                    <thead>
-
-                        <tr>
-
-                            <th>
-                                Ürün
-                            </th>
-
-                            <th>
-                                Birim Fiyat
-                            </th>
-
-                            <th>
-                                Adet
-                            </th>
-
-                            <th>
-                                Toplam
-                            </th>
-
-                        </tr>
-
-                    </thead>
-
-                    <tbody>
-
-                        @foreach (var item in Model.OrderItems)
-                        {
-                            <tr>
-
-                                <td>
-
-                                    <div class="order-product-name">
-
-                                        <span class="product-icon">
-                                            ▪
-                                        </span>
-
-                                        <strong>
-                                            @item.ProductName
-                                        </strong>
-
-                                    </div>
-
-                                </td>
-
-                                <td>
-                                    @item.UnitPrice.ToString("N2") ₺
-                                </td>
-
-                                <td>
-
-                                    <span class="quantity-badge">
-                                        @item.Quantity
-                                    </span>
-
-                                </td>
-
-                                <td class="product-total">
-                                    @item.TotalPrice.ToString("N2") ₺
-                                </td>
-
-                            </tr>
-
-                        }
-
-                    </tbody>
-
-                </table>
+                <strong>
+                    #@Model.OrderId
+                </strong>
 
             </div>
 
-            <!-- ORDERS TOTAL -->
-            <div class="order-products-total">
+            <div class="order-info-item">
 
-                <div class="order-total-row">
+                <span class="order-info-label">
+                    <i class="fa-regular fa-calendar"></i>
+                    Sipariş Tarihi
+                </span>
 
-                    <span>
-                        Ürünler Toplamı
-                    </span>
-
-                    <strong>
-                        @Model.Subtotal.ToString("N2") ₺
-                    </strong>
-
-                </div>
+                <strong>
+                    @Model.OrderDate.ToString("dd.MM.yyyy HH:mm")
+                </strong>
 
             </div>
 
-            @if (!string.IsNullOrWhiteSpace(Model.CouponCode) && Model.DiscountAmount > 0)
-            {
-                <div class="order-total-row order-discount-row">
+            <div class="order-info-item">
 
-                    <span>
-                        Kupon İndirimi
-                    </span>
+                <span class="order-info-label">
+                    <i class="fa-regular fa-box"></i>
+                    Ürün
+                </span>
 
-                    <strong>
-                        -@Model.DiscountAmount.ToString("N2") ₺
-                    </strong>
+                <strong>
+                    @Model.OrderItems.Count adet
+                </strong>
 
-                </div>
+            </div>
 
-                <div class="order-total-row order-coupon-row">
+            <div class="order-info-item order-total">
 
-                    <span>
-                        Kullanılan Kupon
-                    </span>
-
-                    <strong>
-                        @Model.CouponCode
-                    </strong>
-
-                </div>
-            }
-
-            <div class="order-total-divider"></div>
-
-            <div class="order-total-row order-final-total">
-
-                <span>
-                    Genel Toplam
+                <span class="order-info-label">
+                    <i class="fa-solid fa-sack-dollar"></i>
+                    Toplam
                 </span>
 
                 <strong>
@@ -332,77 +129,83 @@
 
             </div>
 
-            <!-- DELIVERY -->
-            <div class="delivery-card">
+        </div>
 
-                <div class="order-card-header">
+        <!-- =====================================================
+             ORDER TRACKING
+             ===================================================== -->
 
-                    <h2>
-                        Teslimat Bilgileri
-                    </h2>
+        <div class="order-tracking-card">
+
+            <div class="order-card-header">
+                <h2>Sipariş Takibi</h2>
+            </div>
+
+            <div class="order-tracking">
+
+                <!-- PREPARING -->
+                <div class="tracking-step @(isPreparing ? "active" : "") @(preparingCompleted ? "completed" : "")">
+
+                    <div class="tracking-icon">
+                        @if (preparingCompleted)
+                        {
+                            <i class="fa-solid fa-check"></i>
+                        }
+                        else
+                        {
+                            <i class="fa-solid fa-box"></i>
+                        }
+                    </div>
+
+                    <div class="tracking-content">
+                        <strong>Sipariş Hazırlanıyor</strong>
+                        <span>Siparişiniz hazırlanıyor.</span>
+                    </div>
 
                 </div>
 
-                <div class="delivery-content">
+                <div class="tracking-line @(preparingCompleted ? "completed" : "")"></div>
 
-                    <div class="delivery-row">
+                <!-- SHIPPED -->
+                <div class="tracking-step @(isShipped ? "active" : "") @(shippedCompleted ? "completed" : "")">
 
-                        <span class="delivery-label">
-                            Ad Soyad
-                        </span>
-
-                        <strong>
-                            @Model.FullName
-                        </strong>
-
+                    <div class="tracking-icon">
+                        @if (shippedCompleted)
+                        {
+                            <i class="fa-solid fa-check"></i>
+                        }
+                        else
+                        {
+                            <i class="fa-solid fa-truck"></i>
+                        }
                     </div>
 
-                    <div class="delivery-row">
-
-                        <span class="delivery-label">
-                            Telefon
-                        </span>
-
-                        <strong>
-                            @Model.Phone
-                        </strong>
-
+                    <div class="tracking-content">
+                        <strong>Kargoya Verildi</strong>
+                        <span>Siparişiniz kargoya teslim edildi.</span>
                     </div>
 
-                    <div class="delivery-row">
+                </div>
 
-                        <span class="delivery-label">
-                            Şehir
-                        </span>
+                <div class="tracking-line @(shippedCompleted ? "completed" : "")"></div>
 
-                        <strong>
-                            @Model.City
-                        </strong>
+                <!-- DELIVERED -->
+                <div class="tracking-step @(isDelivered ? "active completed" : "")">
 
+                    <div class="tracking-icon">
+                        @if (isDelivered)
+                        {
+                            <i class="fa-solid fa-check"></i>
+                        }
+                        else
+                        {
+                            <i class="fa-solid fa-house-circle-check"></i>
+                        }
                     </div>
 
-                    <div class="delivery-row">
-
-                        <span class="delivery-label">
-                            İlçe
-                        </span>
-
-                        <strong>
-                            @Model.District
-                        </strong>
-
-                    </div>
-
-                    <div class="delivery-address">
-
-                        <span class="delivery-label">
-                            Adres
-                        </span>
-
-                        <p>
-                            @Model.Address
-                        </p>
-
+                    <div class="tracking-content">
+                        <strong>Teslim Edildi</strong>
+                        <span>Siparişiniz teslim edildi.</span>
                     </div>
 
                 </div>
@@ -411,11 +214,149 @@
 
         </div>
 
-        <!-- FOOTER ACTION -->
+        <!-- =====================================================
+             MAIN CONTENT — products (left) + delivery (right sidebar)
+             ===================================================== -->
+
+        <div class="order-detail-content">
+
+            <!-- PRODUCTS -->
+            <div class="order-products-card">
+
+                <div class="order-card-header">
+
+                    <h2>Sipariş Ürünleri</h2>
+
+                    <span>@Model.OrderItems.Count Ürün</span>
+
+                </div>
+
+                <div class="order-products-table-wrapper">
+
+                    <table class="order-products-table">
+
+                        <thead>
+
+                            <tr>
+                                <th>Ürün</th>
+                                <th>Birim Fiyat</th>
+                                <th>Adet</th>
+                                <th>Toplam</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            @foreach (var item in Model.OrderItems)
+                            {
+                                <tr>
+
+                                    <td>
+                                        <div class="order-product-name">
+                                            <span class="product-icon">⌁</span>
+                                            <strong>@item.ProductName</strong>
+                                        </div>
+                                    </td>
+
+                                    <td>@item.UnitPrice.ToString("N2") ₺</td>
+
+                                    <td>
+                                        <span class="quantity-badge">@item.Quantity</span>
+                                    </td>
+
+                                    <td class="product-total">@item.TotalPrice.ToString("N2") ₺</td>
+
+                                </tr>
+                            }
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                <!-- TOTALS -->
+                <div class="order-products-total">
+
+                    <div class="order-total-row">
+                        <span>Ürünler Toplamı</span>
+                        <strong>@Model.Subtotal.ToString("N2") ₺</strong>
+                    </div>
+
+                    @if (!string.IsNullOrWhiteSpace(Model.CouponCode) && Model.DiscountAmount > 0)
+                    {
+                        <div class="order-total-row order-discount-row">
+                            <span>Kupon İndirimi</span>
+                            <strong>-@Model.DiscountAmount.ToString("N2") ₺</strong>
+                        </div>
+
+                        <div class="order-total-row order-coupon-row">
+                            <span>Kullanılan Kupon</span>
+                            <strong>@Model.CouponCode</strong>
+                        </div>
+                    }
+
+                    <div class="order-total-divider"></div>
+
+                    <div class="order-total-row order-final-total">
+                        <span>Genel Toplam</span>
+                        <strong>@Model.TotalPrice.ToString("N2") ₺</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- DELIVERY -->
+            <aside class="delivery-card">
+
+                <div class="order-card-header">
+                    <h2>Teslimat Bilgileri</h2>
+                </div>
+
+                <div class="delivery-content">
+
+                    <div class="delivery-row">
+                        <span class="delivery-label"><i class="fa-regular fa-user"></i> Ad Soyad</span>
+                        <strong>@Model.FullName</strong>
+                    </div>
+
+                    <div class="delivery-row">
+                        <span class="delivery-label"><i class="fa-solid fa-phone"></i> Telefon</span>
+                        <strong>@Model.Phone</strong>
+                    </div>
+
+                    <div class="delivery-row">
+                        <span class="delivery-label"><i class="fa-solid fa-city"></i> Şehir</span>
+                        <strong>@Model.City</strong>
+                    </div>
+
+                    <div class="delivery-row">
+                        <span class="delivery-label"><i class="fa-solid fa-map-pin"></i> İlçe</span>
+                        <strong>@Model.District</strong>
+                    </div>
+
+                    <div class="delivery-address">
+                        <span class="delivery-label"><i class="fa-solid fa-location-dot"></i> Adres</span>
+                        <p>@Model.Address</p>
+                    </div>
+
+                </div>
+
+            </aside>
+
+        </div>
+
+        <!-- =====================================================
+             FOOTER
+             ===================================================== -->
+
         <div class="order-detail-footer">
 
             <a asp-action="MyOrders" class="order-back-button">
-                ← Siparişlerime Dön
+                <i class="fa-solid fa-arrow-left"></i>
+                Siparişlerime Dön
             </a>
 
         </div>

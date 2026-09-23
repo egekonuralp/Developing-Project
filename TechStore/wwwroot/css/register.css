@@ -1,77 +1,179 @@
 ﻿/* =========================================================
-   REGISTER PAGE
-   "Backstage pass" konser bileti görünümü — mat, eskimiş,
-   neon ya da canlı renk yok.
+   AUTH / REGISTER PAGE
+   TechStore — Modern Dark / Performance-Tech
    ========================================================= */
 
 .auth-page {
+    --bg: #08090a;
+    --bg-panel: #0e1012;
+    --bg-card: #131619;
+    --bg-card-hover: #181c1f;
+    --border: rgba(255, 255, 255, 0.09);
+    --border-strong: rgba(255, 255, 255, 0.20);
+    --text: #eef1ef;
+    --text-dim: #9ea6a1;
+    --text-faint: #656d68;
+    --green: #3ee881;
+    --green-bright: #82ffb4;
+    --green-deep: #0f5c33;
+    --green-soft: rgba(62, 232, 129, 0.12);
+    --font-display: 'Space Grotesk', 'Segoe UI', Arial, sans-serif;
+    --font-body: 'Inter', 'Segoe UI', Arial, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Consolas', monospace;
+    position: relative;
+    min-height: calc(100vh - 120px);
     display: flex;
+    align-items: center;
     justify-content: center;
     padding: 60px 20px 90px;
+    overflow: hidden;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
 }
 
+
+    /* =========================================================
+   BACKGROUND GRID
+   ========================================================= */
+
+    .auth-page::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.45;
+        background-image: linear-gradient( rgba(62, 232, 129, 0.045) 1px, transparent 1px ), linear-gradient( 90deg, rgba(62, 232, 129, 0.045) 1px, transparent 1px );
+        background-size: 42px 42px;
+        mask-image: radial-gradient( ellipse 620px 520px at 50% 45%, #000 0%, transparent 80% );
+    }
+
+
+    /* =========================================================
+   BACKGROUND GLOW
+   ========================================================= */
+
+    .auth-page::after {
+        content: "";
+        position: absolute;
+        top: -250px;
+        left: 50%;
+        width: 680px;
+        height: 680px;
+        transform: translateX(-50%);
+        pointer-events: none;
+        background: radial-gradient( circle, rgba(62, 232, 129, 0.10) 0%, rgba(62, 232, 129, 0.03) 38%, transparent 72% );
+    }
+
+
+/* =========================================================
+   WRAPPER
+   ========================================================= */
+
 .auth-wrapper {
+    position: relative;
+    z-index: 2;
     width: 100%;
+    max-width: 460px;
+}
+
+
+/* =========================================================
+   WIDE REGISTER CARD
+   ========================================================= */
+
+.auth-card-wide {
     max-width: 640px;
 }
+
+
+/* =========================================================
+   AUTH CARD
+   ========================================================= */
 
 .auth-card {
     position: relative;
-    max-width: 640px;
-    margin: 0 auto;
-    padding: 55px 45px 40px;
-    background: #262019;
-    border: 1px solid #4a3c2c;
-    border-radius: 6px;
-    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    padding: 38px 38px 32px;
     overflow: hidden;
+    background: linear-gradient( 135deg, rgba(62, 232, 129, 0.025), transparent 42% ), var(--bg-card);
+    border: 1px solid var(--border);
+    border-top: 2px solid var(--green);
+    border-radius: 7px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45), 0 0 35px rgba(62, 232, 129, 0.035);
 }
+
+
+    /* =========================================================
+   TOP TECH LINE
+   ========================================================= */
 
     .auth-card::before {
         content: "";
         position: absolute;
-        left: 0;
-        right: 0;
         top: 0;
-        height: 5px;
-        background: #a3803f;
+        left: 0;
+        width: 90px;
+        height: 2px;
+        background: var(--green-bright);
     }
+
+
+/* =========================================================
+   TOP DECORATION
+   ========================================================= */
 
 .auth-punch {
     position: absolute;
-    top: 22px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 22px;
-    height: 22px;
-    background: #171310;
-    border: 2px solid #4a3c2c;
+    top: -42px;
+    right: -42px;
+    width: 115px;
+    height: 115px;
     border-radius: 50%;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.6);
+    background: rgba(62, 232, 129, 0.025);
+    border: 1px solid rgba(62, 232, 129, 0.08);
+    box-shadow: 0 0 45px rgba(62, 232, 129, 0.07);
 }
 
+    .auth-punch::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 40px;
+        height: 40px;
+        transform: translate(-50%, -50%);
+        border: 1px solid rgba(62, 232, 129, 0.16);
+        border-radius: 50%;
+    }
+
+
+/* =========================================================
+   BADGE
+   ========================================================= */
+
 .auth-badge {
-    position: absolute;
-    top: 26px;
-    right: -34px;
-    padding: 5px 40px;
-    background: #8a4030;
-    color: #ecdccf;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 11px;
-    font-weight: 800;
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px;
+    padding: 0 9px;
+    color: #06120a;
+    background: linear-gradient( 135deg, var(--green-bright), var(--green) );
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 700;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    transform: rotate(35deg);
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.35);
 }
+
 
 /* =========================================================
    HEADER
    ========================================================= */
 
 .auth-header {
-    margin-top: 12px;
+    margin-top: 25px;
     margin-bottom: 30px;
     text-align: center;
 }
@@ -79,27 +181,32 @@
 .auth-eyebrow {
     display: inline-block;
     margin-bottom: 8px;
-    color: #5c7686;
-    font-family: 'Permanent Marker', cursive;
-    font-size: 16px;
+    color: var(--green);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.7px;
+    text-transform: uppercase;
 }
 
 .auth-header h1 {
     margin: 0 0 6px;
-    color: #d8cbb3;
-    font-family: 'Alfa Slab One', Georgia, serif;
+    color: var(--text);
+    font-family: var(--font-display);
     font-size: 34px;
-    font-weight: 400;
-    text-transform: uppercase;
-    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -1px;
 }
 
 .auth-subtitle {
     margin: 0;
-    color: #8a7a64;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 15px;
+    color: var(--text-dim);
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.5;
 }
+
 
 /* =========================================================
    FORM
@@ -110,128 +217,243 @@
 }
 
 .auth-field {
-    margin-bottom: 18px;
+    margin-bottom: 20px;
 }
 
-    .auth-field .form-label {
-        display: block;
-        margin-bottom: 7px;
-        color: #d8cbb3;
-        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-        font-size: 14px;
-        font-weight: 700;
-    }
 
-    .auth-field .form-control {
-        width: 100%;
-        height: 44px;
-        padding: 0 13px;
-        color: #d8cbb3;
-        background: #171310;
-        border: 1px solid #4a3c2c;
-        border-radius: 2px;
-        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-        font-size: 15px;
-        transition: border-color 0.2s ease, box-shadow 0.2s ease;
-    }
-
-        .auth-field .form-control::placeholder {
-            color: #8a7a64;
-        }
-
-        .auth-field .form-control:focus {
-            outline: none;
-            border-color: #a3803f;
-            box-shadow: 0 0 0 2px rgba(163, 128, 63, 0.18);
-        }
-
-/* İki sütunlu alanlar (Ad/Soyad, Şifre/Şifre Tekrar) */
+/* =========================================================
+   TWO COLUMN FORM
+   ========================================================= */
 
 .auth-form-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0 16px;
 }
 
+
+/* =========================================================
+   LABEL
+   ========================================================= */
+
+.auth-field .form-label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   INPUT
+   ========================================================= */
+
+.auth-field .form-control {
+    width: 100%;
+    height: 46px;
+    padding: 0 14px;
+    color: var(--text);
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    outline: none;
+    font-family: var(--font-body);
+    font-size: 14px;
+    transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+    .auth-field .form-control:hover {
+        border-color: var(--border-strong);
+    }
+
+    .auth-field .form-control:focus {
+        color: var(--text);
+        background: #101315;
+        border-color: rgba(62, 232, 129, 0.65);
+        box-shadow: 0 0 0 3px rgba(62, 232, 129, 0.08), 0 0 18px rgba(62, 232, 129, 0.06);
+    }
+
+    .auth-field .form-control::placeholder {
+        color: #68706b;
+    }
+
+
+/* =========================================================
+   VALIDATION
+   ========================================================= */
+
 .auth-validation-summary {
-    color: #a1503d;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    margin-bottom: 12px;
+    margin-bottom: 18px;
+    color: #ff7474;
+    font-family: var(--font-body);
+    font-size: 13px;
+    line-height: 1.5;
 }
 
     .auth-validation-summary:empty {
         display: none;
     }
 
+.auth-field .text-danger {
+    display: block;
+    margin-top: 6px;
+    color: #ff7474 !important;
+    font-family: var(--font-body);
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   SUBMIT BUTTON
+   ========================================================= */
+
 .auth-submit {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
-    padding: 12px;
-    color: #171310;
-    background: #a3803f;
-    border: 1px dashed #171310;
-    outline: 2px solid #a3803f;
-    outline-offset: -4px;
-    border-radius: 2px;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 15px;
+    min-height: 48px;
+    padding: 0 20px;
+    color: #06120a;
+    background: linear-gradient( 135deg, var(--green-bright), var(--green) );
+    border: 1px solid var(--green);
+    border-radius: 5px;
+    font-family: var(--font-body);
+    font-size: 13px;
     font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.3px;
     cursor: pointer;
-    transition: background 0.2s ease;
+    box-shadow: 0 8px 18px -5px rgba(62, 232, 129, 0.32);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
     .auth-submit:hover {
-        background: #bd9a5c;
+        color: #06120a;
+        background: linear-gradient( 135deg, #a4ffc8, var(--green-bright) );
+        box-shadow: 0 12px 26px -5px rgba(62, 232, 129, 0.45);
+        transform: translateY(-2px);
     }
+
+    .auth-submit:active {
+        transform: translateY(0);
+        box-shadow: 0 6px 14px -5px rgba(62, 232, 129, 0.28);
+    }
+
 
 /* =========================================================
    DIVIDER
    ========================================================= */
 
 .auth-divider {
-    height: 1px;
-    background: #4a3c2c;
+    margin: 28px 0 22px;
     border: 0;
-    margin: 25px 0;
+    border-top: 1px solid var(--border);
+    opacity: 1;
 }
+
 
 /* =========================================================
    FOOTER
    ========================================================= */
 
 .auth-footer {
-    text-align: center;
-    color: #8a7a64;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    color: var(--text-faint);
+    font-family: var(--font-body);
+    font-size: 13px;
 }
 
     .auth-footer a {
-        margin-left: 6px;
-        color: #a3803f;
+        color: var(--green);
         font-weight: 700;
         text-decoration: none;
+        transition: color 0.2s ease, text-shadow 0.2s ease;
     }
 
         .auth-footer a:hover {
-            color: #bd9a5c;
+            color: var(--green-bright);
+            text-shadow: 0 0 12px rgba(62, 232, 129, 0.35);
         }
+
 
 /* =========================================================
    RESPONSIVE
    ========================================================= */
 
+@media (max-width: 700px) {
+
+    .auth-page {
+        padding: 45px 15px 70px;
+    }
+
+    .auth-wrapper {
+        max-width: 100%;
+    }
+
+    .auth-card-wide {
+        max-width: 100%;
+    }
+}
+
+
 @media (max-width: 560px) {
 
+    .auth-page {
+        min-height: auto;
+        padding: 40px 15px 60px;
+    }
+
     .auth-card {
-        padding: 50px 25px 30px;
+        padding: 32px 25px 28px;
     }
 
     .auth-form-grid {
         grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .auth-header h1 {
+        font-size: 30px;
+    }
+}
+
+
+@media (max-width: 400px) {
+
+    .auth-page {
+        padding: 30px 12px 50px;
+    }
+
+    .auth-card {
+        padding: 28px 20px 24px;
+        border-radius: 6px;
+    }
+
+    .auth-header {
+        margin-top: 22px;
+        margin-bottom: 25px;
+    }
+
+        .auth-header h1 {
+            font-size: 27px;
+        }
+
+    .auth-subtitle {
+        font-size: 13px;
+    }
+
+    .auth-field .form-control {
+        height: 44px;
+    }
+
+    .auth-footer {
+        flex-direction: column;
+        gap: 4px;
     }
 }

@@ -1,6 +1,6 @@
 ﻿/* =========================
    PROFILE PAGE
-   Mat, eskimiş, neon/canlı renk yok.
+   TechStore - Dark Performance Theme
    ========================= */
 
 .profile-page {
@@ -23,7 +23,7 @@
     gap: 18px;
     margin-bottom: 30px;
     padding-bottom: 25px;
-    border-bottom: 1px solid #4a3c2c;
+    border-bottom: 1px solid rgba(62, 232, 129, 0.16);
 }
 
 .profile-icon {
@@ -33,49 +33,105 @@
     width: 58px;
     height: 58px;
     flex-shrink: 0;
-    color: #a3803f;
-    background: #171310;
-    border: 1px solid #4a3c2c;
-    border-radius: 3px;
+    color: #3ee881;
+    background: #0e1012;
+    border: 1px solid rgba(62, 232, 129, 0.28);
+    border-radius: 7px;
     font-size: 25px;
+    box-shadow: 0 0 24px rgba(62, 232, 129, 0.08);
 }
 
 .profile-eyebrow {
     display: block;
-    margin-bottom: 5px;
-    color: #5c7686;
-    font-family: 'Permanent Marker', cursive;
-    font-size: 15px;
-    letter-spacing: 1px;
+    margin-bottom: 6px;
+    color: #3ee881;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
 }
 
 .profile-header h1 {
     margin: 0 0 7px;
-    color: #d8cbb3;
-    font-family: 'Alfa Slab One', Georgia, serif;
+    color: #eef1ef;
+    font-family: 'Space Grotesk', sans-serif;
     font-size: 34px;
-    font-weight: 400;
-    text-transform: uppercase;
-    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
+    font-weight: 700;
+    letter-spacing: -0.8px;
 }
 
 .profile-header p {
     margin: 0;
-    color: #8a7a64;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 15px;
+    color: #9ea6a1;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
 }
 
 /* =========================
-   PROFILE CARD — eskimiş afiş paneli
+   SUCCESS MESSAGE
+   ========================= */
+
+.profile-alert {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    margin-bottom: 20px;
+    padding: 13px 15px;
+    border-radius: 6px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.profile-alert-success {
+    color: #82ffb4;
+    background: rgba(62, 232, 129, 0.07);
+    border: 1px solid rgba(62, 232, 129, 0.25);
+    box-shadow: 0 0 20px rgba(62, 232, 129, 0.04);
+}
+
+.profile-alert-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    color: #3ee881;
+    border: 1px solid rgba(62, 232, 129, 0.45);
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 900;
+}
+
+/* =========================
+   VALIDATION
+   ========================= */
+
+.profile-validation-summary {
+    margin-bottom: 20px;
+    color: #ff7474;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+    .profile-validation-summary:empty {
+        display: none;
+    }
+
+/* =========================
+   PROFILE CARD
    ========================= */
 
 .profile-card {
-    background: #262019;
-    border: 1px solid #4a3c2c;
-    border-top: 3px solid #8a4030;
-    border-radius: 4px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    background: #131619;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-top: 2px solid rgba(62, 232, 129, 0.55);
+    border-radius: 8px;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35), 0 0 30px rgba(62, 232, 129, 0.025);
 }
 
 /* =========================
@@ -84,25 +140,26 @@
 
 .profile-card-header {
     padding: 25px 30px 20px;
-    border-bottom: 1px solid #4a3c2c;
+    background: #0e1012;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
     .profile-card-header > span {
         display: block;
-        margin-bottom: 5px;
-        color: #a3803f;
-        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-        font-size: 12px;
-        font-weight: 800;
-        letter-spacing: 2px;
-        text-transform: uppercase;
+        margin-bottom: 6px;
+        color: #3ee881;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 1.8px;
     }
 
     .profile-card-header p {
         margin: 0;
-        color: #8a7a64;
-        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-        font-size: 14px;
+        color: #68706b;
+        font-family: 'Inter', sans-serif;
+        font-size: 13px;
+        line-height: 1.5;
     }
 
 /* =========================
@@ -126,10 +183,10 @@
     .profile-form-group label {
         display: block;
         margin-bottom: 8px;
-        color: #d8cbb3;
-        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-        font-size: 14px;
-        font-weight: 700;
+        color: #eef1ef;
+        font-family: 'Inter', sans-serif;
+        font-size: 13px;
+        font-weight: 600;
     }
 
 /* =========================
@@ -138,83 +195,43 @@
 
 .profile-input {
     width: 100%;
-    height: 44px;
-    padding: 0 13px;
-    color: #d8cbb3;
-    background: #171310;
-    border: 1px solid #4a3c2c;
-    border-radius: 2px;
+    height: 46px;
+    padding: 0 14px;
+    color: #eef1ef;
+    background: #0e1012;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 6px;
     outline: none;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 15px;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
+    .profile-input:hover {
+        border-color: rgba(255, 255, 255, 0.15);
+    }
+
     .profile-input::placeholder {
-        color: #8a7a64;
+        color: #68706b;
     }
 
     .profile-input:focus {
-        border-color: #a3803f;
-        box-shadow: 0 0 0 2px rgba(163, 128, 63, 0.18);
+        background: #101315;
+        border-color: rgba(62, 232, 129, 0.65);
+        box-shadow: 0 0 0 3px rgba(62, 232, 129, 0.08), 0 0 18px rgba(62, 232, 129, 0.06);
     }
 
 /* =========================
-   VALIDATION
+   VALIDATION ERRORS
    ========================= */
 
 .profile-field-error {
     display: block;
     margin-top: 6px;
-    color: #a1503d;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 13px;
-}
-
-.profile-validation-summary {
-    margin-bottom: 20px;
-    color: #a1503d;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 14px;
-}
-
-    .profile-validation-summary:empty {
-        display: none;
-    }
-
-/* =========================
-   SUCCESS ALERT
-   ========================= */
-
-.profile-alert {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 20px;
-    padding: 13px 15px;
-    border-radius: 2px;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-}
-
-.profile-alert-success {
-    color: #cfd8bf;
-    background: rgba(92, 107, 70, 0.18);
-    border: 1px solid #5c6b46;
-}
-
-.profile-alert-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 22px;
-    height: 22px;
-    color: #cfd8bf;
-    border: 1px solid #5c6b46;
-    border-radius: 50%;
+    color: #ff7474;
+    font-family: 'Inter', sans-serif;
     font-size: 12px;
-    font-weight: 900;
+    line-height: 1.4;
 }
 
 /* =========================
@@ -226,48 +243,52 @@
     justify-content: flex-end;
     margin-top: 8px;
     padding-top: 25px;
-    border-top: 1px solid #4a3c2c;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
 }
 
 /* =========================
-   SUBMIT BUTTON — bilet kuponu görünümü
+   SUBMIT BUTTON
    ========================= */
 
 .profile-submit-button {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 9px;
     min-width: 220px;
-    min-height: 45px;
-    padding: 0 20px;
-    color: #171310;
-    background: #a3803f;
-    border: 1px dashed #171310;
-    outline: 2px solid #a3803f;
-    outline-offset: -4px;
-    border-radius: 2px;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 14px;
+    min-height: 46px;
+    padding: 0 22px;
+    color: #07110b;
+    background: #3ee881;
+    border: 1px solid #3ee881;
+    border-radius: 6px;
+    outline: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
     font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.3px;
     cursor: pointer;
-    transition: background 0.2s ease, transform 0.2s ease;
+    box-shadow: 0 0 18px rgba(62, 232, 129, 0.10);
+    transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
     .profile-submit-button:hover {
-        background: #bd9a5c;
+        color: #061009;
+        background: #82ffb4;
+        border-color: #82ffb4;
+        box-shadow: 0 0 24px rgba(62, 232, 129, 0.22), 0 8px 20px rgba(0, 0, 0, 0.2);
         transform: translateY(-1px);
     }
 
     .profile-submit-button:active {
         transform: translateY(0);
+        box-shadow: 0 0 12px rgba(62, 232, 129, 0.14);
     }
 
     .profile-submit-button span {
-        color: #171310;
+        color: inherit;
         font-size: 14px;
+        font-weight: 900;
     }
 
 /* =========================
@@ -278,6 +299,7 @@
 
     .profile-page {
         margin-top: 35px;
+        margin-bottom: 60px;
         padding: 0 15px;
     }
 
@@ -310,8 +332,14 @@
 
 @media (max-width: 450px) {
 
+    .profile-page {
+        padding: 0 12px;
+    }
+
     .profile-header {
         gap: 12px;
+        margin-bottom: 24px;
+        padding-bottom: 20px;
     }
 
     .profile-icon {
@@ -320,11 +348,35 @@
         font-size: 21px;
     }
 
+    .profile-eyebrow {
+        font-size: 9px;
+        letter-spacing: 1.3px;
+    }
+
     .profile-header h1 {
         font-size: 22px;
+        letter-spacing: -0.4px;
     }
 
     .profile-header p {
+        font-size: 13px;
+    }
+
+    .profile-card-header,
+    .profile-form {
+        padding: 18px;
+    }
+
+        .profile-card-header > span {
+            font-size: 10px;
+        }
+
+        .profile-card-header p {
+            font-size: 12px;
+        }
+
+    .profile-input {
+        height: 44px;
         font-size: 13px;
     }
 }

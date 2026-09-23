@@ -8,84 +8,148 @@
 
     <div class="orders-container">
 
-        <!-- PAGE HEADER -->
+        <!-- =====================================================
+             PAGE HEADER
+             ===================================================== -->
+
         <div class="orders-header">
 
-            <div class="orders-icon">
-                📦
+            <div class="orders-header-main">
+
+                <div class="orders-icon" aria-hidden="true">
+                    <i class="fa-solid fa-box-open"></i>
+                </div>
+
+                <div>
+
+                    <span class="orders-eyebrow">
+                        HESABIM / SİPARİŞLER
+                    </span>
+
+                    <h1>
+                        Siparişlerim
+                    </h1>
+
+                    <p>
+                        Geçmiş ve mevcut siparişlerinizi buradan takip edebilirsiniz.
+                    </p>
+
+                </div>
+
             </div>
 
-            <div>
+            @if (Model.Orders.Any())
+            {
+                <div class="orders-count">
 
-                <span class="orders-eyebrow">
-                    HESABIM
-                </span>
+                    <span class="orders-count-label">
+                        TOPLAM
+                    </span>
 
-                <h1>
-                    Siparişlerim
-                </h1>
+                    <strong>
+                        @Model.Orders.Count
+                    </strong>
 
-                <p>
-                    Geçmiş ve mevcut siparişlerinizi buradan takip edebilirsiniz.
-                </p>
+                    <span class="orders-count-text">
+                        sipariş
+                    </span>
 
-            </div>
+                </div>
+            }
 
         </div>
 
+
         @if (!Model.Orders.Any())
         {
-            <!-- EMPTY ORDERS -->
-            <div class="orders-empty">
+            <!-- =================================================
+                 EMPTY STATE
+                 ================================================= -->
+
+            <section class="orders-empty">
 
                 <div class="orders-empty-icon">
-                    📦
+                    <i class="fa-solid fa-box-open"></i>
                 </div>
+
+                <span class="orders-empty-eyebrow">
+                    HENÜZ SİPARİŞ YOK
+                </span>
 
                 <h2>
                     Henüz siparişiniz bulunmuyor.
                 </h2>
 
                 <p>
-                    Henüz bir sipariş oluşturmadınız.
-                    Ürünlerimizi inceleyerek alışverişe başlayabilirsiniz.
+                    İlk siparişinizi oluşturmak için ürünlerimizi inceleyerek
+                    alışverişe başlayabilirsiniz.
                 </p>
 
-                <a asp-controller="Home" asp-action="Index" class="orders-shopping-button">
-                    Alışverişe Başla
-                </a>
-            
-            </div>
+                <a asp-controller="Home"
+                   asp-action="Index"
+                   class="orders-shopping-button">
 
+                    <span>
+                        Alışverişe Başla
+                    </span>
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </a>
+
+            </section>
         }
         else
         {
-            <!-- ORDERS LİST -->
-            <div class="orders-list">
+            <!-- =================================================
+                 ORDERS GRID
+                 ================================================= -->
+
+            <section class="orders-list"
+                     aria-label="Siparişleriniz">
 
                 @foreach (var order in Model.Orders)
                 {
-                    <div class="order-card">
+                    var statusClass = order.Status switch
+                    {
+                        OrderStatuses.Preparing => "status-preparing",
+                        OrderStatuses.Shipped => "status-shipped",
+                        OrderStatuses.Delivered => "status-delivered",
+                        OrderStatuses.Cancelled => "status-cancelled",
+                        _ => "status-default"
+                    };
 
-                        <!-- ORDER HEADER -->
-                        <div class="order-card-header">
+                    var statusIcon = order.Status switch
+                    {
+                        OrderStatuses.Preparing => "fa-solid fa-box",
+                        OrderStatuses.Shipped => "fa-solid fa-truck",
+                        OrderStatuses.Delivered => "fa-solid fa-circle-check",
+                        OrderStatuses.Cancelled => "fa-solid fa-circle-xmark",
+                        _ => "fa-solid fa-circle-info"
+                    };
 
-                            <div class="order-number">
+                    <article class="order-card">
 
-                                <span class="order-label">
+                        <!-- CARD TOP -->
+
+                        <div class="order-card-top">
+
+                            <div class="order-card-identity">
+
+                                <span class="order-card-label">
                                     SİPARİŞ
                                 </span>
 
-                                <strong>
+                                <strong class="order-number">
                                     #@order.OrderId
                                 </strong>
 
                             </div>
 
-                            <div class="order-date">
+                            <div class="order-card-date">
 
-                                <span class="order-label">
-                                    SİPARİŞ TARİHİ
+                                <span class="order-card-label">
+                                    TARİH
                                 </span>
 
                                 <strong>
@@ -96,62 +160,83 @@
 
                         </div>
 
-                        <!-- ORDER BODY -->
+
+                        <!-- STATUS -->
+
+                        <div class="order-card-status @statusClass">
+
+                            <i class="@statusIcon"></i>
+
+                            <span>
+                                @order.Status
+                            </span>
+
+                        </div>
+
+
+                        <!-- CARD BODY -->
+
                         <div class="order-card-body">
 
-                            <div class="order-info">
+                            <div class="order-total-block">
 
-                                <div class="order-info-item">
+                                <span>
+                                    TOPLAM TUTAR
+                                </span>
 
-                                    <span class="order-info-label">
-                                        Toplam Tutar
-                                    </span>
-
-                                    <strong class="order-total">
-                                        @order.TotalPrice.ToString("N2") ₺
-                                    </strong>
-
-                                </div>
-
-                                <div class="order-info-item">
-
-                                    <span class="order-info-label">
-                                        Durum
-                                    </span>
-
-                                    <span class="order-status">
-                                        @order.Status
-                                    </span>
-
-                                </div>
+                                <strong>
+                                    @order.TotalPrice.ToString("N2") ₺
+                                </strong>
 
                             </div>
 
-                            <!-- ORDER ACTION -->
-                            <div class="order-action">
+                            <div class="order-card-meta">
 
-                                <a asp-action="Detail" asp-route-id="@order.OrderId" class="order-detail-button">
-
+                                <div class="meta-line">
+                                    <i class="fa-regular fa-calendar"></i>
                                     <span>
-                                        Sipariş Detayı
+                                        @order.OrderDate.ToString("dd MMMM yyyy")
                                     </span>
+                                </div>
 
-                                    <span class="order-detail-arrow">
-                                        →
+                                <div class="meta-line">
+                                    <i class="fa-solid fa-receipt"></i>
+                                    <span>
+                                        Sipariş #@order.OrderId
                                     </span>
-
-                                </a>
+                                </div>
 
                             </div>
 
                         </div>
 
-                    </div>
 
+                        <!-- CARD FOOTER -->
+
+                        <div class="order-card-footer">
+
+                            <span class="order-footer-text">
+                                Sipariş bilgilerini ve teslimat durumunu görüntüle
+                            </span>
+
+                            <a asp-action="Detail"
+                               asp-route-id="@order.OrderId"
+                               class="order-detail-button">
+
+                                <span>
+                                    Sipariş Detayı
+                                </span>
+
+                                <i class="fa-solid fa-arrow-right"></i>
+
+                            </a>
+
+                        </div>
+
+                    </article>
                 }
 
-            </div>
-
+            </section>
         }
 
     </div>
