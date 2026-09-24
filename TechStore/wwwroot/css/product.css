@@ -1,120 +1,141 @@
 ﻿/* =========================================================
-   PRODUCT LIST (ADMIN) — mat, eskimiş, neon/canlı renk yok
+   PRODUCT LIST (ADMIN)
+   Matches the admin.css "Premium Graphite / White / Steel"
+   theme — reuses its :root tokens directly (admin.css is
+   always loaded first, see _AdminLayout.cshtml).
+   ========================================================= */
+
+/* =========================================================
+   PAGE HEADER
    ========================================================= */
 
 .page-header {
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
-    margin-bottom: 22px;
+    gap: 16px;
+    margin-bottom: 26px;
 }
 
 .page-header-actions {
     display: flex;
     align-items: center;
     gap: 10px;
+    flex-shrink: 0;
 }
 
 .page-header h2 {
     margin: 0 0 6px;
-    color: #d8cbb3;
-    font-family: 'Alfa Slab One', Georgia, serif;
+    color: var(--admin-text);
+    font-family: var(--font-display);
     font-size: 22px;
-    font-weight: 400;
-    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: -0.2px;
 }
 
 .page-header p {
     margin: 0;
-    color: #8a7a64;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 14px;
+    color: var(--admin-text-dim);
+    font-family: var(--font-body);
+    font-size: 13.5px;
 }
 
+/* =========================================================
+   ALERTS
+   ========================================================= */
+
 .admin-alert {
-    padding: 12px 15px;
-    margin-bottom: 16px;
-    border-radius: 2px;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 14px;
+    padding: 13px 16px;
+    margin-bottom: 18px;
+    border-radius: 6px;
+    font-family: var(--font-body);
+    font-size: 13.5px;
+    font-weight: 500;
 }
 
 .admin-alert-success {
-    color: #cfd8bf;
-    background: rgba(92, 107, 70, 0.18);
-    border: 1px solid #5c6b46;
+    color: var(--admin-success);
+    background: rgba(215, 221, 225, 0.06);
+    border: 1px solid var(--admin-border-medium);
 }
 
 .admin-alert-danger {
-    color: #e0c3ba;
-    background: rgba(138, 64, 48, 0.18);
-    border: 1px solid #8a4030;
+    color: #ffb3ab;
+    background: rgba(255, 116, 116, 0.09);
+    border: 1px solid rgba(255, 116, 116, 0.25);
 }
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
 
 .btn-primary-custom {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
     padding: 11px 20px;
-    color: #171310;
-    background: #a3803f;
-    border: 1px dashed #171310;
-    outline: 2px solid #a3803f;
-    outline-offset: -4px;
-    border-radius: 2px;
+    color: #12151a;
+    background: linear-gradient(135deg, var(--admin-white), var(--admin-steel));
+    border: none;
+    border-radius: 6px;
     text-decoration: none;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 14px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.4px;
+    font-family: var(--font-body);
+    font-size: 13.5px;
+    font-weight: 700;
     white-space: nowrap;
-    transition: background 0.2s ease;
+    box-shadow: 0 10px 26px -10px rgba(255, 255, 255, 0.28);
+    transition: filter 0.2s ease, transform 0.2s ease;
 }
 
     .btn-primary-custom:hover {
-        background: #bd9a5c;
+        filter: brightness(1.06);
+        transform: translateY(-1px);
     }
 
 .btn-secondary-custom {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
     padding: 10px 18px;
-    color: #d8cbb3;
-    background: transparent;
-    border: 1px solid #4a3c2c;
-    border-radius: 2px;
+    color: var(--admin-text-soft);
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid var(--admin-border);
+    border-radius: 6px;
     text-decoration: none;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 14px;
-    font-weight: 700;
+    font-family: var(--font-body);
+    font-size: 13.5px;
+    font-weight: 600;
     white-space: nowrap;
     cursor: pointer;
-    transition: border-color 0.2s ease, color 0.2s ease;
+    transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
 }
 
     .btn-secondary-custom:hover {
-        border-color: #a3803f;
-        color: #a3803f;
+        color: var(--admin-text);
+        background: rgba(255, 255, 255, 0.05);
+        border-color: var(--admin-border-strong);
     }
 
 /* =========================================================
-   ACTION BAR (search/filter)
+   ACTION BAR (search / filter)
+   Grid instead of flex-wrap: every field gets a fixed column,
+   so nothing can silently wrap onto its own line before the
+   900px breakpoint decides to stack things on purpose.
    ========================================================= */
 
 .action-bar {
-    display: flex;
+    display: grid;
+    grid-template-columns: minmax(180px, 1.6fr) minmax(150px, 1fr) 130px 130px auto;
     align-items: center;
     gap: 12px;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
+    margin-bottom: 22px;
 }
 
 .search-box {
     position: relative;
-    flex: 1;
-    min-width: 200px;
+    min-width: 0;
 }
 
     .search-box i {
@@ -122,21 +143,22 @@
         left: 13px;
         top: 50%;
         transform: translateY(-50%);
-        color: #8a7a64;
+        color: var(--admin-text-faint);
         font-size: 13px;
     }
 
 .search-input {
     width: 100%;
+    min-width: 0;
     height: 42px;
     padding: 0 13px;
-    color: #d8cbb3;
-    background: #262019;
-    border: 1px solid #4a3c2c;
-    border-radius: 2px;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 14px;
-    transition: border-color 0.2s ease;
+    color: var(--admin-text);
+    background: var(--admin-panel);
+    border: 1px solid var(--admin-border);
+    border-radius: 6px;
+    font-family: var(--font-body);
+    font-size: 13.5px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .search-box .search-input {
@@ -144,29 +166,42 @@
 }
 
 .search-input::placeholder {
-    color: #8a7a64;
+    color: var(--admin-text-faint);
 }
 
 .search-input:focus {
     outline: none;
-    border-color: #a3803f;
+    border-color: var(--admin-border-strong);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.05);
 }
 
+/* Filter + Clear: always their own row-direction flex group,
+   never affected by the grid or by anything above stacking */
 .action-right {
-    display: flex;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
     gap: 10px;
+    min-width: 0;
 }
+
+    .action-right > * {
+        flex: 1;
+        min-width: 0;
+        white-space: nowrap;
+    }
 
 /* =========================================================
    TABLE CARD
    ========================================================= */
 
 .card-custom {
-    background: #262019;
-    border: 1px solid #4a3c2c;
-    border-radius: 4px;
+    background: var(--admin-card);
+    border: 1px solid var(--admin-border);
+    border-radius: 8px;
     overflow: hidden;
     margin-bottom: 18px;
+    box-shadow: 0 20px 45px -30px rgba(0, 0, 0, 0.6);
 }
 
 .table-custom {
@@ -175,28 +210,29 @@
 }
 
     .table-custom thead th {
-        padding: 12px 20px;
-        color: #8a7a64;
-        background: #201a15;
-        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-        font-size: 12px;
-        font-weight: 700;
+        padding: 13px 20px;
+        color: var(--admin-text-faint);
+        background: var(--admin-panel);
+        border-bottom: 1px solid var(--admin-border);
+        font-family: var(--font-mono);
+        font-size: 10.5px;
+        font-weight: 600;
         text-transform: uppercase;
-        letter-spacing: 0.4px;
+        letter-spacing: 0.6px;
         text-align: left;
         white-space: nowrap;
     }
 
     .table-custom tbody td {
         padding: 13px 20px;
-        border-top: 1px solid #4a3c2c;
-        color: #d8cbb3;
-        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-        font-size: 14px;
+        border-top: 1px solid var(--admin-border);
+        color: var(--admin-text-soft);
+        font-family: var(--font-body);
+        font-size: 13.5px;
     }
 
     .table-custom tbody tr:hover {
-        background: rgba(163, 128, 63, 0.04);
+        background: rgba(255, 255, 255, 0.02);
     }
 
 .image-column {
@@ -207,80 +243,70 @@
     width: 46px;
     height: 46px;
     object-fit: cover;
-    border-radius: 3px;
-    background: #d8cbb3;
+    background: var(--admin-surface);
+    border: 1px solid var(--admin-border);
+    border-radius: 6px;
 }
 
 .product-info .product-name {
-    color: #d8cbb3;
+    color: var(--admin-text);
     font-weight: 700;
 }
 
 .product-info .product-brand {
-    color: #8a7a64;
-    font-size: 12px;
     margin-top: 2px;
+    color: var(--admin-text-faint);
+    font-size: 11.5px;
 }
 
 .category-badge {
     display: inline-block;
     padding: 4px 11px;
-    color: #8a7a64;
-    background: #171310;
-    border: 1px solid #4a3c2c;
-    border-radius: 2px;
-    font-size: 12px;
+    color: var(--admin-text-dim);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--admin-border);
+    border-radius: 100px;
+    font-size: 11.5px;
     white-space: nowrap;
 }
 
 .price-column {
-    color: #8a4030;
-    font-weight: 700;
+    color: var(--admin-text);
+    font-family: var(--font-mono);
+    font-weight: 600;
     white-space: nowrap;
 }
 
-.badge-stock {
-    display: inline-block;
-    padding: 4px 11px;
-    border-radius: 2px;
-    font-size: 12px;
-    font-weight: 700;
-}
-
-    .badge-stock.in-stock {
-        color: #cfd8bf;
-        background: rgba(92, 107, 70, 0.18);
-        border: 1px solid #5c6b46;
-    }
-
-    .badge-stock.low-stock {
-        color: #e0c3ba;
-        background: rgba(138, 64, 48, 0.18);
-        border: 1px solid #8a4030;
-    }
-
+.badge-stock,
 .status-badge {
     display: inline-block;
     padding: 4px 11px;
-    border-radius: 2px;
-    font-size: 12px;
-    font-weight: 700;
+    border-radius: 100px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
 }
 
+    .badge-stock.in-stock,
     .status-badge.active {
-        color: #cfd8bf;
-        background: rgba(92, 107, 70, 0.18);
-        border: 1px solid #5c6b46;
+        color: var(--admin-success);
+        background: rgba(215, 221, 225, 0.08);
+        border: 1px solid var(--admin-border-medium);
     }
 
+    .badge-stock.low-stock,
     .status-badge.inactive {
-        color: #e0c3ba;
-        background: rgba(138, 64, 48, 0.18);
-        border: 1px solid #8a4030;
+        color: #ffb3ab;
+        background: rgba(255, 116, 116, 0.09);
+        border: 1px solid rgba(255, 116, 116, 0.25);
     }
+
+/* =========================================================
+   ROW ACTIONS
+   ========================================================= */
 
 .action-column {
-    width: 90px;
+    width: 100px;
 }
 
 .action-buttons {
@@ -294,44 +320,33 @@
     justify-content: center;
     width: 32px;
     height: 32px;
-    border: 1px solid #4a3c2c;
-    border-radius: 3px;
+    color: var(--admin-text-dim);
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid var(--admin-border);
+    border-radius: 6px;
     text-decoration: none;
-    font-size: 13px;
-    transition: border-color 0.2s ease, color 0.2s ease;
+    font-size: 12.5px;
+    cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
 }
 
-.btn-edit {
-    color: #a3803f;
-}
-
-    .btn-edit:hover {
-        border-color: #a3803f;
+    .btn-icon:hover {
+        color: var(--admin-text);
+        background: rgba(255, 255, 255, 0.05);
+        border-color: var(--admin-border-strong);
     }
 
-.btn-delete {
-    color: #a1503d;
+.btn-delete:hover,
+.btn-toggle-off:hover {
+    color: #ffb3ab;
+    border-color: rgba(255, 116, 116, 0.35);
+    background: rgba(255, 116, 116, 0.08);
 }
 
-    .btn-delete:hover {
-        border-color: #8a4030;
-    }
-
-.btn-toggle-off {
-    color: #a1503d;
+.btn-toggle-on:hover {
+    color: var(--admin-success);
+    border-color: var(--admin-border-strong);
 }
-
-    .btn-toggle-off:hover {
-        border-color: #8a4030;
-    }
-
-.btn-toggle-on {
-    color: #7a8f5c;
-}
-
-    .btn-toggle-on:hover {
-        border-color: #5c6b46;
-    }
 
 /* =========================================================
    PAGINATION
@@ -339,9 +354,9 @@
 
 .pagination-info {
     margin-bottom: 14px;
-    color: #8a7a64;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 13px;
+    color: var(--admin-text-faint);
+    font-family: var(--font-mono);
+    font-size: 12px;
 }
 
 .pagination {
@@ -357,32 +372,33 @@
     align-items: center;
     gap: 6px;
     padding: 8px 14px;
-    color: #d8cbb3;
-    background: #262019;
-    border: 1px solid #4a3c2c;
-    border-radius: 2px;
+    color: var(--admin-text-soft);
+    background: var(--admin-panel);
+    border: 1px solid var(--admin-border);
+    border-radius: 6px;
     text-decoration: none;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 13px;
+    font-family: var(--font-body);
+    font-size: 12.5px;
     font-weight: 600;
-    transition: border-color 0.2s ease, color 0.2s ease;
+    transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
 }
 
     .pagination-btn:hover,
     .page-number:hover {
-        border-color: #a3803f;
-        color: #a3803f;
+        color: var(--admin-text);
+        border-color: var(--admin-border-strong);
+        background: rgba(255, 255, 255, 0.04);
     }
 
     .pagination-btn.disabled {
-        opacity: 0.4;
+        opacity: 0.35;
         pointer-events: none;
     }
 
     .page-number.active {
-        color: #171310;
-        background: #a3803f;
-        border-color: #a3803f;
+        color: #12151a;
+        background: linear-gradient(135deg, var(--admin-white), var(--admin-steel));
+        border-color: transparent;
     }
 
 /* =========================================================
@@ -390,24 +406,35 @@
    ========================================================= */
 
 @media (max-width: 900px) {
-
     .page-header {
         flex-direction: column;
         align-items: flex-start;
-        gap: 12px;
+        gap: 14px;
     }
 
+    .page-header-actions {
+        width: 100%;
+    }
+
+        .page-header-actions > * {
+            flex: 1;
+        }
+
     .action-bar {
-        flex-direction: column;
-        align-items: stretch;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .search-box {
+        grid-column: 1 / -1;
     }
 
     .action-right {
-        justify-content: stretch;
+        grid-column: 1 / -1;
     }
+}
 
-        .action-right > * {
-            flex: 1;
-            justify-content: center;
-        }
+@media (max-width: 480px) {
+    .action-right > * span {
+        display: none;
+    }
 }
