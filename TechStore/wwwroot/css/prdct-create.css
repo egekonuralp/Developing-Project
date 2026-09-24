@@ -1,43 +1,82 @@
 ﻿/* =========================================================
-   PRODUCT CREATE (ADMIN) — mat, eskimiş, neon/canlı renk yok
+   PRODUCT CREATE — ADMIN
+   Dashboard uyumlu / koyu gri / koyu beyaz
    ========================================================= */
 
 .product-create-page {
     max-width: 1150px;
+    padding-bottom: 40px;
 }
+
+
+    /* =========================================================
+   PAGE HEADER
+   ========================================================= */
+
+    .product-create-page .page-header {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 20px;
+        margin-bottom: 24px;
+    }
 
 .form-page-kicker {
     display: block;
-    margin-bottom: 6px;
-    color: #a3803f;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 2px;
+    margin-bottom: 7px;
+    color: #777d7a;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.6px;
 }
 
 .product-create-page .page-header h2 {
     margin: 0 0 6px;
-    color: #d8cbb3;
-    font-family: 'Alfa Slab One', Georgia, serif;
-    font-size: 22px;
-    font-weight: 400;
-    text-transform: uppercase;
+    color: #f0f2f1;
+    font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
 }
 
 .product-create-page .page-header p {
     margin: 0;
-    color: #8a7a64;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 14px;
+    color: #858c88;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    font-size: 13px;
 }
 
-.page-header {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    margin-bottom: 24px;
+
+/* =========================================================
+   SECONDARY BUTTON
+   ========================================================= */
+
+.btn-secondary-custom {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 38px;
+    padding: 9px 15px;
+    color: #c5cbc8;
+    background: #171a1c;
+    border: 1px solid #303538;
+    border-radius: 6px;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background .2s ease, border-color .2s ease, color .2s ease, transform .2s ease;
 }
+
+    .btn-secondary-custom:hover {
+        color: #f0f2f1;
+        background: #202427;
+        border-color: #464c4a;
+        transform: translateY(-1px);
+    }
+
 
 /* =========================================================
    FORM LAYOUT
@@ -45,48 +84,62 @@
 
 .product-form-grid {
     display: grid;
-    grid-template-columns: 1fr 340px;
+    grid-template-columns: minmax(0, 1fr) 340px;
     align-items: start;
     gap: 20px;
 }
 
+.product-form-main,
+.product-form-side {
+    min-width: 0;
+}
+
+
 /* =========================================================
-   CARD
+   FORM CARD
    ========================================================= */
 
 .form-card {
-    background: #262019;
-    border: 1px solid #4a3c2c;
-    border-radius: 4px;
-    overflow: hidden;
     margin-bottom: 20px;
+    overflow: hidden;
+    background: #111416;
+    border: 1px solid #292e30;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .16);
 }
+
+
+/* =========================================================
+   CARD HEADER
+   ========================================================= */
 
 .form-card-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 24px;
-    border-bottom: 1px solid #4a3c2c;
+    gap: 15px;
+    padding: 19px 22px;
+    background: #15181a;
+    border-bottom: 1px solid #292e30;
 }
 
 .form-section-kicker {
     display: block;
-    margin-bottom: 4px;
-    color: #a3803f;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 1.8px;
+    margin-bottom: 5px;
+    color: #6f7773;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.4px;
 }
 
 .form-card-header h3 {
     margin: 0;
-    color: #d8cbb3;
-    font-family: 'Alfa Slab One', Georgia, serif;
+    color: #e9ecea;
+    font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
     font-size: 16px;
-    font-weight: 400;
-    text-transform: uppercase;
+    font-weight: 650;
+    letter-spacing: -0.2px;
 }
 
 .form-header-icon {
@@ -96,27 +149,40 @@
     width: 38px;
     height: 38px;
     flex-shrink: 0;
-    color: #a3803f;
-    background: #171310;
-    border: 1px solid #4a3c2c;
-    border-radius: 3px;
-    font-size: 15px;
+    color: #aeb4b1;
+    background: #1d2123;
+    border: 1px solid #353a3c;
+    border-radius: 7px;
+    font-size: 14px;
 }
 
+
+    /* =========================================================
+   SPECIAL ICON COLORS
+   ========================================================= */
+
+    /* Gold yerine nötr gri */
     .form-header-icon.gold {
-        color: #bd9a5c;
+        color: #b5bab7;
     }
 
+    /* Yeşili minimum seviyede tutuyoruz */
     .form-header-icon.green {
-        color: #5c6b46;
+        color: #8fa896;
     }
 
-.form-card-body {
-    padding: 24px;
-}
 
 /* =========================================================
-   FORM FIELDS
+   CARD BODY
+   ========================================================= */
+
+.form-card-body {
+    padding: 23px;
+}
+
+
+/* =========================================================
+   FORM GROUP
    ========================================================= */
 
 .form-group {
@@ -127,20 +193,35 @@
         margin-bottom: 0;
     }
 
+
+/* =========================================================
+   LABEL
+   ========================================================= */
+
 .form-label-custom {
     display: block;
     margin-bottom: 8px;
-    color: #d8cbb3;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 14px;
-    font-weight: 700;
+    color: #c8cdca;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
 }
+
+
+/* =========================================================
+   TWO COLUMN ROW
+   ========================================================= */
 
 .form-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0 16px;
 }
+
+
+/* =========================================================
+   INPUT WRAPPER
+   ========================================================= */
 
 .input-wrapper {
     position: relative;
@@ -152,175 +233,227 @@
 .currency-symbol {
     position: absolute;
     left: 13px;
-    color: #8a7a64;
-    font-size: 13px;
+    color: #6f7773;
+    font-size: 12px;
     pointer-events: none;
 }
 
+
+/* =========================================================
+   INPUTS
+   ========================================================= */
+
 .form-control-custom {
     width: 100%;
-    height: 44px;
+    height: 43px;
     padding: 0 13px 0 36px;
-    color: #d8cbb3;
-    background: #171310;
-    border: 1px solid #4a3c2c;
-    border-radius: 2px;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 15px;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    color: #e1e5e3;
+    background: #0e1012;
+    border: 1px solid #303538;
+    border-radius: 6px;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    font-size: 13px;
+    transition: border-color .2s ease, background .2s ease, box-shadow .2s ease;
 }
 
     .form-control-custom::placeholder {
-        color: #8a7a64;
+        color: #626966;
+    }
+
+    .form-control-custom:hover {
+        border-color: #3a4042;
     }
 
     .form-control-custom:focus {
         outline: none;
-        border-color: #a3803f;
-        box-shadow: 0 0 0 2px rgba(163, 128, 63, 0.18);
+        color: #eef1ef;
+        background: #111416;
+        border-color: #555b59;
+        box-shadow: 0 0 0 2px rgba(255, 255, 255, .035);
     }
 
-input[type="file"].form-control-custom {
-    padding: 0 13px;
-    line-height: 44px;
-}
 
-    input[type="file"].form-control-custom::file-selector-button {
-        padding: 8px 14px;
-        margin-right: 12px;
-        color: #d8cbb3;
-        background: #201a15;
-        border: 1px solid #4a3c2c;
-        border-radius: 2px;
-        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-        font-size: 13px;
-        font-weight: 700;
-        cursor: pointer;
-        transition: border-color 0.2s ease;
-    }
-
-        input[type="file"].form-control-custom::file-selector-button:hover {
-            border-color: #a3803f;
-        }
+/* =========================================================
+   TEXTAREA
+   ========================================================= */
 
 .textarea-custom {
+    min-height: 115px;
     height: auto;
-    min-height: 110px;
     padding: 12px 13px;
     resize: vertical;
+    line-height: 1.55;
 }
+
+
+/* =========================================================
+   SELECT
+   ========================================================= */
 
 .select-wrapper select.form-control-custom {
     appearance: none;
+    padding-right: 38px;
+    cursor: pointer;
 }
+
+.select-wrapper::after {
+    content: "\f078";
+    position: absolute;
+    right: 13px;
+    color: #686f6c;
+    font-family: "Font Awesome 6 Free";
+    font-size: 9px;
+    font-weight: 900;
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   NUMBER INPUT
+   ========================================================= */
+
+.price-input {
+    font-family: 'JetBrains Mono', monospace;
+}
+
+
+/* =========================================================
+   FILE INPUT
+   ========================================================= */
+
+input[type="file"].form-control-custom {
+    height: auto;
+    min-height: 43px;
+    padding: 4px 8px 4px 10px;
+    line-height: 32px;
+    cursor: pointer;
+}
+
+    input[type="file"].form-control-custom::file-selector-button {
+        margin-right: 10px;
+        padding: 7px 12px;
+        color: #c9cecb;
+        background: #1c2022;
+        border: 1px solid #353a3c;
+        border-radius: 5px;
+        font-family: 'Inter', 'Segoe UI', sans-serif;
+        font-size: 11px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background .2s ease, border-color .2s ease;
+    }
+
+        input[type="file"].form-control-custom::file-selector-button:hover {
+            background: #24282a;
+            border-color: #4a504e;
+        }
+
+
+/* =========================================================
+   VALIDATION
+   ========================================================= */
 
 .validation-message {
     display: block;
     margin-top: 6px;
-    color: #a1503d;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 13px;
+    color: #c47d7d;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    font-size: 11px;
+    line-height: 1.4;
 }
 
     .validation-message:empty {
         display: none;
     }
 
+
 /* =========================================================
-   IMAGE UPLOAD
+   FORM HINT
    ========================================================= */
 
-.image-upload-area {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 30px 20px;
-    background: #171310;
-    border: 1px dashed #4a3c2c;
-    border-radius: 3px;
-    cursor: pointer;
-    transition: border-color 0.2s ease;
-}
-
-    .image-upload-area:hover {
-        border-color: #a3803f;
-    }
-
-    .image-upload-area input[type="file"] {
-        display: none;
-    }
-
-.upload-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 44px;
-    height: 44px;
-    margin-bottom: 12px;
-    color: #a3803f;
-    background: #262019;
-    border: 1px solid #4a3c2c;
-    border-radius: 50%;
-    font-size: 18px;
-}
-
-.image-upload-area strong {
+.form-hint {
     display: block;
-    margin-bottom: 4px;
-    color: #d8cbb3;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 14px;
-}
-
-.image-upload-area span {
-    display: block;
-    margin-bottom: 6px;
-    color: #8a7a64;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 13px;
-}
-
-.image-upload-area small {
-    color: #6b5a44;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    margin-top: 8px;
+    color: #68706c;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
     font-size: 11px;
-    letter-spacing: 0.5px;
+    line-height: 1.5;
 }
+
 
 /* =========================================================
-   INFO CARD (guidelines)
+   IMAGE PREVIEW
+   ========================================================= */
+
+.image-preview {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 9px;
+    margin-top: 15px;
+}
+
+.image-preview-item {
+    position: relative;
+    height: 82px;
+    overflow: hidden;
+    background: #0d0f10;
+    border: 1px solid #303537;
+    border-radius: 6px;
+    transition: border-color .2s ease, transform .2s ease;
+}
+
+    .image-preview-item:hover {
+        border-color: #4a504e;
+        transform: translateY(-1px);
+    }
+
+    .image-preview-item img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform .25s ease;
+    }
+
+    .image-preview-item:hover img {
+        transform: scale(1.04);
+    }
+
+
+/* =========================================================
+   INFO CARD
    ========================================================= */
 
 .form-info-card {
-    background: #201a15;
+    background: #15181a;
 }
 
 .form-guidelines {
-    margin: 0;
-    padding: 0;
-    list-style: none;
     display: flex;
     flex-direction: column;
     gap: 12px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
     .form-guidelines li {
         display: flex;
         align-items: flex-start;
-        gap: 10px;
-        color: #8a7a64;
-        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-        font-size: 13px;
-        line-height: 1.4;
+        gap: 9px;
+        color: #858c88;
+        font-family: 'Inter', 'Segoe UI', sans-serif;
+        font-size: 12px;
+        line-height: 1.5;
     }
 
     .form-guidelines i {
         flex-shrink: 0;
-        margin-top: 2px;
-        color: #5c6b46;
-        font-size: 12px;
+        margin-top: 3px;
+        color: #7c8880;
+        font-size: 10px;
     }
+
 
 /* =========================================================
    FORM ACTIONS
@@ -330,8 +463,41 @@ input[type="file"].form-control-custom {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: 12px;
+    gap: 10px;
+    padding-top: 2px;
 }
+
+
+/* =========================================================
+   PRIMARY BUTTON
+   ========================================================= */
+
+.btn-primary-custom {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 38px;
+    padding: 9px 17px;
+    color: #e7ebe9;
+    background: #252a2c;
+    border: 1px solid #3c4244;
+    border-radius: 6px;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background .2s ease, border-color .2s ease, color .2s ease, transform .2s ease;
+}
+
+    .btn-primary-custom:hover {
+        color: #fff;
+        background: #303638;
+        border-color: #505654;
+        transform: translateY(-1px);
+    }
+
 
 /* =========================================================
    RESPONSIVE
@@ -342,22 +508,53 @@ input[type="file"].form-control-custom {
     .product-form-grid {
         grid-template-columns: 1fr;
     }
+
+    .product-form-side {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        align-items: start;
+    }
+
+        .product-form-side .form-card {
+            margin-bottom: 0;
+        }
 }
 
-@media (max-width: 600px) {
 
-    .page-header {
-        flex-direction: column;
+@media (max-width: 700px) {
+
+    .product-create-page .page-header {
         align-items: flex-start;
-        gap: 12px;
+        flex-direction: column;
     }
+
+        .product-create-page .page-header .btn-secondary-custom {
+            width: 100%;
+        }
+
+    .product-form-side {
+        display: block;
+    }
+
+        .product-form-side .form-card {
+            margin-bottom: 20px;
+        }
+}
+
+
+@media (max-width: 600px) {
 
     .form-row {
         grid-template-columns: 1fr;
     }
 
     .form-card-body {
-        padding: 20px;
+        padding: 19px;
+    }
+
+    .form-card-header {
+        padding: 17px 19px;
     }
 
     .form-actions {
@@ -366,42 +563,27 @@ input[type="file"].form-control-custom {
     }
 
         .form-actions > * {
+            width: 100%;
             justify-content: center;
         }
-}
 
-/* =========================================================
-   IMAGE PREVIEW (Product/Create — çoklu görsel önizleme)
-   ========================================================= */
-
-.form-hint {
-    display: block;
-    margin-top: 8px;
-    color: #6b5a44;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 12px;
-    line-height: 1.5;
-}
-
-.image-preview {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-    gap: 10px;
-    margin-top: 14px;
-}
-
-.image-preview-item {
-    position: relative;
-    height: 80px;
-    overflow: hidden;
-    border: 1px solid #4a3c2c;
-    border-radius: 3px;
-    background: #171310;
-}
-
-    .image-preview-item img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
+    .image-preview {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
     }
+}
+
+
+@media (max-width: 420px) {
+
+    .product-create-page .page-header h2 {
+        font-size: 22px;
+    }
+
+    .image-preview {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .image-preview-item {
+        height: 90px;
+    }
+}

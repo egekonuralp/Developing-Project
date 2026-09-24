@@ -1,133 +1,129 @@
 ﻿/* =========================================================
-   PRODUCT LIST (ADMIN) — PASİF ÜRÜNLER
-   product.css ile aynı mat/eskimiş admin temasında, ama
-   "arşiv" hissi veren küçük farklarla: kesikli kart kenarı,
-   soluklaştırılmış görseller, daha belirgin "Pasif" rozeti.
+   PRODUCT INACTIVE (ADMIN)
+   Dashboard / Product List ile aynı
+   Premium Graphite / White / Steel tema
+   ========================================================= */
+
+
+/* =========================================================
+   PAGE HEADER
    ========================================================= */
 
 .page-header {
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
-    margin-bottom: 22px;
+    gap: 16px;
+    margin-bottom: 26px;
 }
 
 .page-header-actions {
     display: flex;
     align-items: center;
     gap: 10px;
+    flex-shrink: 0;
 }
 
 .page-header h2 {
     margin: 0 0 6px;
-    color: #d8cbb3;
-    font-family: 'Alfa Slab One', Georgia, serif;
+    color: var(--admin-text);
+    font-family: var(--font-display);
     font-size: 22px;
-    font-weight: 400;
-    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: -0.2px;
 }
-
-    .page-header h2::before {
-        content: "\f187";
-        font-family: "Font Awesome 6 Free";
-        font-weight: 900;
-        margin-right: 10px;
-        color: #8a7a64;
-        font-size: 18px;
-        vertical-align: 2px;
-    }
 
 .page-header p {
     margin: 0;
-    color: #8a7a64;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 14px;
+    color: var(--admin-text-dim);
+    font-family: var(--font-body);
+    font-size: 13.5px;
+    line-height: 1.5;
 }
 
+
+/* =========================================================
+   ALERTS
+   ========================================================= */
+
 .admin-alert {
-    padding: 12px 15px;
-    margin-bottom: 16px;
-    border-radius: 2px;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 14px;
+    padding: 13px 16px;
+    margin-bottom: 18px;
+    border-radius: 6px;
+    font-family: var(--font-body);
+    font-size: 13.5px;
+    font-weight: 500;
 }
 
 .admin-alert-success {
-    color: #cfd8bf;
-    background: rgba(92, 107, 70, 0.18);
-    border: 1px solid #5c6b46;
+    color: var(--admin-success);
+    background: rgba(215, 221, 225, 0.06);
+    border: 1px solid var(--admin-border-medium);
 }
 
 .admin-alert-danger {
-    color: #e0c3ba;
-    background: rgba(138, 64, 48, 0.18);
-    border: 1px solid #8a4030;
+    color: #ffb3ab;
+    background: rgba(255, 116, 116, 0.09);
+    border: 1px solid rgba(255, 116, 116, 0.25);
 }
 
-.btn-primary-custom {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 11px 20px;
-    color: #171310;
-    background: #a3803f;
-    border: 1px dashed #171310;
-    outline: 2px solid #a3803f;
-    outline-offset: -4px;
-    border-radius: 2px;
-    text-decoration: none;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 14px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.4px;
-    white-space: nowrap;
-    transition: background 0.2s ease;
-}
 
-    .btn-primary-custom:hover {
-        background: #bd9a5c;
-    }
+/* =========================================================
+   SECONDARY BUTTON
+   ========================================================= */
 
 .btn-secondary-custom {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
     padding: 10px 18px;
-    color: #d8cbb3;
-    background: transparent;
-    border: 1px solid #4a3c2c;
-    border-radius: 2px;
+    color: var(--admin-text-soft);
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid var(--admin-border);
+    border-radius: 6px;
     text-decoration: none;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 14px;
-    font-weight: 700;
+    font-family: var(--font-body);
+    font-size: 13.5px;
+    font-weight: 600;
     white-space: nowrap;
     cursor: pointer;
-    transition: border-color 0.2s ease, color 0.2s ease;
+    transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
 }
 
     .btn-secondary-custom:hover {
-        border-color: #a3803f;
-        color: #a3803f;
+        color: var(--admin-text);
+        background: rgba(255, 255, 255, 0.05);
+        border-color: var(--admin-border-strong);
     }
 
+
 /* =========================================================
-   ACTION BAR (search/filter)
+   FILTER BAR
+   Search / Category / Min / Max / Filter / Clear
    ========================================================= */
 
 .action-bar {
-    display: flex;
+    display: grid;
+    /*
+       Bütün filtre elemanları aynı satırda.
+       Search biraz daha geniş,
+       fiyat alanları daha dar tutuluyor.
+    */
+    grid-template-columns: minmax(190px, 1.7fr) minmax(155px, 1fr) 125px 125px auto;
     align-items: center;
     gap: 12px;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
+    margin-bottom: 22px;
 }
+
+
+/* =========================================================
+   SEARCH BOX
+   ========================================================= */
 
 .search-box {
     position: relative;
-    flex: 1;
-    min-width: 200px;
+    min-width: 0;
 }
 
     .search-box i {
@@ -135,21 +131,28 @@
         left: 13px;
         top: 50%;
         transform: translateY(-50%);
-        color: #8a7a64;
+        color: var(--admin-text-faint);
         font-size: 13px;
+        pointer-events: none;
     }
+
+
+/* =========================================================
+   FILTER INPUTS
+   ========================================================= */
 
 .search-input {
     width: 100%;
+    min-width: 0;
     height: 42px;
     padding: 0 13px;
-    color: #d8cbb3;
-    background: #262019;
-    border: 1px solid #4a3c2c;
-    border-radius: 2px;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 14px;
-    transition: border-color 0.2s ease;
+    color: var(--admin-text);
+    background: var(--admin-panel);
+    border: 1px solid var(--admin-border);
+    border-radius: 6px;
+    font-family: var(--font-body);
+    font-size: 13.5px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
 .search-box .search-input {
@@ -157,30 +160,79 @@
 }
 
 .search-input::placeholder {
-    color: #8a7a64;
+    color: var(--admin-text-faint);
+}
+
+.search-input:hover {
+    border-color: var(--admin-border-strong);
 }
 
 .search-input:focus {
     outline: none;
-    border-color: #a3803f;
+    border-color: var(--admin-border-strong);
+    background: rgba(255, 255, 255, 0.025);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.05);
 }
 
-.action-right {
-    display: flex;
-    gap: 10px;
-}
 
 /* =========================================================
-   TABLE CARD — arşiv hissi için kesikli kenar + hafif soluk zemin
+   SELECT
+   ========================================================= */
+
+select.search-input {
+    appearance: none;
+    padding-right: 34px;
+    cursor: pointer;
+    background-color: var(--admin-panel);
+    background-image: linear-gradient(45deg, transparent 50%, var(--admin-text-faint) 50%), linear-gradient(135deg, var(--admin-text-faint) 50%, transparent 50%);
+    background-position: calc(100% - 16px) 17px, calc(100% - 11px) 17px;
+    background-size: 5px 5px, 5px 5px;
+    background-repeat: no-repeat;
+}
+
+    select.search-input option {
+        color: var(--admin-text);
+        background: #15191d;
+    }
+
+
+/* =========================================================
+   FILTER ACTIONS
+   ========================================================= */
+
+.action-right {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+}
+
+    .action-right > * {
+        flex: 1;
+        min-width: 0;
+        white-space: nowrap;
+    }
+
+
+/* =========================================================
+   TABLE CARD
    ========================================================= */
 
 .card-custom {
-    background: #221c17;
-    border: 1px dashed #4a3c2c;
-    border-radius: 4px;
     overflow: hidden;
     margin-bottom: 18px;
+    background: var(--admin-card);
+    border: 1px solid var(--admin-border);
+    border-radius: 8px;
+    box-shadow: 0 20px 45px -30px rgba(0, 0, 0, 0.6);
 }
+
+
+/* =========================================================
+   TABLE
+   ========================================================= */
 
 .table-custom {
     width: 100%;
@@ -188,122 +240,178 @@
 }
 
     .table-custom thead th {
-        padding: 12px 20px;
-        color: #8a7a64;
-        background: #1c1712;
-        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-        font-size: 12px;
-        font-weight: 700;
+        padding: 13px 20px;
+        color: var(--admin-text-faint);
+        background: var(--admin-panel);
+        border-bottom: 1px solid var(--admin-border);
+        font-family: var(--font-mono);
+        font-size: 10.5px;
+        font-weight: 600;
         text-transform: uppercase;
-        letter-spacing: 0.4px;
+        letter-spacing: 0.6px;
         text-align: left;
         white-space: nowrap;
     }
 
     .table-custom tbody td {
         padding: 13px 20px;
-        border-top: 1px solid #4a3c2c;
-        color: #b4a68f;
-        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-        font-size: 14px;
+        color: var(--admin-text-soft);
+        border-top: 1px solid var(--admin-border);
+        font-family: var(--font-body);
+        font-size: 13.5px;
     }
 
-    .table-custom tbody tr:hover {
-        background: rgba(163, 128, 63, 0.04);
+    .table-custom tbody tr {
+        transition: background 0.2s ease;
     }
+
+        .table-custom tbody tr:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+
+/* =========================================================
+   PRODUCT IMAGE
+   ========================================================= */
 
 .image-column {
     width: 70px;
 }
 
 .product-image {
+    display: block;
     width: 46px;
     height: 46px;
     object-fit: cover;
-    border-radius: 3px;
-    background: #d8cbb3;
-    opacity: 0.75;
-    filter: grayscale(35%);
+    background: var(--admin-surface);
+    border: 1px solid var(--admin-border);
+    border-radius: 6px;
+    transition: border-color 0.2s ease, transform 0.2s ease;
 }
 
+.table-custom tbody tr:hover .product-image {
+    border-color: var(--admin-border-strong);
+    transform: scale(1.03);
+}
+
+
+/* =========================================================
+   PRODUCT INFO
+   ========================================================= */
+
 .product-info .product-name {
-    color: #d8cbb3;
+    color: var(--admin-text);
+    font-family: var(--font-body);
     font-weight: 700;
 }
 
 .product-info .product-brand {
-    color: #8a7a64;
-    font-size: 12px;
     margin-top: 2px;
+    color: var(--admin-text-faint);
+    font-size: 11.5px;
 }
+
+
+/* =========================================================
+   CATEGORY
+   ========================================================= */
 
 .category-badge {
     display: inline-block;
     padding: 4px 11px;
-    color: #8a7a64;
-    background: #171310;
-    border: 1px solid #4a3c2c;
-    border-radius: 2px;
-    font-size: 12px;
+    color: var(--admin-text-dim);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--admin-border);
+    border-radius: 100px;
+    font-size: 11.5px;
     white-space: nowrap;
 }
 
+
+/* =========================================================
+   PRICE
+   ========================================================= */
+
 .price-column {
-    color: #8a4030;
-    font-weight: 700;
+    color: var(--admin-text);
+    font-family: var(--font-mono);
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   STOCK
+   ========================================================= */
+
+.stock-column {
     white-space: nowrap;
 }
 
 .badge-stock {
     display: inline-block;
     padding: 4px 11px;
-    border-radius: 2px;
-    font-size: 12px;
-    font-weight: 700;
+    border-radius: 100px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
 }
 
+
+    /* Normal stock */
     .badge-stock.in-stock {
-        color: #cfd8bf;
-        background: rgba(92, 107, 70, 0.18);
-        border: 1px solid #5c6b46;
+        color: var(--admin-success);
+        background: rgba(215, 221, 225, 0.08);
+        border: 1px solid var(--admin-border-medium);
     }
 
+
+    /* Low stock */
     .badge-stock.low-stock {
-        color: #e0c3ba;
-        background: rgba(138, 64, 48, 0.18);
-        border: 1px solid #8a4030;
+        color: #ffb3ab;
+        background: rgba(255, 116, 116, 0.09);
+        border: 1px solid rgba(255, 116, 116, 0.25);
     }
+
+
+/* =========================================================
+   INACTIVE STATUS
+   ========================================================= */
 
 .status-badge {
     display: inline-block;
     padding: 4px 11px;
-    border-radius: 2px;
-    font-size: 12px;
-    font-weight: 700;
+    border-radius: 100px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
 }
 
-    .status-badge.active {
-        color: #cfd8bf;
-        background: rgba(92, 107, 70, 0.18);
-        border: 1px solid #5c6b46;
+    .status-badge.inactive {
+        color: #ffb3ab;
+        background: rgba(255, 116, 116, 0.09);
+        border: 1px solid rgba(255, 116, 116, 0.25);
     }
 
-    .status-badge.inactive {
-        color: #e0c3ba;
-        background: rgba(138, 64, 48, 0.22);
-        border: 1px dashed #8a4030;
-        font-weight: 800;
-        letter-spacing: 0.3px;
-    }
+
+/* =========================================================
+   ACTION COLUMN
+   ========================================================= */
 
 .action-column {
-    width: 90px;
+    width: 125px;
 }
 
 .action-buttons {
     display: flex;
-    gap: 8px;
+    align-items: center;
+    gap: 7px;
 }
+
+
+/* =========================================================
+   ACTION ICON BUTTON
+   ========================================================= */
 
 .btn-icon {
     display: flex;
@@ -311,56 +419,79 @@
     justify-content: center;
     width: 32px;
     height: 32px;
-    border: 1px solid #4a3c2c;
-    border-radius: 3px;
+    color: var(--admin-text-dim);
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid var(--admin-border);
+    border-radius: 6px;
     text-decoration: none;
-    font-size: 13px;
-    transition: border-color 0.2s ease, color 0.2s ease;
+    font-size: 12.5px;
+    cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease, transform 0.2s ease;
 }
 
-.btn-edit {
-    color: #a3803f;
-}
-
-    .btn-edit:hover {
-        border-color: #a3803f;
+    .btn-icon:hover {
+        color: var(--admin-text);
+        background: rgba(255, 255, 255, 0.05);
+        border-color: var(--admin-border-strong);
+        transform: translateY(-1px);
     }
 
-.btn-delete {
-    color: #a1503d;
-}
-
-    .btn-delete:hover {
-        border-color: #8a4030;
-    }
-
-.btn-toggle-off {
-    color: #a1503d;
-}
-
-    .btn-toggle-off:hover {
-        border-color: #8a4030;
-    }
-
-.btn-toggle-on {
-    color: #7a8f5c;
-}
-
-    .btn-toggle-on:hover {
-        border-color: #5c6b46;
-        background: rgba(92, 107, 70, 0.12);
-    }
 
 /* =========================================================
-   PAGINATION
+   EDIT
+   ========================================================= */
+
+.btn-edit:hover {
+    color: var(--admin-text);
+}
+
+
+/* =========================================================
+   GALLERY
+   ========================================================= */
+
+.action-buttons .btn-icon:not(.btn-edit):not(.btn-toggle-on):not(.btn-delete):hover {
+    color: #cbd0ce;
+}
+
+
+/* =========================================================
+   ACTIVATE
+   ========================================================= */
+
+.btn-toggle-on:hover {
+    color: var(--admin-success);
+    border-color: var(--admin-border-strong);
+    background: rgba(215, 221, 225, 0.07);
+}
+
+
+/* =========================================================
+   DELETE
+   ========================================================= */
+
+.btn-delete:hover {
+    color: #ffb3ab;
+    border-color: rgba(255, 116, 116, 0.35);
+    background: rgba(255, 116, 116, 0.08);
+}
+
+
+/* =========================================================
+   PAGINATION INFO
    ========================================================= */
 
 .pagination-info {
     margin-bottom: 14px;
-    color: #8a7a64;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 13px;
+    color: var(--admin-text-faint);
+    font-family: var(--font-mono);
+    font-size: 12px;
 }
+
+
+/* =========================================================
+   PAGINATION
+   ========================================================= */
 
 .pagination {
     display: flex;
@@ -375,57 +506,142 @@
     align-items: center;
     gap: 6px;
     padding: 8px 14px;
-    color: #d8cbb3;
-    background: #262019;
-    border: 1px solid #4a3c2c;
-    border-radius: 2px;
+    color: var(--admin-text-soft);
+    background: var(--admin-panel);
+    border: 1px solid var(--admin-border);
+    border-radius: 6px;
     text-decoration: none;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 13px;
+    font-family: var(--font-body);
+    font-size: 12.5px;
     font-weight: 600;
-    transition: border-color 0.2s ease, color 0.2s ease;
+    transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
 }
 
     .pagination-btn:hover,
     .page-number:hover {
-        border-color: #a3803f;
-        color: #a3803f;
+        color: var(--admin-text);
+        border-color: var(--admin-border-strong);
+        background: rgba(255, 255, 255, 0.04);
     }
 
     .pagination-btn.disabled {
-        opacity: 0.4;
+        opacity: 0.35;
         pointer-events: none;
     }
 
     .page-number.active {
-        color: #171310;
-        background: #a3803f;
-        border-color: #a3803f;
+        color: #12151a;
+        background: linear-gradient( 135deg, var(--admin-white), var(--admin-steel) );
+        border-color: transparent;
     }
+
 
 /* =========================================================
    RESPONSIVE
    ========================================================= */
+
+@media (max-width: 1050px) {
+
+    .action-bar {
+        grid-template-columns: minmax(180px, 1.5fr) minmax(145px, 1fr) 115px 115px auto;
+        gap: 10px;
+    }
+
+    .table-custom {
+        min-width: 1050px;
+    }
+
+    .card-custom {
+        overflow-x: auto;
+    }
+}
+
 
 @media (max-width: 900px) {
 
     .page-header {
         flex-direction: column;
         align-items: flex-start;
-        gap: 12px;
+        gap: 14px;
     }
 
+    .page-header-actions {
+        width: 100%;
+    }
+
+        .page-header-actions > * {
+            flex: 1;
+        }
+
+    /*
+       900px altında filtreleri bilinçli şekilde
+       iki satıra geçiriyoruz.
+    */
+
     .action-bar {
-        flex-direction: column;
-        align-items: stretch;
+        grid-template-columns: minmax(180px, 1fr) minmax(150px, 1fr) 120px 120px;
+    }
+
+    .search-box {
+        grid-column: 1 / -1;
     }
 
     .action-right {
-        justify-content: stretch;
+        grid-column: 1 / -1;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .action-bar {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .action-right {
+        grid-column: 1 / -1;
+        width: 100%;
     }
 
         .action-right > * {
             flex: 1;
-            justify-content: center;
         }
+
+    .table-custom {
+        min-width: 950px;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .action-bar {
+        grid-template-columns: 1fr;
+    }
+
+    .search-box,
+    .action-right {
+        grid-column: auto;
+    }
+
+    .action-right {
+        display: flex !important;
+        flex-direction: row !important;
+    }
+
+        .action-right .btn-secondary-custom {
+            flex: 1;
+        }
+
+    .page-header-actions {
+        flex-direction: column;
+    }
+
+        .page-header-actions > * {
+            width: 100%;
+        }
+
+    .pagination {
+        justify-content: center;
+    }
 }
