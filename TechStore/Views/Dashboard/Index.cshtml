@@ -7,107 +7,322 @@
 
 <div class="dashboard-page">
 
-    <!-- PAGE HEADER -->
-    <div class="dashboard-hero">
+    <!-- =====================================================
+         DASHBOARD HERO
+         ===================================================== -->
 
-        <div class="dashboard-hero-content">
+    <section class="dashboard-hero">
 
-            <span class="dashboard-eyebrow">
-                TECHSTORE ADMIN
-            </span>
+        <div class="dashboard-hero-grid">
 
-            <h2>
-                Welcome Back <span>👋</span>
-            </h2>
+            <div class="dashboard-hero-content">
 
-            <p>
-                Manage your store, products, orders and customers
-                from one central dashboard.
-            </p>
+                <div class="dashboard-hero-kicker">
+
+                    <span class="status-dot"></span>
+
+                    ADMIN CONTROL CENTER
+
+                </div>
+
+                <h1>
+                    Welcome back.
+                    <span>TechStore</span>
+                </h1>
+
+                <p>
+                    Store operations, inventory, customers and orders
+                    can be monitored from a single control center.
+                </p>
+
+                <div class="dashboard-hero-meta">
+
+                    <div class="hero-meta-item">
+
+                        <i class="fa-regular fa-calendar"></i>
+
+                        <span>
+                            @DateTime.Now.ToString("dd.MM.yyyy")
+                        </span>
+
+                    </div>
+
+                    <div class="hero-meta-divider"></div>
+
+                    <div class="hero-meta-item">
+
+                        <i class="fa-solid fa-shield-halved"></i>
+
+                        <span>
+                            ADMIN ACCESS
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-hero-panel">
+
+                <div class="hero-panel-header">
+
+                    <span>
+                        SYSTEM STATUS
+                    </span>
+
+                    <span class="system-status">
+                        <i class="fa-solid fa-circle"></i>
+                        ONLINE
+                    </span>
+
+                </div>
+
+                <div class="hero-panel-content">
+
+                    <div class="hero-panel-icon">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Store Overview
+                        </strong>
+
+                        <span>
+                            Operational data is available.
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="hero-panel-line"></div>
+
+                <div class="hero-panel-footer">
+
+                    <span>
+                        CONTROL
+                    </span>
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </div>
+
+            </div>
 
         </div>
 
-        <div class="dashboard-hero-mark">
-            <i class="fa-solid fa-chart-pie"></i>
-        </div>
+    </section>
 
-    </div>
 
-    <!-- QUİCK ACTİONS -->
+    <!-- =====================================================
+         QUICK ACTIONS
+         ===================================================== -->
+
     <section class="dashboard-section">
 
         <div class="section-heading">
 
             <div>
-                <span class="section-kicker">QUICK ACCESS</span>
-                <h3>Quick Actions</h3>
+
+                <span class="section-kicker">
+                    QUICK ACCESS
+                </span>
+
+                <h2>
+                    Quick Actions
+                </h2>
+
             </div>
+
+            <span class="section-count">
+                04 ACTIONS
+            </span>
 
         </div>
 
 
         <div class="quick-actions">
 
-            <a asp-controller="Product" asp-action="Create" class="action-card action-primary">
+            <!-- ADD PRODUCT -->
 
-                <div class="action-icon">
-                    <i class="fa-solid fa-plus"></i>
+            <a asp-controller="Product"
+               asp-action="Create"
+               class="action-card">
+
+                <div class="action-card-top">
+
+                    <div class="action-icon">
+                        <i class="fa-solid fa-plus"></i>
+                    </div>
+
+                    <i class="fa-solid fa-arrow-up-right-from-square action-open-icon"></i>
+
                 </div>
 
                 <div class="action-content">
-                    <strong>Add Product</strong>
-                    <span>Create a new product</span>
+
+                    <span class="action-index">
+                        01
+                    </span>
+
+                    <strong>
+                        Add Product
+                    </strong>
+
+                    <p>
+                        Create and publish a new product.
+                    </p>
+
                 </div>
 
-                <i class="fa-solid fa-arrow-right action-arrow"></i>
+                <div class="action-footer">
+
+                    <span>
+                        PRODUCT
+                    </span>
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </div>
 
             </a>
 
 
-            <a asp-controller="Category" asp-action="Create" class="action-card action-gold">
+            <!-- ADD CATEGORY -->
 
-                <div class="action-icon">
-                    <i class="fa-solid fa-folder-plus"></i>
+            <a asp-controller="Category"
+               asp-action="Create"
+               class="action-card">
+
+                <div class="action-card-top">
+
+                    <div class="action-icon">
+                        <i class="fa-solid fa-folder-plus"></i>
+                    </div>
+
+                    <i class="fa-solid fa-arrow-up-right-from-square action-open-icon"></i>
+
                 </div>
 
                 <div class="action-content">
-                    <strong>Add Category</strong>
-                    <span>Create a new category</span>
+
+                    <span class="action-index">
+                        02
+                    </span>
+
+                    <strong>
+                        Add Category
+                    </strong>
+
+                    <p>
+                        Organize products into a new category.
+                    </p>
+
                 </div>
 
-                <i class="fa-solid fa-arrow-right action-arrow"></i>
+                <div class="action-footer">
+
+                    <span>
+                        CATEGORY
+                    </span>
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </div>
 
             </a>
 
 
-            <a asp-controller="Product" asp-action="Index" class="action-card action-brown">
+            <!-- PRODUCTS -->
 
-                <div class="action-icon">
-                    <i class="fa-solid fa-box"></i>
+            <a asp-controller="Product"
+               asp-action="Index"
+               class="action-card">
+
+                <div class="action-card-top">
+
+                    <div class="action-icon">
+                        <i class="fa-solid fa-box"></i>
+                    </div>
+
+                    <i class="fa-solid fa-arrow-up-right-from-square action-open-icon"></i>
+
                 </div>
 
                 <div class="action-content">
-                    <strong>View Products</strong>
-                    <span>Manage your inventory</span>
+
+                    <span class="action-index">
+                        03
+                    </span>
+
+                    <strong>
+                        View Products
+                    </strong>
+
+                    <p>
+                        Review and manage your inventory.
+                    </p>
+
                 </div>
 
-                <i class="fa-solid fa-arrow-right action-arrow"></i>
+                <div class="action-footer">
+
+                    <span>
+                        INVENTORY
+                    </span>
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </div>
 
             </a>
 
 
-            <a asp-controller="Category" asp-action="Index" class="action-card action-olive">
+            <!-- CATEGORIES -->
 
-                <div class="action-icon">
-                    <i class="fa-solid fa-layer-group"></i>
+            <a asp-controller="Category"
+               asp-action="Index"
+               class="action-card">
+
+                <div class="action-card-top">
+
+                    <div class="action-icon">
+                        <i class="fa-solid fa-layer-group"></i>
+                    </div>
+
+                    <i class="fa-solid fa-arrow-up-right-from-square action-open-icon"></i>
+
                 </div>
 
                 <div class="action-content">
-                    <strong>View Categories</strong>
-                    <span>Manage product groups</span>
+
+                    <span class="action-index">
+                        04
+                    </span>
+
+                    <strong>
+                        View Categories
+                    </strong>
+
+                    <p>
+                        Manage and organize product groups.
+                    </p>
+
                 </div>
 
-                <i class="fa-solid fa-arrow-right action-arrow"></i>
+                <div class="action-footer">
+
+                    <span>
+                        ORGANIZATION
+                    </span>
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </div>
 
             </a>
 
@@ -115,99 +330,168 @@
 
     </section>
 
-    <!-- STATİCS -->
+
+    <!-- =====================================================
+         STORE STATISTICS
+         ===================================================== -->
+
     <section class="dashboard-section">
 
         <div class="section-heading">
 
             <div>
-                <span class="section-kicker">STORE OVERVIEW</span>
-                <h3>Store Statistics</h3>
+
+                <span class="section-kicker">
+                    STORE OVERVIEW
+                </span>
+
+                <h2>
+                    Store Statistics
+                </h2>
+
             </div>
 
+            <span class="section-count">
+                LIVE DATA
+            </span>
+
         </div>
+
 
         <div class="stats-grid">
 
             <!-- PRODUCTS -->
-            <div class="stat-card stat-products">
 
-                <div class="stat-icon">
-                    <i class="fa-solid fa-box"></i>
+            <article class="stat-card">
+
+                <div class="stat-top">
+
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-box"></i>
+                    </div>
+
+                    <span class="stat-index">
+                        01
+                    </span>
+
                 </div>
 
                 <div class="stat-info">
 
-                    <span>Total Products</span>
+                    <span class="stat-label">
+                        TOTAL PRODUCTS
+                    </span>
 
                     <strong>
                         @Model.ProductCount
                     </strong>
 
                     <small>
-                        Active products in store
+                        Products currently tracked
                     </small>
 
                 </div>
 
-            </div>
+                <div class="stat-line"></div>
+
+            </article>
+
 
             <!-- CATEGORIES -->
-            <div class="stat-card stat-categories">
 
-                <div class="stat-icon">
-                    <i class="fa-solid fa-layer-group"></i>
+            <article class="stat-card">
+
+                <div class="stat-top">
+
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-layer-group"></i>
+                    </div>
+
+                    <span class="stat-index">
+                        02
+                    </span>
+
                 </div>
 
                 <div class="stat-info">
 
-                    <span>Total Categories</span>
+                    <span class="stat-label">
+                        CATEGORIES
+                    </span>
 
                     <strong>
                         @Model.CategoryCount
                     </strong>
 
                     <small>
-                        Product categories
+                        Product groups available
                     </small>
 
                 </div>
 
-            </div>
+                <div class="stat-line"></div>
+
+            </article>
+
 
             <!-- USERS -->
-            <div class="stat-card stat-users">
 
-                <div class="stat-icon">
-                    <i class="fa-solid fa-users"></i>
+            <article class="stat-card">
+
+                <div class="stat-top">
+
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+
+                    <span class="stat-index">
+                        03
+                    </span>
+
                 </div>
 
                 <div class="stat-info">
 
-                    <span>Registered Users</span>
+                    <span class="stat-label">
+                        REGISTERED USERS
+                    </span>
 
                     <strong>
                         @Model.UserCount
                     </strong>
 
                     <small>
-                        Registered customers
+                        Customer accounts
                     </small>
 
                 </div>
 
-            </div>
+                <div class="stat-line"></div>
+
+            </article>
+
 
             <!-- ORDERS -->
-            <div class="stat-card stat-orders">
 
-                <div class="stat-icon">
-                    <i class="fa-solid fa-cart-shopping"></i>
+            <article class="stat-card">
+
+                <div class="stat-top">
+
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </div>
+
+                    <span class="stat-index">
+                        04
+                    </span>
+
                 </div>
 
                 <div class="stat-info">
 
-                    <span>Total Orders</span>
+                    <span class="stat-label">
+                        TOTAL ORDERS
+                    </span>
 
                     <strong>
                         @Model.OrderCount
@@ -219,96 +503,133 @@
 
                 </div>
 
-            </div>
+                <div class="stat-line"></div>
+
+            </article>
+
 
             <!-- REVENUE -->
-            <div class="stat-card stat-revenue">
 
-                <div class="stat-icon">
-                    <i class="fa-solid fa-coins"></i>
+            <article class="stat-card stat-card-revenue">
+
+                <div class="stat-top">
+
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-coins"></i>
+                    </div>
+
+                    <span class="stat-index">
+                        05
+                    </span>
+
                 </div>
 
                 <div class="stat-info">
 
-                    <span>Total Revenue</span>
+                    <span class="stat-label">
+                        TOTAL REVENUE
+                    </span>
 
                     <strong>
                         ₺@Model.Revenue.ToString("N2")
                     </strong>
 
                     <small>
-                        Total store revenue
+                        Recorded store revenue
                     </small>
 
                 </div>
 
-            </div>
+                <div class="stat-line"></div>
+
+            </article>
 
         </div>
 
     </section>
 
-    <!-- PRODUCT DISTRIBUTION -->
+
+    <!-- =====================================================
+         PRODUCT DISTRIBUTION
+         ===================================================== -->
+
     <section class="dashboard-section">
 
         <div class="dashboard-card chart-card">
 
             <div class="card-header">
 
-                <div>
+                <div class="card-header-content">
 
                     <span class="section-kicker">
-                        INVENTORY
+                        INVENTORY ANALYTICS
                     </span>
 
-                    <h3>
+                    <h2>
                         Product Distribution
-                    </h3>
+                    </h2>
 
                     <p>
-                        Products grouped by category
+                        Product count grouped by category.
                     </p>
 
                 </div>
 
-                <div class="card-header-icon">
-                    <i class="fa-solid fa-chart-column"></i>
+                <div class="card-header-side">
+
+                    <span class="analytics-badge">
+                        <i class="fa-solid fa-chart-column"></i>
+                        ANALYTICS
+                    </span>
+
                 </div>
 
             </div>
 
 
             <div class="chart-container">
+
                 <canvas id="productChart"></canvas>
+
             </div>
 
         </div>
 
     </section>
 
-    <!-- RECENT DATA -->
+
+    <!-- =====================================================
+         RECENT DATA
+         ===================================================== -->
+
     <section class="dashboard-section">
 
         <div class="dashboard-grid">
 
-            <!-- RECENT PRODUCTS -->
+
+            <!-- =================================================
+                 RECENT PRODUCTS
+                 ================================================= -->
+
             <div class="dashboard-card recent-products-card">
 
                 <div class="card-header">
 
-                    <div>
+                    <div class="card-header-content">
 
                         <span class="section-kicker">
                             INVENTORY
                         </span>
 
-                        <h3>
+                        <h2>
                             Recent Products
-                        </h3>
+                        </h2>
 
                     </div>
 
-                    <a asp-controller="Product" asp-action="Index" class="card-link">
+                    <a asp-controller="Product"
+                       asp-action="Index"
+                       class="card-link">
 
                         View All
 
@@ -317,6 +638,7 @@
                     </a>
 
                 </div>
+
 
                 @if (Model.RecentProducts.Any())
                 {
@@ -327,12 +649,10 @@
                             <thead>
 
                                 <tr>
-
                                     <th>Product</th>
                                     <th>Category</th>
                                     <th>Price</th>
-                                    <th></th>
-
+                                    <th>Action</th>
                                 </tr>
 
                             </thead>
@@ -341,7 +661,13 @@
 
                                 @foreach (var product in Model.RecentProducts)
                                 {
+                                    var mainImage =
+                                    product.Images.FirstOrDefault(x => x.IsMain)
+                                    ?? product.Images.FirstOrDefault();
+
                                     <tr>
+
+                                        <!-- PRODUCT -->
 
                                         <td>
 
@@ -349,16 +675,20 @@
 
                                                 <div class="product-image-wrapper">
 
-                                                    @{
-                                                        var mainImage = product.Images
-                                                        .FirstOrDefault(x => x.IsMain)
-                                                        ?? product.Images.FirstOrDefault();
+                                                    @if (mainImage != null)
+                                                    {
+                                                        <img src="@mainImage.ImageUrl"
+                                                             class="table-image"
+                                                             alt="@product.Name" />
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="table-image-placeholder">
+                                                            <i class="fa-solid fa-image"></i>
+                                                        </div>
                                                     }
 
-                                                    <img src="@mainImage?.ImageUrl" class="table-image" alt="@product.Name" />
-
                                                 </div>
-
 
                                                 <div class="product-details">
 
@@ -376,6 +706,9 @@
 
                                         </td>
 
+
+                                        <!-- CATEGORY -->
+
                                         <td>
 
                                             <span class="category-badge">
@@ -388,6 +721,9 @@
 
                                         </td>
 
+
+                                        <!-- PRICE -->
+
                                         <td>
 
                                             <strong class="product-price">
@@ -396,10 +732,19 @@
 
                                         </td>
 
+
+                                        <!-- ACTION -->
+
                                         <td>
 
-                                            <a asp-controller="Product" asp-action="Edit" asp-route-id="@product.Id" class="table-action">
+                                            <a asp-controller="Product"
+                                               asp-action="Edit"
+                                               asp-route-id="@product.Id"
+                                               class="table-action"
+                                               title="Edit product">
+
                                                 <i class="fa-solid fa-pen"></i>
+
                                             </a>
 
                                         </td>
@@ -421,35 +766,57 @@
                             <i class="fa-solid fa-box-open"></i>
                         </div>
 
-                        <strong>No products yet</strong>
-
-                        <span>
-                            Products will appear here once you add them.
+                        <span class="empty-kicker">
+                            INVENTORY EMPTY
                         </span>
+
+                        <strong>
+                            No products yet.
+                        </strong>
+
+                        <p>
+                            Products will appear here once you create them.
+                        </p>
+
+                        <a asp-controller="Product"
+                           asp-action="Create"
+                           class="empty-action">
+
+                            Add Product
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </a>
 
                     </div>
                 }
 
             </div>
 
-            <!-- RECENT CATEGORIES -->
+
+            <!-- =================================================
+                 RECENT CATEGORIES
+                 ================================================= -->
+
             <div class="dashboard-card recent-categories-card">
 
                 <div class="card-header">
 
-                    <div>
+                    <div class="card-header-content">
 
                         <span class="section-kicker">
                             ORGANIZATION
                         </span>
 
-                        <h3>
+                        <h2>
                             Recent Categories
-                        </h3>
+                        </h2>
 
                     </div>
 
-                    <a asp-controller="Category" asp-action="Index" class="card-link">
+                    <a asp-controller="Category"
+                       asp-action="Index"
+                       class="card-link">
 
                         View All
 
@@ -458,6 +825,7 @@
                     </a>
 
                 </div>
+
 
                 @if (Model.RecentCategories.Any())
                 {
@@ -500,11 +868,27 @@
                             <i class="fa-solid fa-folder-open"></i>
                         </div>
 
-                        <strong>No categories yet</strong>
-
-                        <span>
-                            Categories will appear here once created.
+                        <span class="empty-kicker">
+                            ORGANIZATION EMPTY
                         </span>
+
+                        <strong>
+                            No categories yet.
+                        </strong>
+
+                        <p>
+                            Categories will appear here once created.
+                        </p>
+
+                        <a asp-controller="Category"
+                           asp-action="Create"
+                           class="empty-action">
+
+                            Add Category
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </a>
 
                     </div>
                 }
@@ -516,6 +900,7 @@
     </section>
 
 </div>
+
 
 @section Scripts {
 
@@ -530,7 +915,9 @@
                 .then(response => {
 
                     if (!response.ok) {
-                        throw new Error("Product distribution could not be loaded.");
+                        throw new Error(
+                            "Product distribution could not be loaded."
+                        );
                     }
 
                     return response.json();
@@ -539,15 +926,20 @@
 
                 .then(data => {
 
-                    const labels = data.map(x => x.categoryName);
-                    const values = data.map(x => x.productCount);
+                    const labels = data.map(
+                        x => x.categoryName
+                    );
 
-                    const canvas = document.getElementById("productChart");
+                    const values = data.map(
+                        x => x.productCount
+                    );
+
+                    const canvas =
+                        document.getElementById("productChart");
 
                     if (!canvas) {
                         return;
                     }
-
 
                     new Chart(canvas, {
 
@@ -561,21 +953,34 @@
 
                                 {
                                     label: "Products",
+
                                     data: values,
 
                                     backgroundColor: [
-                                        "rgba(163, 128, 63, 0.85)",
-                                        "rgba(92, 118, 134, 0.85)",
-                                        "rgba(92, 107, 70, 0.85)",
-                                        "rgba(138, 64, 48, 0.85)",
-                                        "rgba(138, 122, 100, 0.85)",
-                                        "rgba(189, 154, 92, 0.85)"
+                                        "rgba(255, 255, 255, 0.82)",
+                                        "rgba(205, 210, 214, 0.82)",
+                                        "rgba(170, 176, 181, 0.82)",
+                                        "rgba(135, 142, 148, 0.82)",
+                                        "rgba(105, 112, 118, 0.82)",
+                                        "rgba(78, 84, 90, 0.82)"
+                                    ],
+
+                                    borderColor: [
+                                        "rgba(255, 255, 255, 0.92)",
+                                        "rgba(205, 210, 214, 0.92)",
+                                        "rgba(170, 176, 181, 0.92)",
+                                        "rgba(135, 142, 148, 0.92)",
+                                        "rgba(105, 112, 118, 0.92)",
+                                        "rgba(78, 84, 90, 0.92)"
                                     ],
 
                                     borderWidth: 1,
-                                    borderRadius: 7,
+
+                                    borderRadius: 5,
+
                                     borderSkipped: false,
-                                    maxBarThickness: 48
+
+                                    maxBarThickness: 46
                                 }
 
                             ]
@@ -585,25 +990,47 @@
                         options: {
 
                             responsive: true,
+
                             maintainAspectRatio: false,
-                            interaction: { intersect: false, mode: "index" },
+
+                            interaction: {
+                                intersect: false,
+                                mode: "index"
+                            },
 
                             plugins: {
 
-                                legend: { display: false },
+                                legend: {
+                                    display: false
+                                },
 
                                 tooltip: {
 
-                                    backgroundColor: "#262019",
-                                    titleColor: "#d8cbb3",
-                                    bodyColor: "#d8cbb3",
-                                    borderColor: "#a3803f",
+                                    backgroundColor: "#17191c",
+
+                                    titleColor: "#f0f2f3",
+
+                                    bodyColor: "#b7bdc2",
+
+                                    borderColor:
+                                        "rgba(255, 255, 255, 0.12)",
+
                                     borderWidth: 1,
+
                                     padding: 12,
+
                                     displayColors: false,
 
                                     callbacks: {
-                                        label: function (context) { return " " + context.parsed.y + " ürün"; }
+
+                                        label: function (context) {
+
+                                            return " "
+                                                + context.parsed.y
+                                                + " products";
+
+                                        }
+
                                     }
 
                                 }
@@ -614,37 +1041,58 @@
 
                                 x: {
 
-                                    border: { display: false },
+                                    border: {
+                                        display: false
+                                    },
 
                                     ticks: {
-                                        color: "#8a7a64",
+
+                                        color: "#858c92",
+
                                         font: {
                                             size: 11,
                                             weight: "600"
                                         },
+
                                         padding: 8
+
                                     },
 
-                                    grid: { display: false }
+                                    grid: {
+                                        display: false
+                                    }
+
                                 },
 
                                 y: {
 
                                     beginAtZero: true,
-                                    border: { display: false },
+
+                                    border: {
+                                        display: false
+                                    },
 
                                     ticks: {
+
                                         stepSize: 1,
-                                        color: "#8a7a64",
+
+                                        color: "#6f767c",
+
                                         font: {
                                             size: 11
                                         },
+
                                         padding: 8
+
                                     },
 
                                     grid: {
-                                        color: "rgba(216, 203, 179, 0.08)",
+
+                                        color:
+                                            "rgba(255, 255, 255, 0.055)",
+
                                         drawTicks: false
+
                                     }
 
                                 }
@@ -658,7 +1106,12 @@
                 })
 
                 .catch(error => {
-                    console.error("Chart error:", error);
+
+                    console.error(
+                        "Chart error:",
+                        error
+                    );
+
                 });
 
         });
