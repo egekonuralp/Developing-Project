@@ -1,239 +1,493 @@
 ﻿/* =========================================================
-   CATEGORY CREATE (ADMIN) — mat, eskimiş, neon/canlı renk yok
+   CATEGORY CREATE
+   TechStore Admin — Premium Graphite / Steel
    ========================================================= */
 
 .category-form-page {
-    max-width: 620px;
+    --bg: #0b0d0f;
+    --bg-panel: #121518;
+    --bg-card: #171a1e;
+    --bg-card-hover: #1d2126;
+    --border: rgba(255, 255, 255, 0.075);
+    --border-medium: rgba(255, 255, 255, 0.12);
+    --border-strong: rgba(255, 255, 255, 0.20);
+    --text: #f1f3f5;
+    --text-soft: #c4c9ce;
+    --text-dim: #8e959c;
+    --text-faint: #60676e;
+    --steel: #b9c0c6;
+    --steel-bright: #f6f7f8;
+    --steel-dark: #747c84;
+    --danger: #ff7474;
+    --font-display: 'Space Grotesk', 'Segoe UI', Arial, sans-serif;
+    --font-body: 'Inter', 'Segoe UI', Arial, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Consolas', monospace;
+    position: relative;
+    width: 100%;
+    max-width: 920px;
+    margin: 0 auto;
+    color: var(--text);
+    font-family: var(--font-body);
 }
+
+
+/* =========================================================
+   PAGE HEADER
+   ========================================================= */
 
 .page-header {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: space-between;
-    margin-bottom: 22px;
+    gap: 25px;
+    margin-bottom: 27px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid var(--border);
 }
+
+
+.page-header-content {
+    min-width: 0;
+}
+
 
 .page-eyebrow {
     display: block;
-    margin-bottom: 6px;
-    color: #a3803f;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 2px;
+    margin-bottom: 7px;
+    color: var(--text-faint);
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1.7px;
 }
 
-.page-header h2 {
-    margin: 0 0 6px;
-    color: #d8cbb3;
-    font-family: 'Alfa Slab One', Georgia, serif;
-    font-size: 22px;
-    font-weight: 400;
-    text-transform: uppercase;
+
+.page-header h1 {
+    margin: 0 0 7px;
+    color: var(--text);
+    font-family: var(--font-display);
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.6px;
 }
+
 
 .page-header p {
     margin: 0;
-    color: #8a7a64;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 14px;
+    color: var(--text-dim);
+    font-size: 13px;
+    line-height: 1.5;
 }
 
-.btn-secondary-custom {
+
+.page-header-actions {
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+.category-form {
     display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 18px;
-    color: #d8cbb3;
-    background: transparent;
-    border: 1px solid #4a3c2c;
-    border-radius: 2px;
-    text-decoration: none;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    white-space: nowrap;
-    cursor: pointer;
-    transition: border-color 0.2s ease, color 0.2s ease;
+    flex-direction: column;
+    gap: 16px;
 }
 
-    .btn-secondary-custom:hover {
-        border-color: #a3803f;
-        color: #a3803f;
-    }
 
 /* =========================================================
    FORM CARD
    ========================================================= */
 
 .form-card {
-    background: #262019;
-    border: 1px solid #4a3c2c;
-    border-radius: 4px;
+    position: relative;
     overflow: hidden;
-    margin-bottom: 20px;
+    background: linear-gradient( 145deg, rgba(255, 255, 255, 0.018), transparent 38% ), var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 0 22px 50px rgba(0, 0, 0, 0.22);
 }
+
+
+    .form-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 110px;
+        height: 2px;
+        background: linear-gradient( 90deg, var(--steel-bright), transparent );
+        opacity: 0.85;
+    }
+
+
+/* =========================================================
+   FORM CARD HEADER
+   ========================================================= */
 
 .form-card-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 24px;
-    border-bottom: 1px solid #4a3c2c;
+    gap: 20px;
+    padding: 23px 25px;
+    border-bottom: 1px solid var(--border);
 }
+
+
+.form-card-heading {
+    min-width: 0;
+}
+
 
 .form-section-kicker {
     display: block;
-    margin-bottom: 4px;
-    color: #a3803f;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 1.8px;
+    margin-bottom: 5px;
+    color: var(--text-faint);
+    font-family: var(--font-mono);
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
 }
 
-.form-card-header h3 {
-    margin: 0;
-    color: #d8cbb3;
-    font-family: 'Alfa Slab One', Georgia, serif;
-    font-size: 16px;
-    font-weight: 400;
-    text-transform: uppercase;
+
+.form-card-header h2 {
+    margin: 0 0 6px;
+    color: var(--text);
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 650;
 }
+
+
+.form-card-header p {
+    margin: 0;
+    color: var(--text-faint);
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   HEADER ICON
+   ========================================================= */
 
 .form-header-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 38px;
-    height: 38px;
+    width: 45px;
+    height: 45px;
     flex-shrink: 0;
-    color: #a3803f;
-    background: #171310;
-    border: 1px solid #4a3c2c;
-    border-radius: 3px;
+    color: var(--steel-bright);
+    background: linear-gradient( 145deg, rgba(255, 255, 255, 0.065), rgba(255, 255, 255, 0.025) );
+    border: 1px solid var(--border-medium);
+    border-radius: 6px;
     font-size: 15px;
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.035);
 }
+
+
+/* =========================================================
+   FORM BODY
+   ========================================================= */
 
 .form-card-body {
-    padding: 24px;
+    padding: 27px 25px 29px;
 }
 
+
+/* =========================================================
+   FORM GROUP
+   ========================================================= */
+
 .form-group {
-    margin: 0;
+    width: 100%;
 }
+
 
 .form-label-custom {
     display: block;
-    margin-bottom: 8px;
-    color: #d8cbb3;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 14px;
-    font-weight: 700;
+    margin-bottom: 9px;
+    color: var(--text-soft);
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 600;
 }
+
+
+/* =========================================================
+   INPUT
+   ========================================================= */
 
 .input-wrapper {
     position: relative;
-    display: flex;
-    align-items: center;
+    width: 100%;
 }
+
 
 .input-icon {
     position: absolute;
-    left: 13px;
-    color: #8a7a64;
-    font-size: 13px;
+    top: 50%;
+    left: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    transform: translateY(-50%);
+    color: var(--text-faint);
     pointer-events: none;
+    font-size: 11px;
+    transition: color 0.2s ease;
 }
+
 
 .form-control-custom {
+    display: block;
     width: 100%;
-    height: 44px;
-    padding: 0 13px 0 36px;
-    color: #d8cbb3;
-    background: #171310;
-    border: 1px solid #4a3c2c;
-    border-radius: 2px;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 15px;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    height: 48px;
+    padding: 0 15px 0 42px;
+    color: var(--text);
+    background: linear-gradient( 180deg, rgba(255, 255, 255, 0.018), rgba(255, 255, 255, 0.006) ), var(--bg-panel);
+    border: 1px solid var(--border-medium);
+    border-radius: 6px;
+    outline: none;
+    font-family: var(--font-body);
+    font-size: 13px;
+    transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-    .form-control-custom::placeholder {
-        color: #8a7a64;
+
+    .form-control-custom:hover {
+        border-color: var(--border-strong);
     }
 
+
     .form-control-custom:focus {
-        outline: none;
-        border-color: #a3803f;
-        box-shadow: 0 0 0 2px rgba(163, 128, 63, 0.18);
+        color: var(--text);
+        background: #15181b;
+        border-color: rgba(255, 255, 255, 0.38);
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.035), 0 0 22px rgba(255, 255, 255, 0.025);
     }
+
+
+.input-wrapper:focus-within .input-icon {
+    color: var(--steel-bright);
+}
+
+
+.form-control-custom::placeholder {
+    color: #5e666d;
+}
+
+
+/* =========================================================
+   VALIDATION
+   ========================================================= */
 
 .validation-message {
     display: block;
-    margin-top: 6px;
-    color: #a1503d;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 13px;
+    margin-top: 7px;
+    color: var(--danger);
+    font-size: 11px;
+    line-height: 1.4;
 }
 
-    .validation-message:empty {
-        display: none;
-    }
+
+.field-help {
+    display: block;
+    margin-top: 9px;
+    color: var(--text-faint);
+    font-size: 9px;
+    line-height: 1.5;
+}
+
 
 /* =========================================================
-   ACTIONS
+   FORM ACTIONS
    ========================================================= */
 
 .form-actions {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: 12px;
+    gap: 10px;
+    padding: 17px 20px;
+    background: rgba(255, 255, 255, 0.012);
+    border: 1px solid var(--border);
+    border-radius: 7px;
 }
 
-.btn-primary-custom {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 11px 20px;
-    color: #171310;
-    background: #a3803f;
-    border: 1px dashed #171310;
-    outline: 2px solid #a3803f;
-    outline-offset: -4px;
-    border-radius: 2px;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 14px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.4px;
-    cursor: pointer;
-    transition: background 0.2s ease;
-}
-
-    .btn-primary-custom:hover {
-        background: #bd9a5c;
-    }
 
 /* =========================================================
-   RESPONSIVE
+   SECONDARY BUTTON
    ========================================================= */
 
-@media (max-width: 600px) {
+.btn-secondary-custom {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 42px;
+    padding: 0 17px;
+    color: var(--text-soft);
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid var(--border-medium);
+    border-radius: 5px;
+    text-decoration: none;
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+
+    .btn-secondary-custom:hover {
+        color: var(--text);
+        background: rgba(255, 255, 255, 0.055);
+        border-color: var(--border-strong);
+        transform: translateY(-1px);
+    }
+
+
+    .btn-secondary-custom i {
+        color: var(--text-faint);
+        font-size: 10px;
+    }
+
+
+/* =========================================================
+   PRIMARY / CREATE BUTTON
+   ========================================================= */
+
+.btn-primary-custom {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 42px;
+    padding: 0 19px;
+    color: #0e1012;
+    background: linear-gradient( 135deg, #f3f5f6, #c3cbd0 );
+    border: 1px solid #d8dde1;
+    border-radius: 5px;
+    text-decoration: none;
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 700;
+    box-shadow: 0 7px 18px rgba(0, 0, 0, 0.18);
+    transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+
+    .btn-primary-custom:hover {
+        color: #080a0c;
+        background: linear-gradient( 135deg, #ffffff, #dce1e4 );
+        border-color: #ffffff;
+        transform: translateY(-1px);
+        box-shadow: 0 11px 25px rgba(0, 0, 0, 0.24);
+    }
+
+
+    .btn-primary-custom:active {
+        transform: translateY(0);
+    }
+
+
+    .btn-primary-custom i {
+        font-size: 10px;
+    }
+
+
+/* =========================================================
+   RESPONSIVE — 650px
+   ========================================================= */
+
+@media (max-width: 650px) {
 
     .page-header {
-        flex-direction: column;
         align-items: flex-start;
-        gap: 12px;
+        flex-direction: column;
+        gap: 17px;
     }
+
+
+    .page-header-actions {
+        width: 100%;
+    }
+
+
+        .page-header-actions .btn-secondary-custom {
+            width: 100%;
+        }
+
+
+    .form-card-header {
+        padding: 20px;
+    }
+
+
+    .form-card-body {
+        padding: 23px 20px 25px;
+    }
+
+
+    .form-actions {
+        padding: 15px;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE — 500px
+   ========================================================= */
+
+@media (max-width: 500px) {
+
+    .form-card-header {
+        align-items: flex-start;
+    }
+
+
+    .form-header-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 13px;
+    }
+
 
     .form-actions {
         flex-direction: column-reverse;
         align-items: stretch;
     }
 
-        .form-actions > * {
-            justify-content: center;
-        }
+
+    .btn-secondary-custom,
+    .btn-primary-custom {
+        width: 100%;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE — 380px
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+    .page-header h1 {
+        font-size: 26px;
+    }
+
+
+    .form-card-header h2 {
+        font-size: 16px;
+    }
+
+
+    .form-control-custom {
+        height: 45px;
+    }
 }

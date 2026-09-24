@@ -1,4 +1,5 @@
 ﻿@model TechStore.Models.Category
+
 @{
     ViewData["Title"] = "Kategori Düzenle";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -6,69 +7,156 @@
 
 <div class="category-form-page">
 
+    <!-- =====================================================
+         PAGE HEADER
+         ===================================================== -->
+
     <div class="page-header">
 
-        <div>
-            <span class="page-eyebrow">KATEGORİ YÖNETİMİ</span>
-            <h2>Kategori Düzenle</h2>
-            <p>Mevcut kategori bilgilerini güncelle.</p>
+        <div class="page-header-content">
+
+            <span class="page-eyebrow">
+                CATEGORY MANAGEMENT
+            </span>
+
+            <h1>
+                Kategori Düzenle
+            </h1>
+
+            <p>
+                Mevcut kategori bilgilerini güncelleyin.
+            </p>
+
         </div>
 
-        <a asp-action="Index" class="btn-secondary-custom">
-            <i class="fa-solid fa-arrow-left"></i>
-            Kategorilere Dön
-        </a>
+        <div class="page-header-actions">
+
+            <a asp-action="Index"
+               class="btn-secondary-custom">
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+                <span>
+                    Kategorilere Dön
+                </span>
+
+            </a>
+
+        </div>
 
     </div>
 
-    <form method="post" class="category-form">
 
-        <input type="hidden" asp-for="Id" />
+    <!-- =====================================================
+         EDIT FORM
+         ===================================================== -->
 
-        <div class="form-card">
+    <form method="post"
+          class="category-form">
+
+        @Html.AntiForgeryToken()
+
+        <input type="hidden"
+               asp-for="Id" />
+
+
+        <!-- =================================================
+             CATEGORY INFORMATION CARD
+             ================================================= -->
+
+        <section class="form-card">
 
             <div class="form-card-header">
 
-                <div>
-                    <span class="form-section-kicker">KATEGORİ BİLGİSİ</span>
-                    <h3>Kategori Adı</h3>
+                <div class="form-card-heading">
+
+                    <span class="form-section-kicker">
+                        CATEGORY INFORMATION
+                    </span>
+
+                    <h2>
+                        Kategori Bilgileri
+                    </h2>
+
+                    <p>
+                        Kategori adını buradan güncelleyebilirsiniz.
+                    </p>
+
                 </div>
 
                 <div class="form-header-icon">
+
                     <i class="fa-solid fa-layer-group"></i>
+
                 </div>
 
             </div>
+
 
             <div class="form-card-body">
 
                 <div class="form-group">
 
-                    <label class="form-label-custom">Kategori Adı</label>
+                    <label asp-for="Name"
+                           class="form-label-custom">
+                        Kategori Adı
+                    </label>
 
                     <div class="input-wrapper">
-                        <i class="fa-solid fa-tag input-icon"></i>
-                        <input asp-for="Name" class="form-control-custom" />
+
+                        <span class="input-icon">
+                            <i class="fa-solid fa-tag"></i>
+                        </span>
+
+                        <input asp-for="Name"
+                               class="form-control-custom"
+                               placeholder="Kategori adını girin" />
+
                     </div>
 
-                    <span asp-validation-for="Name" class="validation-message"></span>
+                    <span asp-validation-for="Name"
+                          class="validation-message">
+                    </span>
+
+                    <small class="field-help">
+                        Kategori adı ürünlerin listelendiği alanlarda
+                        görüntülenecektir.
+                    </small>
 
                 </div>
 
             </div>
 
-        </div>
+        </section>
+
+
+        <!-- =================================================
+             FORM FOOTER
+             ================================================= -->
 
         <div class="form-actions">
 
-            <a asp-action="Index" class="btn-secondary-custom">
+            <a asp-action="Index"
+               class="btn-secondary-custom">
+
                 <i class="fa-solid fa-xmark"></i>
-                İptal
+
+                <span>
+                    İptal
+                </span>
+
             </a>
 
-            <button type="submit" class="btn-update-custom">
+
+            <button type="submit"
+                    class="btn-update-custom">
+
                 <i class="fa-solid fa-check"></i>
-                Güncelle
+
+                <span>
+                    Değişiklikleri Kaydet
+                </span>
+
             </button>
 
         </div>

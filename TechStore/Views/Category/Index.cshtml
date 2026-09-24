@@ -7,64 +7,103 @@
 
 <div class="category-page">
 
-    <!-- PAGE HEADER -->
+    <!-- =====================================================
+         PAGE HEADER
+         ===================================================== -->
+
     <div class="page-header">
 
-        <div>
+        <div class="page-header-content">
 
             <span class="page-eyebrow">
-                PRODUCT MANAGEMENT
+                CATEGORY MANAGEMENT
             </span>
 
-            <h2>
+            <h1>
                 Categories
-            </h2>
+            </h1>
 
             <p>
-                Manage your product categories from here.
+                Manage and organize the product categories in your store.
             </p>
 
         </div>
 
-        <a asp-action="Create" class="btn-primary-custom">
+        <div class="page-header-actions">
 
-            <i class="fa-solid fa-plus"></i>
+            <div class="category-total-badge">
 
-            New Category
+                <span>
+                    TOTAL
+                </span>
 
-        </a>
+                <strong>
+                    @Model.Count
+                </strong>
+
+                <small>
+                    @(Model.Count == 1 ? "category" : "categories")
+                </small>
+
+            </div>
+
+            <a asp-action="Create"
+               class="btn-primary-custom">
+
+                <i class="fa-solid fa-plus"></i>
+
+                <span>
+                    New Category
+                </span>
+
+            </a>
+
+        </div>
 
     </div>
 
-    <!-- CATEGORY CARD -->
-    <div class="category-card">
+
+    <!-- =====================================================
+         CATEGORY CARD
+         ===================================================== -->
+
+    <section class="category-card">
+
+        <!-- CARD HEADER -->
 
         <div class="category-card-header">
 
-            <div>
+            <div class="category-card-heading">
 
                 <span class="section-kicker">
                     ORGANIZATION
                 </span>
 
-                <h3>
+                <h2>
                     All Categories
-                </h3>
+                </h2>
 
                 <p>
-                    @Model.Count category@(Model.Count == 1 ? "" : "ies") available
+                    View, edit or remove your existing product categories.
                 </p>
 
             </div>
 
             <div class="category-header-icon">
+
                 <i class="fa-solid fa-layer-group"></i>
+
             </div>
 
         </div>
 
+
         @if (Model.Any())
         {
+            <!-- =================================================
+                 TABLE
+                 ================================================= -->
+
             <div class="category-table-wrapper">
 
                 <table class="category-table">
@@ -79,6 +118,10 @@
 
                             <th>
                                 Category
+                            </th>
+
+                            <th class="category-status-column">
+                                Type
                             </th>
 
                             <th class="category-action-column">
@@ -96,6 +139,7 @@
                             <tr>
 
                                 <!-- ID -->
+
                                 <td class="category-id-column">
 
                                     <span class="category-id">
@@ -104,13 +148,17 @@
 
                                 </td>
 
+
                                 <!-- CATEGORY -->
+
                                 <td>
 
                                     <div class="category-info">
 
                                         <div class="category-icon">
+
                                             <i class="fa-solid fa-layer-group"></i>
+
                                         </div>
 
                                         <div class="category-details">
@@ -129,18 +177,47 @@
 
                                 </td>
 
+
+                                <!-- TYPE -->
+
+                                <td class="category-status-column">
+
+                                    <span class="category-type-badge">
+
+                                        <span class="type-dot"></span>
+
+                                        ACTIVE CATEGORY
+
+                                    </span>
+
+                                </td>
+
+
                                 <!-- ACTIONS -->
+
                                 <td class="category-action-column">
 
                                     <div class="category-actions">
 
-                                        <a asp-action="Edit" asp-route-id="@category.Id" class="category-action-btn category-edit" title="Edit category">
+                                        <a asp-action="Edit"
+                                           asp-route-id="@category.Id"
+                                           class="category-action-btn category-edit"
+                                           title="Edit category"
+                                           aria-label="Edit @category.Name">
+
                                             <i class="fa-solid fa-pen"></i>
+
                                         </a>
 
 
-                                        <a asp-action="Delete" asp-route-id="@category.Id" class="category-action-btn category-delete" title="Delete category">
-                                            <i class="fa-solid fa-trash"></i>
+                                        <a asp-action="Delete"
+                                           asp-route-id="@category.Id"
+                                           class="category-action-btn category-delete"
+                                           title="Delete category"
+                                           aria-label="Delete @category.Name">
+
+                                            <i class="fa-solid fa-trash-can"></i>
+
                                         </a>
 
                                     </div>
@@ -155,35 +232,76 @@
                 </table>
 
             </div>
+
+
+            <!-- TABLE FOOTER -->
+
+            <div class="category-card-footer">
+
+                <div class="category-footer-info">
+
+                    <i class="fa-solid fa-circle-info"></i>
+
+                    <span>
+                        Showing @Model.Count
+                        @(Model.Count == 1 ? "category" : "categories")
+                    </span>
+
+                </div>
+
+                <div class="category-footer-status">
+
+                    <span class="status-indicator"></span>
+
+                    <span>
+                        CATEGORY SYSTEM ONLINE
+                    </span>
+
+                </div>
+
+            </div>
         }
         else
         {
-            <!-- EMPTY STATE -->
+            <!-- =================================================
+                 EMPTY STATE
+                 ================================================= -->
+
             <div class="category-empty">
 
                 <div class="category-empty-icon">
+
                     <i class="fa-solid fa-folder-open"></i>
+
                 </div>
+
+                <span class="empty-kicker">
+                    ORGANIZATION EMPTY
+                </span>
 
                 <strong>
                     No categories yet
                 </strong>
 
-                <span>
-                    Create your first product category to organize your store.
-                </span>
+                <p>
+                    Create your first product category to start
+                    organizing your store.
+                </p>
 
-                <a asp-action="Create" class="btn-primary-custom">
+                <a asp-action="Create"
+                   class="btn-primary-custom">
 
                     <i class="fa-solid fa-plus"></i>
 
-                    Create Category
+                    <span>
+                        Create Category
+                    </span>
 
                 </a>
 
             </div>
         }
 
-    </div>
+    </section>
 
 </div>

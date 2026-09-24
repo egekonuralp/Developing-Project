@@ -1,58 +1,180 @@
 ﻿@model TechStore.Models.Category
+
 @{
     ViewData["Title"] = "Kategori Sil";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-@if (TempData["Error"] != null)
-{
-    <div class="alert alert-danger">
-        @TempData["Error"]
-    </div>
-}
-
 <div class="category-delete-page">
 
+    <!-- PAGE HEADER -->
     <div class="page-header">
-        <span class="page-eyebrow">KATEGORİ YÖNETİMİ</span>
-        <h2>Kategori Sil</h2>
+
+        <div class="page-header-content">
+
+            <span class="page-eyebrow">
+                CATEGORY MANAGEMENT
+            </span>
+
+            <h1>
+                Kategori Sil
+            </h1>
+
+            <p>
+                Bu işlem seçilen kategoriyi kalıcı olarak siler.
+            </p>
+
+        </div>
+
+        <div class="page-header-icon">
+            <i class="fa-solid fa-trash-can"></i>
+        </div>
+
     </div>
 
-    <div class="delete-card">
+    <!-- ERROR MESSAGE -->
+    @if (TempData["Error"] != null)
+    {
+        <div class="delete-alert">
 
-        <div class="delete-warning">
+            <div class="delete-alert-icon">
+                <i class="fa-solid fa-circle-exclamation"></i>
+            </div>
 
-            <div class="delete-warning-icon">
+            <div>
+                <strong>
+                    İşlem gerçekleştirilemedi
+                </strong>
+
+                <span>
+                    @TempData["Error"]
+                </span>
+            </div>
+
+        </div>
+    }
+
+    <!-- DELETE CARD -->
+    <section class="delete-card">
+
+        <div class="delete-card-header">
+
+            <div class="delete-card-icon">
                 <i class="fa-solid fa-triangle-exclamation"></i>
             </div>
 
-            <div class="confirmation-content">
-                <strong>Bu işlem geri alınamaz</strong>
-                <p>Kategoriyi sildiğinde, bu kategoriye bağlı ürünler etkilenebilir.</p>
+            <div>
+
+                <span class="delete-card-kicker">
+                    DANGER ZONE
+                </span>
+
+                <h2>
+                    Kategoriyi silmek üzeresiniz
+                </h2>
+
             </div>
 
         </div>
 
-        <div class="delete-confirmation">
-            <strong>@Model.Name</strong> kategorisini silmek istediğinize emin misiniz?
+        <!-- WARNING -->
+        <div class="delete-warning">
+
+            <div class="warning-symbol">
+                <i class="fa-solid fa-exclamation"></i>
+            </div>
+
+            <div class="confirmation-content">
+
+                <strong>
+                    Bu işlem geri alınamaz.
+                </strong>
+
+                <p>
+                    Kategoriyi sildiğinizde bu kategoriyle ilişkili
+                    ürün verileri ve ilişkiler etkilenebilir.
+                    Devam etmeden önce doğru kategoriyi seçtiğinizden emin olun.
+                </p>
+
+            </div>
+
         </div>
 
+        <!-- CATEGORY PREVIEW-->
+        <div class="category-preview">
+
+            <div class="category-preview-icon">
+                <i class="fa-solid fa-layer-group"></i>
+            </div>
+
+            <div class="category-preview-content">
+
+                <span>
+                    SİLİNECEK KATEGORİ
+                </span>
+
+                <strong>
+                    @Model.Name
+                </strong>
+
+            </div>
+
+            <div class="category-preview-id">
+
+                <span>
+                    ID
+                </span>
+
+                <strong>
+                    #@Model.Id
+                </strong>
+
+            </div>
+
+        </div>
+
+        <!-- CONFIRMATION -->
+        <div class="delete-confirmation">
+
+            <span class="confirmation-label">
+                ONAY
+            </span>
+
+            <p>
+                <strong>@Model.Name</strong>
+                kategorisini kalıcı olarak silmek istediğinize
+                emin misiniz?
+            </p>
+
+        </div>
+
+        <!-- ACTIONS -->
         <form method="post" class="delete-actions">
+
+            @Html.AntiForgeryToken()
 
             <input type="hidden" asp-for="Id" />
 
             <a asp-action="Index" class="btn-secondary-custom">
-                <i class="fa-solid fa-xmark"></i>
-                Vazgeç
+                <i class="fa-solid fa-arrow-left"></i>
+
+                <span>
+                    Vazgeç
+                </span>
+
             </a>
 
             <button type="submit" class="btn-delete-confirm">
                 <i class="fa-solid fa-trash-can"></i>
-                Evet, Sil
+
+                <span>
+                    Evet, Sil
+                </span>
+
             </button>
 
         </form>
 
-    </div>
+    </section>
 
 </div>
