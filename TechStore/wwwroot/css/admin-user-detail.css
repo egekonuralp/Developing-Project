@@ -1,63 +1,93 @@
 ﻿/* =========================================================
-   ADMIN USER DETAIL — mat, eskimiş, neon/canlı renk yok
+   ADMIN USER DETAIL
+   Graphite / Steel / White Dashboard Theme
+   AdminOrder Referanslı Tasarım
    ========================================================= */
 
 .admin-user-detail-page {
-    max-width: 950px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 10px 30px;
 }
 
-.page-header {
-    margin-bottom: 22px;
-}
 
-.page-eyebrow {
-    display: block;
-    margin-bottom: 6px;
-    color: #a3803f;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 2px;
-}
+    /* =========================================================
+   PAGE HEADER
+   ========================================================= */
 
-.page-header h2 {
-    margin: 0;
-    color: #d8cbb3;
-    font-family: 'Alfa Slab One', Georgia, serif;
-    font-size: 22px;
-    font-weight: 400;
-    text-transform: uppercase;
-}
+    .admin-user-detail-page .page-header {
+        margin-bottom: 24px;
+        text-align: center;
+    }
+
+    .admin-user-detail-page .page-eyebrow {
+        display: block;
+        margin-bottom: 7px;
+        color: #aeb5b8;
+        font-family: var(--font-mono, "JetBrains Mono", monospace);
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 1.8px;
+        text-transform: uppercase;
+    }
+
+    .admin-user-detail-page .page-header h2 {
+        margin: 0;
+        color: #f1f3f3;
+        font-family: var(--font-display, "Space Grotesk", sans-serif);
+        font-size: 27px;
+        font-weight: 650;
+        letter-spacing: -0.5px;
+    }
+
+
+/* =========================================================
+   DETAIL CARD
+   ========================================================= */
 
 .detail-card {
-    background: #262019;
-    border: 1px solid #4a3c2c;
-    border-radius: 4px;
-    overflow: hidden;
+    width: 100%;
     margin-bottom: 20px;
+    overflow: hidden;
+    background: #111416;
+    border: 1px solid #303638;
+    border-radius: 7px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
 }
 
+
+/* =========================================================
+   CARD HEADER
+   ========================================================= */
+
 .detail-card-header {
-    padding: 18px 24px;
-    border-bottom: 1px solid #4a3c2c;
+    padding: 16px 20px;
+    background: #15181a;
+    border-bottom: 1px solid #353b3e;
 }
 
     .detail-card-header h3 {
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 9px;
         margin: 0;
-        color: #d8cbb3;
-        font-family: 'Alfa Slab One', Georgia, serif;
-        font-size: 16px;
-        font-weight: 400;
-        text-transform: uppercase;
+        color: #e4e7e8;
+        font-family: var(--font-display, "Space Grotesk", sans-serif);
+        font-size: 14px;
+        font-weight: 650;
+        letter-spacing: -0.1px;
     }
 
         .detail-card-header h3 i {
-            color: #a3803f;
-            font-size: 14px;
+            color: #aeb5b8;
+            font-size: 13px;
         }
+
+
+/* =========================================================
+   USER INFO
+   ========================================================= */
 
 .user-info-grid {
     display: grid;
@@ -67,159 +97,200 @@
 .info-item {
     display: flex;
     flex-direction: column;
-    gap: 5px;
-    padding: 18px 24px;
-    border-right: 1px solid #4a3c2c;
+    gap: 6px;
+    min-width: 0;
+    padding: 19px 20px;
+    background: #111416;
+    border-right: 1px solid #292e30;
 }
 
     .info-item:last-child {
-        border-right: 0;
+        border-right: none;
     }
 
     .info-item span {
-        color: #8a7a64;
-        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-        font-size: 12px;
+        color: #8d9599;
+        font-family: var(--font-mono, "JetBrains Mono", monospace);
+        font-size: 9px;
+        font-weight: 600;
+        letter-spacing: 0.8px;
+        text-transform: uppercase;
     }
 
     .info-item strong {
-        color: #d8cbb3;
-        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-        font-size: 14px;
-        font-weight: 700;
-        word-break: break-all;
+        color: #e0e4e5;
+        font-family: var(--font-body, "Inter", sans-serif);
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 1.45;
+        word-break: break-word;
     }
+
 
 /* =========================================================
    ROLE FORM
    ========================================================= */
 
 .role-form-body {
-    padding: 22px 24px;
+    padding: 20px;
 }
 
 .role-form {
     display: flex;
     align-items: flex-end;
-    gap: 14px;
+    gap: 10px;
     flex-wrap: wrap;
 }
 
 .form-group {
     flex: 1;
-    min-width: 200px;
+    min-width: 220px;
     margin: 0;
 }
 
 .form-label-custom {
     display: block;
     margin-bottom: 8px;
-    color: #d8cbb3;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 14px;
+    color: #c5cbcd;
+    font-family: var(--font-mono, "JetBrains Mono", monospace);
+    font-size: 10px;
     font-weight: 700;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
 }
 
 .role-select {
     width: 100%;
     height: 44px;
     padding: 0 13px;
-    color: #d8cbb3;
-    background: #171310;
-    border: 1px solid #4a3c2c;
-    border-radius: 2px;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 14px;
+    color: #eef1f2;
+    background: #0f1214;
+    border: 1px solid #3a4043;
+    border-radius: 5px;
+    outline: none;
+    font-family: var(--font-body, "Inter", sans-serif);
+    font-size: 13px;
+    cursor: pointer;
+    transition: border-color 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
 }
 
-    .role-select:focus {
-        outline: none;
-        border-color: #a3803f;
+    .role-select:hover {
+        border-color: #50575b;
     }
 
+    .role-select:focus {
+        background: #0d1012;
+        border-color: #70787c;
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.045);
+    }
+
+
+/* =========================================================
+   UPDATE ROLE BUTTON
+   ========================================================= */
+
 .btn-update-role {
-    display: flex;
+    display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
     height: 44px;
-    padding: 0 20px;
-    color: #171310;
-    background: #a3803f;
-    border: 1px dashed #171310;
-    outline: 2px solid #a3803f;
-    outline-offset: -4px;
-    border-radius: 2px;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 14px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.4px;
+    padding: 0 18px;
+    color: #151719;
+    background: linear-gradient( 180deg, #f2f4f4 0%, #cfd4d6 100% );
+    border: 1px solid #dce0e1;
+    border-radius: 5px;
+    font-family: var(--font-body, "Inter", sans-serif);
+    font-size: 12px;
+    font-weight: 700;
     white-space: nowrap;
     cursor: pointer;
-    transition: background 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.22);
+    transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
 }
 
     .btn-update-role:hover {
-        background: #bd9a5c;
+        color: #111416;
+        background: linear-gradient( 180deg, #ffffff 0%, #e0e4e5 100% );
+        border-color: #ffffff;
+        transform: translateY(-1px);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
     }
 
-.admin-alert {
-    padding: 12px 15px;
-    margin-bottom: 16px;
-    border-radius: 2px;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 14px;
-}
-
-.admin-alert-success {
-    color: #cfd8bf;
-    background: rgba(92, 107, 70, 0.18);
-    border: 1px solid #5c6b46;
-}
-
-.admin-alert-danger {
-    color: #e0c3ba;
-    background: rgba(138, 64, 48, 0.18);
-    border: 1px solid #8a4030;
-}
 
 /* =========================================================
-   STATS
+   ALERTS
+   ========================================================= */
+
+.admin-user-detail-page .admin-alert {
+    padding: 12px 14px;
+    margin-bottom: 16px;
+    border-radius: 5px;
+    font-family: var(--font-body, "Inter", sans-serif);
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.admin-user-detail-page .admin-alert-success {
+    color: #d5dadb;
+    background: rgba(117, 126, 130, 0.10);
+    border: 1px solid #4a5154;
+}
+
+.admin-user-detail-page .admin-alert-danger {
+    color: #d9c4c2;
+    background: rgba(120, 63, 58, 0.10);
+    border: 1px solid #603e3b;
+}
+
+
+/* =========================================================
+   USER STATS
    ========================================================= */
 
 .user-stats-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
+    gap: 14px;
     margin-bottom: 20px;
 }
 
 .stat-card {
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    padding: 20px;
-    background: #262019;
-    border: 1px solid #4a3c2c;
-    border-radius: 4px;
+    gap: 8px;
+    min-height: 105px;
+    padding: 18px 20px;
+    background: #111416;
+    border: 1px solid #303638;
+    border-radius: 7px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
 }
 
     .stat-card span {
-        color: #8a7a64;
-        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-        font-size: 12px;
+        color: #8d9599;
+        font-family: var(--font-mono, "JetBrains Mono", monospace);
+        font-size: 9px;
+        font-weight: 600;
+        letter-spacing: 0.8px;
+        text-transform: uppercase;
     }
 
     .stat-card strong {
-        color: #d8cbb3;
-        font-family: 'Alfa Slab One', Georgia, serif;
-        font-size: 20px;
-        font-weight: 400;
+        color: #f1f3f3;
+        font-family: var(--font-display, "Space Grotesk", sans-serif);
+        font-size: 22px;
+        font-weight: 650;
+        letter-spacing: -0.5px;
     }
 
 .stat-money {
-    color: #8a4030 !important;
+    color: #f1f3f3 !important;
+    font-family: var( --font-mono, "JetBrains Mono", monospace ) !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
 }
+
 
 /* =========================================================
    ORDERS TABLE
@@ -232,94 +303,158 @@
 .user-orders-table {
     width: 100%;
     border-collapse: collapse;
+    text-align: center;
 }
+
+
+    /* TABLE HEADER */
 
     .user-orders-table thead th {
-        padding: 12px 24px;
-        color: #8a7a64;
-        background: #201a15;
-        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-        font-size: 12px;
+        padding: 14px 18px;
+        color: #c0c6c8;
+        background: #15181a;
+        border-bottom: 1px solid #353b3e;
+        font-family: var(--font-mono, "JetBrains Mono", monospace);
+        font-size: 10px;
         font-weight: 700;
+        letter-spacing: 0.9px;
+        text-align: center;
         text-transform: uppercase;
-        letter-spacing: 0.4px;
-        text-align: left;
         white-space: nowrap;
     }
+
+
+    /* TABLE BODY */
 
     .user-orders-table tbody td {
-        padding: 13px 24px;
-        border-top: 1px solid #4a3c2c;
-        color: #d8cbb3;
-        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-        font-size: 14px;
+        padding: 15px 18px;
+        color: #d9ddde;
+        background: #111416;
+        border-bottom: 1px solid #292e30;
+        font-family: var(--font-body, "Inter", sans-serif);
+        font-size: 13px;
+        font-weight: 500;
+        text-align: center;
         white-space: nowrap;
+        transition: background 0.18s ease;
     }
 
+    .user-orders-table tbody tr:last-child td {
+        border-bottom: none;
+    }
+
+    .user-orders-table tbody tr:hover td {
+        background: #171a1c;
+    }
+
+
+    /* ORDER ID */
+
+    .user-orders-table tbody td:first-child {
+        color: #aeb5b8;
+        font-family: var(--font-mono, "JetBrains Mono", monospace);
+        font-size: 11px;
+        font-weight: 600;
+    }
+
+
+/* ORDER AMOUNT */
+
 .order-amount {
-    color: #8a4030;
-    font-weight: 700;
+    color: #f1f3f3 !important;
+    font-family: var( --font-mono, "JetBrains Mono", monospace ) !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
 }
+
+
+/* ACTION */
 
 .action-column {
-    width: 90px;
+    width: 100px;
+    text-align: center !important;
 }
 
+
+/* =========================================================
+   ORDER DETAIL BUTTON
+   ========================================================= */
+
 .order-detail-link {
-    display: inline-block;
-    padding: 6px 14px;
-    color: #a3803f;
-    background: transparent;
-    border: 1px solid #4a3c2c;
-    border-radius: 2px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 65px;
+    padding: 7px 13px;
+    color: #dce0e1;
+    background: #171a1c;
+    border: 1px solid #42494c;
+    border-radius: 5px;
     text-decoration: none;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 13px;
-    font-weight: 700;
-    transition: border-color 0.2s ease;
+    font-family: var(--font-body, "Inter", sans-serif);
+    font-size: 11px;
+    font-weight: 650;
+    transition: color 0.18s ease, background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
 }
 
     .order-detail-link:hover {
-        border-color: #a3803f;
+        color: #ffffff;
+        background: #202426;
+        border-color: #626a6e;
+        transform: translateY(-1px);
     }
 
+
 /* =========================================================
-   BACK LINK
+   BACK BUTTON
    ========================================================= */
 
 .btn-back-users {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
-    padding: 10px 18px;
-    color: #d8cbb3;
-    background: transparent;
-    border: 1px solid #4a3c2c;
-    border-radius: 2px;
+    min-height: 38px;
+    padding: 0 15px;
+    color: #c5cbcd;
+    background: #171a1c;
+    border: 1px solid #42494c;
+    border-radius: 5px;
     text-decoration: none;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    transition: border-color 0.2s ease, color 0.2s ease;
+    font-family: var(--font-body, "Inter", sans-serif);
+    font-size: 11px;
+    font-weight: 650;
+    transition: color 0.18s ease, background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
 }
 
     .btn-back-users:hover {
-        border-color: #a3803f;
-        color: #a3803f;
+        color: #ffffff;
+        background: #202426;
+        border-color: #626a6e;
+        transform: translateY(-1px);
     }
 
-@media (max-width: 700px) {
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 800px) {
+
+    .admin-user-detail-page {
+        padding: 0 8px 25px;
+    }
+
     .user-info-grid {
         grid-template-columns: 1fr;
     }
 
     .info-item {
-        border-right: 0;
-        border-bottom: 1px solid #4a3c2c;
+        border-right: none;
+        border-bottom: 1px solid #292e30;
     }
 
         .info-item:last-child {
-            border-bottom: 0;
+            border-bottom: none;
         }
 
     .user-stats-grid {
@@ -329,5 +464,78 @@
     .role-form {
         flex-direction: column;
         align-items: stretch;
+    }
+
+    .form-group {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .btn-update-role {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .admin-user-detail-page {
+        padding: 0 6px 22px;
+    }
+
+        .admin-user-detail-page .page-header h2 {
+            font-size: 23px;
+        }
+
+    .detail-card-header {
+        padding: 15px 16px;
+    }
+
+    .role-form-body {
+        padding: 16px;
+    }
+
+    .info-item {
+        padding: 16px;
+    }
+
+    .stat-card {
+        padding: 17px;
+    }
+
+    .user-orders-table {
+        min-width: 700px;
+    }
+
+        .user-orders-table thead th,
+        .user-orders-table tbody td {
+            padding-left: 14px;
+            padding-right: 14px;
+        }
+
+    .btn-back-users {
+        width: 100%;
+    }
+}
+
+@media (max-width: 420px) {
+
+    .admin-user-detail-page .page-header h2 {
+        font-size: 21px;
+    }
+
+    .admin-user-detail-page .page-eyebrow {
+        font-size: 9px;
+    }
+
+    .detail-card-header h3 {
+        font-size: 13px;
+    }
+
+    .stat-card strong {
+        font-size: 20px;
+    }
+
+    .stat-money {
+        font-size: 14px !important;
     }
 }

@@ -1,282 +1,534 @@
 ﻿/* =========================================================
-   ADMIN ORDER DETAIL — mat, eskimiş, neon/canlı renk yok
+   ADMIN ORDER DETAIL
+   Graphite / White / Steel Theme
    ========================================================= */
 
 .admin-order-detail-page {
-    max-width: 950px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 10px 40px;
+    color: var(--admin-text, #eef1f2);
 }
 
-.page-header {
-    margin-bottom: 22px;
-}
-
-.page-eyebrow {
-    display: block;
-    margin-bottom: 6px;
-    color: #a3803f;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 2px;
-}
-
-.page-header h2 {
-    margin: 0;
-    color: #d8cbb3;
-    font-family: 'Alfa Slab One', Georgia, serif;
-    font-size: 22px;
-    font-weight: 400;
-    text-transform: uppercase;
-}
-
-.order-meta {
-    display: flex;
-    gap: 20px;
-    margin-top: 8px;
-    color: #8a7a64;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 14px;
-}
-
-    .order-meta strong {
-        color: #d8cbb3;
-    }
-
-.admin-alert {
-    padding: 12px 15px;
-    margin-bottom: 16px;
-    border-radius: 2px;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 14px;
-}
-
-.admin-alert-success {
-    color: #cfd8bf;
-    background: rgba(92, 107, 70, 0.18);
-    border: 1px solid #5c6b46;
-}
-
-.admin-alert-danger {
-    color: #e0c3ba;
-    background: rgba(138, 64, 48, 0.18);
-    border: 1px solid #8a4030;
-}
-
-/* =========================================================
-   DETAIL CARD (shared shell)
+    /* =========================================================
+   PAGE HEADER
    ========================================================= */
 
-.detail-card {
-    background: #262019;
-    border: 1px solid #4a3c2c;
-    border-radius: 4px;
-    overflow: hidden;
-    margin-bottom: 20px;
-}
+    .admin-order-detail-page .page-header {
+        text-align: center;
+        margin-bottom: 28px;
+    }
 
-.detail-card-header {
-    padding: 18px 24px;
-    border-bottom: 1px solid #4a3c2c;
-}
-
-    .detail-card-header h3 {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin: 0;
-        color: #d8cbb3;
-        font-family: 'Alfa Slab One', Georgia, serif;
-        font-size: 16px;
-        font-weight: 400;
+    .admin-order-detail-page .page-eyebrow {
+        display: inline-block;
+        margin-bottom: 8px;
+        color: var(--admin-text-soft, #b7bdc0);
+        font-family: var(--font-mono, "JetBrains Mono", monospace);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.14em;
         text-transform: uppercase;
     }
 
-        .detail-card-header h3 i {
-            color: #a3803f;
-            font-size: 14px;
+    .admin-order-detail-page .page-header h2 {
+        margin: 0;
+        color: var(--admin-white, #f4f5f5);
+        font-family: var(--font-display, "Space Grotesk", sans-serif);
+        font-size: 30px;
+        font-weight: 700;
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+    }
+
+/* =========================================================
+   ORDER META
+   ========================================================= */
+
+.order-meta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px 24px;
+    margin-top: 14px;
+}
+
+    .order-meta span {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        color: var(--admin-text-soft, #b7bdc0);
+        font-family: var(--font-body, "Inter", sans-serif);
+        font-size: 13px;
+        font-weight: 500;
+    }
+
+    .order-meta strong {
+        color: var(--admin-white, #f4f5f5);
+        font-weight: 700;
+    }
+
+/* =========================================================
+   ALERTS
+   ========================================================= */
+
+.admin-order-detail-page .admin-alert {
+    width: 100%;
+    margin-bottom: 18px;
+    padding: 13px 16px;
+    border: 1px solid;
+    border-radius: 6px;
+    font-family: var(--font-body, "Inter", sans-serif);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.admin-order-detail-page .admin-alert-success {
+    color: #dce9df;
+    background: #18201b;
+    border-color: #34423a;
+}
+
+.admin-order-detail-page .admin-alert-danger {
+    color: #f0d5d2;
+    background: #24191a;
+    border-color: #493031;
+}
+
+/* =========================================================
+   DETAIL CARDS
+   ========================================================= */
+
+.admin-order-detail-page .detail-card {
+    width: 100%;
+    margin-bottom: 22px;
+    overflow: hidden;
+    background: var(--admin-card, #111416);
+    border: 1px solid var(--admin-border, #292e30);
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.16);
+}
+
+/* =========================================================
+   CARD HEADER
+   ========================================================= */
+
+.admin-order-detail-page .detail-card-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 62px;
+    padding: 16px 20px;
+    background: var(--admin-panel, #15181a);
+    border-bottom: 1px solid var(--admin-border, #292e30);
+    text-align: center;
+}
+
+    .admin-order-detail-page .detail-card-header h3 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        margin: 0;
+        color: var(--admin-white, #f4f5f5);
+        font-family: var(--font-display, "Space Grotesk", sans-serif);
+        font-size: 16px;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+    }
+
+        .admin-order-detail-page .detail-card-header h3 i {
+            color: var(--admin-steel, #aeb6ba);
+            font-size: 15px;
         }
 
 /* =========================================================
-   CUSTOMER INFO
+   CUSTOMER INFORMATION
    ========================================================= */
 
 .customer-info-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0;
+    background: var(--admin-card, #111416);
 }
 
 .info-item {
     display: flex;
     flex-direction: column;
-    gap: 5px;
-    padding: 18px 24px;
-    border-right: 1px solid #4a3c2c;
-    border-bottom: 1px solid #4a3c2c;
+    justify-content: center;
+    align-items: center;
+    min-height: 100px;
+    padding: 18px 20px;
+    border-right: 1px solid var(--admin-border, #292e30);
+    border-bottom: 1px solid var(--admin-border, #292e30);
+    text-align: center;
 }
 
+    .info-item:nth-child(3n) {
+        border-right: none;
+    }
+
+    .info-item:nth-last-child(-n + 3) {
+        border-bottom: none;
+    }
+
     .info-item span {
-        color: #8a7a64;
-        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-        font-size: 12px;
+        margin-bottom: 7px;
+        color: var(--admin-text-dim, #8f989c);
+        font-family: var(--font-mono, "JetBrains Mono", monospace);
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
     }
 
     .info-item strong {
-        color: #d8cbb3;
-        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+        max-width: 100%;
+        color: var(--admin-text, #e2e6e7);
+        font-family: var(--font-body, "Inter", sans-serif);
         font-size: 14px;
-        font-weight: 700;
+        font-weight: 650;
+        line-height: 1.5;
+        overflow-wrap: anywhere;
     }
 
 .info-item-wide {
     grid-column: span 3;
-    border-right: 0;
-    border-bottom: 0;
+    border-right: none;
 }
 
+    .info-item-wide strong {
+        max-width: 850px;
+    }
+
 /* =========================================================
-   PRODUCTS TABLE
+   TABLE
    ========================================================= */
 
-.table-wrapper {
+.admin-order-detail-page .table-wrapper {
+    width: 100%;
     overflow-x: auto;
 }
 
 .detail-products-table {
     width: 100%;
     border-collapse: collapse;
+    table-layout: fixed;
+    color: var(--admin-text, #e2e6e7);
+    font-family: var(--font-body, "Inter", sans-serif);
 }
 
-    .detail-products-table thead th {
-        padding: 12px 24px;
-        color: #8a7a64;
-        background: #201a15;
-        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-        font-size: 12px;
+    .detail-products-table th {
+        padding: 15px 18px;
+        background: #171a1c;
+        border-bottom: 1px solid var(--admin-border-medium, #353b3e);
+        color: var(--admin-text-soft, #c3c9cb);
+        font-family: var(--font-mono, "JetBrains Mono", monospace);
+        font-size: 11px;
         font-weight: 700;
+        letter-spacing: 0.07em;
+        text-align: center;
         text-transform: uppercase;
-        letter-spacing: 0.4px;
-        text-align: left;
-        white-space: nowrap;
     }
 
-    .detail-products-table tbody td {
-        padding: 13px 24px;
-        border-top: 1px solid #4a3c2c;
-        color: #d8cbb3;
-        font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    .detail-products-table td {
+        padding: 16px 18px;
+        border-bottom: 1px solid var(--admin-border, #292e30);
+        color: #d8dddf;
         font-size: 14px;
-        white-space: nowrap;
+        font-weight: 550;
+        line-height: 1.5;
+        text-align: center;
+        vertical-align: middle;
     }
 
-.quantity-badge {
-    display: inline-block;
-    padding: 3px 10px;
-    color: #d8cbb3;
-    background: #171310;
-    border: 1px solid #4a3c2c;
-    border-radius: 2px;
-    font-size: 13px;
-    font-weight: 700;
-}
-
-.line-total {
-    color: #8a4030 !important;
-    font-weight: 700;
-}
-
-.grand-total-row td {
-    padding-top: 16px;
-    border-top: 2px solid #4a3c2c !important;
-    color: #d8cbb3;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.4px;
-    text-align: right;
-}
-
-    .grand-total-row td:first-child {
-        text-align: left;
+    .detail-products-table tbody tr {
+        transition: background-color 0.18s ease, transform 0.18s ease;
     }
+
+        .detail-products-table tbody tr:hover {
+            background: #171a1c;
+        }
+
+        .detail-products-table tbody tr:last-child td {
+            border-bottom: none;
+        }
 
 /* =========================================================
-   STATUS UPDATE FORM
+   QUANTITY
+   ========================================================= */
+
+.quantity-badge {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 34px;
+    height: 28px;
+    padding: 0 9px;
+    background: #202427;
+    border: 1px solid #3a4144;
+    border-radius: 5px;
+    color: #eef1f2;
+    font-family: var(--font-mono, "JetBrains Mono", monospace);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* =========================================================
+   PRICES
+   ========================================================= */
+
+.detail-products-table td:nth-child(3),
+.detail-products-table .line-total {
+    font-family: var(--font-mono, "JetBrains Mono", monospace);
+    font-weight: 700;
+}
+
+.detail-products-table .line-total {
+    color: #f1f3f3;
+}
+
+/* =========================================================
+   GRAND TOTAL
+   ========================================================= */
+
+.detail-products-table .grand-total-row td {
+    padding: 19px 18px;
+    background: #171a1c;
+    border-top: 1px solid var(--admin-border-medium, #353b3e);
+    border-bottom: none;
+    color: #d6dbdd;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+    .detail-products-table .grand-total-row td:first-child {
+        text-align: right;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+    }
+
+.detail-products-table .grand-total-row .line-total {
+    color: #ffffff;
+    font-size: 17px;
+}
+
+/* =========================================================
+   STATUS UPDATE
    ========================================================= */
 
 .status-form {
     display: flex;
+    justify-content: center;
     align-items: center;
     gap: 12px;
-    padding: 20px 24px;
-    flex-wrap: wrap;
+    padding: 24px;
 }
 
 .status-select {
-    flex: 1;
-    min-width: 220px;
-    height: 44px;
-    padding: 0 13px;
-    color: #d8cbb3;
-    background: #171310;
-    border: 1px solid #4a3c2c;
-    border-radius: 2px;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
+    width: min(320px, 100%);
+    min-height: 46px;
+    padding: 0 15px;
+    appearance: none;
+    cursor: pointer;
+    background: linear-gradient(45deg, transparent 50%, #9da5a8 50%) calc(100% - 18px) 20px / 6px 6px no-repeat, linear-gradient(135deg, #9da5a8 50%, transparent 50%) calc(100% - 13px) 20px / 6px 6px no-repeat, #171a1c;
+    border: 1px solid #3a4043;
+    border-radius: 6px;
+    color: #eef1f2;
+    font-family: var(--font-body, "Inter", sans-serif);
     font-size: 14px;
+    font-weight: 600;
+    outline: none;
+    transition: border-color 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
 }
 
-    .status-select:focus {
-        outline: none;
-        border-color: #a3803f;
+    .status-select:hover {
+        border-color: #50575a;
     }
 
-.btn-update-status {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 22px;
-    color: #171310;
-    background: #a3803f;
-    border: 1px dashed #171310;
-    outline: 2px solid #a3803f;
-    outline-offset: -4px;
-    border-radius: 2px;
-    font-family: 'Barlow Semi Condensed', 'Segoe UI', Arial, sans-serif;
-    font-size: 14px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.4px;
-    white-space: nowrap;
-    cursor: pointer;
-    transition: background 0.2s ease;
-}
+    .status-select:focus {
+        border-color: #7d878b;
+        box-shadow: 0 0 0 3px rgba(150, 160, 164, 0.10);
+    }
 
-    .btn-update-status:hover {
-        background: #bd9a5c;
+    .status-select option {
+        background: #171a1c;
+        color: #eef1f2;
     }
 
 /* =========================================================
-   RESPONSIVE
+   UPDATE BUTTON
+   ========================================================= */
+
+.btn-update-status {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    min-height: 46px;
+    padding: 0 20px;
+    border: 1px solid #aeb5b8;
+    border-radius: 6px;
+    background: linear-gradient( 180deg, #f0f2f2 0%, #cbd0d2 100% );
+    color: #171a1c;
+    font-family: var(--font-body, "Inter", sans-serif);
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+    .btn-update-status:hover {
+        background: linear-gradient( 180deg, #ffffff 0%, #d9ddde 100% );
+        transform: translateY(-1px);
+        box-shadow: 0 7px 18px rgba(0, 0, 0, 0.25);
+    }
+
+    .btn-update-status:active {
+        transform: translateY(0);
+    }
+
+    .btn-update-status i {
+        font-size: 12px;
+    }
+
+/* =========================================================
+   RESPONSIVE - 900px
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .customer-info-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .info-item:nth-child(3n) {
+        border-right: 1px solid var(--admin-border, #292e30);
+    }
+
+    .info-item:nth-child(2n) {
+        border-right: none;
+    }
+
+    .info-item:nth-last-child(-n + 3) {
+        border-bottom: 1px solid var(--admin-border, #292e30);
+    }
+
+    .info-item:nth-last-child(-n + 2) {
+        border-bottom: none;
+    }
+
+    .info-item-wide {
+        grid-column: span 2;
+        border-right: none !important;
+    }
+}
+
+/* =========================================================
+   RESPONSIVE - 700px
    ========================================================= */
 
 @media (max-width: 700px) {
+
+    .admin-order-detail-page {
+        padding: 0 6px 30px;
+    }
+
+        .admin-order-detail-page .page-header h2 {
+            font-size: 25px;
+        }
+
+    .order-meta {
+        flex-direction: column;
+        gap: 7px;
+    }
+
+    .detail-card-header {
+        min-height: 58px;
+        padding: 14px 16px;
+    }
+
+        .detail-card-header h3 {
+            font-size: 15px;
+        }
 
     .customer-info-grid {
         grid-template-columns: 1fr;
     }
 
-    .info-item {
-        border-right: 0;
-    }
-
+    .info-item,
     .info-item-wide {
         grid-column: span 1;
+        min-height: 88px;
+        border-right: none !important;
+        border-bottom: 1px solid var(--admin-border, #292e30) !important;
+    }
+
+        .info-item:last-child {
+            border-bottom: none !important;
+        }
+
+    .detail-products-table {
+        min-width: 650px;
     }
 
     .status-form {
         flex-direction: column;
-        align-items: stretch;
+        padding: 20px;
     }
 
+    .status-select,
     .btn-update-status {
-        justify-content: center;
+        width: 100%;
+    }
+}
+
+/* =========================================================
+   RESPONSIVE - 480px
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .admin-order-detail-page .page-header h2 {
+        font-size: 22px;
+    }
+
+    .admin-order-detail-page .page-eyebrow {
+        font-size: 10px;
+    }
+
+    .order-meta span {
+        font-size: 12px;
+    }
+
+    .detail-card-header h3 {
+        font-size: 14px;
+    }
+
+    .info-item {
+        padding: 16px;
+    }
+
+        .info-item strong {
+            font-size: 13px;
+        }
+
+    .admin-order-detail-page .admin-alert {
+        font-size: 13px;
+    }
+
+    .status-form {
+        padding: 16px;
+    }
+
+    .status-select,
+    .btn-update-status {
+        min-height: 44px;
+        font-size: 13px;
     }
 }
